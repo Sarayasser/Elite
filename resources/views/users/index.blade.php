@@ -261,7 +261,7 @@
             <div class="card-body">
                 
                 <div class="">
-                    <table class="table tablesorter  data-table" id="table">
+                    <table class="table tablesorter data-table" id="table">
                         <thead class=" text-primary">
                             <tr><th scope="col">Name</th>
                             <th scope="col">Email</th>
