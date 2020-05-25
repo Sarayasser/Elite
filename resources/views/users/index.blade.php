@@ -88,7 +88,7 @@
                                                         </a>
                                                     </li>
                                                     <li class="active">
-                                                        <a href="{{ route('user.index')  }}">
+                                                        <a href="{{ route('users.index')  }}">
                                                             <i class="tim-icons icon-bullet-list-67"></i>
                                                             <p>{{ _('User Management') }}</p>
                                                         </a>
@@ -261,15 +261,15 @@
             <div class="card-body">
                 
                 <div class="">
-                    <table class="table tablesorter" id="table">
+                    <table class="table tablesorter  data-table" id="table">
                         <thead class=" text-primary">
                             <tr><th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Creation Date</th>
-                            <th scope="col"></th>
+                            <th scope="col">Actions</th>
                         </tr></thead>
                         <tbody>
-                                                                <tr>
+                                <tr>
                                     <td>Admin Admin</td>
                                     <td>
                                         <a href="mailto:admin@black.com">admin@black.com</a>
@@ -286,6 +286,46 @@
                                             </div>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>Admin Admin</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Admin Admin</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>Admin Admin</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Admin Admin</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Admin Admin</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Admin Admin</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Admin Admin</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Admin Admin</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Admin Admin</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Admin Admin</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Admin Admin</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Admin Admin</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Admin Admin</td>
+                                    </tr>
                                                         </tbody>
                     </table>
                 </div>
@@ -296,44 +336,11 @@
                 </nav>
             </div>
         </div>
-        <div class="alert alert-danger">
-                <span>
-                  <b> </b> This is a <b>PRO</b> feature!</span>
-              </div>
-    </div>
 </div>
                 </div>
 
                 <footer class="footer">
-<div class="container-fluid">
-    <ul class="nav">
-        <li class="nav-item">
-            <a href="https://creative-tim.com" target="blank" class="nav-link">
-                Creative Tim
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="https://updivision.com" target="blank" class="nav-link">
-                Updivision
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                About Us
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                Blog
-            </a>
-        </li>
-    </ul>
-    <div class="copyright">
-        © 2020 made with <i class="tim-icons icon-heart-2"></i> by
-        <a href="https://creative-tim.com" target="_blank">Creative Tim</a> &amp;
-        <a href="https://updivision.com" target="_blank">Updivision</a> for a better web.
-    </div>
-</div>
+
 </footer>
             </div>
         </div>
@@ -356,16 +363,6 @@
                 <div class="clearfix"></div>
                 </a>
             </li>
-            <li class="button-container">
-                <a href="https://www.creative-tim.com/product/black-dashboard-laravel" target="_blank" class="btn btn-primary btn-block btn-round">Download Now</a>
-                <a href="https://black-dashboard-laravel.creative-tim.com/docs/getting-started/laravel-setup.html" target="_blank" class="btn btn-default btn-block btn-round">
-                Documentation
-                </a>
-                <a href="https://www.creative-tim.com/product/black-dashboard-pro-laravel" target="_blank" class="btn btn-danger btn-block btn-round">
-                Upgrade to PRO
-                </a>
-            </li>
-            <li class="header-title">Thank you for 95 shares!</li>
             <li class="button-container text-center">
                 <button id="twitter" class="btn btn-round btn-info"><i class="fab fa-twitter"></i> · 45</button>
                 <button id="facebook" class="btn btn-round btn-info"><i class="fab fa-facebook-f"></i> · 50</button>
@@ -532,13 +529,28 @@
 </body>
 <script src="//code.jquery.com/jquery-1.12.3.js"></script>
 <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-<script
-    src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script> -->
-<script>
-  $(document).ready(function() {
-    $('#table').DataTable({
-        "dom": '<"top"f><"right"l>rt<"bottom"ip><"clear">'
+<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<script type="text/javascript">
+  $(function () {
+    var table = $('.data-table').DataTable({
+        // "dom": '<"top"f><"right"l>rt<"bottom"ip><"clear">'
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('users.index') }}",
+        columns: [
+            {data: 'name', name: 'name'},
+            {data: 'email', name: 'email'},
+            {data: 'created_at', name:'creation date'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ]
     });
-} );
- </script>
+    
+  });
+</script>
 </html>
