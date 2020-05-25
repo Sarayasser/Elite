@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "28a1563077d8c8c37449641684aeae3e",
+=======
+    "content-hash": "48cacba6ed813fb0a7e4ad971ada906d",
+>>>>>>> d65efa8a35a3556413aca0f992aac9f3a71967e2
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -143,6 +147,7 @@
             "time": "2020-05-21T05:58:04+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "backpack/menucrud",
             "version": "2.0.5",
             "source": {
@@ -270,6 +275,8 @@
             "time": "2020-05-08T08:58:02+00:00"
         },
         {
+=======
+>>>>>>> d65efa8a35a3556413aca0f992aac9f3a71967e2
             "name": "backpack/permissionmanager",
             "version": "6.0.1",
             "source": {
@@ -345,6 +352,7 @@
             "time": "2020-05-08T09:03:20+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "backpack/settings",
             "version": "3.0.7",
             "source": {
@@ -409,6 +417,8 @@
             "time": "2020-04-24T14:33:48+00:00"
         },
         {
+=======
+>>>>>>> d65efa8a35a3556413aca0f992aac9f3a71967e2
             "name": "brick/math",
             "version": "0.8.15",
             "source": {

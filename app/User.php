@@ -6,12 +6,21 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Spatie\Permission\Traits\HasRoles;
+
 class User extends Authenticatable
 {
     use Notifiable;
+<<<<<<< HEAD
     // use CrudTrait;
     // use HasRoles;
 
+=======
+    
+    use CrudTrait; 
+    use HasRoles; 
+>>>>>>> d65efa8a35a3556413aca0f992aac9f3a71967e2
     /**
      * The attributes that are mass assignable.
      *
