@@ -73,7 +73,7 @@ class User extends Authenticatable
             $filename = md5($value.time()).'.jpg';
 
             // 2. Store the image on disk.
-                Storage::disk($disk)->put($destination_path.'/'.$filename, $image->stream());
+            Storage::disk($disk)->put($destination_path.'/'.$filename, $image->stream());
 
             // 3. Delete the previous image, if there was one.
             Storage::disk($disk)->delete($this->{$attribute_name});
