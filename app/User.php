@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','age', 'address', 'phone_number', 'gender', 'image'
+        'name', 'email', 'password', 'address', 'phone_number', 'gender', 'image'
     ];
 
     /**
@@ -48,6 +48,7 @@ class User extends Authenticatable
     ];
     public function setImageAttribute($value)
     {
+        //dd($value);
         $attribute_name = "image";
         // or use your own disk, defined in config/filesystems.php
         $disk = "uploads"; 
@@ -65,13 +66,13 @@ class User extends Authenticatable
 
         // if a base64 was sent, store it in the db
         if (Str::startsWith($value, 'data:image'))
-        {
+        {   
+                   
             // 0. Make the image
             $image = Image::make($value)->encode('jpg', 90);
-
+            
             // 1. Generate a filename.
             $filename = md5($value.time()).'.jpg';
-
             // 2. Store the image on disk.
             Storage::disk($disk)->put($destination_path.'/'.$filename, $image->stream());
 

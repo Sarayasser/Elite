@@ -9,6 +9,16 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group([
+    'namespace'  => 'App\Http\Controllers\Admin',
+    'middleware' => config('backpack.base.web_middleware', 'web'),
+    'prefix'     => config('backpack.base.route_prefix'),
+], function () {
+    // Registration Routes...
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('backpack.auth.register');
+    Route::post('register', 'Auth\RegisterController@register');
+
+});
+Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
     'middleware' => [
         config('backpack.base.web_middleware', 'web'),
