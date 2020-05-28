@@ -13,4 +13,13 @@ class Instructor extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * relation one to many (instructor teach many courses)
+     */
+    public function courses()
+    {
+        return $this->hasMany('App\Course','instructor_id');
+    }
+    
 }

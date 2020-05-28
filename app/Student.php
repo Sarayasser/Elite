@@ -21,4 +21,12 @@ class Student extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * The courses that belong to the student.
+     */
+    public function courses()
+    {
+        return $this->belongsToMany('App\Course');
+    }
 }
