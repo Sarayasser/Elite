@@ -86,4 +86,33 @@ class User extends Authenticatable
             $this->attributes[$attribute_name] = $public_destination_path.'/'.$filename;
         }
     }
+
+
+    /**
+     * relation one to one to student
+     */
+
+    public function student()
+    {
+        return $this->hasOne('App\Student',"user_id");
+    }
+
+    /**
+     * relation one to many (parent has many children)
+     */
+    public function students()
+    {
+        return $this->hasMany('App\Student','parent_id');
+    }
+
+
+    /**
+     * relation one to one to instructor
+     */
+
+    public function instructor()
+    {
+        return $this->hasOne('App\Instructor',"user_id");
+    }
+
 }
