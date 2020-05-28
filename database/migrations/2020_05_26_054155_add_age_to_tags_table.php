@@ -13,7 +13,7 @@ class AddAgeToTagsTable extends Migration
     public function up()
     {
         Schema::table('tags', function (Blueprint $table) {
-            $table->string('age');
+            $table->string('age')->nullable();
         });
     }
 
