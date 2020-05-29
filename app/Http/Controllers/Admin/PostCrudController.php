@@ -31,13 +31,17 @@ class PostCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
         $this->crud->addColumns([
             ['name' => 'title', 'type' => 'text', 'label' => 'Title'],
-            ['name' => 'description', 'type' => 'textarea', 'label' => 'Description'],
+            ['name' => 'description', 'type' => 'ckeditor', 'label' => 'Description'],
             [  // Select
                 'label'     => "Author",
                 'type'      => 'select',
                 'name'      => 'user_id',
                 'entity'    => 'user', 
-                'attribute' => 'name', 
+                'attribute' => 'name',
+                // 'model'     => "App\User",
+                // 'options'   => (function ($query) {
+                //     return $query->orderBy('name', 'ASC')->where('depth', 1)->get();
+                // }),
             ],
             [
                 'label'        => "Image",
@@ -63,7 +67,7 @@ class PostCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
         $this->crud->addColumns([
             ['name' => 'title', 'type' => 'text', 'label' => 'Title'],
-            ['name' => 'description', 'type' => 'textarea', 'label' => 'Description'],
+            ['name' => 'description', 'type' => 'ckeditor', 'label' => 'Description'],
             [  // Select
                 'label'     => "Author",
                 'type'      => 'select',
@@ -95,7 +99,11 @@ class PostCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Fields
         $this->crud->addFields([
             ['name' => 'title', 'type' => 'text', 'label' => 'Title'],
-            ['name' => 'description', 'type' => 'textarea', 'label' => 'Description'],
+            [   // CKEditor
+                'name'          => 'description',
+                'label'         => 'Description',
+                'type'          => 'ckeditor',
+            ],
             [  // Select
                 'label'     => "Author",
                 'type'      => 'select',
