@@ -19,7 +19,12 @@ class Instructor extends Model
      */
     public function courses()
     {
-        return $this->hasMany('App\Course','instructor_id');
+        return $this->hasMany('App\Models\Course','instructor_id');
+    }
+
+    public function GetNameAttribute()
+    {
+        return $this->user->name;
     }
     
 }
