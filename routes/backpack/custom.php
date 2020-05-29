@@ -9,6 +9,16 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group([
+    'namespace'  => 'App\Http\Controllers\Admin',
+    'middleware' => config('backpack.base.web_middleware', 'web'),
+    'prefix'     => config('backpack.base.route_prefix'),
+], function () {
+    // Registration Routes...
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('backpack.auth.register');
+    Route::post('register', 'Auth\RegisterController@register');
+
+});
+Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
     'middleware' => [
         config('backpack.base.web_middleware', 'web'),
@@ -20,4 +30,5 @@ Route::group([
     Route::crud('user', 'UserCrudController');
     
     Route::crud('post', 'PostCrudController');
+    Route::crud('course', 'CourseCrudController');
 }); // this should be the absolute last line of this file

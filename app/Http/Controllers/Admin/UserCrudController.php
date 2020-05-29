@@ -67,11 +67,11 @@ class UserCrudController extends UserController
                 'label' => trans('phone_number'),
                 'type'  => 'text',
             ],
-            [
-                'name'  => 'age',
-                'label' => trans('age'),
-                'type'  => 'number',
-            ],
+            // [
+            //     'name'  => 'age',
+            //     'label' => trans('age'),
+            //     'type'  => 'number',
+            // ],
         ]);
         // Role Filter
         $this->crud->addFilter(
@@ -156,11 +156,11 @@ class UserCrudController extends UserController
                 'label' => trans('phone_number'),
                 'type'  => 'text',
             ],
-            [
-                'name'  => 'age',
-                'label' => trans('age'),
-                'type'  => 'number',
-            ],
+            // [
+            //     'name'  => 'age',
+            //     'label' => trans('age'),
+            //     'type'  => 'number',
+            // ],
             [
                 // two interconnected entities
                 'label'             => trans('backpack::permissionmanager.user_role_permission'),
