@@ -31,4 +31,6 @@ Route::group([
     
     Route::crud('post', 'PostCrudController');
     Route::crud('course', 'CourseCrudController');
+    Route::crud('event', 'EventCrudController');
+    Route::crud('schedule', 'ScheduleCrudController');
 }); // this should be the absolute last line of this file
