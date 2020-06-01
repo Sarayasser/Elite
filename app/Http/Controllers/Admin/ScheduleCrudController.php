@@ -17,7 +17,7 @@ class ScheduleCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     public function setup()
     {
@@ -27,44 +27,6 @@ class ScheduleCrudController extends CrudController
     }
 
     protected function setupListOperation()
-    {
-        // TODO: remove setFromDb() and manually define Columns, maybe Filters
-        // $this->crud->setFromDb();
-        $this->crud->addColumns([
-            [   // Start Date
-                'name'  => 'start_date',
-                'label' => 'StartDate',
-                'type'  => 'date'
-            ],
-            [   // End Date
-                'name'  => 'end_date',
-                'label' => 'EndDate',
-                'type'  => 'date'
-            ],
-            [   // Date
-                'name'  => 'time',
-                'label' => 'Time',
-                'type'  => 'time'
-            ],
-            [  // Select
-                'label'     => "Instructor",
-                'type'      => 'select',
-                'name'      => 'instructor_id',
-                'entity'    => 'instructor', 
-                'attribute' => 'name', 
-                'model' => 'App\Instructor',
-            ],
-            [  // Select
-                'label'     => "Course",
-                'type'      => 'select',
-                'name'      => 'course_id',
-                'entity'    => 'course', 
-                'attribute' => 'name', 
-                'model' => 'App\Models\Course',
-            ]
-            ]);
-    }
-    protected function setupShowOperation()
     {
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
         // $this->crud->setFromDb();
