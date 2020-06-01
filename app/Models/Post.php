@@ -62,7 +62,7 @@ class Post extends Model
     {
         $attribute_name = "image";
         $disk = "uploads"; 
-        $destination_path = "posts"; 
+        $destination_path = "storage/posts"; 
 
         if ($value==null) {
             Storage::disk($disk)->delete($this->{$attribute_name});
