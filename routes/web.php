@@ -20,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 // Posts
 Route::post('/posts', 'PostController@store')->name('posts.store');
-Route::get('/posts/create', 'PostController@create')->name('posts.create'); 
+Route::get('/posts/create', 'PostController@create')->name('posts.create');
+
+Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 
 Route::get('/', function () { return view('home'); });
 Route::get('/calender', function () { return view('calender'); });
