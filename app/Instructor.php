@@ -26,5 +26,6 @@ class Instructor extends Model
     {
         return $this->user->name;
     }
+
     
 }

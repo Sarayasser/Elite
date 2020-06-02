@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\User;
 use App\Http\Requests\EventRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -45,14 +45,24 @@ class EventCrudController extends CrudController
             ],
         ]
             );
+            // $this->crud->addButton();
         $this->crud->filters();
     }
     protected function setupShowOperation(){
-        $this->crud->addColumns(
-        ['name' => 'name', 'type' => 'text', 'label' => 'Name']);
-        $this->crud->addColumns(
-        ['name' => 'description', 'type' => 'text', 'label' => 'Description']
-        );
+        $this->crud->addColumns([
+        ['name' => 'name', 'type' => 'text', 'label' => 'Name'],
+        ['name' => 'description', 'type' => 'text', 'label' => 'Description'],
+        ['name' => 'location' , 'type' => 'text' , 'label' => 'Location'],
+        ['name' => 'date' , 'type' => 'date' , 'label' => 'Date'],
+        [
+                'label'        => "Image",
+                'name'         => "image",
+                'type'         => 'image',
+                'upload'       => true,
+                'crop'         => false,
+                'aspect_ratio' => 0, 
+        ]
+        ]);
     }
     protected function setupCreateOperation()
     {

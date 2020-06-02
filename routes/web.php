@@ -36,3 +36,4 @@ Route::get('/faq', function () { return view('faq'); });
 Route::get('/event-details', function () { return view('event_details'); });
 Route::get('/timetable', function () { return view('timetable'); });
 Route::get('/about', function () { return view('about'); });
+Route::get('/banned',function(){ return view('banned');});
