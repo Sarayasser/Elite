@@ -19,8 +19,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Posts
-Route::post('/posts', 'PostController@store')->name('posts.store');
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
+Route::post('/posts', 'PostController@store')->name('posts.store');
+Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+Route::put('/posts/{post}', 'PostController@update')->name('posts.update');
 
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 

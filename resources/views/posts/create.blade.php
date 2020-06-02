@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-50 mb-50">
-    <form method="POST" action="/posts" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="title">Post Title</label>

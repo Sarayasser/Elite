@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -64,7 +65,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -76,7 +77,17 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $attributes = [
+                'title' => $request->title,
+                'description' =>  $request->description,
+            ];
+        $post->update($attributes);
+        if ($request->hasFile('image')){
+            Storage::delete('public/'.$post->image);
+            $post->image = $request->file('image');
+            $post->save();
+        }
+        return redirect()->route('posts.edit', ['post' => $post->id]);
     }
 
     /**
