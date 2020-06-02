@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'namespace'  => 'App\Http\Controllers\Admin\Auth',
     'middleware' => config('backpack.base.web_middleware', 'web'),
-    'prefix'     => 'users',
+    'prefix'     => 'admin',
 ], function () {
     // Registration Routes...
     Route::get('register', 'RegisterController@showRegistrationForm')->name('backpack.auth.register');

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c46a8c8a277e8db75480bae7a621516e",
+    "content-hash": "83aaf4824243fca695c027dd778ee6c6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -917,7 +917,11 @@
                 "uppercase",
                 "words"
             ],
+<<<<<<< HEAD
+            "time": "2020-05-25T20:08:47+00:00"
+=======
             "time": "2020-05-29T15:13:26+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "doctrine/lexer",
@@ -1692,6 +1696,61 @@
             "time": "2020-04-07T15:01:31+00:00"
         },
         {
+            "name": "laravel/ui",
+            "version": "v2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/ui.git",
+                "reference": "15368c5328efb7ce94f35ca750acde9b496ab1b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/15368c5328efb7ce94f35ca750acde9b496ab1b1",
+                "reference": "15368c5328efb7ce94f35ca750acde9b496ab1b1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^7.0",
+                "illuminate/filesystem": "^7.0",
+                "illuminate/support": "^7.0",
+                "php": "^7.2.5"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Ui\\UiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Ui\\": "src/",
+                    "Illuminate\\Foundation\\Auth\\": "auth-backend/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel UI utilities and presets.",
+            "keywords": [
+                "laravel",
+                "ui"
+            ],
+            "time": "2020-04-29T15:06:45+00:00"
+        },
+        {
             "name": "league/commonmark",
             "version": "1.4.3",
             "source": {
@@ -1848,6 +1907,8 @@
                 "storage"
             ],
             "time": "2020-05-18T15:13:39+00:00"
+<<<<<<< HEAD
+=======
         },
         {
             "name": "league/flysystem-cached-adapter",
@@ -1895,6 +1956,7 @@
             ],
             "description": "An adapter decorator to enable meta-data caching.",
             "time": "2018-07-09T20:51:04+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "monolog/monolog",
@@ -2941,6 +3003,8 @@
                 "spatie"
             ],
             "time": "2020-05-20T00:31:29+00:00"
+<<<<<<< HEAD
+=======
         },
         {
             "name": "studio-42/elfinder",
@@ -2999,6 +3063,7 @@
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
             "time": "2020-04-09T02:33:28+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3139,7 +3204,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2020-03-30T11:42:42+00:00"
+=======
             "time": "2020-05-30T20:35:19+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "symfony/css-selector",
@@ -3192,6 +3261,9 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2020-03-27T16:56:45+00:00"
+=======
             "time": "2020-05-20T17:43:50+00:00"
         },
         {
@@ -3239,6 +3311,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "time": "2020-05-27T08:34:37+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "symfony/error-handler",
@@ -3295,7 +3368,11 @@
             ],
             "description": "Symfony ErrorHandler Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2020-03-30T14:14:32+00:00"
+=======
             "time": "2020-05-30T20:35:19+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "symfony/event-dispatcher",
@@ -3367,7 +3444,11 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2020-03-27T16:56:45+00:00"
+=======
             "time": "2020-05-20T17:43:50+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -3474,7 +3555,11 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2020-03-27T16:56:45+00:00"
+=======
             "time": "2020-05-20T17:43:50+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "symfony/http-foundation",
@@ -3535,7 +3620,11 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2020-04-18T20:50:06+00:00"
+=======
             "time": "2020-05-24T12:18:07+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "symfony/http-kernel",
@@ -3634,7 +3723,11 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2020-04-28T18:53:25+00:00"
+=======
             "time": "2020-05-31T06:14:18+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "symfony/mime",
@@ -3697,7 +3790,11 @@
                 "mime",
                 "mime-type"
             ],
+<<<<<<< HEAD
+            "time": "2020-04-17T03:29:44+00:00"
+=======
             "time": "2020-05-25T12:33:44+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -3756,6 +3853,8 @@
                 "portable"
             ],
             "time": "2020-05-12T16:14:59+00:00"
+<<<<<<< HEAD
+=======
         },
         {
             "name": "symfony/polyfill-iconv",
@@ -3815,6 +3914,7 @@
                 "shim"
             ],
             "time": "2020-05-12T16:47:27+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
@@ -3937,6 +4037,8 @@
                 "shim"
             ],
             "time": "2020-05-12T16:47:27+00:00"
+<<<<<<< HEAD
+=======
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
@@ -4000,6 +4102,7 @@
                 "shim"
             ],
             "time": "2020-05-12T16:14:59+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -4171,6 +4274,8 @@
                 "portable",
                 "shim"
             ],
+<<<<<<< HEAD
+=======
             "time": "2020-05-12T16:47:27+00:00"
         },
         {
@@ -4233,6 +4338,7 @@
                 "portable",
                 "shim"
             ],
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
             "time": "2020-05-12T16:47:27+00:00"
         },
         {
@@ -4283,7 +4389,11 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2020-04-15T15:59:10+00:00"
+=======
             "time": "2020-05-30T20:35:19+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "symfony/routing",
@@ -4361,7 +4471,11 @@
                 "uri",
                 "url"
             ],
+<<<<<<< HEAD
+            "time": "2020-04-21T21:02:50+00:00"
+=======
             "time": "2020-05-30T20:35:19+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "symfony/service-contracts",
@@ -4568,7 +4682,11 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2020-04-12T16:45:47+00:00"
+=======
             "time": "2020-05-30T20:35:19+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "symfony/translation-contracts",
@@ -4701,7 +4819,11 @@
                 "debug",
                 "dump"
             ],
+<<<<<<< HEAD
+            "time": "2020-04-12T16:45:47+00:00"
+=======
             "time": "2020-05-30T20:35:19+00:00"
+>>>>>>> 70003b63f4c6acf626e32ef5b1dab83e5b9eca6e
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
