@@ -14,7 +14,6 @@ class Schedule extends Model
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
-
     protected $table = 'schedules';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
@@ -53,13 +52,11 @@ class Schedule extends Model
     |--------------------------------------------------------------------------
     */
     public function instructor()
-    {
-        
+    {   
         return $this->belongsTo('App\Instructor');
     }
     public function course()
     {
-        
         return $this->belongsTo('App\Models\Course');
     }
     public function GetNameAttribute()
