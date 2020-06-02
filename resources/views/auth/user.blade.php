@@ -13,7 +13,7 @@
                 </a>
             </div>
             <div class="col-4">
-                <a href="{{route("register", "instructor")}}">
+                <a href="{{route("register", "student")}}">
                     <img class="card-img-top" style="width: 200px; height: 320px; border-radius: 15px;" src="{{ asset('images/student.png') }}" alt="Card image cap">
                 </a>
             </div>
