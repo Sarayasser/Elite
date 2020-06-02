@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 // use App\Course;
 use App\Models\Course;
@@ -29,6 +30,12 @@ Route::get('/courses', function () {
     //     'courses'=>$courses
     // ]);
 // }
+
+// Posts
+Route::post('/posts', 'PostController@store')->name('posts.store');
+Route::get('/posts/create', 'PostController@create')->name('posts.create');
+
+Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 
 Route::get('/', function () { return view('home'); });
 Route::get('/calender', function () { return view('calender'); });
