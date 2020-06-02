@@ -25,6 +25,9 @@ class CheckIfAdmin
         return ($user->is_admin == 1);
         // return true;
     }
+    private function checkIfUserIsNotBanned($user){
+        return ($user->is_banned == 0);
+    }
 
     /**
      * Answer to unauthorized access request.
@@ -60,6 +63,9 @@ class CheckIfAdmin
             return $this->respondToUnauthorizedRequest($request);
         }
 
+        if (! $this->checkIfUserIsNotBanned(backpack_user())){
+            return $this->respondToUnauthorizedRequest($request);
+        }
         return $next($request);
     }
 }

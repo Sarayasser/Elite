@@ -1,9 +1,9 @@
 /node_modules
 /public/hot
 /public/storage
+/public/packages
 /public/avatars
 /public/posts
-/public/packages
 /storage/*.key
 /vendor
 .env

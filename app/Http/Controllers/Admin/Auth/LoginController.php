@@ -26,6 +26,10 @@ class LoginController extends BackpackLoginController
     }
 
     protected function authenticated(Request $request, $user){
+        
+        if($user->is_banned == 1 && $user->is_admin == 1 || $user->is_banned == 1){
+                return redirect('/users/login');
+        }else{
         if($user->hasRole('admin'))
         {
             return redirect('/admin/dashboard');
@@ -35,9 +39,9 @@ class LoginController extends BackpackLoginController
             return redirect("/calender");
         }else
             return redirect("/users/login");
-        // return redirect('/');
+        return redirect('/');
+        }
     }
-
     /**
      * Create a new controller instance.
      *

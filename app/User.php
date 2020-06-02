@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'address', 'phone_number', 'gender', 'image'
+        'name', 'email', 'password', 'address', 'phone_number', 'gender', 'image' , 'is_banned'
     ];
 
     /**
@@ -53,7 +53,7 @@ class User extends Authenticatable
         // or use your own disk, defined in config/filesystems.php
         $disk = "uploads"; 
         // destination path relative to the disk above
-        $destination_path = "avatars"; 
+        $destination_path = "storage/avatars"; 
 
         // if the image was erased
         if ($value==null) {
