@@ -63,6 +63,11 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone_number' => ['required', 'numeric',"regex:/(01)[0-9]{9}/"],
+            'address' => ['required', 'string', 'max:255'],
+            'gender'=> ['required'], 
+            'image' => ['image','mimes:jpeg,jpg,png'],
+            'role' => ['required','numeric','between:0,2']
         ]);
     }
 
@@ -74,17 +79,35 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $image = base64_encode(file_get_contents($data['image']));
+        $base = "data:image/png;base64,";
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone_number'                     => $data['phone_number'],
+            'address'                          => $data['address'],
+            'gender'                           => $data['gender'],
+            'image'                            => $base.$image
+            
         ]);
+        $role = $data['role'];
+
+        if($role == 0){
+            $user->assignRole("instructor");
+        }else if($role == 1){
+            $user->assignRole("parent");
+        }else if($role == 2){
+            $user->assignRole("student");
+        }
+        return $user;
     }
 
     public function showRegistrationForm($slug)
     {
        
-        dd($slug);
-        return view('auth.register', compact('email'));
+       // dd($slug);
+        return view('auth.register', compact('slug'));
     }
 }

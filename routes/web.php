@@ -30,7 +30,7 @@ Route::get('/faq', function () { return view('faq'); });
 Route::get('/event-details', function () { return view('event_details'); });
 Route::get('/timetable', function () { return view('timetable'); });
 Route::get('/about', function () { return view('about'); });
-Route::get('/users', function () { return view('user'); })->name('users');
+Route::get('/users', function () { return view('auth/user'); })->name('users');
 
 // Auth::routes();
 
@@ -43,7 +43,7 @@ Route::group(['middleware' => ['web']], function() {
 
 // Registration Routes...
     Route::get('/users/register/{slug}','Auth\RegisterController@showRegistrationForm')->name('register')->where("slug","instructor|parent|student");
-    Route::post('/users/register', ['as' => 'register.post', 'uses' => 'Auth\RegisterController@register']);
+    Route::post('/users/register', 'Auth\RegisterController@register')->name('post.register');
 
 // Password Reset Routes...
     Route::get('password/reset', ['as' => 'password.reset', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
