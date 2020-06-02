@@ -19,8 +19,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Posts
+Route::get('/posts/create', 'PostController@create')->name('posts.create');
 Route::post('/posts', 'PostController@store')->name('posts.store');
-Route::get('/posts/create', 'PostController@create')->name('posts.create'); 
+Route::get('/posts/{post}', 'PostController@show')->name('posts.show'); 
+Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+Route::put('/posts/{post}', 'PostController@update')->name('posts.update');
+
+Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 
 Route::get('/', function () { return view('home'); });
 Route::get('/calender', function () { return view('calender'); });
@@ -36,4 +41,27 @@ Route::get('/faq', function () { return view('faq'); });
 Route::get('/event-details', function () { return view('event_details'); });
 Route::get('/timetable', function () { return view('timetable'); });
 Route::get('/about', function () { return view('about'); });
+Route::get('/users', function () { return view('auth/user'); })->name('users');
+
+// Auth::routes();
+
+Route::group(['middleware' => ['web']], function() {
+
+// Login Routes...
+    Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
+    Route::post('login', ['as' => 'login.post', 'uses' => 'Auth\LoginController@login']);
+    Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+
+// Registration Routes...
+    Route::get('/users/register/{slug}','Auth\RegisterController@showRegistrationForm')->name('register')->where("slug","instructor|parent|student");
+    Route::post('/users/register', 'Auth\RegisterController@register')->name('post.register');
+
+// Password Reset Routes...
+    Route::get('password/reset', ['as' => 'password.reset', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
+    Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
+    Route::get('password/reset/{token}', ['as' => 'password.reset.token', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
+    Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\ResetPasswordController@reset']);
+});
+
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/banned',function(){ return view('banned');});

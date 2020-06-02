@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <form method="POST" action="/posts" enctype="multipart/form-data">
+<div class="container mt-50 mb-50">
+    <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="title">Post Title</label>
@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
         <label for="description	">Content</label>
-        <textarea class="form-control" rows="3" id="description" name="description"></textarea>
+        <textarea class="form-control" id="ckeditor" name="description"></textarea>
     </div>
     <div class="form-group">
         <label for="exampleInputFile2">File input</label>
