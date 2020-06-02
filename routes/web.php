@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+// Posts
+Route::post('/posts', 'PostController@store')->name('posts.store');
+Route::get('/posts/create', 'PostController@create')->name('posts.create'); 
 
 Route::get('/', function () { return view('home'); });
 Route::get('/calender', function () { return view('calender'); });

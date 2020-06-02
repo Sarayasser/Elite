@@ -62,7 +62,7 @@ class Post extends Model
     {
         $attribute_name = "image";
         $disk = "uploads"; 
-        $destination_path = "posts"; 
+        $destination_path = "storage/posts"; 
 
         if ($value==null) {
             Storage::disk($disk)->delete($this->{$attribute_name});
@@ -70,7 +70,7 @@ class Post extends Model
             $this->attributes[$attribute_name] = null;
         }
 
-        if (Str::startsWith($value, 'data:image'))
+        elseif (Str::startsWith($value, 'data:image'))
         {
             $image = Image::make($value)->encode('jpg', 90);
 
@@ -82,6 +82,11 @@ class Post extends Model
 
             $public_destination_path = Str::replaceFirst('public/', '', $destination_path);
             $this->attributes[$attribute_name] = $public_destination_path.'/'.$filename;
+        }
+        else {
+            $path = $value->store('public/posts');
+            $path = str_replace('public/', '', $path);
+            $this->attributes[$attribute_name] = $path;
         }
     }
 }
