@@ -33,6 +33,26 @@ class UserCrudController extends UserController
                 'label' => trans('backpack::permissionmanager.email'),
                 'type'  => 'email',
             ],
+            [
+                'name' => 'is_banned',
+                'label' => 'Status',
+                'type' => 'radio',
+                'options'     => [
+                    // the key will be stored in the db, the value will be shown as label; 
+                    0 => "Active",
+                    1 => "InActive"
+                ],
+            ],
+            [
+                'label'        => "Profile Image",
+                'name'         => "image",
+                'type'         => 'image',
+                'upload'       => true,
+                'crop'         => true, // set to true to allow cropping, false to disable
+                'aspect_ratio' => 1, // ommit or set to 0 to allow any aspect ratio
+                // 'disk'      => 's3_bucket', // in case you need to show images from a different disk
+                // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
+            ],
             [ // n-n relationship (with pivot table)
                 'label'     => trans('backpack::permissionmanager.roles'), // Table column heading
                 'type'      => 'select_multiple',
@@ -49,46 +69,28 @@ class UserCrudController extends UserController
             //     'attribute' => 'name', // foreign key attribute that is shown to user
             //     'model'     => config('permission.models.permission'), // foreign key model
             // ],
+            
             [
-                'label'        => "Profile Image",
-                'name'         => "image",
-                'type'         => 'image',
-                'upload'       => true,
-                'crop'         => true, // set to true to allow cropping, false to disable
-                'aspect_ratio' => 1, // ommit or set to 0 to allow any aspect ratio
-                // 'disk'      => 's3_bucket', // in case you need to show images from a different disk
-                // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
+                'name'  => 'address',
+                'label' => trans('address'),
+                'type'  => 'address',
             ],
-            // [
-            //     'name'  => 'address',
-            //     'label' => trans('address'),
-            //     'type'  => 'address',
-            // ],
-            // [   
-            //     'name'        => 'gender', // the name of the db column
-            //     'label'       => 'gender', // the input label
-            //     'type'        => 'radio',
-            //     'options'     => [
-            //         // the key will be stored in the db, the value will be shown as label; 
-            //         0 => "male",
-            //         1 => "female"
-            //     ],
-            // ],    
-            // [
-            //     'name'  => 'phone_number',
-            //     'label' => trans('phone_number'),
-            //     'type'  => 'text',
-            // ],
-            [
-                'name' => 'is_banned',
-                'label' => 'Status',
-                'type' => 'radio',
+            [   
+                'name'        => 'gender', // the name of the db column
+                'label'       => 'gender', // the input label
+                'type'        => 'radio',
                 'options'     => [
                     // the key will be stored in the db, the value will be shown as label; 
-                    0 => "Active",
-                    1 => "InActive"
+                    0 => "male",
+                    1 => "female"
                 ],
+            ],    
+            [
+                'name'  => 'phone_number',
+                'label' => trans('phone_number'),
+                'type'  => 'text',
             ],
+            
             // [
             //     'name'  => 'age',
             //     'label' => trans('age'),

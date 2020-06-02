@@ -25,6 +25,10 @@
     <section>
       <div class="container">
         <div class="row">
+          
+          @foreach ($courses as $course)
+          
+         
           <div class="col-sm-6 col-md-4">
             <div class="item">
               <div class="campaign bg-white maxwidth500 mb-30">
@@ -33,26 +37,32 @@
                   <div class="campaign-overlay"></div>
                 </div>
                 <div class="course-details clearfix p-20 pt-15">
-                  <h4 class="price-tag">$250</h4>
-                  <h3 class="mt-0"><a class="text-theme-color-red" href="#">Learning Classes</a></h3>
+                  <h4 class="price-tag">${{$course->price}}</h4>
+                  <h3 class="mt-0"><a class="text-theme-color-red" href="#">{{$course->name}}</a></h3>
                   <ul class="review_text list-inline">
                     <li>
-                      <div class="star-rating" title="Rated 5.00 out of 5"><span data-width="100%">5.00</span></div>
+                      {{-- <div class="star-rating" title="Rated 3.50 out of 5"><span data-width="100%">{{$course->rate}}</span></div> --}}
+                    <div class="star-rating" title="Rated {{$course->rate}} out of 5"><span data-width="{{$course->rate*20}}%">{{$course->rate}}</span></div>
+
                     </li>
                   </ul>
-                  <p>Lorem ipsum dolor adipisicing elit. Praesent quossit sit amet consect adipisicing elit quossit <a class="text-theme-colored ml-5" href="#"> →</a></p>
+                  <p>{{$course->description}} <a class="text-theme-colored ml-5" href="#"> →</a></p>
                   <div class="course-details-bottom mt-15">
                     <ul class="list-inline">
-                     <li>Capacity<span>20 kids</span></li>
-                     <li>Duration<span>45 min</span></li>
-                     <li>Age<span>5y - 6y</span></li>
+                     <li>Capacity<span>{{$course->capacity}}</span></li>
+                     <li>Duration<span>{{$course->duration}}</span></li>
+                     <li>Age<span>{{$course->age}}y - {{$course->age+1}}y</span></li>
+                     
+
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 col-md-4">
+          @endforeach
+          {{--  --}}
+          {{-- <div class="col-sm-6 col-md-4">
             <div class="item">
               <div class="campaign bg-white maxwidth500 mb-30">
                 <div class="thumb">
@@ -78,8 +88,9 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
+          </div> --}}
+          {{-- 3 --}}
+          {{-- <div class="col-sm-6 col-md-4">
             <div class="item">
               <div class="campaign bg-white maxwidth500 mb-30">
                 <div class="thumb">
@@ -105,8 +116,9 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
+          </div> --}}
+          {{-- 4 --}}
+          {{-- <div class="col-sm-6 col-md-4">
             <div class="item">
               <div class="campaign bg-white maxwidth500 mb-30">
                 <div class="thumb">
@@ -132,8 +144,9 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
+          </div> --}}
+          {{-- 5 --}}
+          {{-- <div class="col-sm-6 col-md-4">
             <div class="item">
               <div class="campaign bg-white maxwidth500 mb-30">
                 <div class="thumb">
@@ -159,8 +172,9 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
+          </div> --}}
+          {{-- 6 --}}
+          {{-- <div class="col-sm-6 col-md-4">
             <div class="item">
               <div class="campaign bg-white maxwidth500 mb-30">
                 <div class="thumb">
@@ -186,13 +200,13 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
         </div>
       </div>
     </section>
 
     <!-- Divider: Clients -->
-    <section class="clients bg-theme-color-sky">
+    {{-- <section class="clients bg-theme-color-sky">
       <div class="container pt-10 pb-0">
         <div class="row">
           <div class="col-md-12">
@@ -212,6 +226,6 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> --}}
 
 @endsection
