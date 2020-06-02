@@ -43,7 +43,7 @@ class PostController extends Controller
         ]);
         $post->image = $request->file('image');
         $post->save();
-        return redirect()->route('posts.create');
+        return redirect()->route('posts.edit', ['post' => $post->id]);
     }
 
     /**
@@ -54,7 +54,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
@@ -65,7 +65,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', ['post' => $post]);
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
