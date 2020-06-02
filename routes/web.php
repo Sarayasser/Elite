@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
 Route::get('/', function () { return view('home'); });
 Route::get('/calender', function () { return view('calender'); });
 Route::get('/contact', function () { return view('contact'); });
@@ -30,3 +31,4 @@ Route::get('/faq', function () { return view('faq'); });
 Route::get('/event-details', function () { return view('event_details'); });
 Route::get('/timetable', function () { return view('timetable'); });
 Route::get('/about', function () { return view('about'); });
+Route::get('/banned',function(){ return view('banned');});
