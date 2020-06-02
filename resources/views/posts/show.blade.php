@@ -2,28 +2,16 @@
 @section('content')
 <div class="container">
     <div class="card">
-        <div class="card-header">
-            Post Info
-        </div>
         <div class="card-body">
             <h5 class="d-inline card-title">Title :- </h5>{{ $post->title }}
-            <h5 class="card-text">Description :- </h5>{!! $post->description !!}.
-            @if($post->image)
-            <img src="{{asset('storage/'.$post->image)}}" class="card-img-top" alt="image">
-            @endif
+            <h5 class="card-text">Description :- </h5>{!! $post->description !!}
         </div>
+        @if($post->image)
+        <div>
+            <img src="{{asset('storage/'.$post->image)}}" class="card-img-top" alt="image">
+        </div>
+        @endif
     </div>
     <br>
-    <div class="card">
-        <div class="card-header">
-            Post Creator Info
-        </div>
-        <div class="card-body">
-            <h5 class="d-inline card-title">Name :- </h5>{{ $post->user->name }}
-            <br>
-            <h5 class="d-inline card-title">Email :- </h5>{{ $post->user->email }}
-            <br>
-        </div>
-    </div>
 </div>
 @endsection
