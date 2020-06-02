@@ -111,7 +111,7 @@
         <div class="row">
           <div class="col-xs-12 col-sm-4 col-md-5">
             <div class="widget no-border m-0">
-              <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="javascript:void(0)"><img src="{{ asset('images/logo-wide.png')}}" alt=""></a>
+              <a class="menuzord-brand pull-left flip xs-pull-center mb-15" style="margin: 0 30px 0 0;" href="javascript:void(0)"><img src="{{ asset('images/logo.png')}}" alt=""></a>
             </div>
           </div>
           <div class="col-xs-12 col-sm-4 col-md-4">
@@ -478,8 +478,32 @@
             </ul>
             <ul class="pull-right flip hidden-sm hidden-xs">
               <li>
+                @guest
+                  <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{ route('login') }}">{{ __('Login') }}</a>
+                  @if (Route::has('register'))
+                          <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{ route('users') }}">{{ __('Register') }}</a>
+                  @endif
+                @else
+                  <li class="dropdown btn btn-colored btn-flat bg-theme-color-sky text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                  </li>
+                 @endguest
                 <!-- Modal: Book Now Starts -->
-                <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" data-toggle="modal" data-target="#BSParentModal" href="{{ asset('ajax-load/reservation-form.html')}}">Book Now</a>
+                {{-- <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" data-toggle="modal" data-target="#BSParentModal" href="{{ asset('ajax-load/reservation-form.html')}}">Book Now</a> --}}
                 <!-- Modal: Book Now End -->
               </li>
             </ul>
