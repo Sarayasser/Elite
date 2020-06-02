@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Posts
-Route::get('/posts', 'PostController@index');
 Route::post('/posts', 'PostController@store')->name('posts.store');
-Route::get('/posts/create', 'PostController@create'); 
+Route::get('/posts/create', 'PostController@create')->name('posts.create'); 
 
 Route::get('/', function () { return view('home'); });
 Route::get('/calender', function () { return view('calender'); });
@@ -36,5 +36,3 @@ Route::get('/faq', function () { return view('faq'); });
 Route::get('/event-details', function () { return view('event_details'); });
 Route::get('/timetable', function () { return view('timetable'); });
 Route::get('/about', function () { return view('about'); });
-
-

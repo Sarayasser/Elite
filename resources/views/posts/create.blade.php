@@ -12,7 +12,7 @@
         <label for="description	">Content</label>
         <textarea class="form-control" rows="3" id="description" name="description"></textarea>
     </div>
-    <!-- <div class="form-group">
+    <div class="form-group">
         <label for="exampleInputFile2">File input</label>
         <input type="file" id="exampleInputFile2" name="image">
         <p class="help-block">Example block-level help text here.</p>
@@ -21,7 +21,7 @@
         <label>
         <input type="checkbox"> Check me out
         </label>
-    </div> -->
+    </div>
     <button type="submit" class="btn btn-default">Submit</button>
     </form>
 </div>

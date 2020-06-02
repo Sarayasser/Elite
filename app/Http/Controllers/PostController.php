@@ -35,13 +35,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-        Post::create([
+        $post = Post::create([
             'title' => $request->title,
-            'describtion' =>  $request->description,
-            'user_id' =>  $request->user_id,
-            'image' => $request->image
+            'description' =>  $request->description,
+            'user_id' =>  1, // Hard coded for now
         ]);
+        $post->image = $request->file('image');
+        $post->save();
         return redirect()->route('posts.create');
     }
 
