@@ -31,6 +31,22 @@ class ScheduleCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
         // $this->crud->setFromDb();
         $this->crud->addColumns([
+            [  // Select
+                'label'     => "Course",
+                'type'      => 'select',
+                'name'      => 'course_id',
+                'entity'    => 'course', 
+                'attribute' => 'name', 
+                'model' => 'App\Models\Course',
+            ],
+            [  // Select
+                'label'     => "Instructor",
+                'type'      => 'select',
+                'name'      => 'instructor_id',
+                'entity'    => 'instructor', 
+                'attribute' => 'name', 
+                'model' => 'App\Instructor',
+            ],
             [   // Start Date
                 'name'  => 'start_date',
                 'label' => 'StartDate',
@@ -46,22 +62,8 @@ class ScheduleCrudController extends CrudController
                 'label' => 'Time',
                 'type'  => 'time'
             ],
-            [  // Select
-                'label'     => "Instructor",
-                'type'      => 'select',
-                'name'      => 'instructor_id',
-                'entity'    => 'instructor', 
-                'attribute' => 'name', 
-                'model' => 'App\Instructor',
-            ],
-            [  // Select
-                'label'     => "Course",
-                'type'      => 'select',
-                'name'      => 'course_id',
-                'entity'    => 'course', 
-                'attribute' => 'name', 
-                'model' => 'App\Models\Course',
-            ]
+            
+            
             ]);
     }
     protected function setupCreateOperation()

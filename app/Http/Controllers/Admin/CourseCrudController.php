@@ -21,18 +21,15 @@ class CourseCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
-    // public function index(){
-        
-    //     $courses=Course::all();
-    //     return view('courses.index',[
-    //         'courses'=>$courses
-    //     ]);
-    // }
+    
     public function setup()
     {
         $this->crud->setModel('App\Models\Course');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/course');
         $this->crud->setEntityNameStrings('course', 'courses');
+           
+               
+        
     }
 
     protected function setupListOperation()
@@ -65,6 +62,16 @@ class CourseCrudController extends CrudController
                 'entity'    => 'instructor', 
                 'attribute' => 'name', 
                 'model' => 'App\Instructor',
+            ],
+            [
+                'label'        => "Course Image",
+                'name'         => "image",
+                'type'         => 'image',
+                'upload'       => true,
+                'crop'         => true, // set to true to allow cropping, false to disable
+                'aspect_ratio' => 1, // ommit or set to 0 to allow any aspect ratio
+                // 'disk'      => 's3_bucket', // in case you need to show images from a different disk
+                // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
             ],
             [   // Number
                 'name' => 'age',
@@ -107,7 +114,16 @@ class CourseCrudController extends CrudController
                 'prefix' => "$",
                 'suffix' => ".00",
             ],
-            
+            [   // Number
+                'name' => 'rate',
+                'label' => 'Course Rate',
+                'type' => 'number',
+                // optionals
+                'attributes' => ["step" => "0.5"], // allow decimals
+                // 'prefix' => "",
+                'suffix' => "Stars out of 5",
+            ],
+                        
             
            
         ]);
@@ -126,6 +142,16 @@ class CourseCrudController extends CrudController
                 'entity'    => 'instructor', 
                 'attribute' => 'name', 
                 'model' => 'App\Instructor',
+            ],
+            [
+                'label'        => "Course Image",
+                'name'         => "image",
+                'type'         => 'image',
+                'upload'       => true,
+                'crop'         => true, // set to true to allow cropping, false to disable
+                'aspect_ratio' => 1, // ommit or set to 0 to allow any aspect ratio
+                // 'disk'      => 's3_bucket', // in case you need to show images from a different disk
+                // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
             ],
             [   // Number
                 'name' => 'age',
@@ -154,6 +180,32 @@ class CourseCrudController extends CrudController
                 // 'prefix' => "",
                 'suffix' => "Student",
             ],
+            [   // Textarea
+                'name' => 'description',
+                'label' => 'Description',
+                'type' => 'textarea'
+            ],
+            [   // Number
+                'name' => 'price',
+                'label' => 'Price',
+                'type' => 'number',
+                // optionals
+                // 'attributes' => ["step" => "any"], // allow decimals
+                'prefix' => "$",
+                'suffix' => ".00",
+            ],
+            [   // Number
+                'name' => 'rate',
+                'label' => 'Course Rate',
+                'type' => 'number',
+                // optionals
+                'attributes' => ["step" => "0.5"], // allow decimals
+                // 'prefix' => "",
+                'suffix' => "Stars out of 5 Stars",
+            ],
+            
+            
+            
         ]);
     }
 

@@ -11,8 +11,8 @@
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Courses</h2>
                 <ol class="breadcrumb text-left mt-10 white">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Pages</a></li>
+                  <li><a href="{{route('home')}}">Home</a></li>
+                    
                     <li class="active">Courses</li>
                 </ol>
                 </div>
@@ -34,11 +34,13 @@
               <div class="campaign bg-white maxwidth500 mb-30">
                 <div class="thumb">
                   <img src="{{ asset('images/project/12.jpg') }}" alt="" class="img-fullwidth">
+                  {{-- <img src="{{ asset('storage/avatars/'.$course->image}}) }}" alt="" class="img-fullwidth"> --}}
+                  {{-- <img src="{{asset('storage/avatars/'.$course->image)}}" alt="" class="img-fullwidth" > --}}
                   <div class="campaign-overlay"></div>
                 </div>
                 <div class="course-details clearfix p-20 pt-15">
                   <h4 class="price-tag">${{$course->price}}</h4>
-                  <h3 class="mt-0"><a class="text-theme-color-red" href="#">{{$course->name}}</a></h3>
+                  <h3 class="mt-0"><a class="text-theme-color-red" href="{{route('courses.show', $course->id)}}">{{$course->name}}</a></h3>
                   <ul class="review_text list-inline">
                     <li>
                       {{-- <div class="star-rating" title="Rated 3.50 out of 5"><span data-width="100%">{{$course->rate}}</span></div> --}}
@@ -46,7 +48,7 @@
 
                     </li>
                   </ul>
-                  <p>{{$course->description}} <a class="text-theme-colored ml-5" href="#"> →</a></p>
+                  <p>{{$course->description}} <a class="text-theme-colored ml-5" href="{{route('courses.show', $course->id)}}"> →</a></p>
                   <div class="course-details-bottom mt-15">
                     <ul class="list-inline">
                      <li>Capacity<span>{{$course->capacity}}</span></li>
@@ -61,146 +63,7 @@
             </div>
           </div>
           @endforeach
-          {{--  --}}
-          {{-- <div class="col-sm-6 col-md-4">
-            <div class="item">
-              <div class="campaign bg-white maxwidth500 mb-30">
-                <div class="thumb">
-                  <img src="{{ asset('images/project/13.jpg') }}" alt="" class="img-fullwidth">
-                  <div class="campaign-overlay"></div>
-                </div>
-                <div class="course-details clearfix p-20 pt-15">
-                  <h4 class="price-tag">$250</h4>
-                  <h3 class="mt-0"><a class="text-theme-color-lemon" href="#">Multimedia Classes</a></h3>
-                  <ul class="review_text list-inline">
-                    <li>
-                      <div class="star-rating" title="Rated 4.50 out of 5"><span data-width="90%">4.50</span></div>
-                    </li>
-                  </ul>
-                  <p>Lorem ipsum dolor adipisicing elit. Praesent quossit sit amet consect adipisicing elit quossit <a class="text-theme-colored ml-5" href="#"> →</a></p>
-                  <div class="course-details-bottom mt-15">
-                    <ul class="list-inline">
-                     <li>Capacity<span>20 kids</span></li>
-                     <li>Duration<span>45 min</span></li>
-                     <li>Age<span>5y - 6y</span></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> --}}
-          {{-- 3 --}}
-          {{-- <div class="col-sm-6 col-md-4">
-            <div class="item">
-              <div class="campaign bg-white maxwidth500 mb-30">
-                <div class="thumb">
-                  <img src="{{ asset('images/project/14.jpg') }}" alt="" class="img-fullwidth">
-                  <div class="campaign-overlay"></div>
-                </div>
-                <div class="course-details clearfix p-20 pt-15">
-                  <h4 class="price-tag">$250</h4>
-                  <h3 class="mt-0"><a class="text-theme-color-sky" href="#">Language Classes</a></h3>
-                  <ul class="review_text list-inline">
-                    <li>
-                      <div class="star-rating" title="Rated 5.00 out of 5"><span data-width="100%">5.00</span></div>
-                    </li>
-                  </ul>
-                  <p>Lorem ipsum dolor adipisicing elit. Praesent quossit sit amet consect adipisicing elit quossit <a class="text-theme-colored ml-5" href="#"> →</a></p>
-                  <div class="course-details-bottom mt-15">
-                    <ul class="list-inline">
-                     <li>Capacity<span>20 kids</span></li>
-                     <li>Duration<span>45 min</span></li>
-                     <li>Age<span>5y - 6y</span></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> --}}
-          {{-- 4 --}}
-          {{-- <div class="col-sm-6 col-md-4">
-            <div class="item">
-              <div class="campaign bg-white maxwidth500 mb-30">
-                <div class="thumb">
-                  <img src="{{ asset('images/project/15.jpg') }}" alt="" class="img-fullwidth">
-                  <div class="campaign-overlay"></div>
-                </div>
-                <div class="course-details clearfix p-20 pt-15">
-                  <h4 class="price-tag">$250</h4>
-                  <h3 class="mt-0"><a class="text-theme-color-green" href="#">Drawing Classes</a></h3>
-                  <ul class="review_text list-inline">
-                    <li>
-                      <div class="star-rating" title="Rated 4.50 out of 5"><span data-width="90%">4.50</span></div>
-                    </li>
-                  </ul>
-                  <p>Lorem ipsum dolor adipisicing elit. Praesent quossit sit amet consect adipisicing elit quossit <a class="text-theme-colored ml-5" href="#"> →</a></p>
-                  <div class="course-details-bottom mt-15">
-                    <ul class="list-inline">
-                     <li>Capacity<span>20 kids</span></li>
-                     <li>Duration<span>45 min</span></li>
-                     <li>Age<span>5y - 6y</span></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> --}}
-          {{-- 5 --}}
-          {{-- <div class="col-sm-6 col-md-4">
-            <div class="item">
-              <div class="campaign bg-white maxwidth500 mb-30">
-                <div class="thumb">
-                  <img src="{{ asset('images/project/16.jpg') }}" alt="" class="img-fullwidth">
-                  <div class="campaign-overlay"></div>
-                </div>
-                <div class="course-details clearfix p-20 pt-15">
-                  <h4 class="price-tag">$250</h4>
-                  <h3 class="mt-0"><a class="text-theme-color-orange" href="#">Math Classes</a></h3>
-                  <ul class="review_text list-inline">
-                    <li>
-                      <div class="star-rating" title="Rated 5.00 out of 5"><span data-width="100%">5.00</span></div>
-                    </li>
-                  </ul>
-                  <p>Lorem ipsum dolor adipisicing elit. Praesent quossit sit amet consect adipisicing elit quossit <a class="text-theme-colored ml-5" href="#"> →</a></p>
-                  <div class="course-details-bottom mt-15">
-                    <ul class="list-inline">
-                     <li>Capacity<span>20 kids</span></li>
-                     <li>Duration<span>45 min</span></li>
-                     <li>Age<span>5y - 6y</span></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> --}}
-          {{-- 6 --}}
-          {{-- <div class="col-sm-6 col-md-4">
-            <div class="item">
-              <div class="campaign bg-white maxwidth500 mb-30">
-                <div class="thumb">
-                  <img src="{{ asset('images/project/12.jpg') }}" alt="" class="img-fullwidth">
-                  <div class="campaign-overlay"></div>
-                </div>
-                <div class="course-details clearfix p-20 pt-15">
-                  <h4 class="price-tag">$250</h4>
-                  <h3 class="mt-0"><a class="text-theme-color-red" href="#">Learning Classes</a></h3>
-                  <ul class="review_text list-inline">
-                    <li>
-                      <div class="star-rating" title="Rated 5.00 out of 5"><span data-width="100%">5.00</span></div>
-                    </li>
-                  </ul>
-                  <p>Lorem ipsum dolor adipisicing elit. Praesent quossit sit amet consect adipisicing elit quossit <a class="text-theme-colored ml-5" href="#"> →</a></p>
-                  <div class="course-details-bottom mt-15">
-                    <ul class="list-inline">
-                     <li>Capacity<span>20 kids</span></li>
-                     <li>Duration<span>45 min</span></li>
-                     <li>Age<span>5y - 6y</span></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> --}}
+          
         </div>
       </div>
     </section>
