@@ -39,7 +39,7 @@
           <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
             <ul class="menuzord-menu">
               <li class="active"><a href="#home">Home</a></li>
-              <li><a href="#">Courses</a></li>
+              <li><a href="{{route('courses.index')}}">Courses</a></li>
               <li><a href="#">Instructors</a></li>
               <li><a href="#">Events</a></li>
               <li><a href="#">Schedule</a></li>        

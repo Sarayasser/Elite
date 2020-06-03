@@ -51,9 +51,9 @@
                     <tr> <td><i class="fa fa-users text-theme-color-red pr-20"></i>Class Size</td> <td>{{$course->capacity}} Students</td> </tr> 
                     <tr> <td class="bg-theme-color-red text-white"><i class="fa fa-user text-theme-color-yellow pr-20"></i>Instructor</td> <td class="bg-theme-color-sky text-white">{{$course->instructor->name}}</td> </tr>
                     <tr> <td class=" text-theme-color-red pr-20"><i class="fa fa-fighter-jet text-theme-color-red pr-20"></i>Coures Duration</td> <td>{{$course->duration}}-{{$course->duration+2}} Month</td> </tr>  
-                    @foreach ($schedules as $schedule)
-                    <tr> <td class="bg-theme-color-lemon text-white"><i class="fa fa-clock-o text-theme-color-yellow pr-20"></i>Class Time</td> <td class="bg-theme-color-orange text-white">{{$schedule->start_date}}-{{$schedule->start_date->addHours(2)}}</td> </tr> 
-                    @endforeach
+                    {{-- @foreach ($schedules as $schedule) --}}
+                    <tr> <td class="bg-theme-color-lemon text-white"><i class="fa fa-clock-o text-theme-color-yellow pr-20"></i>Class Time</td> <td class="bg-theme-color-orange text-white">{{$schedule->start_date}} : {{$schedule->start_date ->addHours(2)}}</td> </tr> 
+                    {{-- @endforeach --}}
                     <tr> <td class="text-theme-color-red pr-20"><i class="fa fa-credit-card-alt text-theme-color-red pr-20"></i>Tution Fees</td> <td>$ {{$course->price}}</td> </tr>  
                   </tbody> 
                 </table>
@@ -73,35 +73,25 @@
                     </ul>
                   </div>
                 </div>
-                {{-- TODO: Add latest posts  --}}
-                {{-- <div class="widget">
-                  <h3 class="widget-title line-bottom">Latest <span class="text-theme-color-red">Course</span></h3>
+                
+                <div class="widget">
+                  <h3 class="widget-title line-bottom">Latest <span class="text-theme-color-red">Posts</span></h3>
                   <div class="latest-posts">
+                    @foreach($posts as $post)
                     <article class="post media-post clearfix pb-0 mb-10">
-                      <a class="post-thumb" href="#"><img src="{{ asset('images/services/s1.jpg') }}" alt=""></a>
+                      <a class="post-thumb" href="{{route('posts.show', $post->id)}}"><img src="{{ asset('images/services/s1.jpg') }}" alt=""></a>
                       <div class="post-right">
-                        <h4 class="post-title mt-0"><a href="#">Sustainable Construction</a></h4>
-                        <p>Lorem ipsum dolor sit amet adipisicing elit...</p>
-                      </div>
-                    </article>
-                    <article class="post media-post clearfix pb-0 mb-10">
-                      <a class="post-thumb" href="#"><img src="{{ asset('images/services/s3.jpg') }}" alt=""></a>
-                      <div class="post-right">
-                        <h4 class="post-title mt-0"><a href="#">Industrial Coatings</a></h4>
-                        <p>Lorem ipsum dolor sit amet adipisicing elit...</p>
-                      </div>
-                    </article>
-                    <article class="post media-post clearfix pb-0 mb-10">
-                      <a class="post-thumb" href="#"><img src="{{ asset("images/services/s2.jpg") }}" alt=""></a>
-                      <div class="post-right">
-                        <h4 class="post-title mt-0"><a href="#">Storefront Installations</a></h4>
-                        <p>Lorem ipsum dolor sit amet adipisicing elit...</p>
-                      </div>
-                    </article>
-                  </div>
-                </div> --}}
+                        <h4 class="post-title mt-0"><a href="{{route('posts.show', $post->id)}}">{{$post->title}}</a></h4>
+                        <p>{{ \Illuminate\Support\Str::limit($post->description, 50, '...') }}</p>
 
-                {{-- ///////////////////// --}}
+                      </div>
+                    </article>
+                    @endforeach
+                    
+                  </div>
+                </div> 
+
+                
 
                 {{-- TODO:Add quick contact when finish contact us page --}}
                 <div class="widget">

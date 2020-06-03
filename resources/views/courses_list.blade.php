@@ -39,7 +39,7 @@
                   <div class="campaign-overlay"></div>
                 </div>
                 <div class="course-details clearfix p-20 pt-15">
-                  <h4 class="price-tag">${{$course->price}}</h4>
+                  <h4 class="price-tag">$ {{$course->price}}</h4>
                   <h3 class="mt-0"><a class="text-theme-color-red" href="{{route('courses.show', $course->id)}}">{{$course->name}}</a></h3>
                   <ul class="review_text list-inline">
                     <li>

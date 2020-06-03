@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Models\Schedule;
 use App\Models\Course;
+use App\Models\Post;
 use App\Instructor;
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,8 @@ Route::get('/course/{course}', function () {
         'course'=>Course::find(request()->course),
         'schedules'=>Schedule::all(), 
         'instructors'=>Instructor::all(), 
-        'courses'=>Course::all()
+        'courses'=>Course::all(),
+        'posts'=>Post::all()
     ]);
     
 })->name('courses.show');
@@ -40,7 +42,8 @@ Route::put('/posts/{post}', 'PostController@update')->name('posts.update');
 
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 
-Route::get('/', function () { return view('home'); })->name('home');
+Route::get('/', function () { return view('home',['courses'=>Course::all()]); })->name('home');
+
 Route::get('/calender', function () { return view('calender'); });
 Route::get('/contact', function () { return view('contact'); });
 Route::get('/courses-posts', function () { return view('courses_posts'); });

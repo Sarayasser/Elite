@@ -109,6 +109,11 @@ class Course extends Model
         
         return $this->belongsTo('App\Models\Schedule');
     }
+    public function post()
+    {
+        
+        return $this->belongsTo('App\Models\Post');
+    }
 
     /**
      * The students that belong to the course.
@@ -116,6 +121,10 @@ class Course extends Model
     public function students()
     {
         return $this->belongsToMany('App\Student');
+    }
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post','post_id');
     }
 
 
