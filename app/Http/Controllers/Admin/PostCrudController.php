@@ -31,7 +31,6 @@ class PostCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
         $this->crud->addColumns([
             ['name' => 'title', 'type' => 'text', 'label' => 'Title'],
-            ['name' => 'description', 'type' => 'textarea', 'label' => 'Description'],
             [  // Select
                 'label'     => "Author",
                 'type'      => 'select',
@@ -67,7 +66,7 @@ class PostCrudController extends CrudController
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
         $this->crud->addColumns([
             ['name' => 'title', 'type' => 'text', 'label' => 'Title'],
-            ['name' => 'description', 'type' => 'ckeditor', 'label' => 'Description'],
+            ['name' => 'description', 'type' => 'textarea', 'label' => 'Description'],
             [  // Select
                 'label'     => "Author",
                 'type'      => 'select',

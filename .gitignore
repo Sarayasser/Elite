@@ -2,6 +2,8 @@
 /public/hot
 /public/storage
 /public/packages
+/public/avatars
+/public/posts
 /storage/*.key
 /vendor
 .env

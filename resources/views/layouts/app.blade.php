@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html dir="ltr" lang="en">
-
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         @include('includes.head')
     </head>
-
+<body>
+    
     <body class="">
         <div id="wrapper" class="clearfix">
             <!-- preloader -->
@@ -18,13 +18,12 @@
                 @yield('content')
             </div>
             <!-- end main-content -->
-
-             <!-- Footer -->
-             @include('includes.footer')
-
         </div>
 
-        <!-- Script -->
-        @include('includes.script')
-    </body>
+    <!-- Footer -->
+    @include('includes.footer')
+
+    <!-- Script -->
+    @include('includes.script')
+</body>
 </html>

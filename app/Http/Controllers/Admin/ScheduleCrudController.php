@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\ScheduleRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Instructor;
+use App\Models\Course;
+use App\User;
 
 /**
  * Class ScheduleCrudController
@@ -65,6 +70,7 @@ class ScheduleCrudController extends CrudController
             
             
             ]);
+        $this->crud->filters();
     }
     protected function setupCreateOperation()
     {
@@ -102,6 +108,7 @@ class ScheduleCrudController extends CrudController
                 'model' => 'App\Models\Course',
             ]
             ]);
+            // $this->crud->addClause('where', 'end_date', '>', 'start_date');
         // TODO: remove setFromDb() and manually define Fields
         // $this->crud->setFromDb();
     }
