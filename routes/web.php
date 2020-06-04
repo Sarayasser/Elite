@@ -34,6 +34,7 @@ Route::get('/course/{course}', function () {
 
 
 // Posts
+Route::get('courses/{course}/posts', 'PostController@index')->name('posts.index');
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
 Route::post('/posts', 'PostController@store')->name('posts.store');
 Route::get('/posts/{post}', 'PostController@show')->name('posts.show'); 
