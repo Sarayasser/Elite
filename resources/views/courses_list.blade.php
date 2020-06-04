@@ -33,9 +33,10 @@
             <div class="item">
               <div class="campaign bg-white maxwidth500 mb-30">
                 <div class="thumb">
-                  <img src="{{ asset('images/project/12.jpg') }}" alt="" class="img-fullwidth">
+                  {{-- <img src="{{ asset('images/project/12.jpg') }}" alt="" class="img-fullwidth"> --}}
                   {{-- <img src="{{ asset('storage/avatars/'.$course->image}}) }}" alt="" class="img-fullwidth"> --}}
-                  {{-- <img src="{{asset('storage/avatars/'.$course->image)}}" alt="" class="img-fullwidth" > --}}
+                  <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
+                  {{-- {{$course->image}} --}}
                   <div class="campaign-overlay"></div>
                 </div>
                 <div class="course-details clearfix p-20 pt-15">
@@ -68,27 +69,6 @@
       </div>
     </section>
 
-    <!-- Divider: Clients -->
-    {{-- <section class="clients bg-theme-color-sky">
-      <div class="container pt-10 pb-0">
-        <div class="row">
-          <div class="col-md-12">
-            <!-- Section: Clients -->
-            <div class="owl-carousel-6col clients-logo transparent text-center owl-nav-top">
-              <div class="item"> <a href="#"><img src="{{ asset('images/clients/w1.png') }}" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="{{ asset('images/clients/w2.png') }}"alt=""></a></div>
-              <div class="item"> <a href="#"><img src="{{ asset('images/clients/w3.png') }}" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="{{ asset('images/clients/w4.png') }}" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="{{ asset('images/clients/w5.png') }}" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="{{ asset('images/clients/w6.png') }}" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="{{ asset('images/clients/w3.png') }}" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="{{ asset('images/clients/w4.png') }}" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="{{ asset('images/clients/w5.png') }}" alt=""></a></div>
-              <div class="item"> <a href="#"><img src="{{ asset('images/clients/w6.png') }}" alt=""></a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> --}}
+     
 
 @endsection

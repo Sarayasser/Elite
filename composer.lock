@@ -561,15 +561,14 @@
                 "trait",
                 "user"
             ],
-<<<<<<< HEAD
+
             "funding": [
                 {
                     "url": "https://paypal.me/antonkomarev",
                     "type": "custom"
                 }
             ],
-=======
->>>>>>> ec1bd18a98bf9236afcfcf13bbf652e93d2e02e8
+
             "time": "2020-03-06T20:56:55+00:00"
         },
         {

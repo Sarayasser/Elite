@@ -109,11 +109,11 @@ class Course extends Model
         
         return $this->belongsTo('App\Models\Schedule');
     }
-    public function post()
-    {
+    // public function post()
+    // {
         
-        return $this->belongsTo('App\Models\Post');
-    }
+    //     return $this->belongsTo('App\Models\Post');
+    // }
 
     /**
      * The students that belong to the course.
