@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/posts', 'PostController@store')->name('posts.store');
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
 
+Route::get('/instructor-details', 'InstructorController@index')->name('instructors.index');
+
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 
 Route::get('/calender', function () { return view('calender'); });
@@ -31,7 +33,7 @@ Route::get('/course-details', function () { return view('course_details'); });
 Route::get('/courses-posts', function () { return view('courses_posts'); });
 Route::get('/course', function () { return view('course'); });
 Route::get('/teachers', function () { return view('teachers'); });
-Route::get('/teacher-details', function () { return view('teacher_details'); });
+// Route::get('/teacher-details', function () { return view('teacher_details'); });
 Route::get('/event', function () { return view('event'); });
 Route::get('/faq', function () { return view('faq'); });
 Route::get('/event-details', function () { return view('event_details'); });

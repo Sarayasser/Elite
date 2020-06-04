@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Instructor;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -58,7 +59,8 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    {   
+       // dd($data);
         $dt = new Carbon();
         $after = $dt->subYears(10)->format('Y-m-d');
 
@@ -72,11 +74,14 @@ class RegisterController extends Controller
             'image' => ['image','mimes:jpeg,jpg,png'],
             'role' => ['required','numeric','between:0,2'],
             'age' => ['required_if:role,2','nullable','date','before_or_equal:'.$after],
+            'cv' => ['required_if:role,0','nullable','mimes:pdf'],
         );
 
         $messages = array(
             'age.required_if' => "age is required",
-            'age.before_or_equal' => "your age must be greater than 10"
+            'age.before_or_equal' => "your age must be greater than 10",
+            'cv.required_if' => "The cv is required",
+            'cv.mimes' => "The cv must be a pdf file."
         );
         
         return Validator::make($data,$rules,$messages);
@@ -97,21 +102,28 @@ class RegisterController extends Controller
             $base = "data:image/png;base64,";
 
         }
-        
+      //  dd($data);
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'phone_number'                     => $data['phone_number'],
-            'address'                          => $data['address'],
-            'gender'                           => $data['gender'],
-            'image'                            => $base.$image
+            'phone_number' => $data['phone_number'],
+            'address' => $data['address'],
+            'gender' => $data['gender'],
+            'image'  => $base.$image,
+            'age' => $data['age'],
             
         ]);
         $role = $data['role'];
 
         if($role == 0){
+            
             $user->assignRole("instructor");
+            Instructor::create([
+                "cv" => $data['cv'],
+                "user_id" => $user->id
+            ]);
+
         }else if($role == 1){
             $user->assignRole("parent");
         }else if($role == 2){
