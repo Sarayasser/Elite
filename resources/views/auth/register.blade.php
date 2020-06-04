@@ -51,15 +51,22 @@
                 </div>
             </div>
             <div class="row row-space">
-                {{-- <div class="col-2">
+                <div class="col-2">
                     <div class="input-group">
                         <label class="label">Birthday</label>
                         <div class="input-group-icon">
-                            <input class="input--style-4 js-datepicker" type="text" name="birthday">
+                            <input class="input--style-4 js-datepicker" type="text" name="age">
                             <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                            @if ($errors->has('age'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('age') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
-                </div> --}}
+                </div>
+            </div>
+            <div class="row row-space">
                 <div class="col-2">
                     <div class="input-group">
                         <label class="label">{{ __('Image') }}</label>

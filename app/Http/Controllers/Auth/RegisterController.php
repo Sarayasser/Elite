@@ -8,7 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Auth;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -59,7 +59,10 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $dt = new Carbon();
+        $after = $dt->subYears(10)->format('Y-m-d');
+
+        $rules = array(
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -67,8 +70,16 @@ class RegisterController extends Controller
             'address' => ['required', 'string', 'max:255'],
             'gender'=> ['required'], 
             'image' => ['image','mimes:jpeg,jpg,png'],
-            'role' => ['required','numeric','between:0,2']
-        ]);
+            'role' => ['required','numeric','between:0,2'],
+            'age' => ['required_if:role,2','nullable','date','before_or_equal:'.$after],
+        );
+
+        $messages = array(
+            'age.required_if' => "age is required",
+            'age.before_or_equal' => "your age must be greater than 10"
+        );
+        
+        return Validator::make($data,$rules,$messages);
     }
 
     /**
