@@ -9,11 +9,11 @@
             <div class="section-content">
             <div class="row"> 
                 <div class="col-md-6">
-                <h2 class="text-theme-color-yellow font-36">Teacher Details</h2>
+                <h2 class="text-theme-color-yellow font-36">Instructor Details</h2>
                 <ol class="breadcrumb text-left mt-10 white">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Pages</a></li>
-                    <li class="active">Teacher Details</li>
+                    <li class="active">Instructor Details</li>
                 </ol>
                 </div>
             </div>
@@ -28,11 +28,20 @@
           <div class="row">
             <div class="col-md-4">
               <div class="thumb">
-                <img src="{{ asset('images/team/team-details.jpg')}}" alt="">
+                @if($instructor->user->image)
+                    <img height="360px" width="360px" src="{{asset($instructor->user->image)}}" alt="">                     
+                @else
+                    @if($instructor->user->gender == "1")
+                      <img height="360px" width="360px" src="{{ asset('images/team/team-details.jpg')}}" alt="">
+                    @else
+                      <img height="360px" width="360px" src="{{ asset('images/team/team6.jpg') }}" alt="">
+                    @endif
+                @endif
+                {{-- <img src="{{ asset('images/team/team-details.jpg')}}" alt=""> --}}
               </div>
             </div>
             <div class="col-md-8">
-              <h4 class="name font-24 mt-0 mb-0">Sakib Smith</h4>
+              <h4 class="name font-24 mt-0 mb-0">{{$instructor->user->name}}</h4>
               <h5 class="mt-5 text-theme-color-red">Chemistry Teachers</h5>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam vero expedita fugiat illo quasi doloremque, in unde omnis sint assumenda! Quaerat in, reprehenderit corporis voluptatum natus sequi reiciendis ullam. Quam eaque dolorum voluptates cupiditate explicabo.</p>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt culpa dicta quaerat qui recusandae possimus placeat quidem ipsam voluptates similique libero tempore, labore quasi delectus vero alias, consectetur blanditiis eum maxime sunt accusantium ipsa doloribus reiciendis. Ea quod reprehenderit deserunt. Veritatis omnis similique tempora delectus a consequuntur, quis.  Adipisicing elit. Nesciunt culpa dicta quaerat qui recusandae possimus placeat quidem ipsam voluptates similique libero tempore, labore quasi delectus vero alias.</p>
@@ -66,7 +75,7 @@
                       </div>
                       <div class="media-body">
                         <h5 class="mt-0 mb-0">Address:</h5>
-                        <p class="text-white">Village 856 Broadway New York</p>
+                        <p class="text-white">{{$instructor->user->address}}</p>
                       </div>
                     </div>
                   </li>
@@ -77,7 +86,7 @@
                       </div>
                       <div class="media-body">
                         <h5 class="mt-0 mb-0">Contact:</h5>
-                        <p class="text-white"><span>Phone:</span> +262 695 2601<br><span>Email:</span> you@yourdomain.com</p>
+                      <p class="text-white"><span>Phone:</span> 0{{$instructor->user->phone_number}}<br><span>Email:</span> {{$instructor->user->email}}</p>
                       </div>
                     </div>
                   </li>

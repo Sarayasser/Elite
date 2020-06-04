@@ -26,6 +26,7 @@ class InstructorController extends Controller
      */
     public function show(Instructor $instructor)
     {
-        return view('instructors.show', compact('instructor'));
+        $instructor = Instructor::with('user')->findOrFail($instructor->id);
+        return view('instructors.show', ['instructor' => $instructor]);
     }
 }

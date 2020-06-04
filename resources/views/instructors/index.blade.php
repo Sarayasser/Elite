@@ -35,10 +35,10 @@
                     @if($instructor->user->image)
                         <img class="img-fullwidth mt-15" height="390px" src="{{$instructor->user->image}}" alt="">                     
                     @else
-                      @if($instructor->user->gender == "female")
+                      @if($instructor->user->gender == '1' )
                         <img class="img-fullwidth mt-15" height="390px" src="images/team/team1.jpg" alt="">
                       @else
-                        <img class="img-fullwidth mt-15" height="390px" src="images/team/team9.jpg" alt="">
+                        <img class="img-fullwidth mt-15" height="390px" src="images/team/team2.jpg" alt="">
                       @endif
                     @endif
                   </a>
