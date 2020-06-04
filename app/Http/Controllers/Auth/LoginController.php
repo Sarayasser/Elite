@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
@@ -52,6 +54,25 @@ class LoginController extends Controller
         }else
             return redirect("/login");
         // return redirect('/');
+    //    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+    //             // Authentication passed...
+    //             if (!isset($request->user()->email_verified_at)) {
+    //                 Auth::logout();
+    //                 return redirect('/email/verify');
+    //             }else if($request->user()->hasRole('admin'))
+    //             {
+    //                 backpack_auth()->login($request->user());
+    //                 return redirect('/admin/dashboard');
+    //             }else if($request->user()->hasRole('instructor')){
+    //                 return redirect("/");
+    //             }else if($request->user()->hasRole('student')){
+    //                 return redirect("/calender");
+    //             }else
+    //                 return redirect("/login");
+
+
+    //             return redirect($redirectTo);
+    //         }
     }
 
 }

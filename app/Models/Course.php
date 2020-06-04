@@ -101,7 +101,6 @@ class Course extends Model
      */
     public function instructor()
     {
-        
         return $this->belongsTo('App\Instructor');
     }
     public function schedule()
@@ -120,7 +119,7 @@ class Course extends Model
      */
     public function students()
     {
-        return $this->belongsToMany('App\Student');
+        return $this->belongsToMany('App\User');
     }
     public function posts()
     {

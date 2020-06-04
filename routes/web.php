@@ -17,6 +17,7 @@ use App\Instructor;
 |
 */
 
+// Courses
 Route::get('/course', function () {return view('courses_list',['courses'=>Course::all()]);})->name('courses.index');
 Route::get('/course/{course}', function () {
     return view('course_details',[
@@ -29,10 +30,6 @@ Route::get('/course/{course}', function () {
     
 })->name('courses.show');
 
-    
-
-
-
 // Posts
 Route::get('courses/{course}/posts', 'PostController@index')->name('posts.index');
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
@@ -41,16 +38,17 @@ Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
 Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
 Route::put('/posts/{post}', 'PostController@update')->name('posts.update');
 
-Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
+//instructor
+Route::get('/instructors', 'InstructorController@index')->name('instructors.index');
+Route::get('/instructors/{instructor}', 'InstructorController@show')->name('instructors.show');
 
-Route::get('/', function () { return view('home',['courses'=>Course::all()]); })->name('home');
+
+Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 
 Route::get('/calender', function () { return view('calender'); });
 Route::get('/contact', function () { return view('contact'); });
 Route::get('/courses-posts', function () { return view('courses_posts'); });
 // Route::get('/course', function () { return view('course'); });
-Route::get('/teachers', function () { return view('teachers'); });
-Route::get('/teacher-details', function () { return view('teacher_details'); });
 Route::get('/event', function () { return view('event'); });
 Route::get('/faq', function () { return view('faq'); });
 Route::get('/event-details', function () { return view('event_details'); });
@@ -59,7 +57,6 @@ Route::get('/about', function () { return view('about'); });
 Route::get('/users', function () { return view('auth/user'); })->name('users');
 
 // Auth::routes();
-
 Route::group(['middleware' => ['web']], function() {
 
 // Login Routes...
@@ -76,7 +73,15 @@ Route::group(['middleware' => ['web']], function() {
     Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
     Route::get('password/reset/{token}', ['as' => 'password.reset.token', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
     Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\ResetPasswordController@reset']);
+
+// Email verification
+    Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+    Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+    Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+//home page
+Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/banned',function(){ return view('banned');});

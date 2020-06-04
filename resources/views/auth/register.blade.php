@@ -10,10 +10,10 @@
                 <div class="col-2">
                     <div class="input-group">
                         <label class="label">{{ __('Name') }}</label>
-                        <input id="name" type="text" class="input--style-4 @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <input id="name" type="text" class="input--style-4 @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
                         @error('name')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong style="color:red;">{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
@@ -21,11 +21,11 @@
                 <div class="col-2">
                     <div class="input-group">
                         <label class="label">{{ __('E-Mail Address') }}</label>
-                        <input id="email" type="email" class="input--style-4 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <input id="email" type="email" class="input--style-4 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong style="color:red;">{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
@@ -35,10 +35,10 @@
                 <div class="col-2">
                     <div class="input-group">
                         <label class="label">{{ __('Password') }}</label>
-                        <input id="password" type="password" class="input--style-4 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                        <input id="password" type="password" class="input--style-4 @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong style="color:red;">{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
@@ -46,20 +46,42 @@
                 <div class="col-2">
                     <div class="input-group">
                         <label class="label">{{ __('Confirm Password') }}</label>
-                        <input id="password-confirm" type="password" class="input--style-4" name="password_confirmation" required autocomplete="new-password">
+                        <input id="password-confirm" type="password" class="input--style-4" name="password_confirmation"  autocomplete="new-password">
                     </div>
                 </div>
             </div>
             <div class="row row-space">
-                {{-- <div class="col-2">
+                <div class="col-2">
                     <div class="input-group">
                         <label class="label">Birthday</label>
                         <div class="input-group-icon">
-                            <input class="input--style-4 js-datepicker" type="text" name="birthday">
+                            <input class="input--style-4 js-datepicker" type="text" name="age">
                             <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                            @if ($errors->has('age'))
+                                    <span class="invalid-feedback">
+                                        <strong style="color:red;">{{ $errors->first('age') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
-                </div> --}}
+                </div>
+                @if($slug === "instructor")
+                <div class="col-2">
+                    <div class="input-group">
+                        <label class="label">{{ __('CV') }}</label>
+                        <div class="input-group-icon">
+                            <input type="file" name="cv" class="{{ $errors->has('cv') ? ' is-invalid' : '' }}" >
+                            @if ($errors->has('cv'))
+                                    <span class="invalid-feedback">
+                                        <strong style="color:red;">{{ $errors->first('cv') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endif
+            </div>
+            <div class="row row-space">
                 <div class="col-2">
                     <div class="input-group">
                         <label class="label">{{ __('Image') }}</label>
@@ -67,7 +89,7 @@
                             <input type="file" name="image" class="{{ $errors->has('image') ? ' is-invalid' : '' }}" >
                             @if ($errors->has('image'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('image') }}</strong>
+                                        <strong style="color:red;">{{ $errors->first('image') }}</strong>
                                     </span>
                             @endif
                         </div>
@@ -89,7 +111,7 @@
                             </label>
                             @if ($errors->has('gender'))
                                 <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('gender') }}</strong>
+                                    <strong style="color:red;">{{ $errors->first('gender') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -103,7 +125,7 @@
                         <input type="text" class="input--style-4{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" id="phone_number" value="{{ old('phone_number') }}">
                         @if ($errors->has('phone_number'))
                             <span class="invalid-feedback">
-                                <strong>{{ $errors->first('phone_number') }}</strong>
+                                <strong style="color:red;">{{ $errors->first('phone_number') }}</strong>
                             </span>
                         @endif
                     </div>
@@ -114,7 +136,7 @@
                         <input type="text" class="input--style-4{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" id="address" value="{{ old('address') }}">
                         @if ($errors->has('address'))
                             <span class="invalid-feedback">
-                                <strong>{{ $errors->first('address') }}</strong>
+                                <strong style="color:red;">{{ $errors->first('address') }}</strong>
                             </span>
                         @endif
                     </div>
