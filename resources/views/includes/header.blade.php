@@ -40,7 +40,7 @@
             <ul class="menuzord-menu">
               <li class="active"><a href="#home">Home</a></li>
               <li><a href="#">Courses</a></li>
-              <li><a href="#">Instructors</a></li>
+              <li><a href="{{route('instructors.index')}}">Instructors</a></li>
               <li><a href="#">Events</a></li>
               <li><a href="#">Schedule</a></li>        
               <li><a href="#">FAQ</a></li>

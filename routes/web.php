@@ -22,7 +22,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/posts', 'PostController@store')->name('posts.store');
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
 
-Route::get('/instructor-details', 'InstructorController@index')->name('instructors.index');
+//instructor
+Route::get('/instructors', 'InstructorController@index')->name('instructors.index');
+Route::get('/instructors/{instructor}', 'InstructorController@show')->name('instructors.show');
 
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 

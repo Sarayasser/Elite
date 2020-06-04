@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Instructor;
 
 class InstructorController extends Controller
 {
@@ -13,6 +14,18 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        return view('instructors.index');
+        $instructors = Instructor::with('user')->get();
+        return view('instructors.index',['instructors' => $instructors]);
+    }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Instructors  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Instructor $instructor)
+    {
+        return view('instructors.show', compact('instructor'));
     }
 }

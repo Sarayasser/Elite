@@ -62,8 +62,7 @@ class RegisterController extends Controller
     {   
        // dd($data);
         $dt = new Carbon();
-        $after = $dt->subYears(10)->format('Y-m-d');
-
+        $after = $dt->subYears(10)->format('d/m/Y');
         $rules = array(
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -111,7 +110,7 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'gender' => $data['gender'],
             'image'  => $base.$image,
-            'age' => $data['age'],
+            'age' => date('Y-m-d H:i:s', strtotime($data['age'])),
             
         ]);
         $role = $data['role'];
