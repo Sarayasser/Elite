@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Schedule;
+use App\Models\Course;
+use App\Models\Post;
+use App\Instructor;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,28 +17,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+// Courses
+Route::get('/course', function () {return view('courses_list',['courses'=>Course::all()]);})->name('courses.index');
+Route::get('/course/{course}', function () {
+    return view('course_details',[
+        'course'=>Course::find(request()->course),
+        'schedules'=>Schedule::all(), 
+        'instructors'=>Instructor::all(), 
+        'courses'=>Course::all(),
+        'posts'=>Post::all()
+    ]);
+    
+})->name('courses.show');
 
 // Posts
-Route::post('/posts', 'PostController@store')->name('posts.store');
+Route::get('courses/{course}/posts', 'PostController@index')->name('posts.index');
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
+Route::post('/posts', 'PostController@store')->name('posts.store');
+Route::get('/posts/{post}', 'PostController@show')->name('posts.show'); 
+Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+Route::put('/posts/{post}', 'PostController@update')->name('posts.update');
 
 //instructor
 Route::get('/instructors', 'InstructorController@index')->name('instructors.index');
 Route::get('/instructors/{instructor}', 'InstructorController@show')->name('instructors.show');
 
+
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 
 Route::get('/calender', function () { return view('calender'); });
-Route::get('/contact', function () { return view('contact'); })->name('contact');
-Route::get('/courses', function () { return view('courses_list'); });
-Route::get('/course-details', function () { return view('course_details'); });
+Route::get('/contact', function () { return view('contact'); });
 Route::get('/courses-posts', function () { return view('courses_posts'); });
-Route::get('/course', function () { return view('course'); });
-Route::get('/teachers', function () { return view('teachers'); });
-// Route::get('/teacher-details', function () { return view('teacher_details'); });
+// Route::get('/course', function () { return view('course'); });
 Route::get('/event', function () { return view('event'); });
 Route::get('/faq', function () { return view('faq'); });
 Route::get('/event-details', function () { return view('event_details'); });
@@ -44,7 +57,6 @@ Route::get('/about', function () { return view('about'); });
 Route::get('/users', function () { return view('auth/user'); })->name('users');
 
 // Auth::routes();
-
 Route::group(['middleware' => ['web']], function() {
 
 // Login Routes...
@@ -69,5 +81,7 @@ Route::group(['middleware' => ['web']], function() {
 
 });
 
+//home page
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/banned',function(){ return view('banned');});

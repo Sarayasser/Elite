@@ -15,7 +15,6 @@ class HomeController extends Controller
     {
         // $this->middleware(['auth','verified']);
         // $this->middleware('auth');
-        // $this->middleware(['auth', 'verified'])->except('home');
     }
 
     /**
@@ -24,7 +23,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
+    {    
+        return view('home',['courses'=>Course::all()]);
     }
 }

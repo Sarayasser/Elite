@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Instructor extends Model
-{
+{   
     /**
      * The attributes that are mass assignable.
      *
@@ -31,6 +31,10 @@ class Instructor extends Model
         return $this->hasMany('App\Models\Course','instructor_id');
     }
 
+    public function schedules()
+    {
+        return $this->hasMany('App\Models\Schedule','instructor_id');
+    }
     public function GetNameAttribute()
     {
         return $this->user->name;
