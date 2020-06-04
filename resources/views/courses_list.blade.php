@@ -33,20 +33,15 @@
             <div class="item">
               <div class="campaign bg-white maxwidth500 mb-30">
                 <div class="thumb">
-                  {{-- <img src="{{ asset('images/project/12.jpg') }}" alt="" class="img-fullwidth"> --}}
-                  {{-- <img src="{{ asset('storage/avatars/'.$course->image}}) }}" alt="" class="img-fullwidth"> --}}
-                  <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
-                  {{-- {{$course->image}} --}}
-                  <div class="campaign-overlay"></div>
+                <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
+                <div class="campaign-overlay"></div>
                 </div>
                 <div class="course-details clearfix p-20 pt-15">
                   <h4 class="price-tag">$ {{$course->price}}</h4>
                   <h3 class="mt-0"><a class="text-theme-color-red" href="{{route('courses.show', $course->id)}}">{{$course->name}}</a></h3>
                   <ul class="review_text list-inline">
                     <li>
-                      {{-- <div class="star-rating" title="Rated 3.50 out of 5"><span data-width="100%">{{$course->rate}}</span></div> --}}
-                    <div class="star-rating" title="Rated {{$course->rate}} out of 5"><span data-width="{{$course->rate*20}}%">{{$course->rate}}</span></div>
-
+                      <div class="star-rating" title="Rated {{$course->rate}} out of 5"><span data-width="{{$course->rate*20}}%">{{$course->rate}}</span></div>
                     </li>
                   </ul>
                   <p>{{$course->description}} <a class="text-theme-colored ml-5" href="{{route('courses.show', $course->id)}}"> →</a></p>
