@@ -88,21 +88,30 @@ class User extends Authenticatable
     }
 
 
+    
     /**
-     * relation one to one to student
+     * relation one to many (student has one parent)
      */
-
-    public function student()
+    public function parent()
     {
-        return $this->hasOne('App\Student',"user_id");
+        return $this->belongsTo('App\User','parent_id');
     }
+
 
     /**
      * relation one to many (parent has many children)
      */
     public function students()
     {
-        return $this->hasMany('App\Student','parent_id');
+        return $this->hasMany('App\User','parent_id');
+    }
+
+    /**
+     * The courses that belong to the student.
+     */
+    public function courses()
+    {
+        return $this->belongsToMany('App\Models\Course');
     }
 
 
