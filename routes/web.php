@@ -24,9 +24,8 @@ Route::get('/posts/create', 'PostController@create')->name('posts.create');
 
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 
-Route::get('/', function () { return view('home'); });
 Route::get('/calender', function () { return view('calender'); });
-Route::get('/contact', function () { return view('contact'); });
+Route::get('/contact', function () { return view('contact'); })->name('contact');
 Route::get('/courses', function () { return view('courses_list'); });
 Route::get('/course-details', function () { return view('course_details'); });
 Route::get('/courses-posts', function () { return view('courses_posts'); });
@@ -58,7 +57,13 @@ Route::group(['middleware' => ['web']], function() {
     Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
     Route::get('password/reset/{token}', ['as' => 'password.reset.token', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
     Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\ResetPasswordController@reset']);
+
+// Email verification
+    Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+    Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+    Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/banned',function(){ return view('banned');});

@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -44,11 +45,10 @@ class RegisterController extends Controller
 
     protected function redirectTo()
     {
-        
         if (auth()->user()->hasRole('admin')) {
             return '/admin';
         }
-        return '/home';
+        return '/';
     }
 
     /**
@@ -79,9 +79,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $image = base64_encode(file_get_contents($data['image']));
-        $base = "data:image/png;base64,";
+        $base =Null;
+        $image =Null;
+        if(array_key_exists ('image',$data)){
+            $image = base64_encode(file_get_contents($data['image']));
+            $base = "data:image/png;base64,";
 
+        }
+        
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -106,8 +111,6 @@ class RegisterController extends Controller
 
     public function showRegistrationForm($slug)
     {
-       
-       // dd($slug);
         return view('auth.register', compact('slug'));
     }
 }
