@@ -78,7 +78,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, Post $post)
+    public function update(PostRequest $request, $course_id, Post $post)
     {
         $attributes = [
                 'title' => $request->title,
@@ -90,7 +90,7 @@ class PostController extends Controller
             $post->image = $request->file('image');
             $post->save();
         }
-        return redirect()->route('posts.edit', ['course' => $request->course, 'post' => $post->id]);
+        return redirect()->route('posts.show', ['course' => $course_id, 'post' => $post->id]);
     }
 
     /**
