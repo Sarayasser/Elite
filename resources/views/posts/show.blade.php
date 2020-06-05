@@ -11,6 +11,16 @@
             <img src="{{asset($post->image)}}" class="card-img-top" alt="image">
         </div>
         @endif
+        @if(Auth::user())
+        @if (Auth::user()->id == $post->user->id)
+        <a href="{{route('posts.edit', ['course' => $course, 'post' => $post->id])}}" class="btn btn-info">Edit</a>
+        <form action="{{route('posts.destroy', ['course' => $course, 'post' => $post->id])}}" method="POST">
+        @csrf
+        @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        @endif
+        @endif
     </div>
     <br>
 </div>
