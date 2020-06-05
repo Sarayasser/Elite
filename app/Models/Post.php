@@ -90,7 +90,7 @@ class Post extends Model
         }
         else {
             $path = $value->store('public/posts');
-            $path = str_replace('public/', '', $path);
+            $path = str_replace('public', 'storage', $path);
             $this->attributes[$attribute_name] = $path;
         }
     }

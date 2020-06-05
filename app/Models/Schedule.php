@@ -14,7 +14,7 @@ class Schedule extends Model
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
-    protected $table = 'schedules';
+    // protected $table = 'schedules';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];

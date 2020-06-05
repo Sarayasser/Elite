@@ -101,18 +101,11 @@ class Course extends Model
      */
     public function instructor()
     {
-        
         return $this->belongsTo('App\Instructor');
     }
     public function schedule()
     {
-        
-        return $this->belongsTo('App\Models\Schedule');
-    }
-    public function post()
-    {
-        
-        return $this->belongsTo('App\Models\Post');
+        return $this->hasOne('App\Models\Schedule');
     }
 
     /**
@@ -120,11 +113,11 @@ class Course extends Model
      */
     public function students()
     {
-        return $this->belongsToMany('App\Student');
+        return $this->belongsToMany('App\User');
     }
     public function posts()
     {
-        return $this->hasMany('App\Models\Post','post_id');
+        return $this->hasMany('App\Models\Post');
     }
 
 

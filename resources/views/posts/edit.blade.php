@@ -2,6 +2,15 @@
 
 @section('content')
 <div class="container mt-50 mb-50">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form method="POST" action="{{ route('posts.update', ['post' => $post->id]) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
@@ -17,7 +26,7 @@
         <label for="exampleInputFile2">File input</label>
         <input type="file" id="exampleInputFile2" name="image">
         @if($post->image)
-        <img src="{{asset('storage/'.$post->image)}}" width="200" height="150">
+        <img src="{{asset($post->image)}}" width="200" height="150">
         @endif
     </div>
 

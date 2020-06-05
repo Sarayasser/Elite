@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\CourseRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
-use App\Course;
-use App\User;
+
 
 /**
  * Class CourseCrudController

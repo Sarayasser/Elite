@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Instructor extends Model
 {   
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'cv','user_id'
+    ];
+
+    /**
      * relation one to one to user
      */
     public function user()
@@ -30,9 +39,17 @@ class Instructor extends Model
     {
         return $this->user->name;
     }
-    public function events()
+
+    public function setCvAttribute($value)
     {
-        return $this->hasMany('App\Models\Event','instructor_id');
+        $attribute_name = "cv";
+        $disk = "uploads"; 
+
+        $path = $value->store('public/cvs');
+        $path = str_replace('public/', '', $path);
+        $this->attributes[$attribute_name] = $path;
+        
     }
+
     
 }

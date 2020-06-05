@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentsTable extends Migration
+class AddReadToPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->id();
-            $table->integer('age');
-            $table->integer('user_id')->unsigned();
-            $table->integer('parent_id')->unsigned();
-            $table->timestamps();
+        Schema::table('posts', function (Blueprint $table) {
+            $table->boolean('read')->default(0);
         });
     }
 
@@ -29,6 +25,8 @@ class CreateStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::table('posts', function (Blueprint $table) {
+            //
+        });
     }
 }

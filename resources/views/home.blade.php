@@ -66,7 +66,8 @@
                     <div class="item">
                         <div class="campaign bg-white maxwidth500 mb-30">
                         <div class="thumb">
-                            <img src="{{ asset('images/project/12.jpg')}}" alt="" class="img-fullwidth">
+                            {{-- <img src="{{ asset('images/project/12.jpg')}}" alt="" class="img-fullwidth"> --}}
+                            <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
                             <div class="campaign-overlay"></div>
                         </div>
                         <div class="course-details clearfix p-20 pt-15">

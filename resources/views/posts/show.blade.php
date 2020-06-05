@@ -8,7 +8,7 @@
         </div>
         @if($post->image)
         <div>
-            <img src="{{asset('storage/'.$post->image)}}" class="card-img-top" alt="image">
+            <img src="{{asset($post->image)}}" class="card-img-top" alt="image">
         </div>
         @endif
     </div>

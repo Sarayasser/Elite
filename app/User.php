@@ -5,15 +5,14 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-// use Spatie\Permission\Traits\HasRoles, trait;
-use Backpack\CRUD\app\Models\Traits\CrudTrait; // <------------------------------- this one
-use Spatie\Permission\Traits\HasRoles;// <---------------------- and this one
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
-
-class User extends Authenticatable
+//implements MustVerifyEmail
+class User extends Authenticatable 
 {
     use Notifiable;
     use CrudTrait; // <----- this
@@ -26,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'address', 'phone_number', 'gender', 'image' , 'is_banned'
+        'name', 'email', 'password', 'address', 'phone_number', 'gender', 'image' , 'is_banned','age'
     ];
 
     /**
@@ -89,21 +88,30 @@ class User extends Authenticatable
     }
 
 
+    
     /**
-     * relation one to one to student
+     * relation one to many (student has one parent)
      */
-
-    public function student()
+    public function parent()
     {
-        return $this->hasOne('App\Student',"user_id");
+        return $this->belongsTo('App\User','parent_id');
     }
+
 
     /**
      * relation one to many (parent has many children)
      */
     public function students()
     {
-        return $this->hasMany('App\Student','parent_id');
+        return $this->hasMany('App\User','parent_id');
+    }
+
+    /**
+     * The courses that belong to the student.
+     */
+    public function courses()
+    {
+        return $this->belongsToMany('App\Models\Course');
     }
 
 

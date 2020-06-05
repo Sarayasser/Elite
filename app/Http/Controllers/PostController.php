@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
+use App\Models\Course;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -13,9 +15,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Course $course)
     {
-        return view('posts.index');
+        $current_post = $course->posts()->where('read', 0)->orderBy('created_at', 'asc')->first();
+        return view('posts.index', ['post' => $current_post]);
     }
 
     /**
@@ -23,9 +26,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Course $course)
     {
-        return view('posts.create');
+        return view('posts.create', ['course' => $course->id]);
     }
 
     /**
@@ -34,16 +37,16 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request, Course $course)
     {
-        $post = Post::create([
+        $post = $course->posts()->create([
             'title' => $request->title,
             'description' =>  $request->description,
-            'user_id' =>  1, // Hard coded for now
+            'user_id' =>  $request->user()->id
         ]);
         $post->image = $request->file('image');
         $post->save();
-        return redirect()->route('posts.edit', ['post' => $post->id]);
+        return redirect()->route('posts.show', ['post' => $post->id]);
     }
 
     /**
@@ -65,7 +68,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.show', ['post' => $post]);
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -75,7 +78,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         $attributes = [
                 'title' => $request->title,
