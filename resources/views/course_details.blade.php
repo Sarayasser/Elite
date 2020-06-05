@@ -79,10 +79,10 @@
                   <div class="latest-posts">
                     @foreach($posts as $post)
                     <article class="post media-post clearfix pb-0 mb-10">
-                      <a class="post-thumb" href="{{route('posts.show', $post->id)}}"><img src="{{asset($post->image)}}" alt=""></a>
+                      <a class="post-thumb" href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}"><img src="{{asset($post->image)}}" alt=""></a>
                       {{-- <img src="" alt="" class="img-fullwidth" > --}}
                       <div class="post-right">
-                        <h4 class="post-title mt-0"><a href="{{route('posts.show', $post->id)}}">{{$post->title}}</a></h4>
+                        <h4 class="post-title mt-0"><a href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}">{{$post->title}}</a></h4>
                         <p>{{ \Illuminate\Support\Str::limit($post->description, 50, '...') }}</p>
 
                       </div>
