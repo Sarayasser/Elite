@@ -29,7 +29,7 @@ Route::get('/courses/{course}/posts/create', 'PostController@create')->name('pos
 Route::post('/courses/{course}/posts', 'PostController@store')->name('posts.store');
 Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts.show'); 
 Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
-Route::put('/posts/{post}', 'PostController@update')->name('posts.update');
+Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('posts.update');
 
 //instructor
 Route::get('/instructors', 'InstructorController@index')->name('instructors.index');

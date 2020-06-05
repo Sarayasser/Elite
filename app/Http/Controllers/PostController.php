@@ -46,7 +46,7 @@ class PostController extends Controller
         ]);
         $post->image = $request->file('image');
         $post->save();
-        return redirect()->route('posts.show', ['post' => $post->id]);
+        return redirect()->route('posts.show', ['course' => $course->id, 'post' => $post->id]);
     }
 
     /**
@@ -55,7 +55,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($course_id, Post $post)
     {
         return view('posts.show', ['post' => $post]);
     }
@@ -66,9 +66,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Course $course, Post $post)
     {
-        return view('posts.edit', ['post' => $post]);
+        return view('posts.edit', ['course' => $course->id, 'post' => $post]);
     }
 
     /**
@@ -90,7 +90,7 @@ class PostController extends Controller
             $post->image = $request->file('image');
             $post->save();
         }
-        return redirect()->route('posts.edit', ['post' => $post->id]);
+        return redirect()->route('posts.edit', ['course' => $request->course, 'post' => $post->id]);
     }
 
     /**

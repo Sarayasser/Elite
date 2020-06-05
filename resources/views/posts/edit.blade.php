@@ -11,7 +11,7 @@
         </ul>
     </div>
     @endif
-    <form method="POST" action="{{ route('posts.update', ['post' => $post->id]) }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('posts.update', ['course' => $course, 'post' => $post->id]) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="form-group">
