@@ -17,8 +17,8 @@ class CreateEventsTable extends Migration
             $table->string('name')->unique();
             $table->text('description');
             $table->string('location');
-            $table->string('image');
-            $table->string('date');
+            $table->string('image')->nullable();
+            $table->date('date')->nullable();
             $table->timestamps();
         });
     }

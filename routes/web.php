@@ -31,6 +31,16 @@ Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts
 Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
 Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('posts.update');
 
+// Events
+Route::get('/event/create', 'EventController@create')->name('events.create');
+Route::post('/event','EventController@store')->name('events.store');
+Route::get('/event/{event}','EventController@show')->name('events.show');
+Route::get('/event/{event}/edit','EventController@edit')->name('events.edit');
+Route::put('/event/{event}','EventController@update')->name('events.update');
+Route::get('/event/delete/{event}','EventController@destroy')->name('events.destroy');
+Route::get('/event','EventController@index')->name('events.index');
+
+Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 //instructor
 Route::get('/instructors', 'InstructorController@index')->name('instructors.index');
 Route::get('/instructors/{instructor}', 'InstructorController@show')->name('instructors.show');
@@ -38,13 +48,21 @@ Route::get('/instructors/{instructor}', 'InstructorController@show')->name('inst
 
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 
+//Profile
+Route::get('/profile/{user}','UserController@show')->name('user.show');
+Route::get('/profile/{user}/edit','UserController@edit')->name('user.edit');
+Route::put('/profile/{user}','UserController@update')->name('user.update');
+
+
 Route::get('/calender', function () { return view('calender'); });
 Route::get('/contact', function () { return view('contact'); });
 Route::get('/courses-posts', function () { return view('courses_posts'); });
 // Route::get('/course', function () { return view('course'); });
-Route::get('/event', function () { return view('event'); });
+Route::get('/teachers', function () { return view('teachers'); });
+Route::get('/teacher-details', function () { return view('teacher_details'); });
+// Route::get('/event', function () { return view('event'); });
 Route::get('/faq', function () { return view('faq'); });
-Route::get('/event-details', function () { return view('event_details'); });
+// Route::get('/event-details', function () { return view('event_details'); });
 Route::get('/timetable', function () { return view('timetable'); });
 Route::get('/about', function () { return view('about'); });
 Route::get('/users', function () { return view('auth/user'); })->name('users');

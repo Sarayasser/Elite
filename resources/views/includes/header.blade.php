@@ -30,6 +30,7 @@
               </ul>
             </div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -40,10 +41,13 @@
             <ul class="menuzord-menu">
               <li class="active"><a href="#home">Home</a></li>
               <li><a href="{{route('courses.index')}}">Courses</a></li>
-              <li><a href="{{route('instructors.index')}}">Instructors</a></li>
-              <li><a href="#">Events</a></li>
+              <li><a href="#">Instructors</a></li>
+              <li><a href="{{route('events.index')}}">Events</a></li>
               <li><a href="#">Schedule</a></li>        
               <li><a href="#">FAQ</a></li>
+              @if (Auth::user())
+              <li><a href="{{route('user.show',['user'=>Auth::user()->id])}}" class="col ml-20"><i class="fa fa-cog fa-spin" style="width:150%;"></i></a></li>
+              @endif
             </ul>
             <ul class="pull-right flip hidden-sm hidden-xs">
               <li>
@@ -68,8 +72,8 @@
                 <!-- Modal: Book Now Starts -->
                 {{-- <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" data-toggle="modal" data-target="#BSParentModal" href="{{ asset('ajax-load/reservation-form.html')}}">Book Now</a> --}}
                 <!-- Modal: Book Now End -->
+              <!-- <a href="#" class="col ml-20"><i class="fas fa-cogs"></i></a> -->
               </li>
-             
             </ul>
             <div id="top-search-bar" class="collapse">
               <div class="container">

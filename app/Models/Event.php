@@ -25,7 +25,16 @@ class Event extends Model
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $dates = ['date'];
 
+    public function user()
+    {   
+        return $this->belongsTo('App\User');
+    }
+    public function users()
+    {   
+        return $this->hasOne('App\User','user_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
@@ -55,11 +64,37 @@ class Event extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+    // public function setImageAttribute($value)
+    // {
+    //     $attribute_name = "image";
+    //     $disk = "uploads"; 
+    //     $destination_path = "events"; 
+
+    //     if ($value==null) {
+    //         Storage::disk($disk)->delete($this->{$attribute_name});
+
+    //         $this->attributes[$attribute_name] = null;
+    //     }
+
+    //     if (Str::startsWith($value, 'data:image'))
+    //     {
+    //         $image = Image::make($value)->encode('jpg', 90);
+
+    //         $filename = md5($value.time()).'.jpg';
+
+    //         Storage::disk($disk)->put($destination_path.'/'.$filename, $image->stream());
+
+    //         Storage::disk($disk)->delete($this->{$attribute_name});
+
+    //         $public_destination_path = Str::replaceFirst('public/', '', $destination_path);
+    //         $this->attributes[$attribute_name] = $public_destination_path.'/'.$filename;
+    //     }
+    // }
     public function setImageAttribute($value)
     {
         $attribute_name = "image";
         $disk = "uploads"; 
-        $destination_path = "events"; 
+        $destination_path = "storage/events"; 
 
         if ($value==null) {
             Storage::disk($disk)->delete($this->{$attribute_name});
@@ -67,7 +102,7 @@ class Event extends Model
             $this->attributes[$attribute_name] = null;
         }
 
-        if (Str::startsWith($value, 'data:image'))
+        elseif (Str::startsWith($value, 'data:image'))
         {
             $image = Image::make($value)->encode('jpg', 90);
 
@@ -80,5 +115,11 @@ class Event extends Model
             $public_destination_path = Str::replaceFirst('public/', '', $destination_path);
             $this->attributes[$attribute_name] = $public_destination_path.'/'.$filename;
         }
+        else {
+            $path = $value->store('public/events');
+            $path = str_replace('public', 'storage', $path);
+            $this->attributes[$attribute_name] = $path;
+        }
     }
+
 }

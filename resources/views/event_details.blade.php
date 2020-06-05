@@ -11,8 +11,8 @@
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Event Details</h2>
                 <ol class="breadcrumb text-left mt-10 white">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Pages</a></li>
+                    <li><a href="{{route('home')}}">Home</a></li>
+                    <li><a href="{{route('events.index')}}">Event</a></li>
                     <li class="active">Event Details</li>
                 </ol>
                 </div>
@@ -25,20 +25,18 @@
       <div class="container pt-40 pb-40">
         <div class="row">
           <div class="col-md-8">
-              <h2>Event Title Place Here</h2>
-            <div class="owl-carousel-1col" data-nav="true">
+              <h2>{{$event->name}}</h2>
+            <!-- <div class="owl-carousel-1col" data-nav="true"> -->
+            @if ($event->image)
               <div class="item">
-                <img src="{{ asset('images/bg/bg11.jpg')}}" alt="">
-              </div>
-              <div class="item">
-                <img src="{{ asset('images/bg/bg2.jpg')}}" alt="">
-              </div>
-              <div class="item">
-                <img src="{{ asset('images/bg/bg12.jpg')}}" alt="">
-              </div>
+                <img src="{{asset('/'.$event->image)}}" alt="" >
+              <!-- </div> -->
             </div>
+            @else
+            <img src="{{ asset('images/pattern/p6.png') }}" alt="">
+            @endif
           </div>
-          <div class="col-md-4 mt-60">
+          <div class="col-md mt-60" style="float:right;">
             <ul>
               <li>
                 <h5>Topics:</h5>
@@ -46,40 +44,36 @@
               </li>
               <li>
                 <h5>Host:</h5>
-                <p>Kodesolution Lmd.</p>
+                <p>{{$event->user->name}}</p>
               </li>
               <li>
                 <h5>Location:</h5>
-                <p>#405, Lan Streen, Los Vegas, USA</p>
+                <p>{{$event->location}}</p>
               </li>
               <li>
                 <h5>Start Date:</h5>
-                <p>January 26, 2016</p>
+                <p>{{$event->date->format('M')}} {{$event->date->format('d')}} , {{$event->date->format('Y')}}</p>
               </li>
               <li>
                 <h5>End Date:</h5>
-                <p>February 10, 2016</p>
+                <p>{{$event->date->format('M')}} {{$event->date->format('d')+3}} , {{$event->date->format('Y')}}</p>
               </li>
+              <br>
+              @if(Auth::user())
+              @if (Auth::user()->id == $event->user_id)
               <li>
-                <h5>Website:</h5>
-                <p>kodesolution.com</p>
+              <a href="{{route('events.edit',['event'=>$event->id])}}" class="btn btn-success">Edit Event</a>
+              <a href="{{route('events.destroy',['event'=>$event->id])}}" class="btn btn-danger">Delete Event</a>
               </li>
-              <li>
-                <h5>Share:</h5>
-                <div class="styled-icons icon-dark icon-theme-color-orange icon-sm icon-circled">
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-instagram"></i></a>
-                  <a href="#"><i class="fa fa-google-plus"></i></a>
-                </div>
-              </li>
+              @endif
+              @endif
             </ul>
           </div>
         </div>
         <div class="row mt-40">
           <div class="col-md-6">
             <h3 class="text-theme-color-orange mb-20">Event Description</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi id perspiciatis facilis nulla possimus quasi, amet qui. Ea rerum officia, aspernatur nulla neque nesciunt alias repudiandae doloremque, dolor, quam nostrum laudantium earum illum odio quasi excepturi mollitia corporis quas ipsa modi nihil, ad ex tempore.</p>
+            <p>{{$event->description}}</p>
           </div>
           <div class="col-md-6">
             <blockquote class="bg-silver-light">
