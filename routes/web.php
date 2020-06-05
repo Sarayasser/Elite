@@ -18,17 +18,10 @@ use App\Instructor;
 */
 
 // Courses
-Route::get('/course', function () {return view('courses_list',['courses'=>Course::all()]);})->name('courses.index');
-Route::get('/course/{course}', function () {
+Route::get('/courses', function () {return view('courses_list',['courses'=>Course::all()]);})->name('courses.index');
+Route::get('/courses/{course}', function () {
     return view('course_details',[
-        'course'=>Course::find(request()->course),
-        'schedules'=>Schedule::all(), 
-        'instructors'=>Instructor::all(), 
-        'courses'=>Course::all(),
-        'posts'=>Post::all()
-    ]);
-    
-})->name('courses.show');
+        'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);})->name('courses.show');
 
 // Posts
 Route::get('courses/{course}/posts', 'PostController@index')->name('posts.index');

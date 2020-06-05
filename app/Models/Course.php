@@ -106,7 +106,7 @@ class Course extends Model
     public function schedule()
     {
         
-        return $this->belongsTo('App\Models\Schedule');
+        return $this->hasOne('App\Models\Schedule');
     }
     // public function post()
     // {
