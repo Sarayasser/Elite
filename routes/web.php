@@ -92,12 +92,7 @@ Route::group(['middleware' => ['web']], function() {
 
 });
 
-<<<<<<< HEAD
-Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('/banned',function(){ return view('banned');});
-=======
 //home page
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/banned',function(){ return view('banned');});
->>>>>>> d736ebb808e081718792deb89a4b662f683d1147
