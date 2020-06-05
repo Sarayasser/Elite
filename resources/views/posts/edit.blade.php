@@ -17,7 +17,7 @@
         <label for="exampleInputFile2">File input</label>
         <input type="file" id="exampleInputFile2" name="image">
         @if($post->image)
-        <img src="{{asset('storage/'.$post->image)}}" width="200" height="150">
+        <img src="{{asset($post->image)}}" width="200" height="150">
         @endif
     </div>
 
