@@ -41,13 +41,8 @@
             <ul class="menuzord-menu">
               <li class="active"><a href="#home">Home</a></li>
               <li><a href="{{route('courses.index')}}">Courses</a></li>
-<<<<<<< HEAD
               <li><a href="#">Instructors</a></li>
               <li><a href="{{route('events.index')}}">Events</a></li>
-=======
-              <li><a href="{{route('instructors.index')}}">Instructors</a></li>
-              <li><a href="#">Events</a></li>
->>>>>>> d736ebb808e081718792deb89a4b662f683d1147
               <li><a href="#">Schedule</a></li>        
               <li><a href="#">FAQ</a></li>
               @if (Auth::user())

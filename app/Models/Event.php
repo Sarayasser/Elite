@@ -26,6 +26,15 @@ class Event extends Model
     // protected $hidden = [];
     // protected $dates = [];
     protected $dates = ['date'];
+
+    public function user()
+    {   
+        return $this->belongsTo('App\User');
+    }
+    public function users()
+    {   
+        return $this->hasOne('App\User','user_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
