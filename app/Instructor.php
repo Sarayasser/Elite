@@ -30,6 +30,9 @@ class Instructor extends Model
     {
         return $this->user->name;
     }
-
+    public function events()
+    {
+        return $this->hasMany('App\Models\Event','instructor_id');
+    }
     
 }
