@@ -42,17 +42,18 @@
                   <tr>
                     <td class="text-center font-16 font-weight-600 bg-theme-color-blue text-white" colspan="4">Details For {{$course->name}}</td>
                   </tr>
-                  <tbody>
-                    @foreach ($schedules as $schedule)
-                    <tr> <td><i class="fa fa-calendar text-theme-color-red pr-20"></i>Start Date</td> <td>{{$schedule->start_date}}</td> </tr> 
-                    @endforeach                     
+                  <tbody> 
+                    
+    
+                    <tr> <td><i class="fa fa-calendar text-theme-color-red pr-20"></i>Start Date</td> <td>{{$course->schedule ? $course->schedule->start_date : 'N/A'}}</td> </tr> 
+                    
 
                     <tr> <td class="bg-theme-color-yellow text-white"><i class="fa fa-birthday-cake text-theme-color-blue pr-20"></i>Years Old</td> <td class="bg-theme-color-green text-white">{{$course->age}}-{{$course->age+1}} Years</td> </tr> 
                     <tr> <td><i class="fa fa-users text-theme-color-red pr-20"></i>Class Size</td> <td>{{$course->capacity}} Students</td> </tr> 
                     <tr> <td class="bg-theme-color-red text-white"><i class="fa fa-user text-theme-color-yellow pr-20"></i>Instructor</td> <td class="bg-theme-color-sky text-white">{{$course->instructor->name}}</td> </tr>
                     <tr> <td class=" text-theme-color-red pr-20"><i class="fa fa-fighter-jet text-theme-color-red pr-20"></i>Coures Duration</td> <td>{{$course->duration}}-{{$course->duration+2}} Month</td> </tr>  
                     
-                    <tr> <td class="bg-theme-color-lemon text-white"><i class="fa fa-clock-o text-theme-color-yellow pr-20"></i>Class Time</td> <td class="bg-theme-color-orange text-white">{{$schedule->start_date}} : {{$schedule->start_date ->addHours(2)}}</td> </tr> 
+                    <tr> <td class="bg-theme-color-lemon text-white"><i class="fa fa-clock-o text-theme-color-yellow pr-20"></i>Class Time</td> <td class="bg-theme-color-orange text-white">{{$course->schedule ? $course->schedule->start_date : 'N/A'}} : {{$course->schedule ? $course->schedule->start_date->addHours(2) : 'N/A' }}</td> </tr> 
                     
                     <tr> <td class="text-theme-color-red pr-20"><i class="fa fa-credit-card-alt text-theme-color-red pr-20"></i>Tution Fees</td> <td>$ {{$course->price}}</td> </tr>  
                   </tbody> 
@@ -66,8 +67,7 @@
                   <div class="services-list">
                     <ul class="list list-border">
                     @foreach ($courses as $course)
-                    {{-- return redirect()->route('posts.show', ['post' => $request->post]); --}}
-                    {{-- <a href="{{ route('users.revokeuser',$user->id) }}" class="btn btn-success btn-sm"> Revoke</a> --}}
+                    
                     <li class="active"><a href="{{route('courses.show', $course->id)}}">{{$course->name}}</a></li>
                     @endforeach
                     </ul>
