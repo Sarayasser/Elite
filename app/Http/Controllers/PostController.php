@@ -26,9 +26,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Course $course)
     {
-        return view('posts.create');
+        return view('posts.create', ['course' => $course->id]);
     }
 
     /**
@@ -37,16 +37,16 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(PostRequest $request, Course $course)
     {
-        $post = Post::create([
+        $post = $course->posts()->create([
             'title' => $request->title,
             'description' =>  $request->description,
-            'user_id' =>  1, // Hard coded for now
+            'user_id' =>  $request->user()->id
         ]);
         $post->image = $request->file('image');
         $post->save();
-        return redirect()->route('posts.edit', ['post' => $post->id]);
+        return redirect()->route('posts.show', ['post' => $post->id]);
     }
 
     /**

@@ -18,8 +18,8 @@ use App\Instructor;
 */
 
 // Courses
-Route::get('/course', function () {return view('courses_list',['courses'=>Course::all()]);})->name('courses.index');
-Route::get('/course/{course}', function () {
+Route::get('/courses', function () {return view('courses_list',['courses'=>Course::all()]);})->name('courses.index');
+Route::get('/courses/{course}', function () {
     return view('course_details',[
         'course'=>Course::find(request()->course),
         'schedules'=>Schedule::all(), 
@@ -31,11 +31,11 @@ Route::get('/course/{course}', function () {
 })->name('courses.show');
 
 // Posts
-Route::get('courses/{course}/posts', 'PostController@index')->name('posts.index');
-Route::get('/posts/create', 'PostController@create')->name('posts.create');
-Route::post('/posts', 'PostController@store')->name('posts.store');
-Route::get('/posts/{post}', 'PostController@show')->name('posts.show'); 
-Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+Route::get('/courses/{course}/posts', 'PostController@index')->name('posts.index');
+Route::get('/courses/{course}/posts/create', 'PostController@create')->name('posts.create');
+Route::post('/courses/{course}/posts', 'PostController@store')->name('posts.store');
+Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts.show'); 
+Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
 Route::put('/posts/{post}', 'PostController@update')->name('posts.update');
 
 //instructor

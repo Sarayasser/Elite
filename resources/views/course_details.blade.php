@@ -42,7 +42,7 @@
                   <tr>
                     <td class="text-center font-16 font-weight-600 bg-theme-color-blue text-white" colspan="4">Details For {{$course->name}}</td>
                   </tr>
-                  <tbody> 
+                  <tbody>
                     @foreach ($schedules as $schedule)
                     <tr> <td><i class="fa fa-calendar text-theme-color-red pr-20"></i>Start Date</td> <td>{{$schedule->start_date}}</td> </tr> 
                     @endforeach                     
