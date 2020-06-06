@@ -58,8 +58,17 @@ class EventController extends Controller
         // dd($event);
         return view('events.edit',['event'=>$event , 'countries'=>$countries]);
     }
-    public function update(){
-
+    public function update(StoreEventRequest $request){
+        $id=$request->event;
+        $event=Event::where('id',$id)->update([
+            'name' => $request->name,
+            'description' =>  $request->description,
+            'location' => $request->location,
+            'date' => $request->date,
+        ]);
+        $event->image = $request->file('image');
+        $event->save();
+        return redirect('/event');
     }
     public function destroy(){
         $request=Request();
