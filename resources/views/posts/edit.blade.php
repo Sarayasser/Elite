@@ -29,12 +29,6 @@
         <img src="{{asset($post->image)}}" width="200" height="150">
         @endif
     </div>
-
-    <div class="checkbox">
-        <label>
-        <input type="checkbox"> Check me out
-        </label>
-    </div>
     <button type="submit" class="btn btn-default">Update</button>
     </form>
 </div>
