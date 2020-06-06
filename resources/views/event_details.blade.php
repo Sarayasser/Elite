@@ -29,7 +29,7 @@
             <!-- <div class="owl-carousel-1col" data-nav="true"> -->
             @if ($event->image)
               <div class="item">
-                <img src="{{asset('/'.$event->image)}}" alt="" >
+                <img src="{{asset($event->image)}}" alt="" >
               <!-- </div> -->
             </div>
             @else
@@ -73,7 +73,7 @@
         <div class="row mt-40">
           <div class="col-md-6">
             <h3 class="text-theme-color-orange mb-20">Event Description</h3>
-            <p>{{$event->description}}</p>
+            <p>{!!$event->description!!}</p>
           </div>
           <div class="col-md-6">
             <blockquote class="bg-silver-light">

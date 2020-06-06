@@ -15,7 +15,7 @@
                     <li class="active">Event</li>
                 </ol>
                 @if(Auth::user())
-                @if (Auth::user()->hasRole('admin'))
+                @if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('instructor'))
                 <a href="{{route('events.create')}}" class="btn btn-info">Add Event</a>
                 @endif
                 @endif
@@ -64,7 +64,7 @@
                       <li><i class="fa fa-map-marker mr-5"></i> {{$event->location}}</li>
                     </ul>
                     <div class="clearfix"></div>
-                    <p class="mt-10">{{$event->description}}</p>
+                    <p class="mt-10">{!! $event->description !!}</p>
                     <div class="mt-10">
                        <a class="btn btn-default btn-theme-color-sky mt-10 font-16 btn-sm" href="{{route('events.show',['event'=>$event->id])}}">read more</a>
                        @if(Auth::user())

@@ -4,13 +4,13 @@
 <div class="container mt-30">
     <div class="row">
     <div class="col-sm-6 col-md-8" style="float:right;">
-        <a class="fa fa-pencil mt-20 mr-10" href="{{route('user.edit',['user'=>$user->id])}}" style="float:right;color:green;"></a>
+        <a class="fa fa-pencil mt-20 mr-10" href="{{route('user.edit',['user'=>$user->id])}}" style="float:right;color:#F08080"></a>
         </div>
         <div class="col-12 ml-50">
-            <div class="well well-sm">
+            <div class="well well-md">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="{{asset('/'.$user->image)}}" alt="" class="img-rounded img-responsive" />
+                        <img src="{{asset('/'.$user->image)}}" alt="" class="img-rounded img-responsive img-thumbnail" />
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>{{$user->name}}</h4>

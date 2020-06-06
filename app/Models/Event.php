@@ -26,6 +26,7 @@ class Event extends Model
     // protected $hidden = [];
     // protected $dates = [];
     protected $dates = ['date'];
+    
 
     public function user()
     {   
