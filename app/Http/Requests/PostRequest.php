@@ -15,7 +15,7 @@ class PostRequest extends FormRequest
     public function authorize()
     {
         // only allow updates if the user is logged in
-        return backpack_auth()->check();
+        return auth()->user()->hasRole('instructor');
     }
 
     /**

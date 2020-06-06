@@ -25,12 +25,6 @@
     <div class="form-group">
         <label for="exampleInputFile2">File input</label>
         <input type="file" id="exampleInputFile2" name="image">
-        <p class="help-block">Example block-level help text here.</p>
-    </div>
-    <div class="checkbox">
-        <label>
-        <input type="checkbox"> Check me out
-        </label>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
     </form>

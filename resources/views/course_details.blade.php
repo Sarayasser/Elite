@@ -9,6 +9,11 @@
             <div class="section-content">
             <div class="row"> 
                 <div class="col-md-6">
+                @if(Auth::user())
+                @if (Auth::user()->hasRole('instructor'))
+                <a href="{{route('posts.create', ['course' => $course])}}" class="btn btn-info">Add Post</a>
+                @endif
+                @endif
                 <h2 class="text-theme-color-yellow font-36">Course details</h2>
                 <ol class="breadcrumb text-left mt-10 white">
                     <li><a href="{{route('home')}}">Home</a></li>

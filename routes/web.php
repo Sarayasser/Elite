@@ -30,6 +30,7 @@ Route::post('/courses/{course}/posts', 'PostController@store')->name('posts.stor
 Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts.show'); 
 Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
 Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('posts.update');
+Route::delete('/courses/{course}/posts/{post}', 'PostController@destroy')->name('posts.destroy');
 
 // Events
 Route::get('/event/create', 'EventController@create')->name('events.create');

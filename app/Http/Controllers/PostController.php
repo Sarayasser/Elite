@@ -57,7 +57,7 @@ class PostController extends Controller
      */
     public function show($course_id, Post $post)
     {
-        return view('posts.show', ['post' => $post]);
+        return view('posts.show', ['post' => $post, 'course' => $course_id]);
     }
 
     /**
@@ -99,8 +99,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($course_id, Post $post)
     {
-        //
+        if ($post->image) Storage::delete('public/'.$post->image);
+        $post->delete();
+        return redirect()->route('courses.show', $course_id);
     }
 }
