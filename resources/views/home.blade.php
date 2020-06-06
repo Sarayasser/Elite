@@ -82,7 +82,7 @@
                             <div class="course-details-bottom mt-15">
                             <ul class="list-inline">
                                 <li>Capacity<span>{{$course->capacity}}</span></li>
-                                <li>Duration<span>{{$course->duration}}</span></li>
+                                <li>Duration<span>{{$course->duration}} mo</span></li>
                                 <li>Age<span>{{$course->age}}y - {{$course->age+1}}y</span></li>
                             </ul>
                             </div>
