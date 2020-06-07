@@ -72,6 +72,10 @@
                   </div>
                 </div>
                 <div class="col-md-12">
+                  <form action="{{route('posts.read', ['course' => $course, 'post' => $post->id])}}" method="POST" style="display: inline; float: right">
+                      @csrf
+                      <button type="submit" class="btn btn-info">Mark as read</button>
+                  </form>
                   <nav>
                     <ul class="pagination theme-color-sky">
                       <li> <a aria-label="Previous" href="#"> <span aria-hidden="true">«</span> </a> </li>

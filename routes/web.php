@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Models\Course;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,10 @@ Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts
 Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
 Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('posts.update');
 Route::delete('/courses/{course}/posts/{post}', 'PostController@destroy')->name('posts.destroy');
+
+Route::post('/courses/{course}/posts/{post}', function($course_id, $post_id){
+    auth()->user()->readPosts()->attach($post_id);
+})->name('posts.read');
 
 // Events
 Route::get('/event/create', 'EventController@create')->name('events.create');
