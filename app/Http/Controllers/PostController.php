@@ -19,11 +19,11 @@ class PostController extends Controller
     {
         $readPostsIds = auth()->user()->readPosts()->having('course_id', $course->id)->get()->pluck('id')->toArray();
         $post = $course->posts()->whereNotIn('id', $readPostsIds)->first();
-        // $has_next = false;
-        // $ids = $course->posts->pluck('id')->toArray();
-        // if (in_array($post->id+1, $ids))
-        //     $has_next = true;
-        return view('posts.index', ['post' => $post]);
+        $has_next = false;
+        $ids = $course->posts->pluck('id')->toArray();
+        if (in_array($post->id+1, $ids))
+            $has_next = true;
+        return view('posts.index', ['post' => $post, 'has_next' => $has_next]);
     }
 
     /**

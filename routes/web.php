@@ -34,6 +34,7 @@ Route::delete('/courses/{course}/posts/{post}', 'PostController@destroy')->name(
 
 Route::post('/courses/{course}/posts/{post}', function($course_id, $post_id){
     auth()->user()->readPosts()->attach($post_id);
+    return response()->json(['ok' => 'ok']);
 })->name('posts.read');
 
 // Events

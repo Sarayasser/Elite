@@ -58,7 +58,7 @@
                           @if (Auth::user()->id == $post->user->id)
                           <br>
                           <br>
-                          <a href="{{route('posts.edit', ['course' => $course, 'post' => $post->id])}}" class="btn btn-info">Edit</a>
+                          <a href="{{route('posts.edit', ['course' => $course, 'post' => $post->id])}}" class="btn btn-info">Edit </a>
                           <form action="{{route('posts.destroy', ['course' => $course, 'post' => $post->id])}}" method="POST" style="display: inline">
                           @csrf
                           @method('DELETE')
@@ -72,22 +72,18 @@
                   </div>
                 </div>
                 <div class="col-md-12">
-                  <form action="{{route('posts.read', ['course' => $course, 'post' => $post->id])}}" method="POST" style="display: inline; float: right">
-                      @csrf
-                      <button type="submit" class="btn btn-info">Mark as read</button>
-                  </form>
+
+                  <a href="{{route('posts.read', ['course' => $course, 'post' => $post->id])}}" class="jquery-postback btn btn-info pull-right">
+                    Mark as read 
+                    <img src="{{asset('images/check.png')}}" alt="" width=30>
+                  </a>
+                  @if($has_next)
                   <nav>
                     <ul class="pagination theme-color-sky">
-                      <li> <a aria-label="Previous" href="#"> <span aria-hidden="true">«</span> </a> </li>
-                      <li class="active"><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                      <li><a href="#">...</a></li>
-                      <li> <a aria-label="Next" href="#"> <span aria-hidden="true">»</span> </a> </li>
+                      <li> <a aria-label="Next" href="{{route('posts.index', ['course' => $course])}}"> <span aria-hidden="true">Next »</span> </a> </li>
                     </ul>
                   </nav>
+                  @endif
                 </div>
               </div>
             </div>  
