@@ -47,6 +47,7 @@ class User extends Authenticatable
     ];
     public function setImageAttribute($value)
     {
+     
         //dd($value);
         $attribute_name = "image";
         // or use your own disk, defined in config/filesystems.php
@@ -122,6 +123,11 @@ class User extends Authenticatable
     public function instructor()
     {
         return $this->hasOne('App\Instructor',"user_id");
+    }
+
+    public function readPosts()
+    {
+        return $this->belongsToMany('App\Models\Post', 'user_read_posts');
     }
 
 }
