@@ -53,6 +53,10 @@ return [
              'url' => '/vector/upload',
              'visibility' => 'public',
         ],
+        'json' => [
+            'driver' => 'local',
+            'root' => base_path(),
+        ],
 
         // 'public' => [
         //     'driver' => 'local',

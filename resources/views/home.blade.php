@@ -9,8 +9,8 @@
                   <div class="row">
                     <div class="col-md-10 col-md-push-5">
                       <div class="pb-50 pt-30">
-                         <h2 class="text-white bg-dark-transparent-4 inline-block pl-30 pr-30 mb-5 pt-5 pb-5">Kindergarten School</h2>
-                        <h1 class="text-white inline-block bg-theme-colored-transparent font-48 mt-0 pr-20 pl-20">KidsPro Childern Education</h1>
+                         <h2 class="text-white bg-dark-transparent-4 inline-block pl-30 pr-30 mb-5 pt-5 pb-5">Elite E-Learning School</h2>
+                        <h1 class="text-white inline-block bg-theme-colored-transparent font-48 mt-0 pr-20 pl-20">Elite for Childern Education</h1>
                         <p class="font-16 text-black-222">Every day we bring hope to millions of children in the world's<br> hardest places as a sign of God's unconditional love. </p>
                         <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20" href="#">View Details</a> 
                       </div>
@@ -27,7 +27,7 @@
                 <div class="section-content">
                 <div class="row">
                     <div class="col-md-6">
-                    <h2 class="text-theme-color-sky line-bottom">Welcome To <span class="text-theme-color-red">KidsPro</span> <br> Best Education in Our Kindergarden</h2>
+                    <h2 class="text-theme-color-sky line-bottom">Welcome To <span class="text-theme-color-red">Elite</span> <br> Best Education in Our Kindergarden</h2>
                     <h4 class="text-theme-color-red">Lorem ipsum dolor sit amet soluta saepe odit error, maxime praesentium sunt udiandae!</h4>
                     <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore atque officiis maxime suscipit expedita obcaecati nulla in ducimus iure quos quam recusandae dolor quas et perspiciatis voluptatum accusantium delectus nisi reprehenderit, eveniet fuga modi pariatur, eius vero. Ea vitae maiores.</p>
                         <a href="#" class="btn btn-flat btn-colored btn-theme-color-blue mt-15 mr-15">Read More</a><a href="#" class="btn btn-flat btn-colored btn-theme-color-yellow mt-15">Get a Quote</a>
@@ -78,11 +78,11 @@
                                 <div class="star-rating" title="Rated {{$course->rate}} out of 5"><span data-width="{{$course->rate*20}}%">{{$course->rate}}</span></div>
                             </li>
                             </ul>
-                        <p>{{$course->description}}</p>
+                        <p>{{ \Illuminate\Support\Str::limit($course->description, 100, '...') }}</p>
                             <div class="course-details-bottom mt-15">
                             <ul class="list-inline">
                                 <li>Capacity<span>{{$course->capacity}}</span></li>
-                                <li>Duration<span>{{$course->duration}}</span></li>
+                                <li>Duration<span>{{$course->duration}} mo</span></li>
                                 <li>Age<span>{{$course->age}}y - {{$course->age+1}}y</span></li>
                             </ul>
                             </div>

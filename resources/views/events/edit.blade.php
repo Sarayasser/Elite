@@ -4,6 +4,15 @@
 <h3> Event </h3>
 </div>
 <div class="container mt-50 mb-50">
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form method="POST" action="{{ route('events.update',['event'=>$event->id]) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
@@ -20,12 +29,19 @@
         <input type="file" id="exampleInputFile2" name="image" value="{{$event->image}}">
     </div>
     <div class="form-group">
-        <label for="location">Location</label>
-        <input type="text" class="form-control" id="location" placeholder="Enter Location" name="location" value="{{$event->location}}">
+    <label for="location">Location <i class="fa fa-map-marker fa-3" aria-hidden="true"></i></label>
+        <br>
+        <input type="text" list="locations" name="location" class="col-lg-12" value="{{$event->location}}">
+        <datalist id="locations">
+        @foreach ($countries as $key=>$val)
+            <option value="{{$val}}">
+        @endforeach
+            </datalist>
+        <br>
     </div>
     <div class="form-group">
         <label for="date">Date</label>
-        <input type="date" class="form-control" id="date" placeholder="Enter Date" name="date" value="{{$event->date}}">
+        <input type="date" class="form-control" id="date" name="date" value="{{$event->date->toDateString()}}">
     </div>
     
     <button type="submit" class="btn btn-default">Submit</button>
