@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\User;
+use Illuminate\Validation\Rule;
 
-class StoreEventRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +24,13 @@ class StoreEventRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {   $id = $this->route('id');
+    {
+        $user = User::find(request()->user);
+        // dd($user);        
         return [
-            'name' => 'required|min:3|max:255',
-            'description' => 'required|min:3',
-            // 'user_id' => "required|exists:users,id"
+        'name'=>['required','min:3',$user ? Rule::unique('users')->ignore($user->id) : 'unique:users'],
+        'email'=>['required',$user ? Rule::unique('users')->ignore($user->id) : 'unique:users'],
+        'password' => 'required|confirmed|min:6',
         ];
     }
 }

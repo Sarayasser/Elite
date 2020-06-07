@@ -60,14 +60,19 @@ class EventController extends Controller
     }
     public function update(StoreEventRequest $request){
         $id=$request->event;
-        $event=Event::where('id',$id)->update([
+        $eve=Event::where('id',$id)->first();
+        Event::where('id',$id)->update([
             'name' => $request->name,
             'description' =>  $request->description,
             'location' => $request->location,
             'date' => $request->date,
         ]);
-        $event->image = $request->file('image');
-        $event->save();
+        if ($request->hasFile('image')){
+            Storage::delete('public/'.$eve->image);
+            // dd($event->image);
+            $eve->image = $request->file('image');
+            $eve->save();
+        }
         return redirect('/event');
     }
     public function destroy(){

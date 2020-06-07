@@ -30,7 +30,15 @@
               </ul>
             </div>
           </div>
-          
+          @if (Auth::user())
+          @if (Auth::user()->hasRole('admin'))
+          <div class="col-xs-12 col-sm-4 col-sm-1" style="float:right;">
+            <div class="col" style="float:right;">
+          <a href="/admin/dashboard" class="fa fa-user-secret fa-2x" style="float:right;"></a>
+          </div>
+          </div>
+          @endif
+          @endif
         </div>
       </div>
     </div>

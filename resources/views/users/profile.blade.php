@@ -24,7 +24,10 @@
                         Femail
                         @endif
                         </p>
-                        <p><i class="glyphicon glyphicon-gift mr-10"></i>{{$user->age}} Years</p>
+                        <p><i class="glyphicon glyphicon-gift mr-10"></i>
+                        @if ($user->age)
+                        {{Carbon\Carbon::parse($user->age)->format('Y-m-d')}}</p>
+                        @endif
                         <p><i class="glyphicon glyphicon-phone mr-10"></i>{{$user->phone_number}}</p>
                     </div>
                     

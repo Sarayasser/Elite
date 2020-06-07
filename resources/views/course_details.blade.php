@@ -9,17 +9,19 @@
             <div class="section-content">
             <div class="row"> 
                 <div class="col-md-6">
-                @if(Auth::user())
-                @if (Auth::user()->hasRole('instructor'))
-                <a href="{{route('posts.create', ['course' => $course])}}" class="btn btn-info">Add Post</a>
-                @endif
-                @endif
                 <h2 class="text-theme-color-yellow font-36">Course details</h2>
                 <ol class="breadcrumb text-left mt-10 white">
                     <li><a href="{{route('home')}}">Home</a></li>
                     <li><a href="{{route('courses.index')}}">Courses </a></li>
                     <li class="active">Course details</li>
                 </ol>
+                </div>
+                <div class="col-md-6 mt-70" style="float:right;">
+                @if(Auth::user())
+                @if (Auth::user()->hasRole('instructor') || Auth::user()->hasRole('admin'))
+                <a href="{{route('posts.create', ['course' => $course])}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
+                @endif
+                @endif
                 </div>
             </div>
             </div>

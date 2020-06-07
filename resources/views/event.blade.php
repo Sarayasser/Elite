@@ -14,12 +14,15 @@
                     <li><a href="{{route('home')}}">Home</a></li>
                     <li class="active">Event</li>
                 </ol>
-                @if(Auth::user())
-                @if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('instructor'))
-                <a href="{{route('events.create')}}" class="btn btn-info">Add Event</a>
-                @endif
-                @endif
                 </div>
+            </div>
+            
+            <div class="col-md-6" style="float:right;">
+            @if(Auth::user())
+                @if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('instructor'))
+                <a href="{{route('events.create')}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
+                @endif
+                @endif
             </div>
             </div>
         </div>
