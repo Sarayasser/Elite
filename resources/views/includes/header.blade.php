@@ -47,9 +47,9 @@
         <div class="container">
           <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
             <ul class="menuzord-menu">
-              <li class="active"><a href="#home">Home</a></li>
+              <li class="active"><a href="{{route('home')}}">Home</a></li>
               <li><a href="{{route('courses.index')}}">Courses</a></li>
-              <li><a href="#">Instructors</a></li>
+              <li><a href="{{route('instructors.index')}}">Instructors</a></li>
               <li><a href="{{route('events.index')}}">Events</a></li>
               <li><a href="#">Schedule</a></li>        
               <li><a href="#">FAQ</a></li>

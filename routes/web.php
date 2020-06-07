@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Models\Schedule;
 use App\Models\Course;
 use App\Models\Post;
-use App\Instructor;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

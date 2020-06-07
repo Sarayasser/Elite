@@ -9,8 +9,8 @@
                   <div class="row">
                     <div class="col-md-10 col-md-push-5">
                       <div class="pb-50 pt-30">
-                         <h2 class="text-white bg-dark-transparent-4 inline-block pl-30 pr-30 mb-5 pt-5 pb-5">Kindergarten School</h2><br>
-                        <h1 class="text-white inline-block bg-theme-colored-transparent font-48 mt-0 pr-20 pl-20">Elite Childern Education</h1>
+                         <h2 class="text-white bg-dark-transparent-4 inline-block pl-30 pr-30 mb-5 pt-5 pb-5">Elite E-Learning School</h2>
+                        <h1 class="text-white inline-block bg-theme-colored-transparent font-48 mt-0 pr-20 pl-20">Elite for Childern Education</h1>
                         <p class="font-16 text-black-222">Every day we bring hope to millions of children in the world's<br> hardest places as a sign of God's unconditional love. </p>
                         <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20" href="#">View Details</a> 
                       </div>
@@ -78,11 +78,11 @@
                                 <div class="star-rating" title="Rated {{$course->rate}} out of 5"><span data-width="{{$course->rate*20}}%">{{$course->rate}}</span></div>
                             </li>
                             </ul>
-                        <p>{{$course->description}}</p>
+                        <p>{{ \Illuminate\Support\Str::limit($course->description, 100, '...') }}</p>
                             <div class="course-details-bottom mt-15">
                             <ul class="list-inline">
                                 <li>Capacity<span>{{$course->capacity}}</span></li>
-                                <li>Duration<span>{{$course->duration}}</span></li>
+                                <li>Duration<span>{{$course->duration}} mo</span></li>
                                 <li>Age<span>{{$course->age}}y - {{$course->age+1}}y</span></li>
                             </ul>
                             </div>
