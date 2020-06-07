@@ -24,7 +24,7 @@ class EventController extends Controller
     }
     public function create(){
         // $files =file_get_contents(Storage::files('/public/countries')[0]);
-        $files = Storage::disk('local')->get('countries.json');
+        $files = Storage::disk('json')->get('countries.json');
         $countries=array();
         for($i=0;$i<250;$i++){
         array_push($countries,json_decode($files, true)[$i]['name'].','.json_decode($files, true)[$i]['capital']);
