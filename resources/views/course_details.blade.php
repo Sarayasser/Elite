@@ -31,7 +31,7 @@
           <div class="row">
             <div class="col-md-8 blog-pull-right">
               <div class="single-service">
-                <img src="{{ asset('images/services/lg1.jpg') }}" alt="">
+                <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
               <h2 class="text-theme-color-red line-bottom">{{$course->name}}</h2>
                 <h4 class="mt-0"><span class="text-theme-color-red">Price :</span> $ {{$course->price}}</h4>
                   <ul class="review_text list-inline">
@@ -88,7 +88,7 @@
                       {{-- <img src="" alt="" class="img-fullwidth" > --}}
                       <div class="post-right">
                         <h4 class="post-title mt-0"><a href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}">{{$post->title}}</a></h4>
-                        <p>{{ \Illuminate\Support\Str::limit($post->description, 50, '...') }}</p>
+                        <p>{!! \Illuminate\Support\Str::limit($post->description, 100, '...') !!}</p>
 
                       </div>
                     </article>
