@@ -5,7 +5,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Backpack\PermissionManager\app\Http\Controllers\UserCrudController as UserController;
-
+use App\Http\Requests\UserStoreCrudRequest as StoreRequest;
 class UserCrudController extends UserController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
@@ -223,6 +223,7 @@ class UserCrudController extends UserController
                 'name'  => 'password',
                 'label' => trans('backpack::permissionmanager.password'),
                 'type'  => 'password',
+                'value' => 'ay7aga',
             ],
             [
                 'name'  => 'password_confirmation',
@@ -294,6 +295,13 @@ class UserCrudController extends UserController
                 ],
             ],
         ]);
+    }
+
+
+    public function setupCreateOperation()
+    {
+        $this->addUserFields();
+        $this->crud->setValidation(StoreRequest::class);
     }
  
     public function moderate() 
