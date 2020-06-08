@@ -10,11 +10,12 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
+use QCod\Gamify\Gamify;
 
 //implements MustVerifyEmail
 class User extends Authenticatable 
 {
-    use Notifiable;
+    use Notifiable, Gamify;
     use CrudTrait; // <----- this
     use HasRoles; // <------ and this
 

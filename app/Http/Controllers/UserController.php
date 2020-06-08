@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
+use App\Gamify\Badges;
 
 class UserController extends Controller
 {   
@@ -15,7 +16,8 @@ class UserController extends Controller
         $request=Request();
         $id=$request->user;
         $user=User::where('id',$id)->first();
-        return view('users.profile',['user'=>$user]);
+        $badges=$user->Badges;
+        return view('users.profile',['user'=>$user, 'badges'=>$badges]);
     }
     public function edit(){
         $request=Request();
