@@ -90,7 +90,7 @@
                       {{-- <img src="" alt="" class="img-fullwidth" > --}}
                       <div class="post-right">
                         <h4 class="post-title mt-0"><a href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}">{{$post->title}}</a></h4>
-                        <p>{!! \Illuminate\Support\Str::limit($post->description, 100, '...') !!}</p>
+                        <p>{!! \Illuminate\Support\Str::limit($post->description, 30, '...') !!}</p>
 
                       </div>
                     </article>

@@ -114,4 +114,9 @@ class User extends Authenticatable
         return $this->hasOne('App\Instructor',"user_id");
     }
 
+    public function readPosts()
+    {
+        return $this->belongsToMany('App\Models\Post', 'user_read_posts');
+    }
+
 }
