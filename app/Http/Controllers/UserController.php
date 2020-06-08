@@ -44,8 +44,8 @@ class UserController extends Controller
         ]);
         if ($request->hasFile('image')){
             Storage::delete('public/'.$user->image);
-            // dd($event->image);
             $user->image = $request->file('image');
+            // dd($user->image);
             $user->save();
         }
         return redirect('/profile/'.$id);
