@@ -62,6 +62,10 @@ Route::get('/profile/{user}','UserController@show')->name('user.show');
 Route::get('/profile/{user}/edit','UserController@edit')->name('user.edit');
 Route::put('/profile/{user}','UserController@update')->name('user.update');
 
+Route::get('/dashboard/instructor', function () { return view('dashboard.instructor'); });
+Route::get('/dashboard/parent', function () { return view('dashboard.parent'); });
+Route::get('/dashboard/student', function () { return view('dashboard.student'); });
+
 
 Route::get('/calender', function () { return view('calender'); });
 Route::get('/contact', function () { return view('contact'); });
