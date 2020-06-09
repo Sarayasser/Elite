@@ -42,9 +42,9 @@
                 <h3 class="widget-title line-bottom">Instructor <span class="text-theme-color-red">Dashboard</span></h3>
                 <div class="services-list">
                   <ul class="list list-border">
-                    <li class="active"><a href="#">Courses</a></li>
-                    <li><a href="#">Students</a></li>
-                    <li><a href="#">Events</a></li>
+                    <li class="active"><a href="{{route('dashboard.instructor')}}">Courses</a></li>
+                    <li><a href="{{route('dashboard.students')}}">Students</a></li>
+                    <li><a href="{{route('dashboard.events')}}">Events</a></li>
                     <li><a href="#">Schedules</a></li>
                   </ul>
                 </div>
@@ -57,5 +57,6 @@
           <img alt="" src="images/bg/f2.png" class="img-responsive img-fullwidth">
       </div>
     </section>
+
 
 @endsection

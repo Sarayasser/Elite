@@ -62,10 +62,6 @@ Route::get('/profile/{user}','UserController@show')->name('user.show');
 Route::get('/profile/{user}/edit','UserController@edit')->name('user.edit');
 Route::put('/profile/{user}','UserController@update')->name('user.update');
 
-Route::get('/dashboard/instructor', function () { return view('dashboard.instructor'); });
-Route::get('/dashboard/parent', function () { return view('dashboard.parent'); });
-Route::get('/dashboard/student', function () { return view('dashboard.student'); });
-
 
 Route::get('/calender', function () { return view('calender'); });
 Route::get('/contact', function () { return view('contact'); });
@@ -79,6 +75,14 @@ Route::get('/faq', function () { return view('faq'); });
 Route::get('/timetable', function () { return view('timetable'); });
 Route::get('/about', function () { return view('about'); });
 Route::get('/users', function () { return view('auth/user'); })->name('users');
+
+//Dashboard
+Route::get('/dashboard/instructor',function(){return view('dashboard.instructor');})->name('dashboard.instructor');
+Route::get('/dashboard/instructor/students',function(){return view('dashboard.dashboard_students');})->name('dashboard.students');
+Route::get('/dashboard/instructor/events',function(){return view('dashboard.dashboard_events');})->name('dashboard.events');
+Route::get('/dashboard/parent', function () { return view('dashboard.parent'); })->name('dashboard.parent');
+Route::get('/dashboard/student', function () { return view('dashboard.student'); })->name('dashboard.student');
+
 
 // Auth::routes();
 Route::group(['middleware' => ['web']], function() {
