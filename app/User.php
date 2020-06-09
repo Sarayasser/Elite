@@ -120,4 +120,5 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Post', 'user_read_posts');
     }
 
+
 }
