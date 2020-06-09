@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 use App\User;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Backpack\PermissionManager\app\Http\Controllers\UserCrudController as UserController;
 use App\Http\Requests\UserStoreCrudRequest as StoreRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
 class UserCrudController extends UserController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     public function setup()
     {
@@ -206,6 +202,25 @@ class UserCrudController extends UserController
         ]);
         $this->crud->addButtonFromView('line', 'moderate', 'moderate', 'beginning');
     }
+    public function store()
+    {
+        $this->crud->setRequest($this->crud->validateRequest());
+        $this->crud->setRequest($this->handlePasswordInput($this->crud->getRequest()));
+        $this->crud->unsetValidation(); // validation has already been run
+        // dd($this->crud->getRequest());
+        $response = $this->traitStore();
+        // do something after save
+        $user = $this->crud->entry;
+        $token = app('auth.password.broker')->createToken($user);
+        $user->sendPasswordResetNotification($token);
+        return $response;
+    }
+    protected function handlePasswordInput($request)
+    {
+        $request->request->set('password', Hash::make(Str::random(8)));
+
+        return $request;
+    }
     protected function addUserFields()
     {
         $this->crud->addFields([
@@ -218,17 +233,6 @@ class UserCrudController extends UserController
                 'name'  => 'email',
                 'label' => trans('backpack::permissionmanager.email'),
                 'type'  => 'email',
-            ],
-            [
-                'name'  => 'password',
-                'label' => trans('backpack::permissionmanager.password'),
-                'type'  => 'password',
-                'value' => 'ay7aga',
-            ],
-            [
-                'name'  => 'password_confirmation',
-                'label' => trans('backpack::permissionmanager.password_confirmation'),
-                'type'  => 'password',
             ],
             [
                 'label'        => "Profile Image",
@@ -254,7 +258,12 @@ class UserCrudController extends UserController
                     0 => "male",
                     1 => "female"
                 ],
-            ],   
+            ],
+            [   // Hidden
+                'name'  => 'password',
+                'type'  => 'hidden',
+                'value' => 'active',
+            ], 
             [
                 'name'  => 'phone_number',
                 'label' => trans('phone_number'),

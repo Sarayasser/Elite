@@ -113,3 +113,6 @@ Route::group(['middleware' => ['web']], function() {
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/banned',function(){ return view('banned');});
+
+
+Auth::routes();
