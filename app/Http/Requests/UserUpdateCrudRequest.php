@@ -26,6 +26,10 @@ class UserUpdateCrudRequest extends storeRequest
         return [
             'email'    => 'required|unique:'.config('permission.table_names.users', 'users').',email,'.$userId,
             'name'     => 'required',
+            'image'    => 'nullable |image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'address'  => 'required',
+            'gender'   => 'required',
+            'phone_number'=>'required'
         ];
     }
 }
