@@ -30,15 +30,7 @@
               </ul>
             </div>
           </div>
-          @if (Auth::user())
-          @if (Auth::user()->hasRole('admin'))
-          <div class="col-xs-12 col-sm-4 col-sm-1" style="float:right;">
-            <div class="col" style="float:right;">
-          <a href="/admin/dashboard" class="fa fa-user-secret fa-2x" style="float:right;"></a>
-          </div>
-          </div>
-          @endif
-          @endif
+          
         </div>
       </div>
     </div>
@@ -47,15 +39,15 @@
         <div class="container">
           <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
             <ul class="menuzord-menu">
-              <li class="active"><a href="{{route('home')}}">Home</a></li>
-              <li><a href="{{route('courses.index')}}">Courses</a></li>
-              <li><a href="{{route('instructors.index')}}">Instructors</a></li>
+              <li class="{{ Request::is('/') ? 'active' : '' }}" ><a href="{{route('home')}}">Home</a></li>
+              <li class="{{ Request::is('courses') ? 'active' : '' }}" ><a href="{{route('courses.index')}}">Courses</a></li>
+              <li class="{{ Request::is('instructors') ? 'active' : '' }}" ><a href="{{route('instructors.index')}}">Instructors</a></li>
               <li><a href="{{route('events.index')}}">Events</a></li>
               <li><a href="#">Schedule</a></li>        
               <li><a href="#">FAQ</a></li>
-              @if (Auth::user())
+              {{-- @if (Auth::user())
               <li><a href="{{route('user.show',['user'=>Auth::user()->id])}}" class="col ml-20"><i class="fa fa-cog fa-spin" style="width:150%;"></i></a></li>
-              @endif
+              @endif --}}
             </ul>
             <ul class="pull-right flip hidden-sm hidden-xs">
               <li>
@@ -65,8 +57,13 @@
                       <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{ route('users') }}">{{ __('Register') }}</a>
                   @endif
                 @else
-                  <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="#">  {{ Auth::user()->name }}</a>
-                  <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{ route('logout') }}"
+                  @if (Auth::user()->hasRole('admin'))
+                      <a href="/admin/dashboard" class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"><i class="fa fa-user-secret fa-2x" style="font-size: 1.2em;"> Dashboard</i> </a>
+                  @else
+                    <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="#">Dashboard</a>        
+                  @endif
+                  <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('user.show',['user'=>Auth::user()->id])}}" >  {{ Auth::user()->name }}</a>
+                  <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
                       {{ __('Logout') }}

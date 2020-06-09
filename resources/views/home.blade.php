@@ -2,7 +2,7 @@
 
 @section('content')
         <!-- Section: home -->
-        <section id="home" class="divider parallax fullscreen" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/bg2.jpg')}}">
+        <section id="home" class="divider parallax fullscreen" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/3241.jpg')}}">
             <div class="display-table">
               <div class="display-table-cell">
                 <div class="container pt-150 pb-150">
@@ -22,7 +22,7 @@
         </section> 
       
         <!-- Section: welcome -->
-        <section id="welcome" class="divider layer-overlay overlay-dark-7 parallax" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/bg4.jpg')}}">
+        <section id="welcome" class="divider layer-overlay overlay-dark-7 parallax" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/12345.jpg')}}">
             <div class="container pt-150 pb-150">
                 <div class="section-content">
                 <div class="row">
@@ -45,7 +45,7 @@
         </section>
     
         <!-- Section: Services -->
-        <section id="services" class="divider parallax layer-overlay overlay-dark-5" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/bg1.jpg')}}">
+        <section id="services" class="divider parallax layer-overlay overlay-dark-5" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/3604.jpg')}}">
             <div class="container pt-150 pb-150">
                 <div class="section-title text-center">
                 <div class="row">
@@ -98,7 +98,7 @@
         </section>
     
         <!-- Section: Experts -->
-        <section id="experts" class="divider parallax layer-overlay overlay-dark-4" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/bg5.jpg')}}">
+        <section id="experts" class="divider parallax layer-overlay overlay-dark-4" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/3237.jpg')}}">
             <div class="container pt-150 pb-150">
                 <div class="section-title text-center">
                 <div class="row">
@@ -192,7 +192,7 @@
         </section>
     
         <!-- Section: blog -->
-        <section id="blog" class="divider parallax layer-overlay overlay-dark-6" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/bg1.jpg')}}">
+        <section id="blog" class="divider parallax layer-overlay overlay-dark-6" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/3604.jpg')}}">
             <div class="container pt-150 pb-150">
                 <div class="section-title text-center">
                 <div class="row">
