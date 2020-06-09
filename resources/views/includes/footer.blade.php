@@ -1,10 +1,10 @@
   <!-- Footer -->
-  <footer id="footer" class="footer divider layer-overlay overlay-dark-9" data-bg-img="{{ asset('images/bg/bg8.jpg')}}">
+  <footer id="footer" class="footer divider layer-overlay overlay-dark-9">
     <div class="container">
       <div class="row border-bottom">
         <div class="col-sm-6 col-md-3">
           <div class="widget dark">
-            <img class="mt-5 mb-20" alt="" src="{{ asset('images/logo-white-footer.png')}}">
+            <img class="mt-5 mb-20" alt="" src="{{ asset('images/logo_footer.png')}}">
             <p>203, Envato Labs, Behind Alis Steet, Melbourne, Australia.</p>
             <ul class="list-inline mt-5">
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-red mr-5"></i> <a class="text-gray" href="#">123-456-789</a> </li>

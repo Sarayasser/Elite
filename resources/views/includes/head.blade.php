@@ -28,7 +28,7 @@
 <link href="{{ asset('images/apple-touch-icon-144x144.png')}}" rel="apple-touch-icon" sizes="144x144">
 
 <!-- Stylesheet -->
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/animate.css')}}" rel="stylesheet" type="text/css">
@@ -54,34 +54,6 @@
 <script src="{{ asset('js/jquery-2.2.4.min.js')}}"></script>
 <script src="{{ asset('js/jquery-ui.min.js')}}"></script>
 <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+
 <!-- JS | jquery plugin collection for this theme -->
 <script src="{{ asset('js/jquery-plugin-collection.js')}}"></script>
-<!-- <script>
-$(document).ready(function() {
-    $('#identicalForm').bootstrapValidator({
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            password: {
-                validators: {
-                    identical: {
-                        field: 'confirmPassword',
-                        message: 'The password and its confirm are not the same'
-                    }
-                }
-            },
-            confirmPassword: {
-                validators: {
-                    identical: {
-                        field: 'password',
-                        message: 'The password and its confirm are not the same'
-                    }
-                }
-            }
-        }
-    });
-});
-</script> -->
