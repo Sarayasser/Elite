@@ -77,10 +77,11 @@ Route::get('/about', function () { return view('about'); });
 Route::get('/users', function () { return view('auth/user'); })->name('users');
 
 //Dashboard
-Route::get('/dashboard/instructor',function(){return view('dashboard.instructor');})->name('dashboard.instructor');
-Route::get('/dashboard/instructor/students',function(){return view('dashboard.dashboard_students');})->name('dashboard.students');
-Route::get('/dashboard/instructor/events',function(){return view('dashboard.dashboard_events');})->name('dashboard.events');
-Route::get('/dashboard/parent', function () { return view('dashboard.parent'); })->name('dashboard.parent');
+Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard');
+// Route::get('/dashboard/{slug}',function(){return view('dashboard.instructor');})->name('dashboard.instructor');
+Route::get('/dashboard/{slug}/students',function(){return view('dashboard.dashboard_students');})->name('dashboard.students');
+Route::get('/dashboard/{slug}/events',function(){return view('dashboard.dashboard_events');})->name('dashboard.events');
+Route::get('/dashboard/{slug}/{email}','Dashboard\ParentController@login')->name('dashboard.login');
 Route::get('/dashboard/student', function () { return view('dashboard.student'); })->name('dashboard.student');
 
 

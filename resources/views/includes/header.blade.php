@@ -62,13 +62,13 @@
                   @endif
                 @else
                   @if (Auth::user()->hasRole('admin'))
-                      <a href="/admin/dashboard" class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"><i class="fa fa-user-secret fa-2x" style="font-size: 1.2em;"> Dashboard</i> </a>
-                  @elseif(Auth::user()->hasRole('instructor'))
-                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard.instructor')}}">Dashboard</a>        
-                  @elseif(Auth::user()->hasRole('parent'))
-                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard.parent')}}">Dashboard</a>   
+                      <a href="/admin/dashboard" class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" ><i class="fa fa-user-secret fa-2x" style="font-size: 1.2em;"> Dashboard</i> </a>
+                  @elseif (Auth::user()->hasRole('instructor'))
+                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard',"instructor")}}">Dashboard</a>         
+                  @elseif (Auth::user()->hasRole('parent'))
+                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard',"parent")}}">Dashboard</a>         
                   @else
-                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard.student')}}">Dashboard</a>         
+                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard',"student")}}">Dashboard</a>         
                   @endif
                   <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('user.show',['user'=>Auth::user()->id])}}" >  {{ Auth::user()->name }}</a>
                   <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{ route('logout') }}"
