@@ -11,13 +11,13 @@
           <div class="col mt-10" style="float:right;">
             <div class="widget no-border pull-right sm-pull-none sm-text-center mt-10 mb-10 m-0">
               <ul class="list-inline">
-                <li>
+                <!-- <li>
                 @if (Auth::user())
           @if (Auth::user()->hasRole('admin'))
           <a href="/admin/dashboard" class="fa fa-user-secret fa-2x ml-30" style="float:right;"></a>
           @endif
           @endif
-                </li>
+                </li> -->
                 <li>
                 <div class="btn-group" style="float:right;">
                 <button class="fa fa-bell fa-2x ml-30" type="button" data-toggle="dropdown" style="border-color:transparent;background:transparent;"></button>
@@ -27,9 +27,9 @@
                   </div>
                 </div>
                 </li>
-                <li>
+                <!-- <li>
                 <a href="{{route('user.show',['user'=>Auth::user()->id])}}" class="fa fa-user-circle-o fa-2x ml-30" style="float:right;"></a>
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>
@@ -42,17 +42,15 @@
           <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
             <ul class="menuzord-menu">
               <li class="active"><a href="{{route('dashboard.instructor')}}">Dashboard</a></li>
-              <li><a href="{{route('courses.index')}}">Courses</a></li>
-              <li><a href="{{route('instructors.index')}}">Instructors</a></li>
               <!-- <li class="{{ Request::is('/') ? 'active' : '' }}" ><a href="{{route('home')}}">Home</a></li> -->
               <li class="{{ Request::is('courses') ? 'active' : '' }}" ><a href="{{route('courses.index')}}">Courses</a></li>
               <li class="{{ Request::is('instructors') ? 'active' : '' }}" ><a href="{{route('instructors.index')}}">Instructors</a></li>
               <li><a href="{{route('events.index')}}">Events</a></li>
               <li><a href="#">Schedule</a></li>        
               <li><a href="#">FAQ</a></li>
-              {{-- @if (Auth::user())
+              @if (Auth::user())
               <li><a href="{{route('user.show',['user'=>Auth::user()->id])}}" class="col ml-20"><i class="fa fa-cog fa-spin" style="width:150%;"></i></a></li>
-              @endif --}}
+              @endif 
             </ul>
             <ul class="pull-right flip hidden-sm hidden-xs">
               <li>
