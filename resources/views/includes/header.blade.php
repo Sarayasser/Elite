@@ -5,40 +5,34 @@
         <div class="row">
           <div class="col-xs-12 col-sm-4 col-md-5">
             <div class="widget no-border m-0">
-              <a class="menuzord-brand pull-left flip xs-pull-center mb-15" style="margin: 0 30px 0 0;" href="javascript:void(0)"><img src="{{ asset('images/logo.png')}}" alt=""></a>
+              <a href="{{route('home')}}" class="menuzord-brand pull-left flip xs-pull-center mb-15" style="margin: 0 30px 0 0;" href="javascript:void(0)"><img src="{{ asset('images/logo.png')}}" alt=""></a>
             </div>
-          </div>
-          <div class="col-xs-12 col-sm-4 col-md-4">
+          </div> 
+          <div class="col mt-10" style="float:right;">
             <div class="widget no-border pull-right sm-pull-none sm-text-center mt-10 mb-10 m-0">
               <ul class="list-inline">
-                <li><i class="fa fa-phone-square text-theme-color-sky font-36 mt-5 sm-display-block"></i></li>
                 <li>
-                  <a href="#" class="font-12 text-black text-uppercase">Call us today!</a>
-                  <h5 class="font-14 text-theme-color-blue m-0"> +(012) 345 6789</h5>
-                </li>
-              </ul>
-            </div>
-          </div>  
-          <div class="col-xs-12 col-sm-4 col-md-3">
-            <div class="widget no-border pull-right sm-pull-none sm-text-center mt-10 mb-10 m-0">
-              <ul class="list-inline">
-                <li><i class="fa fa-clock-o text-theme-color-red font-36 mt-5 sm-display-block"></i></li>
-                <li>
-                  <a href="#" class="font-12 text-black text-uppercase">We are open!</a>
-                  <h5 class="font-13 text-theme-color-blue m-0"> Mon-Fri 8:00-16:00</h5>
-                </li>
-              </ul>
-            </div>
-          </div>
-          @if (Auth::user())
+                @if (Auth::user())
           @if (Auth::user()->hasRole('admin'))
-          <div class="col-xs-12 col-sm-4 col-sm-1" style="float:right;">
-            <div class="col" style="float:right;">
-          <a href="/admin/dashboard" class="fa fa-user-secret fa-2x" style="float:right;"></a>
-          </div>
-          </div>
+          <a href="/admin/dashboard" class="fa fa-user-secret fa-2x ml-30" style="float:right;"></a>
           @endif
           @endif
+                </li>
+                <li>
+                <div class="btn-group" style="float:right;">
+                <button class="fa fa-bell fa-2x ml-30" type="button" data-toggle="dropdown" style="border-color:transparent;background:transparent;"></button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#"><i class='fa fa-user mr-1'></i> Something else here</a>
+                  <div class="dropdown-divider"></div>
+                  </div>
+                </div>
+                </li>
+                <li>
+                <a href="{{route('user.show',['user'=>Auth::user()->id])}}" class="fa fa-user-circle-o fa-2x ml-30" style="float:right;"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -47,7 +41,7 @@
         <div class="container">
           <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
             <ul class="menuzord-menu">
-              <li class="active"><a href="{{route('home')}}">Home</a></li>
+              <li class="active"><a href="{{route('dashboard.instructor')}}">Dashboard</a></li>
               <li><a href="{{route('courses.index')}}">Courses</a></li>
               <li><a href="{{route('instructors.index')}}">Instructors</a></li>
               <li><a href="{{route('events.index')}}">Events</a></li>

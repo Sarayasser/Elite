@@ -73,6 +73,11 @@ Route::get('/timetable', function () { return view('timetable'); });
 Route::get('/about', function () { return view('about'); });
 Route::get('/users', function () { return view('auth/user'); })->name('users');
 
+//Dashboard
+Route::get('/dashboard',function(){return view('dashboard.instructor');})->name('dashboard.instructor');
+Route::get('/dashboard/students',function(){return view('dashboard.dashboard_students');})->name('dashboard.students');
+Route::get('/dashboard/events',function(){return view('dashboard.dashboard_events');})->name('dashboard.events');
+
 // Auth::routes();
 Route::group(['middleware' => ['web']], function() {
 
