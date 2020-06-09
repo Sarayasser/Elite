@@ -14,6 +14,15 @@
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>{{$user->name}}</h4>
+                        <h4> Total Points: {{$user->getPoints()}}</h4>
+                        <h4>Badges : </h4>
+                        @foreach($badges as $badge)
+                        <h5> {{$badge ? $badge->name : 'N/A'}}</h5>
+                        {{-- <h4> level:{{$badge ? $badge->level : 'N/A'}}</h4> --}}
+                        
+                    <img alt="{{$badge->name}}" src="{{ asset('images/badges/'.$badge->name.'.jpg') }}" class="img-rounded img-responsive" style="width: 40px" style="height: 40px">
+                        
+                        @endforeach
                         <p><cite title="San Francisco, USA"><i class="glyphicon glyphicon-map-marker mr-10"></i>{{$user->address}} 
                         </cite></p>
                         <p><i class="glyphicon glyphicon-envelope mr-10"></i>{{$user->email}}</p>

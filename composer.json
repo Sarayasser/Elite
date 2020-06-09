@@ -13,13 +13,15 @@
         "backpack/filemanager": "^1.1",
         "backpack/permissionmanager": "^6.0",
         "cybercog/laravel-ban": "^4.2",
+        "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.5",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^2.0",
+        "qcod/laravel-gamify": "^1.0"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

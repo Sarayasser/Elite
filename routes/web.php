@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Course;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Gamify\Points\PostCompleted;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,9 @@ Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('pos
 Route::delete('/courses/{course}/posts/{post}', 'PostController@destroy')->name('posts.destroy');
 
 Route::post('/courses/{course}/posts/{post}', function($course_id, $post_id){
+    $post=Post::find($post_id);
     auth()->user()->readPosts()->attach($post_id);
+    givePoint(new PostCompleted($post));
     return response()->json(['ok' => 'ok']);
 })->name('posts.read');
 
