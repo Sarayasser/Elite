@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use Backpack\PermissionManager\app\Http\Controllers\UserCrudController as UserController;
 use App\Http\Requests\UserStoreCrudRequest as StoreRequest;
+use App\Http\Requests\UserUpdateCrudRequest as UpdateRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -207,7 +208,6 @@ class UserCrudController extends UserController
         $this->crud->setRequest($this->crud->validateRequest());
         $this->crud->setRequest($this->handlePasswordInput($this->crud->getRequest()));
         $this->crud->unsetValidation(); // validation has already been run
-        // dd($this->crud->getRequest());
         $response = $this->traitStore();
         // do something after save
         $user = $this->crud->entry;
@@ -215,10 +215,16 @@ class UserCrudController extends UserController
         $user->sendPasswordResetNotification($token);
         return $response;
     }
+    public function update()
+    {
+        $this->crud->setRequest($this->crud->validateRequest());
+        $this->crud->unsetValidation(); // validation has already been run
+
+        return $this->traitUpdate();
+    }
     protected function handlePasswordInput($request)
     {
         $request->request->set('password', Hash::make(Str::random(8)));
-
         return $request;
     }
     protected function addUserFields()
@@ -262,7 +268,6 @@ class UserCrudController extends UserController
             [   // Hidden
                 'name'  => 'password',
                 'type'  => 'hidden',
-                'value' => 'active',
             ], 
             [
                 'name'  => 'phone_number',
@@ -311,6 +316,11 @@ class UserCrudController extends UserController
     {
         $this->addUserFields();
         $this->crud->setValidation(StoreRequest::class);
+    }
+    public function setupUpdateOperation()
+    {
+        $this->addUserFields();
+        $this->crud->setValidation(UpdateRequest::class);
     }
  
     public function moderate() 
