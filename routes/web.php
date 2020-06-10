@@ -117,6 +117,8 @@ Route::group(['middleware' => ['web']], function() {
     Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
     Route::get('password/reset/{token}', ['as' => 'password.reset.token', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
     Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\ResetPasswordController@reset']);
+    Route::get('password/confirm', ['as' => 'password.confirm', 'uses' => 'Auth\ConfirmPasswordController@showConfirmForm']);
+    Route::post('password/confirm', [ 'uses' => 'Auth\ConfirmPasswordController@showConfirmForm']);
 
 // Email verification
     Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
@@ -135,7 +137,6 @@ Route::get('/home/{provider}', 'Auth\LoginController@handleProviderCallback')->n
 Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');    
 Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
 
-// Auth::routes();
 
 //contact-us
 Route::get('/contact', 'ContactController@create')->name('contact.create');
