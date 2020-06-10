@@ -27,7 +27,11 @@
         <div class="row">
           
           @foreach ($courses as $course)
-          
+          @php
+              if (auth()->user() && auth()->user()->hasRole('student')) {
+                  $course->enrolled = $course->students->contains(auth()->user()->student);
+              }
+          @endphp
          
           <div class="col-sm-6 col-md-4">
             <div class="item">
@@ -50,10 +54,14 @@
                      <li>Capacity<span>{{$course->capacity}}</span></li>
                      <li>Duration<span>{{$course->duration}} mo</span></li>
                      <li>Age<span>{{$course->age}}y - {{$course->age+1}}y</span></li>
-                     
-
                     </ul>
                   </div>
+                  @if(auth()->user())
+                      @if(!$course->enrolled && auth()->user()->hasRole('student'))
+                      <br>
+                      <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20 jquery-postback center-block" href="{{route('courses.enroll', $course->id)}}">Enroll</a>
+                      @endif
+                  @endif
                 </div>
               </div>
             </div>

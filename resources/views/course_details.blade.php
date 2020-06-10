@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+@php
+    if (auth()->user() && auth()->user()->hasRole('student')) {
+        $course->enrolled = $course->students->contains(auth()->user()->student);
+    }
+@endphp
 @section('content')
 
     <!-- Section: inner-header -->
@@ -15,6 +19,9 @@
                     <li><a href="{{route('courses.index')}}">Courses </a></li>
                     <li class="active">Course details</li>
                 </ol>
+                @if(Auth::user() && !$course->enrolled)
+                    <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20 jquery-postback " href="{{route('courses.enroll', $course->id)}}">Enroll</a>
+                @endif
                 </div>
                 <div class="col-md-6 mt-70" style="float:right;">
                 @if(Auth::user())
@@ -85,12 +92,11 @@
                 </div>
                 
                 <div class="widget">
-                  <h3 class="widget-title line-bottom">Latest <span class="text-theme-color-red">Posts</span></h3>
+                  <h3 class="widget-title line-bottom"><span class="text-theme-color-red">Lessons</span></h3>
                   <div class="latest-posts">
                     @foreach($posts as $post)
                     <article class="post media-post clearfix pb-0 mb-10">
-                      <a class="post-thumb" href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}"><img src="{{asset($post->image)}}" alt=""></a>
-                      {{-- <img src="" alt="" class="img-fullwidth" > --}}
+                      <a class="post-thumb" href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}"></a>
                       <div class="post-right">
                         <h4 class="post-title mt-0"><a href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}">{{$post->title}}</a></h4>
                         <p>{!! \Illuminate\Support\Str::limit($post->description, 30, '...') !!}</p>
