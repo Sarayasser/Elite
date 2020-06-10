@@ -54,7 +54,7 @@
                   <label  class="col-sm-2 control-label">Birthdate</label>
                     <div class="col-sm-10">
                       <div class="input-group date">
-                        <input type="text" class="form-control" name="age" placeholder="birthdate">
+                        <input type="text" class="form-control date-picker" name="age" placeholder="birthdate">
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>
