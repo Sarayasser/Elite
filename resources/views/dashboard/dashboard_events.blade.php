@@ -1,41 +1,39 @@
-@extends('dashboard.instructor')
+@extends('layouts.app')
 @section('content')
-<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/bg3.jpg')}}">
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:300px;" data-bg-img="{{ asset('images/bg/946.jpg')}}">
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row"> 
-                <div class="col-md-6">
+            <div class="row mt-50"> 
+                <div class="col-md-6 ">
                 <h2 class="text-theme-color-yellow font-36">Events</h2>
                 <ol class="breadcrumb text-left mt-10 white">
                     <li><a href="{{route('home')}}">Home</a></li>
-                    <li><a href="{{route('dashboard.instructor')}}">Dashboard</a></li>
+                    <li><a href="#">Dashboard</a></li>
                     <li class="active">Events</li>
                 </ol>
                 </div>
+                <div class="col-md-6 mt-50" style="float:right;">
+            @if(Auth::user())
+                @if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('instructor'))
+                <a href="{{route('events.create')}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
+                @endif
+                @endif
+            </div>
             </div>
             </div>
         </div>
     </section>
-    <div class="row">
-<div class="container-fluid col ml-10">
-<div class="list-group col-md-3 mt-10">
-  <a href="{{route('dashboard.instructor')}}" class="list-group-item" ><i class="fa fa-book" style="color:white;"></i> Courses</a>
-  <a href="{{route('dashboard.students')}}" class="list-group-item"><i class="fa fa-user"></i> Students</a>
-  <a href="{{route('dashboard.students')}}" class="list-group-item" style="background:blue;color:white;"><i class="fa fa-pencil"></i> Events</a>
-  <a href="#" class="list-group-item"><i class="fa fa-cog"></i> Schedule</a>
-</div>
-</div>
-<div class="col">
-<div class="container p-3 my-3 bg-dark text-white">
-    <!-- Section: Events Grid -->
     <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 blog-pull-right">
+          <section>
         <div class="container pb-30">
           <div class="section-content">
             <div class="row">
             @foreach ($events as $event)
             @if(Auth::user())
-            @if (Auth::user()->id == $event->user_id)
               <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="schedule-box maxwidth500 mb-30" data-bg-img="{{ asset('images/pattern/p6.png') }}">
                   <div class="thumb">
@@ -84,14 +82,33 @@
                 </div>
               </div>
               @endif
-              @endif
               @endforeach
             </div>
           </div>
         </div>
     </section>
-</div>
-</div>
-</div>
+
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <div class="sidebar sidebar-left mt-sm-30">
+              <div class="widget">
+                <h3 class="widget-title line-bottom">Instructor <span class="text-theme-color-red">Dashboard</span></h3>
+                <div class="services-list">
+                  <ul class="list list-border">
+                    <li><a href="{{route('dashboard','instructor')}}">Courses</a></li>
+                    <li><a href="{{route('dashboard.students',"instructor")}}">Students</a></li>
+                    <li class="active"><a href="{{route('dashboard.events',"instructor")}}">Events</a></li>
+                    <li><a href="#">Schedules</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div> 
+          <img alt="" src="images/bg/f2.png" class="img-responsive img-fullwidth">
+      </div>
+    </section>
 
 @endsection

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
+use App\Models\Course;
+use App\Models\Event;
+use App\Instructor;
 
 class DashboardController extends Controller
 {
@@ -17,7 +20,11 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         if($slug === "instructor"){
-            return view('dashboard.instructor.index');
+            // dd($user->id);
+            $instructor=Instructor::where('user_id',$user->id)->first();
+            $courses=Course::where('instructor_id',$instructor->id)->get();
+            // dd($courses);
+            return view('dashboard.instructor.index',['courses'=>$courses]);
         }
         else if ($slug === "parent"){
             $children = User::with('parent')->where('parent_id','=',$user->id)->get();
@@ -37,88 +44,16 @@ class DashboardController extends Controller
         Auth::login($user); // login user automatically
         return redirect('/');
     }
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function create(Course $course)
-    // {
-    //     return view('posts.create', ['course' => $course->id]);
-    // }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(PostRequest $request, Course $course)
-    // {
-    //     $post = $course->posts()->create([
-    //         'title' => $request->title,
-    //         'description' =>  $request->description,
-    //         'user_id' =>  $request->user()->id
-    //     ]);
-    //     $post->image = $request->file('image');
-    //     $post->save();
-    //     return redirect()->route('posts.show', ['course' => $course->id, 'post' => $post->id]);
-    // }
+    public function students_enrolled(){
 
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\Post  $post
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show($course_id, Post $post)
-    // {
-    //     return view('posts.show', ['post' => $post, 'course' => $course_id]);
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  \App\Models\Post  $post
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(Course $course, Post $post)
-    // {
-    //     return view('posts.edit', ['course' => $course->id, 'post' => $post]);
-    // }
-
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  \App\Models\Post  $post
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(PostRequest $request, $course_id, Post $post)
-    // {
-    //     $attributes = [
-    //             'title' => $request->title,
-    //             'description' =>  $request->description,
-    //         ];
-    //     $post->update($attributes);
-    //     if ($request->hasFile('image')){
-    //         Storage::delete('public/'.$post->image);
-    //         $post->image = $request->file('image');
-    //         $post->save();
-    //     }
-    //     return redirect()->route('posts.show', ['course' => $course_id, 'post' => $post->id]);
-    // }
-
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  \App\Models\Post  $post
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy($course_id, Post $post)
-    // {
-    //     if ($post->image) Storage::delete('public/'.$post->image);
-    //     $post->delete();
-    //     return redirect()->route('courses.show', $course_id);
-    // }
+    }
+    public function instructor_events(){
+        $id=Auth::user()->id;
+        $instructor=Instructor::where('user_id',$id)->first();
+        $events=Event::where('user_id',$instructor->id)->get();
+        // dd($events);
+        return view('dashboard.dashboard_events',['events'=>$events]);
+    }
+    
 }

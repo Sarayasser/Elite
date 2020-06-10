@@ -12,14 +12,7 @@
             <div class="widget no-border pull-right sm-pull-none sm-text-center mt-10 mb-10 m-0">
               <ul class="list-inline">
                 <li>
-                @if (Auth::user())
-                  @if (Auth::user()->hasRole('admin'))
-                  <a href="/admin/dashboard" class="fa fa-user-secret fa-2x ml-30" style="float:right;"></a>
-                  @endif
-                @endif
-                </li>
-                <li>
-                <div class="btn-group" style="float:right;">
+                <div class="btn-group">
                 <button class="fa fa-bell fa-2x ml-30" type="button" data-toggle="dropdown" style="border-color:transparent;background:transparent;"></button>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="#"><i class='fa fa-user mr-1'></i> Something else here</a>
@@ -27,11 +20,6 @@
                   </div>
                 </div>
                 </li>
-                @if (Auth::user())
-                <li>
-                  <a href="{{route('user.show',['user'=>Auth::user()->id])}}" class="fa fa-user-circle-o fa-2x ml-30" style="float:right;"></a>
-                </li> 
-                @endif 
               </ul>
             </div>
           </div>

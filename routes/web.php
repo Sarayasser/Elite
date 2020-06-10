@@ -79,7 +79,7 @@ Route::get('/users', function () { return view('auth/user'); })->name('users');
 //Dashboard
 Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard');
 Route::get('/dashboard/{slug}/students',function(){return view('dashboard.dashboard_students');})->name('dashboard.students');
-Route::get('/dashboard/{slug}/events',function(){return view('dashboard.dashboard_events');})->name('dashboard.events');
+Route::get('/dashboard/{slug}/events','DashboardController@instructor_events')->name('dashboard.events');
 Route::get('/dashboard/instructor/{id}','DashboardController@login')->name('dashboard.login');
 Route::get('/dashboard/student', function () { return view('dashboard.student'); })->name('dashboard.student');
 

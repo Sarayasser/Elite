@@ -1,6 +1,6 @@
-@extends('dashboard.instructor')
+@extends('layouts.app')
 @section('content')
-<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/bg3.jpg')}}">
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:330px;" data-bg-img="{{ asset('images/bg/2548.jpg')}}">
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
@@ -9,7 +9,7 @@
                 <h2 class="text-theme-color-yellow font-36">Students Enrolled</h2>
                 <ol class="breadcrumb text-left mt-10 white">
                     <li><a href="{{route('home')}}">Home</a></li>
-                    <li><a href="{{route('dashboard.instructor')}}">Dashboard</a></li>
+                    <li><a href="#">Dashboard</a></li>
                     <li class="active">Students</li>
                 </ol>
                 </div>
@@ -17,17 +17,40 @@
             </div>
         </div>
     </section>
-    <div class="row">
-<div class="container-fluid col ml-10">
-<div class="list-group col-md-3 mt-10">
-  <a href="{{route('dashboard.instructor')}}" class="list-group-item" ><i class="fa fa-book" style="color:white;"></i> Courses</a>
-  <a href="{{route('dashboard.students')}}" class="list-group-item" style="background:blue;color:white;"><i class="fa fa-user"></i> Students</a>
-  <a href="{{route('dashboard.events')}}" class="list-group-item"><i class="fa fa-pencil"></i> Events</a>
-  <a href="#" class="list-group-item"><i class="fa fa-cog"></i> Schedule</a>
-</div>
-</div>
-<div class="col">
-</div>
-</div>
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 blog-pull-right">
+          <section>
+        <div class="container pb-30">
+          <div class="section-content">
+            <div class="row">
+    
+            </div>
+          </div>
+        </div>
+    </section>
 
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <div class="sidebar sidebar-left mt-sm-30">
+              <div class="widget">
+                <h3 class="widget-title line-bottom">Instructor <span class="text-theme-color-red">Dashboard</span></h3>
+                <div class="services-list">
+                  <ul class="list list-border">
+                    <li><a href="{{route('dashboard','instructor')}}">Courses</a></li>
+                    <li  class="active"><a href="{{route('dashboard.students',"instructor")}}">Students</a></li>
+                    <li><a href="{{route('dashboard.events',"instructor")}}">Events</a></li>
+                    <li><a href="#">Schedules</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div> 
+          <img alt="" src="images/bg/f2.png" class="img-responsive img-fullwidth">
+      </div>
+    </section>
 @endsection

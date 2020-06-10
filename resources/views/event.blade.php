@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/bg3.jpg')}}" >
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/946.jpg')}}" >
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
@@ -17,13 +17,7 @@
                 </div>
             </div>
             
-            <div class="col-md-6" style="float:right;">
-            @if(Auth::user())
-                @if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('instructor'))
-                <a href="{{route('events.create')}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
-                @endif
-                @endif
-            </div>
+          
             </div>
         </div>
     </section>
