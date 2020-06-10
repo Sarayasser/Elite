@@ -7,3 +7,4 @@
 
    <!-- Main JS-->
    <script src="{{ asset('js/global.js') }}"></script>
+   

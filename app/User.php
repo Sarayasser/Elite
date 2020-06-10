@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'address', 'phone_number', 'gender', 'image' , 'is_banned','age'
+        'name', 'email', 'password', 'address', 'phone_number', 'gender', 'image' , 'is_banned','age','google_id',"parent_id"
     ];
 
     /**
@@ -114,10 +114,15 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Instructor',"user_id");
     }
+    public function student()
+    {
+        return $this->hasOne('App\Student');
+    }
 
     public function readPosts()
     {
         return $this->belongsToMany('App\Models\Post', 'user_read_posts');
     }
+
 
 }

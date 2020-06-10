@@ -42,7 +42,13 @@ class EventController extends Controller
             'user_id' => Auth::user()->id,
             // 'image' => $request->file('image'),
             ]);
-        $event->image = $request->file('image');
+            if($request->hasfile('image')){
+                // dd($request->file('image'));
+            $event->image = $request->file('image');
+        }else{
+            $filename='/storage/events/12345.jpg';
+            $event->image= $filename;
+        }
         $event->save();
         return redirect('/event');
     }

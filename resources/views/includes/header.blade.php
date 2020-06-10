@@ -12,14 +12,7 @@
             <div class="widget no-border pull-right sm-pull-none sm-text-center mt-10 mb-10 m-0">
               <ul class="list-inline">
                 <li>
-                @if (Auth::user())
-                  @if (Auth::user()->hasRole('admin'))
-                  <a href="/admin/dashboard" class="fa fa-user-secret fa-2x ml-30" style="float:right;"></a>
-                  @endif
-                @endif
-                </li>
-                <li>
-                <div class="btn-group" style="float:right;">
+                <div class="btn-group">
                 <button class="fa fa-bell fa-2x ml-30" type="button" data-toggle="dropdown" style="border-color:transparent;background:transparent;"></button>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="#"><i class='fa fa-user mr-1'></i> Something else here</a>
@@ -27,11 +20,6 @@
                   </div>
                 </div>
                 </li>
-                @if (Auth::user())
-                <li>
-                  <a href="{{route('user.show',['user'=>Auth::user()->id])}}" class="fa fa-user-circle-o fa-2x ml-30" style="float:right;"></a>
-                </li> 
-                @endif 
               </ul>
             </div>
           </div>
@@ -62,13 +50,13 @@
                   @endif
                 @else
                   @if (Auth::user()->hasRole('admin'))
-                      <a href="/admin/dashboard" class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"><i class="fa fa-user-secret fa-2x" style="font-size: 1.2em;"> Dashboard</i> </a>
-                  @elseif(Auth::user()->hasRole('instructor'))
-                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard.instructor')}}">Dashboard</a>        
-                  @elseif(Auth::user()->hasRole('parent'))
-                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard.parent')}}">Dashboard</a>   
+                      <a href="/admin/dashboard" class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" ><i class="fa fa-user-secret fa-2x" style="font-size: 1.2em;"> Dashboard</i> </a>
+                  @elseif (Auth::user()->hasRole('instructor'))
+                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard',"instructor")}}">Dashboard</a>         
+                  @elseif (Auth::user()->hasRole('parent'))
+                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard',"parent")}}">Dashboard</a>         
                   @else
-                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard.student')}}">Dashboard</a>         
+                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard',"student")}}">Dashboard</a>         
                   @endif
                   <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('user.show',['user'=>Auth::user()->id])}}" >  {{ Auth::user()->name }}</a>
                   <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{ route('logout') }}"

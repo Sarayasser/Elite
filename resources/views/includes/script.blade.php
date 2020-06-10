@@ -22,6 +22,7 @@ $(document).on('click', 'a.jquery-postback', function(e) {
         type: $this.data('method'),
         url: $this.attr('href')
     }).done(function (data) {
+        if (data.enrolled) $this.replaceWith("enrolled")
         $this.hide()
         console.log(data);
     });
