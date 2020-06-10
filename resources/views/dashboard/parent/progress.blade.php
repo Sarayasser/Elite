@@ -9,9 +9,10 @@
               <br>
               <h2 class="text-theme-color-red line-bottom">Children
                 <button class="btn btn-info" type="button" style="float:right; font-size: 18px; padding: 11px 36px; margin-top: 17px;">
-                  <a href="{{route('dashboard.create')}}" style="color:white;"> Add Child  </a>
+                  <a href="{{route('dashboard.create')}}"  style="color:white;"> Add Child  </a>
                 </button>  
               </h2>
+              @if(!$children->isempty())
                 @foreach($children as $child)                
                 <div class="panel panel-info">
                   <div class="panel-heading" >
@@ -42,6 +43,9 @@
                   </div>                  
                 </div>
                 @endforeach
+              @else
+                <h3>There is no children , you need to create account for your child</h3>
+              @endif
             </div>
           </div>
           <div class="col-sm-12 col-md-4">

@@ -22,7 +22,13 @@
                       </div>
                       <div class="panel-body">
                         <div class="image-box-thum">
-                          <img src="{{ asset($child->image)}}" alt="" style="margin-right: 50px;" width="195px" height="195px">
+                          @if($child->image)
+                            <img src="{{ asset($child->image)}}" alt="" style="margin-right: 50px;" width="195px" height="195px">
+                          @elseif($child->gender == 1)
+                            <img src="{{ asset('images/female.png')}}" alt="" style="margin-right: 50px;" width="195px" height="195px">
+                          @else
+                            <img src="{{ asset('images/male.png')}}" alt="" style="margin-right: 50px;" width="195px" height="195px">
+                          @endif
                           <span style="font-size: 20px;">
                             <span style="color: #a94442; font-size: 25px;"> 
                               Email:
