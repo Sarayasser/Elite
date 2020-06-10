@@ -99,10 +99,8 @@ class Event extends Model
 
         if ($value==null) {
             Storage::disk($disk)->delete($this->{$attribute_name});
-
             $this->attributes[$attribute_name] = null;
         }
-
         elseif (Str::startsWith($value, 'data:image'))
         {
             $image = Image::make($value)->encode('jpg', 90);

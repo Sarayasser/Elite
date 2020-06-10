@@ -111,6 +111,8 @@ Route::group(['middleware' => ['web']], function() {
 
 //home page
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/redirect/{driver}', 'Auth\LoginController@redirectToProvider')->name('login.provider');
+Route::get('/home/{provider}', 'Auth\LoginController@handleProviderCallback')->name('login.access');
 
 // Route::get('/banned',function(){ return view('banned');});
 

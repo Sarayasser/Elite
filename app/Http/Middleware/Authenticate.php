@@ -14,7 +14,7 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (!($request->expectsJson()) || ($request->expectsJson() && $request->user()->is_banned() == 1)){
+        if (! $request->expectsJson()) {
             return route('login');
         }
     }
