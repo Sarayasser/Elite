@@ -22,7 +22,8 @@
         "laravel/socialite": "^4.4",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "qcod/laravel-gamify": "^1.0"
+        "qcod/laravel-gamify": "^1.0",
+        "willvincent/laravel-rateable": "^2.1"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

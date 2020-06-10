@@ -22,6 +22,11 @@ use App\Gamify\Points\PostCompleted;
 Route::get('/courses', function () {return view('courses_list',['courses'=>Course::all()]);})->name('courses.index');
 Route::get('/courses/{course}', function () {
     return view('course_details',[
+// <<<<<<< HEAD
+//         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);})->name('courses.show');
+        
+
+// =======
         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);
 })->name('courses.show');
 
@@ -31,6 +36,7 @@ Route::post('/courses/{course}/enroll', function(Course $course){
         $user->student->courses()->attach($course);
     return response()->json(['enrolled' => 'enrolled']);
 })->name('courses.enroll');
+
 
 // Posts
 Route::get('/courses/{course}/posts', 'PostController@index')->name('posts.index');
@@ -72,7 +78,6 @@ Route::put('/profile/{user}','UserController@update')->name('user.update');
 
 
 Route::get('/calender', function () { return view('calender'); });
-Route::get('/contact', function () { return view('contact'); });
 Route::get('/courses-posts', function () { return view('courses_posts'); });
 // Route::get('/course', function () { return view('course'); });
 Route::get('/teachers', function () { return view('teachers'); });
@@ -81,7 +86,7 @@ Route::get('/teacher-details', function () { return view('teacher_details'); });
 Route::get('/faq', function () { return view('faq'); });
 // Route::get('/event-details', function () { return view('event_details'); });
 Route::get('/timetable', function () { return view('timetable'); });
-Route::get('/about', function () { return view('about'); });
+Route::get('/about', function () { return view('about'); })->name('about');
 Route::get('/users', function () { return view('auth/user'); })->name('users');
 
 //Dashboard
@@ -126,6 +131,12 @@ Route::get('/redirect/{driver}', 'Auth\LoginController@redirectToProvider')->nam
 Route::get('/home/{provider}', 'Auth\LoginController@handleProviderCallback')->name('login.access');
 
 // Route::get('/banned',function(){ return view('banned');});
-
+//Rate
+Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');    
+Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
 
 // Auth::routes();
+
+//contact-us
+Route::get('/contact', 'ContactController@create')->name('contact.create');
+Route::post('/contact', 'ContactController@store')->name('contact.store');
