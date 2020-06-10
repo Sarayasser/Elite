@@ -5,9 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
+use App\Http\Requests\StoreChildRequest;
+use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
 {
+
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+         $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,33 +50,48 @@ class DashboardController extends Controller
         Auth::login($user); // login user automatically
         return redirect('/');
     }
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function create(Course $course)
-    // {
-    //     return view('posts.create', ['course' => $course->id]);
-    // }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(PostRequest $request, Course $course)
-    // {
-    //     $post = $course->posts()->create([
-    //         'title' => $request->title,
-    //         'description' =>  $request->description,
-    //         'user_id' =>  $request->user()->id
-    //     ]);
-    //     $post->image = $request->file('image');
-    //     $post->save();
-    //     return redirect()->route('posts.show', ['course' => $course->id, 'post' => $post->id]);
-    // }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('dashboard.parent.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreChildRequest $request)
+    {
+        $parent = Auth::user();
+        $base =Null;
+        $image =Null;
+        if($request->image){
+            $image = base64_encode(file_get_contents($request->image));
+            $base = "data:image/png;base64,";
+
+        }
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone_number' => $parent->phone_number,
+            'address' => $parent->address,
+            'gender' => $request->gender,
+            'image'  => $base.$image,
+            'age' => date('Y-m-d H:i:s', strtotime($request->age)),
+            'parent_id' => $parent->id
+        ]);
+        $user->assignRole("student");
+
+        return redirect()->route('dashboard',"parent");
+    }
 
     // /**
     //  * Display the specified resource.
