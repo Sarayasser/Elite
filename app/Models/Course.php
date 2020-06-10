@@ -115,7 +115,7 @@ class Course extends Model
      */
     public function students()
     {
-        return $this->belongsToMany('App\Student');
+        return $this->belongsToMany('App\User', 'course_student', 'course_id', 'student_id');
     }
     public function posts()
     {
