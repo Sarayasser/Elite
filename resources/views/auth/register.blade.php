@@ -162,7 +162,6 @@
                 </div>
                 <div class="row row-space">
                     <div class="col-2">
-                        <a href="{{ route('password.reset') }}">{{ _('forgot_your_password') }}</a>
                         <a href="{{ route('login') }}">{{ _('login') }}</a>
                     </div>
                 </div>
