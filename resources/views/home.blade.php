@@ -91,10 +91,14 @@
                             </ul>                            
                             </div>
                             @if(auth()->user())
-                                @if(!$course->enrolled && auth()->user()->hasRole('student'))
+                                @if(!$course->enrolled && auth()->user()->hasRole('student') && $course->capacity > 0)
                                 <br>
                                 <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20 jquery-postback center-block" href="{{route('courses.enroll', $course->id)}}">Enroll</a>
                                 @endif
+                            @endif
+                            @if($course->capacity <= 0)
+                                <br>
+                                <p class="text-danger">This course is not available at the moment</p>
                             @endif
                         </div>
                         </div>

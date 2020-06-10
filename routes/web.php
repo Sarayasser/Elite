@@ -33,8 +33,11 @@ Route::get('/courses/{course}', function () {
 Route::post('/courses/{course}/enroll', function(Course $course){
     $user = auth()->user();
     if($user->hasRole('student'))
-        $user->courses()->attach($course);
-
+        if ($course->capacity > 0) {
+            $user->courses()->attach($course);
+            $course->capacity --;
+            $course->save();
+        }
     if(request()->ajax()) // This is check ajax request
         return response()->json(['enrolled' => 'enrolled']);
     else
