@@ -113,7 +113,7 @@ class Course extends Model
      */
     public function students()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\Student');
     }
     public function posts()
     {

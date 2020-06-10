@@ -5,8 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
+<<<<<<< HEAD
 use App\Http\Requests\StoreChildRequest;
 use Illuminate\Support\Facades\Hash;
+=======
+use App\Models\Course;
+use App\Models\Event;
+use App\Instructor;
+>>>>>>> fa3cfc3e5e9a93b181697a71063895bb81fc1802
 
 class DashboardController extends Controller
 {
@@ -30,7 +36,11 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         if($slug === "instructor"){
-            return view('dashboard.instructor.index');
+            // dd($user->id);
+            $instructor=Instructor::where('user_id',$user->id)->first();
+            $courses=Course::where('instructor_id',$instructor->id)->get();
+            // dd($courses);
+            return view('dashboard.instructor.index',['courses'=>$courses]);
         }
         else if ($slug === "parent"){
             $children = $user->students;
@@ -105,5 +115,15 @@ class DashboardController extends Controller
         return view('dashboard.parent.progress', ['children' => $children]);
     }
 
+    public function students_enrolled(){
+
+    }
+    public function instructor_events(){
+        $id=Auth::user()->id;
+        $instructor=Instructor::where('user_id',$id)->first();
+        $events=Event::where('user_id',$instructor->id)->get();
+        // dd($events);
+        return view('dashboard.dashboard_events',['events'=>$events]);
+    }
     
 }
