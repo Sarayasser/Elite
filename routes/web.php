@@ -87,8 +87,11 @@ Route::get('/users', function () { return view('auth/user'); })->name('users');
 //Dashboard
 Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard');
 Route::get('/dashboard/{slug}/students',function(){return view('dashboard.dashboard_students');})->name('dashboard.students');
+Route::get('/dashboard/parent/create','DashboardController@create')->name('dashboard.create');
+Route::get('/dashboard/parent/progress','DashboardController@progress')->name('dashboard.progress');
+Route::post('/dashboard/parent', 'DashboardController@store')->name('dashboard.store');
+Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboard.login');
 Route::get('/dashboard/{slug}/events','DashboardController@instructor_events')->name('dashboard.events');
-Route::get('/dashboard/instructor/{id}','DashboardController@login')->name('dashboard.login');
 Route::get('/dashboard/student', function () { return view('dashboard.student'); })->name('dashboard.student');
 
 
@@ -119,8 +122,10 @@ Route::group(['middleware' => ['web']], function() {
 
 //home page
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/redirect/{driver}', 'Auth\LoginController@redirectToProvider')->name('login.provider');
+Route::get('/home/{provider}', 'Auth\LoginController@handleProviderCallback')->name('login.access');
 
 // Route::get('/banned',function(){ return view('banned');});
 
 
-Auth::routes();
+// Auth::routes();
