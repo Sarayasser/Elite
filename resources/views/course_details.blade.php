@@ -20,7 +20,10 @@
                     <li class="active">Course details</li>
                 </ol>
                 @if(Auth::user() && !$course->enrolled)
-                    <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20 jquery-postback " href="{{route('courses.enroll', $course->id)}}">Enroll</a>
+                <form method="POST" action="{{route('courses.enroll', $course->id)}}">
+                  @csrf
+                  <button type="submit" class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20">Enroll</button>
+                </form>
                 @endif
                 </div>
                 <div class="col-md-6 mt-70" style="float:right;">
