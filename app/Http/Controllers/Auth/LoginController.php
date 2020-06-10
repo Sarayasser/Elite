@@ -42,7 +42,6 @@ class LoginController extends Controller
     }
 
     protected function authenticated($request){
-
         if($request->user()->hasRole('admin'))
         {
             backpack_auth()->login($request->user());
@@ -53,6 +52,7 @@ class LoginController extends Controller
             return redirect("/calender");
         }else
             return redirect("/login");
+        // }
         // return redirect('/');
     //    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
     //             // Authentication passed...
@@ -73,6 +73,9 @@ class LoginController extends Controller
 
     //             return redirect($redirectTo);
     //         }
+    }
+    protected function credentials(Request $request){
+        return ['email'=>$request{$this->username()},'password'=>$request->password,'is_banned'=> 0];
     }
 
 }
