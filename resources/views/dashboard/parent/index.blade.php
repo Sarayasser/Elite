@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <section>
       <div class="container">
         <div class="row">
@@ -13,15 +12,15 @@
                   <a href="{{route('dashboard.create')}}" style="color:white;"> Add Child  </a>
                 </button>  
               </h2>
-                @foreach($children as $child)                
-                <div class="panel panel-info">
-                  <div class="panel-heading" >
-                    <h3 class="panel-title" style="font-size:25px;">
-                        {{$child->name}}
-                    </h3>
-                  </div>
-                  <div class="panel-body">
-                    
+                @if(!$children->isempty())
+                  @foreach($children as $child)                
+                    <div class="panel panel-info">
+                      <div class="panel-heading" >
+                        <h3 class="panel-title" style="font-size:25px;">
+                            {{$child->name}}
+                        </h3>
+                      </div>
+                      <div class="panel-body">
                         <div class="image-box-thum">
                           <img src="{{ asset($child->image)}}" alt="" style="margin-right: 50px;" width="195px" height="195px">
                           <span style="font-size: 20px;">
@@ -29,18 +28,17 @@
                               Email:
                             </span>
                             {{$child->email}}
-                          </span>
-                           
+                          </span>           
                         <button class="btn btn-danger" type="button" style="float:right; font-size:15px; margin-top: 75px;">
                           <a href="{{route('dashboard.login',['id'=> $child->id])}}" style="color:white;"> Log in </a>
                         </button>     
                         </div> 
-                     
-                        
-                     
-                  </div>                  
-                </div>
-                @endforeach
+                      </div>                  
+                    </div>
+                  @endforeach
+                @else
+                    <h3>There is no children , you need to create account for your child</h3>
+                @endif
             </div>
           </div>
           <div class="col-sm-12 col-md-4">
@@ -50,7 +48,7 @@
                 <div class="services-list">
                   <ul class="list list-border">
                   <li class="active"><a href="">Children</a></li>
-                  <li><a href="#">Progress and Achievements</a></li>
+                  <li><a href="{{route('dashboard.progress')}}">Progress and Achievements</a></li>
                   </ul>
                 </div>
               </div>
@@ -62,6 +60,4 @@
           <img alt="" src="images/bg/f2.png" class="img-responsive img-fullwidth">
       </div>
     </section>
-
-
 @endsection

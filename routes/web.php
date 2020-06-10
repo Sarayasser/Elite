@@ -81,6 +81,7 @@ Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard');
 Route::get('/dashboard/{slug}/students',function(){return view('dashboard.dashboard_students');})->name('dashboard.students');
 Route::get('/dashboard/{slug}/events',function(){return view('dashboard.dashboard_events');})->name('dashboard.events');
 Route::get('/dashboard/parent/create','DashboardController@create')->name('dashboard.create');
+Route::get('/dashboard/parent/progress','DashboardController@progress')->name('dashboard.progress');
 Route::post('/dashboard/parent', 'DashboardController@store')->name('dashboard.store');
 Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboard.login');
 Route::get('/dashboard/student', function () { return view('dashboard.student'); })->name('dashboard.student');
