@@ -5,14 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
-<<<<<<< HEAD
 use App\Http\Requests\StoreChildRequest;
 use Illuminate\Support\Facades\Hash;
-=======
 use App\Models\Course;
 use App\Models\Event;
 use App\Instructor;
->>>>>>> fa3cfc3e5e9a93b181697a71063895bb81fc1802
 
 class DashboardController extends Controller
 {
