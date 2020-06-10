@@ -54,10 +54,10 @@
             <br>
     <div class="row">
         <div class="col">
-        <a class="btn btn--radius-2 btn--green" href="{{ route('login.provider', 'google') }}" ><i class="fa fa-google fa-2x"></i></a>
+        <a class="fa fa-google fa-2x" href="{{ route('login.provider', 'google') }}" style="margin-right:5px;color:#20B2AA;"></a>
         </div>
         <div class="col">
-        <a class="btn btn--radius-2 btn--blue" href="{{ route('login.provider', 'facebook') }}" ><i class="fa fa-facebook-square fa-2x"></i></a>
+        <a class="fa fa-facebook-square fa-2x" href="{{ route('login.provider', 'facebook') }}" ></a>
         </div>
     </div>
     </div>
