@@ -28,7 +28,7 @@
                   @if (Auth::user()->hasRole('instructor') || Auth::user()->hasRole('admin'))
                   <a href="{{route('posts.create', ['course' => $course])}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
                   @endif
-                  @if (auth()->user()->hasRole('student'))
+                  @if (auth()->user()->hasRole('student') && $course->enrolled)
                   <a href="{{route('posts.index', ['course' => $course])}}" class="fa fa-play fa-5x" style="float:right;color:white;"></a>
                   @endif
                 @endif
