@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         QCod\Gamify\GamifyServiceProvider::class,
+        willvincent\Rateable\RateableServiceProvider::class,
+
 
 
 

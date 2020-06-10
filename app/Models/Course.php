@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
+use willvincent\Rateable\Rateable;
 
 class Course extends Model
 {
     use CrudTrait;
+    use Rateable;
 
     /*
     |--------------------------------------------------------------------------

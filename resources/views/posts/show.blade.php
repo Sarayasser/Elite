@@ -49,6 +49,28 @@
                     </div>
                   </div>
                   {!!$post->description!!}
+                  <form action="{{ route('posts.rate') }}" method="POST">
+
+                    {{ csrf_field() }}
+                    <h3>Post Average Rating: {{$post->averageRating}}</h3>
+                  
+                  
+
+
+                      <div class="rating">
+                        <h4>Give This Post A Rate </h4>
+                        <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="0.5" value="{{ $post->userAverageRating }}" data-size="xs">
+
+                        <input type="hidden" name="id" required="" value="{{ $post->id }}">
+
+                        <span class="review-no">Rated: ({{$post->ratings->count()}})</span>
+
+                        <br/>
+
+                        <button class="btn btn-success">Submit Review</button>
+
+                    </div>
+                  </form>
                   @if(Auth::user())
                     @if (Auth::user()->id == $post->user->id)
                     <a href="{{route('posts.edit', ['course' => $course, 'post' => $post->id])}}" class="btn btn-info">Edit</a>

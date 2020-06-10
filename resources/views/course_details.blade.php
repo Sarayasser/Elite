@@ -38,12 +38,34 @@
                 <h4 class="mt-0"><span class="text-theme-color-red">Price :</span> $ {{$course->price}}</h4>
                   <ul class="review_text list-inline">
                     <li>
-                      <div class="star-rating" title="Rated {{$course->rate}} out of 5"><span data-width="{{$course->rate*20}}%">{{$course->rate}}</span></div>
+                      <div class="star-rating" title="Rated {{$course->averageRating}} out of 5"><span data-width="{{$course->averageRating*20}}%">{{$course->averageRating}}</span></div>
                     </li>
                   </ul>
                 <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo unde, <span class="text-theme-color-red">{{$course->name}}</span> corporis dolorum blanditiis ullam officia <span class="text-theme-color-red">our kindergarten </span>natus minima fugiat repellat! Corrupti voluptatibus aperiam voluptatem. Exercitationem, placeat, cupiditate.</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore suscipit, inventore aliquid incidunt, quasi error! Natus esse rem eaque asperiores eligendi dicta quidem iure, excepturi doloremque eius neque autem sint error qui tenetur, modi provident aut, maiores laudantium reiciendis expedita. Eligendi</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptatem officiis quod animi possimus a, iure nam sunt quas aperiam non recusandae reprehenderit, nesciunt cumque pariatur totam repellendus delectus? Maxime quasi earum nobis, dicta, aliquam facere reiciendis, delectus voluptas, ea assumenda blanditiis placeat dignissimos quas iusto repellat cumque.</p>
+                <form action="{{ route('courses.rate') }}" method="POST">
+
+                  {{ csrf_field() }}
+                  <h3> Course Average Rating: {{$course->averageRating}}</h3>
+                
+                
+
+
+                    <div class="rating">
+
+                      <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="0.5" value="{{ $course->userAverageRating }}" data-size="xs">
+
+                      <input type="hidden" name="id" required="" value="{{ $course->id }}">
+
+                      <span class="review-no">Rated: ({{$course->ratings->count()}})</span>
+
+                      <br/>
+
+                      <button class="btn btn-success">Submit Review</button>
+
+                  </div>
+                </form>
                 <h3 class="line-bottom mt-20 mb-20 text-theme-color-red">Course Information</h3>
                 <table class="table table-bordered"> 
                   <tr>

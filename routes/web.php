@@ -23,7 +23,9 @@ Route::get('/courses', function () {return view('courses_list',['courses'=>Cours
 Route::get('/courses/{course}', function () {
     return view('course_details',[
         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);})->name('courses.show');
-
+        
+Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');    
+Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
 // Posts
 Route::get('/courses/{course}/posts', 'PostController@index')->name('posts.index');
 Route::get('/courses/{course}/posts/create', 'PostController@create')->name('posts.create');
