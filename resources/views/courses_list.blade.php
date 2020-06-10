@@ -27,7 +27,11 @@
         <div class="row">
           
           @foreach ($courses as $course)
-          
+          @php
+              if (auth()->user() && auth()->user()->hasRole('student')) {
+                  $course->enrolled = $course->students->contains(auth()->user()->student);
+              }
+          @endphp
          
           <div class="col-sm-6 col-md-4">
             <div class="item">
@@ -41,7 +45,7 @@
                   <h3 class="mt-0"><a class="text-theme-color-red" href="{{route('courses.show', $course->id)}}">{{$course->name}}</a></h3>
                   <ul class="review_text list-inline">
                     <li>
-                      <div class="star-rating" title="Rated {{$course->rate}} out of 5"><span data-width="{{$course->rate*20}}%">{{$course->rate}}</span></div>
+                      <div class="star-rating" title="Rated {{$course->averageRating}} out of 5"><span data-width="{{$course->averageRating*20}}%">{{$course->averageRating}}</span></div>
                     </li>
                   </ul>
                   <p>{{$course->description}} <a class="text-theme-colored ml-5" href="{{route('courses.show', $course->id)}}"> →</a></p>
@@ -50,10 +54,14 @@
                      <li>Capacity<span>{{$course->capacity}}</span></li>
                      <li>Duration<span>{{$course->duration}} mo</span></li>
                      <li>Age<span>{{$course->age}}y - {{$course->age+1}}y</span></li>
-                     
-
                     </ul>
                   </div>
+                  @if(auth()->user())
+                      @if(!$course->enrolled && auth()->user()->hasRole('student'))
+                      <br>
+                      <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20 jquery-postback center-block" href="{{route('courses.enroll', $course->id)}}">Enroll</a>
+                      @endif
+                  @endif
                 </div>
               </div>
             </div>

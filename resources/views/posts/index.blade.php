@@ -74,7 +74,7 @@
                 <div class="col-md-12">
 
                   <a href="{{route('posts.read', ['course' => $course, 'post' => $post->id])}}" class="jquery-postback btn btn-info pull-right">
-                    Mark as read 
+                    Mark as read
                     <img src="{{asset('images/check.png')}}" alt="" width=30>
                   </a>
                   @if($has_next)

@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+@php
+    if (auth()->user() && auth()->user()->hasRole('student')) {
+        $course->enrolled = $course->students->contains(auth()->user()->student);
+    }
+@endphp
 @section('content')
 
     <!-- Section: inner-header -->
@@ -15,12 +19,18 @@
                     <li><a href="{{route('courses.index')}}">Courses </a></li>
                     <li class="active">Course details</li>
                 </ol>
+                @if(Auth::user() && !$course->enrolled)
+                    <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20 jquery-postback " href="{{route('courses.enroll', $course->id)}}">Enroll</a>
+                @endif
                 </div>
                 <div class="col-md-6 mt-70" style="float:right;">
                 @if(Auth::user())
-                @if (Auth::user()->hasRole('instructor') || Auth::user()->hasRole('admin'))
-                <a href="{{route('posts.create', ['course' => $course])}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
-                @endif
+                  @if (Auth::user()->hasRole('instructor') || Auth::user()->hasRole('admin'))
+                  <a href="{{route('posts.create', ['course' => $course])}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
+                  @endif
+                  @if (auth()->user()->hasRole('student'))
+                  <a href="{{route('posts.index', ['course' => $course])}}" class="fa fa-play fa-5x" style="float:right;color:white;"></a>
+                  @endif
                 @endif
                 </div>
             </div>
@@ -38,12 +48,34 @@
                 <h4 class="mt-0"><span class="text-theme-color-red">Price :</span> $ {{$course->price}}</h4>
                   <ul class="review_text list-inline">
                     <li>
-                      <div class="star-rating" title="Rated {{$course->rate}} out of 5"><span data-width="{{$course->rate*20}}%">{{$course->rate}}</span></div>
+                      <div class="star-rating" title="Rated {{$course->averageRating}} out of 5"><span data-width="{{$course->averageRating*20}}%">{{$course->averageRating}}</span></div>
                     </li>
                   </ul>
                 <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo unde, <span class="text-theme-color-red">{{$course->name}}</span> corporis dolorum blanditiis ullam officia <span class="text-theme-color-red">our kindergarten </span>natus minima fugiat repellat! Corrupti voluptatibus aperiam voluptatem. Exercitationem, placeat, cupiditate.</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore suscipit, inventore aliquid incidunt, quasi error! Natus esse rem eaque asperiores eligendi dicta quidem iure, excepturi doloremque eius neque autem sint error qui tenetur, modi provident aut, maiores laudantium reiciendis expedita. Eligendi</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptatem officiis quod animi possimus a, iure nam sunt quas aperiam non recusandae reprehenderit, nesciunt cumque pariatur totam repellendus delectus? Maxime quasi earum nobis, dicta, aliquam facere reiciendis, delectus voluptas, ea assumenda blanditiis placeat dignissimos quas iusto repellat cumque.</p>
+                <form action="{{ route('courses.rate') }}" method="POST">
+
+                  {{ csrf_field() }}
+                  <h3> Course Average Rating: {{$course->averageRating}}</h3>
+                
+                
+
+
+                    <div class="rating">
+
+                      <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="0.5" value="{{ $course->userAverageRating }}" data-size="xs">
+
+                      <input type="hidden" name="id" required="" value="{{ $course->id }}">
+
+                      <span class="review-no">Rated: ({{$course->ratings->count()}})</span>
+
+                      <br/>
+
+                      <button class="btn btn-success">Submit Review</button>
+
+                  </div>
+                </form>
                 <h3 class="line-bottom mt-20 mb-20 text-theme-color-red">Course Information</h3>
                 <table class="table table-bordered"> 
                   <tr>
@@ -82,12 +114,11 @@
                 </div>
                 
                 <div class="widget">
-                  <h3 class="widget-title line-bottom">Latest <span class="text-theme-color-red">Posts</span></h3>
+                  <h3 class="widget-title line-bottom"><span class="text-theme-color-red">Lessons</span></h3>
                   <div class="latest-posts">
                     @foreach($posts as $post)
                     <article class="post media-post clearfix pb-0 mb-10">
-                      <a class="post-thumb" href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}"><img src="{{asset($post->image)}}" alt=""></a>
-                      {{-- <img src="" alt="" class="img-fullwidth" > --}}
+                      <a class="post-thumb" href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}"></a>
                       <div class="post-right">
                         <h4 class="post-title mt-0"><a href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}">{{$post->title}}</a></h4>
                         <p>{!! \Illuminate\Support\Str::limit($post->description, 30, '...') !!}</p>

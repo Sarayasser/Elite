@@ -118,9 +118,12 @@ class DashboardController extends Controller
     public function instructor_events(){
         $id=Auth::user()->id;
         $instructor=Instructor::where('user_id',$id)->first();
-        $events=Event::where('user_id',$instructor->id)->get();
+        $events=Event::where('user_id',$instructor->user_id)->get();
         // dd($events);
         return view('dashboard.dashboard_events',['events'=>$events]);
+    }
+    public function Instructor_schedule(){
+        
     }
     
 }

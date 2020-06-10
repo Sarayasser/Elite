@@ -35,6 +35,7 @@
                 <div class="row row-space">
                     <div class="col-2">
                         <button class="btn btn--radius-2 btn--blue" type="submit">{{ __('Login') }}</button>
+                        <br>
                         @if (Route::has('password.request'))
                             <a  href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}
@@ -48,6 +49,17 @@
                     </div>
                 </div>
             </form>
+            <br>
+            <hr>
+            <br>
+    <div class="row">
+        <div class="col">
+        <a class="fa fa-google fa-2x" href="{{ route('login.provider', 'google') }}" style="margin-right:5px;color:#20B2AA;"></a>
+        </div>
+        <div class="col">
+        <a class="fa fa-facebook-square fa-2x" href="{{ route('login.provider', 'facebook') }}" ></a>
+        </div>
+    </div>
     </div>
 </div>
 @endsection

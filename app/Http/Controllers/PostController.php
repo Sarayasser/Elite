@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use willvincent\Rateable\Rating;
 
 class PostController extends Controller
 {
@@ -15,14 +16,24 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function __construct()
+
+    // {
+
+    //     $this->middleware('auth');
+
+    // }
     public function index(Course $course)
     {
         $readPostsIds = auth()->user()->readPosts()->having('course_id', $course->id)->get()->pluck('id')->toArray();
         $post = $course->posts()->whereNotIn('id', $readPostsIds)->first();
+        if($post ==  null)
+            return redirect()->route('courses.show', $course->id);
         $has_next = false;
         $ids = $course->posts->pluck('id')->toArray();
         if (in_array($post->id+1, $ids))
             $has_next = true;
+        
         return view('posts.index', ['post' => $post, 'has_next' => $has_next]);
     }
 
@@ -110,4 +121,35 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('courses.show', $course_id);
     }
+    public function ratePost()
+
+    {
+            
+    $post = Post::find(request()->id);
+    $rating = $post->ratings()->where('user_id', auth()->user()->id)->first();
+     if(is_null($rating) ){
+     
+        $rating = new \willvincent\Rateable\Rating;
+        $rating->rating =  request()->rate;
+        $rating->user_id = auth()->user()->id;
+        $post->ratings()->save($rating);
+        return redirect()->back();
+    }
+
+    if( $rating->rating<=5){
+    
+        $post->ratings()->where('user_id', auth()->user()->id)->first()->delete($rating);
+        $rating = new \willvincent\Rateable\Rating;
+        $rating->rating =  request()->rate;
+        $rating->user_id = auth()->user()->id;
+        $post->ratings()->save($rating);
+        return redirect()->back();
+    }
+    else{
+        return redirect()->back()->with("You already made a review");
+    }
+    
+
+    }
+
 }
