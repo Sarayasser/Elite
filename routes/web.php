@@ -22,7 +22,15 @@ use App\Gamify\Points\PostCompleted;
 Route::get('/courses', function () {return view('courses_list',['courses'=>Course::all()]);})->name('courses.index');
 Route::get('/courses/{course}', function () {
     return view('course_details',[
-        'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);})->name('courses.show');
+        'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);
+})->name('courses.show');
+
+Route::post('/courses/{course}/enroll', function(Course $course){
+    $user = auth()->user();
+    if($user->hasRole('student'))
+        $user->student->courses()->attach($course);
+    return response()->json(['enrolled' => 'enrolled']);
+})->name('courses.enroll');
 
 // Posts
 Route::get('/courses/{course}/posts', 'PostController@index')->name('posts.index');
@@ -33,12 +41,12 @@ Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('
 Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('posts.update');
 Route::delete('/courses/{course}/posts/{post}', 'PostController@destroy')->name('posts.destroy');
 
-Route::post('/courses/{course}/posts/{post}', function($course_id, $post_id){
-    $post=Post::find($post_id);
-    auth()->user()->readPosts()->attach($post_id);
+Route::post('/courses/{course}/posts/{post}', function($course_id, Post $post){
+    auth()->user()->readPosts()->attach($post->id);
     givePoint(new PostCompleted($post));
     return response()->json(['ok' => 'ok']);
 })->name('posts.read');
+
 
 // Events
 Route::get('/event/create', 'EventController@create')->name('events.create');

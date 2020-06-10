@@ -114,6 +114,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Instructor',"user_id");
     }
+    public function student()
+    {
+        return $this->hasOne('App\Student');
+    }
 
     public function readPosts()
     {

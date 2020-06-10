@@ -62,7 +62,11 @@
                 <div class="col-md-12">
                     <div class="owl-carousel-3col" data-nav="true">
                         @foreach ($courses as $course)
-
+                        @php
+                            if (auth()->user() && auth()->user()->hasRole('student')) {
+                                $course->enrolled = $course->students->contains(auth()->user()->student);
+                            }
+                        @endphp
                     <div class="item">
                         <div class="campaign bg-white maxwidth500 mb-30">
                         <div class="thumb">
@@ -84,8 +88,14 @@
                                 <li>Capacity<span>{{$course->capacity}}</span></li>
                                 <li>Duration<span>{{$course->duration}} mo</span></li>
                                 <li>Age<span>{{$course->age}}y - {{$course->age+1}}y</span></li>
-                            </ul>
+                            </ul>                            
                             </div>
+                            @if(auth()->user())
+                                @if(!$course->enrolled && auth()->user()->hasRole('student'))
+                                <br>
+                                <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20 jquery-postback center-block" href="{{route('courses.enroll', $course->id)}}">Enroll</a>
+                                @endif
+                            @endif
                         </div>
                         </div>
                     </div>
