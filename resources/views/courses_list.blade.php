@@ -29,7 +29,7 @@
           @foreach ($courses as $course)
           @php
               if (auth()->user() && auth()->user()->hasRole('student')) {
-                  $course->enrolled = $course->students->contains(auth()->user()->student);
+                  $course->enrolled = $course->students->contains(auth()->user());
               }
           @endphp
          
