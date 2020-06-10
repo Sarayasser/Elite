@@ -11,9 +11,8 @@
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Contact</h2>
                 <ol class="breadcrumb text-left mt-10 white">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Pages</a></li>
-                    <li class="active">Contact</li>
+                <li><a href="{{route('home')}}">Home</a></li>
+                <li class="active">Contact</li>
                 </ol>
                 </div>
             </div>
@@ -32,35 +31,65 @@
             <div class="col-md-7">
                 <h4 class="mt-0 mb-30 line-bottom">Interested in discussing?</h4>
                 <!-- Contact Form -->
-                <form id="contact_form" name="contact_form" class="" action="http://html.kodesolution.live/s/kidspro/v2.1/demo/includes/sendmail.php" method="post">
-    
+                @if(Session::has('success'))
+                    <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                    </div>
+                @endif
+                <form id="contact_form" name="contact_form" class="" method="post" action="{{route('contact.store')}}" >
+                @csrf
                 <div class="row">
                     <div class="col-sm-6">
-                    <div class="form-group mb-30">
-                        <input id="form_name" name="form_name" class="form-control" type="text" placeholder="Enter Name" required="">
+                    <div class="form-group mb-30  @error('name') has-error @enderror">
+                        <input id="name" name="name" class="form-control" type="text" placeholder="Enter Name">
+                        @error('name')
+                        <span id="helpBlock3" class="help-block"> 
+                                <strong style="color:#a94442;">{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     </div>
                     <div class="col-sm-6">
-                    <div class="form-group mb-30">
-                        <input id="form_email" name="form_email" class="form-control required email" type="email" placeholder="Enter Email">
+                    <div class="form-group mb-30  @error('email') has-error @enderror">
+                        <input id="email" name="email" class="form-control required email" type="email" placeholder="Enter Email">
+                        @error('email')
+                        <span id="helpBlock3" class="help-block"> 
+                                <strong style="color:#a94442;">{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     </div>
                 </div>                
                 <div class="row">
                     <div class="col-sm-6">
-                    <div class="form-group mb-30">
-                        <input id="form_subject" name="form_subject" class="form-control required" type="text" placeholder="Enter Subject">
+                    <div class="form-group mb-30  @error('subject') has-error @enderror">
+                        <input id="subject" name="subject" class="form-control required" type="text" placeholder="Enter Subject">
+                        @error('subject')
+                        <span id="helpBlock3" class="help-block"> 
+                                <strong style="color:#a94442;">{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     </div>
                     <div class="col-sm-6">
-                    <div class="form-group mb-30">
-                        <input id="form_phone" name="form_phone" class="form-control" type="text" placeholder="Enter Phone">
+                    <div class="form-group mb-30 @error('phone_number') has-error @enderror">
+                        <input id="phone_number" name="phone_number" class="form-control" type="text" placeholder="Enter Phone">
+                        @error('phone_number')
+                        <span id="helpBlock3" class="help-block"> 
+                                <strong style="color:#a94442;">{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     </div>
                 </div>
     
-                <div class="form-group mb-30">
-                    <textarea id="form_message" name="form_message" class="form-control required" rows="7" placeholder="Enter Message"></textarea>
+                <div class="form-group mb-30 @error('message') has-error @enderror">
+                    <textarea id="message" name="message" class="form-control required" rows="7" placeholder="Enter Message"></textarea>
+                    @error('message')
+                    <span id="helpBlock3" class="help-block"> 
+                            <strong style="color:#a94442;">{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="" />
