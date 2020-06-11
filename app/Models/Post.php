@@ -47,6 +47,10 @@ class Post extends Model
     {
         return $this->belongsTo('App\Models\Course');
     }
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
+    }
 
     /*
     |--------------------------------------------------------------------------

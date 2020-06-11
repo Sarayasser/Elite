@@ -84,7 +84,8 @@ class PostController extends Controller
      */
     public function edit(Course $course, Post $post)
     {
-        return view('posts.edit', ['course' => $course->id, 'post' => $post]);
+        $comments = $post->comments()->with('replies')->get();
+        return view('posts.edit', ['course' => $course->id, 'post' => $post, 'comments' => $comments]);
     }
 
     /**
