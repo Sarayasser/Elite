@@ -11,9 +11,9 @@
             <div class="col-md-6"> 
               <h2 class="text-theme-color-yellow font-36">Blog</h2>
               <ol class="breadcrumb text-left mt-10 white">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pages</a></li>
-                <li class="active">Blog</li>
+                <li><a href="/">Home</a></li>
+                <li><a href="{{route('courses.show', $course)}}">Course Details</a></li>
+                <li class="active">Post</li>
               </ol>
             </div>
           </div>
@@ -123,21 +123,14 @@
                   <div class="col-sm-12">
                     <h5>Leave a Comment</h5>
                     <div class="row">
-                      <form role="form" id="comment-form">
-                        <div class="col-sm-6 pt-0 pb-0">
-                          <div class="form-group">
-                            <input type="text" class="form-control" required name="contact_name" id="contact_name" placeholder="Enter Name">
-                          </div>
-                          <div class="form-group">
-                            <input type="text" required class="form-control" name="contact_email2" id="contact_email2" placeholder="Enter Email">
-                          </div>
-                          <div class="form-group">
-                            <input type="text" placeholder="Enter Website" required class="form-control" name="subject">
-                          </div>
-                        </div>
+                      <form method="POST" action="{{route('comments.store', $post->id)}}">
+                        @csrf
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <textarea class="form-control" required name="contact_message2" id="contact_message2"  placeholder="Enter Message" rows="7"></textarea>
+                            <textarea class="form-control" name="body" placeholder="Enter your comment" rows="2"></textarea>
+                            <input type="hidden" name="commentable_type" value="App\Models\Post">
+                            <input type="hidden" name="commentable_id" value="{{$post->id}}">
+                            <input type="hidden" name="user_id" value="{{auth()->id()}}">
                           </div>
                           <div class="form-group">
                             <button type="submit" class="btn btn-dark btn-flat pull-right m-0" data-loading-text="Please wait...">Submit</button>
@@ -145,6 +138,16 @@
                         </div>
                       </form>
                     </div>
+                    <br>
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                   </div>
                 </div>
               </div>

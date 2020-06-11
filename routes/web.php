@@ -122,7 +122,9 @@ Route::group(['middleware' => ['auth','verified']], function() {
 
     //student enrollment 
     Route::post('/courses/{course}/enroll', 'CourseController@enroll')->name('courses.enroll')->middleware('role:student');
-
+    
+    // comment
+    Route::post('/posts/{post}/comments', 'CommentController@store')->name('comments.store');
 });
 
 
