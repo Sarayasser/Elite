@@ -33,7 +33,7 @@ class PostController extends Controller
         $ids = $course->posts->pluck('id')->toArray();
         if (in_array($post->id+1, $ids))
             $has_next = true;
-        
+
         return view('posts.index', ['post' => $post, 'has_next' => $has_next]);
     }
 
@@ -62,6 +62,11 @@ class PostController extends Controller
         ]);
         $post->image = $request->file('image');
         $post->save();
+        dd($post->id);
+        Notification::create([
+            'description'=> 'New Post created for course',
+            'post_id' => $post->id,
+        ]);
         return redirect()->route('posts.show', ['course' => $course->id, 'post' => $post->id]);
     }
 
@@ -124,11 +129,11 @@ class PostController extends Controller
     public function ratePost()
 
     {
-            
+
     $post = Post::find(request()->id);
     $rating = $post->ratings()->where('user_id', auth()->user()->id)->first();
      if(is_null($rating) ){
-     
+
         $rating = new \willvincent\Rateable\Rating;
         $rating->rating =  request()->rate;
         $rating->user_id = auth()->user()->id;
@@ -137,7 +142,7 @@ class PostController extends Controller
     }
 
     if( $rating->rating<=5){
-    
+
         $post->ratings()->where('user_id', auth()->user()->id)->first()->delete($rating);
         $rating = new \willvincent\Rateable\Rating;
         $rating->rating =  request()->rate;
@@ -148,7 +153,7 @@ class PostController extends Controller
     else{
         return redirect()->back()->with("You already made a review");
     }
-    
+
 
     }
 
