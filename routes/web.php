@@ -22,13 +22,14 @@ use App\Gamify\Points\PostCompleted;
 Route::get('/courses', function () {return view('courses_list',['courses'=>Course::all()]);})->name('courses.index');
 Route::get('/courses/{course}', function () {
     return view('course_details',[
-// <<<<<<< HEAD
-//         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);})->name('courses.show');
-        
 
-// =======
         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);
 })->name('courses.show');
+
+Route::get('/about', function () { 
+    return view('about', [
+        'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);
+     })->name('about');
 
 Route::post('/courses/{course}/enroll', function(Course $course){
     $user = auth()->user();
@@ -50,7 +51,7 @@ Route::post('/courses/{course}/enroll', function(Course $course){
 Route::get('/courses/{course}/posts', 'PostController@index')->name('posts.index');
 Route::get('/courses/{course}/posts/create', 'PostController@create')->name('posts.create');
 Route::post('/courses/{course}/posts', 'PostController@store')->name('posts.store');
-Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts.show'); 
+Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts.show');
 Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
 Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('posts.update');
 Route::delete('/courses/{course}/posts/{post}', 'PostController@destroy')->name('posts.destroy');
@@ -94,7 +95,6 @@ Route::get('/teacher-details', function () { return view('teacher_details'); });
 Route::get('/faq', function () { return view('faq'); });
 // Route::get('/event-details', function () { return view('event_details'); });
 Route::get('/timetable', function () { return view('timetable'); });
-Route::get('/about', function () { return view('about'); })->name('about');
 Route::get('/users', function () { return view('auth/user'); })->name('users');
 
 //Dashboard
@@ -149,13 +149,20 @@ Route::group(['middleware' => ['web']], function() {
 
 //home page
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/redirect/{driver}', 'Auth\LoginController@redirectToProvider')->name('login.provider');
 Route::get('/home/{provider}', 'Auth\LoginController@handleProviderCallback')->name('login.access');
 
+Route::get('/redirect/{driver}', 'Auth\RegisterController@redirectToProvider')->name('register.provider');
+Route::get('/home/{provider}', 'Auth\RegisterController@handleProviderCallback')->name('register.access');
+
 // Route::get('/banned',function(){ return view('banned');});
 //Rate
-Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');    
+Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');
 Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
+
+Route::post('instructor-rate', 'InstructorController@rateInstructor')->middleware('auth')->name('instructors.rate');
+// Auth::routes();
 
 
 //contact-us

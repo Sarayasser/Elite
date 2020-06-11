@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use willvincent\Rateable\Rateable;
 
 class Instructor extends Model
 {   
+    use Rateable;
     /**
      * The attributes that are mass assignable.
      *

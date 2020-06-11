@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInstructorsTable extends Migration
+class ModifyRatingColumnToRatings extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateInstructorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('instructors', function (Blueprint $table) {
-            $table->id();
-            $table->string('cv')->nullable();
-            $table->integer('user_id')->unsigned();
-            $table->timestamps();
+        Schema::table('ratings', function (Blueprint $table) {
+            $table->integer('rating')->nullable()->change();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateInstructorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('instructors');
+        Schema::table('ratings', function (Blueprint $table) {
+            //
+        });
     }
 }

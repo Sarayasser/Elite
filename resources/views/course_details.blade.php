@@ -63,19 +63,19 @@
                 <form action="{{ route('courses.rate') }}" method="POST">
 
                   {{ csrf_field() }}
-                  <h3> Course Average Rating: {{$course->averageRating}}</h3>
-                
+                  <h3> Course Average Rating: {{$course->averageRating ? $course->averageRating:"N/A" }}</h3>
+                  
                 
 
 
                     <div class="rating">
 
-                      <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="0.5" value="{{ $course->userAverageRating }}" data-size="xs">
+                      <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $course->userAverageRating }}" data-size="xs">
 
                       <input type="hidden" name="id" required="" value="{{ $course->id }}">
 
-                      <span class="review-no">Rated: ({{$course->ratings->count()}})</span>
-
+                      <span class="review-no">Rated: ({{$course->averageRating!=null ? $course->ratings->count():"N/A"}})</span>
+                      
                       <br/>
 
                       <button class="btn btn-success">Submit Review</button>

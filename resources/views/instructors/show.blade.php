@@ -45,6 +45,28 @@
               <h5 class="mt-5 text-theme-color-red">Chemistry Teachers</h5>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam vero expedita fugiat illo quasi doloremque, in unde omnis sint assumenda! Quaerat in, reprehenderit corporis voluptatum natus sequi reiciendis ullam. Quam eaque dolorum voluptates cupiditate explicabo.</p>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt culpa dicta quaerat qui recusandae possimus placeat quidem ipsam voluptates similique libero tempore, labore quasi delectus vero alias, consectetur blanditiis eum maxime sunt accusantium ipsa doloribus reiciendis. Ea quod reprehenderit deserunt. Veritatis omnis similique tempora delectus a consequuntur, quis.  Adipisicing elit. Nesciunt culpa dicta quaerat qui recusandae possimus placeat quidem ipsam voluptates similique libero tempore, labore quasi delectus vero alias.</p>
+              <form action="{{ route('instructors.rate') }}" method="POST">
+
+                {{ csrf_field() }}
+                <h3>Instructor Average Rating: {{$instructor->averageRating ? $instructor->averageRating :"N/A"}}</h3>
+              
+              
+
+
+                  <div class="rating">
+                    <h4>Give Instructor A Rate </h4>
+                    <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $instructor->userAverageRating }}" data-size="xs">
+
+                    <input type="hidden" name="id" required="" value="{{ $instructor->id }}">
+
+                    <span class="review-no">Rated: ({{$instructor->averageRating!=null  ? $instructor->ratings->count():"N/A"}})</span>
+
+                    <br/>
+
+                    <button class="btn btn-success">Submit Review</button>
+
+                </div>
+              </form>
               <ul class="styled-icons icon-dark icon-theme-color-red icon-sm mt-15 mb-0">
                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                <li><a href="#"><i class="fa fa-skype"></i></a></li>
