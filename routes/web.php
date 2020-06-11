@@ -98,7 +98,7 @@ Route::get('/timetable', function () { return view('timetable'); });
 Route::get('/users', function () { return view('auth/user'); })->name('users');
 
 //Dashboard
-Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard');
+Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard')->where("slug","instructor|parent|student");
 Route::get('/dashboard/{slug}/students',function(){return view('dashboard.dashboard_students');})->name('dashboard.students');
 Route::get('/dashboard/parent/create','DashboardController@create')->name('dashboard.create');
 Route::get('/dashboard/parent/progress','DashboardController@progress')->name('dashboard.progress');
@@ -119,24 +119,14 @@ Route::group(['middleware' => ['web']], function() {
 // Registration Routes...
     Route::get('/users/register/{slug}','Auth\RegisterController@showRegistrationForm')->name('register')->where("slug","instructor|parent|student");
     Route::post('/users/register', 'Auth\RegisterController@register')->name('post.register');
-
-// // Password reset process
-//     Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-//     Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
-//     Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-//     Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
- 
-// // Password confirmation process
-//     Route::get('/password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
-//     Route::post('/password/confirm', 'Auth\ConfirmPasswordController@confirm')->name('password.confirm');
-    
-    // Password Reset Routes...
+  
+// Password Reset Routes...
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
     Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
-    // Confirm Password 
+// Confirm Password 
     Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
     Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
 
@@ -162,7 +152,6 @@ Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('p
 Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
 
 Route::post('instructor-rate', 'InstructorController@rateInstructor')->middleware('auth')->name('instructors.rate');
-// Auth::routes();
 
 
 //contact-us

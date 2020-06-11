@@ -24,7 +24,7 @@
                 <button type="submit" class="btn btn--radius-2 btn--blue">{{ __('click here to request another') }}</button>.
             </form>
             <br>
-            Need any help?<a href="{{route('contact')}}">contact us</a>
+            Need any help?<a href="{{route('contact.create')}}">contact us</a>
         </div>
     </div>
 </div>

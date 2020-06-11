@@ -9,6 +9,7 @@ use App\Instructor;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Socialite;
 use Exception;
@@ -44,15 +45,6 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-    }
-
-
-    protected function redirectTo()
-    {
-        if (auth()->user()->hasRole('admin')) {
-            return '/admin';
-        }
-        return '/';
     }
 
     /**
@@ -104,7 +96,7 @@ class RegisterController extends Controller
             $base = "data:image/png;base64,";
 
         }
-      //  dd($data);
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -143,10 +135,18 @@ class RegisterController extends Controller
         return view('auth.register', compact('slug'));
     }
 
+
+    protected function registered(Request $request, $user)
+    {
+        $this->guard()->logout();
+        return redirect('/login')->with('status', 'We sent you an activation code. Check your email and click on the link to verify.');
+    }
+
     public function redirectToProvider($driver)
     {
-    return Socialite::driver($driver)->redirect();
+        return Socialite::driver($driver)->redirect();
     }
+
     public function handleProviderCallback($slug){
             $user = Socialite::driver(request()->provider)->stateless()->user();
             $existingUser = User::where('email', $user->email)->first();

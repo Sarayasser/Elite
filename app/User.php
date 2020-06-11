@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use QCod\Gamify\Gamify;
 
-//implements MustVerifyEmail
-class User extends Authenticatable 
+
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, Gamify;
     use CrudTrait; // <----- this

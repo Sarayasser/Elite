@@ -44,37 +44,22 @@ class LoginController extends Controller
     }
 
     protected function authenticated($request){
-        if($request->user()->hasRole('admin'))
-        {
-            backpack_auth()->login($request->user());
-            return redirect('/admin/dashboard');
-        }else if($request->user()->hasRole('instructor')){
-            return redirect("/");
-        }else if($request->user()->hasRole('student')){
-            return redirect("/calender");
-        }else
-            return redirect("/login");
-        // }
-        // return redirect('/');
-    //    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-    //             // Authentication passed...
-    //             if (!isset($request->user()->email_verified_at)) {
-    //                 Auth::logout();
-    //                 return redirect('/email/verify');
-    //             }else if($request->user()->hasRole('admin'))
-    //             {
-    //                 backpack_auth()->login($request->user());
-    //                 return redirect('/admin/dashboard');
-    //             }else if($request->user()->hasRole('instructor')){
-    //                 return redirect("/");
-    //             }else if($request->user()->hasRole('student')){
-    //                 return redirect("/calender");
-    //             }else
-    //                 return redirect("/login");
+      
+       if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                if (!isset($request->user()->email_verified_at)) {
+                    Auth::logout();
+                    return redirect()
+                        ->route('login')
+                        ->with('danger', 'You need to confirm your account. We have sent you an activation code, please check your email.');
 
+                }else if($request->user()->hasRole('admin'))
+                {
+                    backpack_auth()->login($request->user());
+                }
 
-    //             return redirect($redirectTo);
-    //         }
+                return redirect("/");
+        }
+
     }
     protected function credentials(Request $request){
         return ['email'=>$request[$this->username()],'password'=>$request->password,'is_banned'=> 0];

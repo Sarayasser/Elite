@@ -4,6 +4,16 @@
 <div class="card card-4">
     <div class="card-body">
         <h2 class="title">{{ __('Login Form') }}</h2>
+        @if (session('danger'))
+            <div class="alert alert-danger" role="alert" style="margin-bottom:20px;">
+                <strong style="font-size: 16px; color: #e35c5c;"> {{ session('danger') }}</strong>
+            </div>
+        @endif
+        @if (session('status'))
+            <div class="alert alert-success" role="alert" style="margin-bottom:20px;">
+                <strong style="font-size: 16px; color: green;"> {{ session('status') }}</strong>
+            </div>
+        @endif
             <form method="POST" action="{{ route('login') }}">
             @csrf
 
