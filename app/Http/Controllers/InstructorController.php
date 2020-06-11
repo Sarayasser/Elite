@@ -32,36 +32,33 @@ class InstructorController extends Controller
     }
 
     public function rateInstructor()
-
     {
-            
-    $instructor = Instructor::find(request()->id);
-    $rating = $instructor->ratings()->where('user_id', auth()->user()->id)->first();
-     if(is_null($rating) ){
-     
-        $rating = new \willvincent\Rateable\Rating;
-        $rating->rating =  request()->rate;
-        $rating->user_id = auth()->user()->id;
-        $instructor->ratings()->save($rating);
-        return redirect()->back();
-    }
+        $instructor = Instructor::find(request()->id);
+        $rating = $instructor->ratings()->where('user_id', auth()->user()->id)->first();
+        if(is_null($rating) ){
+            $rating = new \willvincent\Rateable\Rating;
+            $rating->rating =  request()->rate;
+            $rating->user_id = auth()->user()->id;
+            $instructor->ratings()->save($rating);
+            return redirect()->back();
+        }
 
-    if( $rating->rating<=5){
-    
-        $instructor->ratings()->where('user_id', auth()->user()->id)->first()->delete($rating);
-        $rating = new \willvincent\Rateable\Rating;
-        $rating->rating =  request()->rate;
-        $rating->user_id = auth()->user()->id;
-        $instructor->ratings()->save($rating);
-        return redirect()->back();
-    }
-    if( $rating->rating==null){
+        if( $rating->rating<=5){
         
-        return redirect()->back()->with("invalid rating");
-    }
-    else{
-        return redirect()->back()->with("You already made a review");
-    }
+            $instructor->ratings()->where('user_id', auth()->user()->id)->first()->delete($rating);
+            $rating = new \willvincent\Rateable\Rating;
+            $rating->rating =  request()->rate;
+            $rating->user_id = auth()->user()->id;
+            $instructor->ratings()->save($rating);
+            return redirect()->back();
+        }
+        if( $rating->rating==null){
+            
+            return redirect()->back()->with("invalid rating");
+        }
+        else{
+            return redirect()->back()->with("You already made a review");
+        }
     
 
     }

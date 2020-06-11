@@ -13,16 +13,18 @@ use App\Gamify\Badges;
 class UserController extends Controller
 {   
     public function show(){
-        $request=Request();
-        $id=$request->user;
-        $user=User::where('id',$id)->first();
+        // $request=Request();
+        // $id=$request->user;
+        // $user=User::where('id',$id)->first();
+        $user = Auth::user();
         $badges=$user->Badges;
         return view('users.profile',['user'=>$user, 'badges'=>$badges]);
     }
     public function edit(){
-        $request=Request();
-        $id=$request->user;
-        $user=User::where('id',$id)->first();
+        // $request=Request();
+        // $id=$request->user;
+        // $user=User::where('id',$id)->first();
+        $user = Auth::user();
         $files = Storage::disk('local')->get('countries.json');
         $countries=array();
         for($i=0;$i<250;$i++){
