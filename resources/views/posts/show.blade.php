@@ -9,7 +9,7 @@
         <div class="section-content">
           <div class="row"> 
             <div class="col-md-6"> 
-              <h2 class="text-theme-color-yellow font-36">Blog</h2>
+              <h2 class="text-theme-color-yellow font-36">{{$post->title}}</h2>
               <ol class="breadcrumb text-left mt-10 white">
                 <li><a href="/">Home</a></li>
                 <li><a href="{{route('courses.show', $course)}}">Course Details</a></li>
