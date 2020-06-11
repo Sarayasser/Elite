@@ -77,7 +77,7 @@ class LoginController extends Controller
     //         }
     }
     protected function credentials(Request $request){
-        return ['email'=>$request{$this->username()},'password'=>$request->password,'is_banned'=> 0];
+        return ['email'=>$request[$this->username()],'password'=>$request->password,'is_banned'=> 0];
     }
 
     public function redirectToProvider($driver)

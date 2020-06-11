@@ -120,14 +120,25 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('/users/register/{slug}','Auth\RegisterController@showRegistrationForm')->name('register')->where("slug","instructor|parent|student");
     Route::post('/users/register', 'Auth\RegisterController@register')->name('post.register');
 
-// Password reset process
-    Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-    Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
-// Password confirmation process
-    Route::get('/password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
-    Route::post('/password/confirm', 'Auth\ConfirmPasswordController@confirm')->name('password.confirm');
+// // Password reset process
+//     Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+//     Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
+//     Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+//     Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+ 
+// // Password confirmation process
+//     Route::get('/password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
+//     Route::post('/password/confirm', 'Auth\ConfirmPasswordController@confirm')->name('password.confirm');
+    
+    // Password Reset Routes...
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+    // Confirm Password 
+    Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
+    Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
 
 // Email verification
     Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
