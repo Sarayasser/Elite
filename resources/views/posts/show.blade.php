@@ -52,18 +52,18 @@
                   <form action="{{ route('posts.rate') }}" method="POST">
 
                     {{ csrf_field() }}
-                    <h3>Post Average Rating: {{$post->averageRating}}</h3>
+                    <h3>Post Average Rating: {{$post->averageRating ? $post->averageRating :"N/A"}}</h3>
                   
                   
 
 
                       <div class="rating">
                         <h4>Give This Post A Rate </h4>
-                        <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="0.5" value="{{ $post->userAverageRating }}" data-size="xs">
+                        <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->userAverageRating }}" data-size="xs">
 
                         <input type="hidden" name="id" required="" value="{{ $post->id }}">
 
-                        <span class="review-no">Rated: ({{$post->ratings->count()}})</span>
+                        <span class="review-no">Rated: ({{$post->averageRating!=null  ? $post->ratings->count():"N/A"}})</span>
 
                         <br/>
 

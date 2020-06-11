@@ -22,13 +22,14 @@ use App\Gamify\Points\PostCompleted;
 Route::get('/courses', function () {return view('courses_list',['courses'=>Course::all()]);})->name('courses.index');
 Route::get('/courses/{course}', function () {
     return view('course_details',[
-// <<<<<<< HEAD
-//         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);})->name('courses.show');
 
-
-// =======
         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);
 })->name('courses.show');
+
+Route::get('/about', function () { 
+    return view('about', [
+        'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);
+     })->name('about');
 
 Route::post('/courses/{course}/enroll', function(Course $course){
     $user = auth()->user();
@@ -94,7 +95,6 @@ Route::get('/teacher-details', function () { return view('teacher_details'); });
 Route::get('/faq', function () { return view('faq'); });
 // Route::get('/event-details', function () { return view('event_details'); });
 Route::get('/timetable', function () { return view('timetable'); });
-Route::get('/about', function () { return view('about'); })->name('about');
 Route::get('/users', function () { return view('auth/user'); })->name('users');
 
 //Dashboard
@@ -120,14 +120,25 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('/users/register/{slug}','Auth\RegisterController@showRegistrationForm')->name('register')->where("slug","instructor|parent|student");
     Route::post('/users/register', 'Auth\RegisterController@register')->name('post.register');
 
-// Password reset process
-    Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-    Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
-// Password confirmation process
-    Route::get('/password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
-    Route::post('/password/confirm', 'Auth\ConfirmPasswordController@confirm')->name('password.confirm');
+// // Password reset process
+//     Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+//     Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
+//     Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+//     Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+ 
+// // Password confirmation process
+//     Route::get('/password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
+//     Route::post('/password/confirm', 'Auth\ConfirmPasswordController@confirm')->name('password.confirm');
+    
+    // Password Reset Routes...
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+    // Confirm Password 
+    Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
+    Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
 
 // Email verification
     Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
@@ -149,6 +160,9 @@ Route::get('/home/{provider}', 'Auth\RegisterController@handleProviderCallback')
 //Rate
 Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');
 Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
+
+Route::post('instructor-rate', 'InstructorController@rateInstructor')->middleware('auth')->name('instructors.rate');
+// Auth::routes();
 
 
 //contact-us
