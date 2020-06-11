@@ -102,7 +102,7 @@ class User extends Authenticatable
      */
     public function courses()
     {
-        return $this->belongsToMany('App\Models\Course');
+        return $this->belongsToMany('App\Models\Course', 'course_student', 'student_id', 'course_id');
     }
 
 

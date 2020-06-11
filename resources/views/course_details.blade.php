@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @php
     if (auth()->user() && auth()->user()->hasRole('student')) {
-        $course->enrolled = $course->students->contains(auth()->user()->student);
+        $course->enrolled = $course->students->contains(auth()->user());
     }
 @endphp
 @section('content')
@@ -19,8 +19,14 @@
                     <li><a href="{{route('courses.index')}}">Courses </a></li>
                     <li class="active">Course details</li>
                 </ol>
-                @if(Auth::user() && !$course->enrolled)
-                    <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20 jquery-postback " href="{{route('courses.enroll', $course->id)}}">Enroll</a>
+                @if(Auth::user() && !$course->enrolled && $course->capacity > 0)
+                <form method="POST" action="{{route('courses.enroll', $course->id)}}">
+                  @csrf
+                  <button type="submit" class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20">Enroll</button>
+                </form>
+                @endif
+                @if($course->capacity <= 0)
+                  <p class="text-danger">This course is not available at the moment</p>
                 @endif
                 </div>
                 <div class="col-md-6 mt-70" style="float:right;">

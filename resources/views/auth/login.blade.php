@@ -42,11 +42,15 @@
                             </a>
                         @endif
                     </div>
-                    <div class="row row-space">
-                        <div class="col-3">
-                            <a href="{{ route('users') }}">{{ _("Register if you don't have an account") }}</a>
-                        </div>
+                    
+                </div>
+                <div class="row row-space" style="float:right; margin-top:15px;">
+                    <div class="col-2" >
+                        <a href="{{ route('password.reset') }}">{{ _('forgot_your_password') }}</a>
                     </div>
+                </div>
+                <div class="row row-space" style="margin-top:15px;">
+                    <a href="{{ route('users') }}">{{ _("Register if you don't have an account") }}</a>
                 </div>
             </form>
             <br>
