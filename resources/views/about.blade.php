@@ -66,7 +66,7 @@
             <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-sm-15">
               <div class="team-member maxwidth400">
                 <div class="team-thumb">
-                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/team2.jpg')}}" alt="">                     
+                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/Ahmed-Gaber.jpg')}}" alt="">                     
                 </a>
                 </div>
                 <div class="team-details bg-theme-color-yellow text-center pt-20 pb-5">
@@ -75,9 +75,9 @@
                     <p class="mb-0 text-white">Web Developer</p>
                   </div>
                   <ul class="styled-icons icon-dark icon-circled icon-theme-color-red pt-5">
-                    <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin text-white"></i></a></li>
-                    <li><a href="#"><i class="fa fa-github text-white"></i></a></li>
+                    <li><a href="https://www.facebook.com/ahmed.gaber.2013"><i class="fa fa-facebook text-white"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/ahmed-gaber-elgamal-eg/"><i class="fa fa-linkedin text-white"></i></a></li>
+                    <li><a href="https://github.com/ahmed-gaber-elgamal"><i class="fa fa-github text-white"></i></a></li>
                   </ul>
                 </div>
               </div>
@@ -162,137 +162,52 @@
         </div>
         <div class="row multi-row-clearfix">
           <div class="col-md-12">
-            <div class="owl-carousel-3col" data-nav="true">
+              <div class="owl-carousel-3col" data-nav="true">
+                  @foreach ($courses as $course)
+                  @php
+                      if (auth()->user() && auth()->user()->hasRole('student')) {
+                          $course->enrolled = $course->students->contains(auth()->user());
+                      }
+                  @endphp
               <div class="item">
-                <div class="campaign bg-white maxwidth500 mb-30">
+                  <div class="campaign bg-white maxwidth500 mb-30">
                   <div class="thumb">
-                    <img src="{{ asset('images/project/12.jpg') }}" alt="" class="img-fullwidth">
-                    <div class="campaign-overlay"></div>
+                      {{-- <img src="{{ asset('images/project/12.jpg')}}" alt="" class="img-fullwidth"> --}}
+                      <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
+                      <div class="campaign-overlay"></div>
                   </div>
                   <div class="course-details clearfix p-20 pt-15">
-                    <h4 class="price-tag">$250</h4>
-                    <h3 class="mt-0"><a class="text-theme-color-red" href="#">Learning Classes</a></h3>
-                    <ul class="review_text list-inline">
+                      <h4 class="price-tag">${{$course->price}}</h4>
+                      <h3 class="mt-0"><a class="text-theme-color-red" href="{{route('courses.show', $course->id)}}">{{$course->name}}</a></h3>
+                      <ul class="review_text list-inline">
                       <li>
-                        <div class="star-rating" title="Rated 5.00 out of 5"><span data-width="100%">5.00</span></div>
+                          <div class="star-rating" title="Rated {{$course->averageRating}} out of 5"><span data-width="{{$course->averageRating*20}}%">{{$course->averageRating}}</span></div>
                       </li>
-                    </ul>
-                    <p>Lorem ipsum dolor adipisicing elit. Prsent quossit sit amet consect adipisicin elit quosit</p>
-                    <div class="course-details-bottom mt-15">
-                      <ul class="list-inline">
-                       <li>Capacity<span>20 kids</span></li>
-                       <li>Duration<span>45 min</span></li>
-                       <li>Age<span>5y - 6y</span></li>
                       </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="campaign bg-white maxwidth500 mb-30">
-                  <div class="thumb">
-                    <img src="{{ asset('images/project/13.jpg') }}" alt="" class="img-fullwidth">
-                    <div class="campaign-overlay"></div>
-                  </div>
-                  <div class="course-details clearfix p-20 pt-15">
-                    <h4 class="price-tag">$250</h4>
-                    <h3 class="mt-0"><a class="text-theme-color-lemon" href="#">Multimedia Classes</a></h3>
-                    <ul class="review_text list-inline">
-                      <li>
-                        <div class="star-rating" title="Rated 4.50 out of 5"><span data-width="90%">4.50</span></div>
-                      </li>
-                    </ul>
-                    <p>Lorem ipsum dolor adipisicing elit. Prsent quossit sit amet consect adipisicin elit quosit</p>
-                    <div class="course-details-bottom mt-15">
+                  <p>{{ \Illuminate\Support\Str::limit($course->description, 100, '...') }}</p>
+                      <div class="course-details-bottom mt-15">
                       <ul class="list-inline">
-                       <li>Capacity<span>20 kids</span></li>
-                       <li>Duration<span>45 min</span></li>
-                       <li>Age<span>5y - 6y</span></li>
-                      </ul>
-                    </div>
+                          <li>Capacity<span>{{$course->capacity}}</span></li>
+                          <li>Duration<span>{{$course->duration}} mo</span></li>
+                          <li>Age<span>{{$course->age}}y - {{$course->age+1}}y</span></li>
+                      </ul>                            
+                      </div>
+                      @if(auth()->user())
+                          @if(!$course->enrolled && auth()->user()->hasRole('student'))
+                          <br>
+                          <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20 jquery-postback center-block" href="{{route('courses.enroll', $course->id)}}">Enroll</a>
+                          @endif
+                      @endif
                   </div>
-                </div>
+                  </div>
               </div>
-              <div class="item">
-                <div class="campaign bg-white maxwidth500 mb-30">
-                  <div class="thumb">
-                    <img src="{{ asset('images/project/14.jpg') }}" alt="" class="img-fullwidth">
-                    <div class="campaign-overlay"></div>
-                  </div>
-                  <div class="course-details clearfix p-20 pt-15">
-                    <h4 class="price-tag">$250</h4>
-                    <h3 class="mt-0"><a class="text-theme-color-sky" href="#">Language Classes</a></h3>
-                    <ul class="review_text list-inline">
-                      <li>
-                        <div class="star-rating" title="Rated 5.00 out of 5"><span data-width="100%">5.00</span></div>
-                      </li>
-                    </ul>
-                    <p>Lorem ipsum dolor adipisicing elit. Prsent quossit sit amet consect adipisicin elit quosit</p>
-                    <div class="course-details-bottom mt-15">
-                      <ul class="list-inline">
-                       <li>Capacity<span>20 kids</span></li>
-                       <li>Duration<span>45 min</span></li>
-                       <li>Age<span>5y - 6y</span></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+              @endforeach
+              
               </div>
-              <div class="item">
-                <div class="campaign bg-white maxwidth500 mb-30">
-                  <div class="thumb">
-                    <img src="{{ asset('images/project/15.jpg') }}" alt="" class="img-fullwidth">
-                    <div class="campaign-overlay"></div>
-                  </div>
-                  <div class="course-details clearfix p-20 pt-15">
-                    <h4 class="price-tag">$250</h4>
-                    <h3 class="mt-0"><a class="text-theme-color-green" href="#">Drawing Classes</a></h3>
-                    <ul class="review_text list-inline">
-                      <li>
-                        <div class="star-rating" title="Rated 4.50 out of 5"><span data-width="90%">4.50</span></div>
-                      </li>
-                    </ul>
-                    <p>Lorem ipsum dolor adipisicing elit. Prsent quossit sit amet consect adipisicin elit quosit</p>
-                    <div class="course-details-bottom mt-15">
-                      <ul class="list-inline">
-                       <li>Capacity<span>20 kids</span></li>
-                       <li>Duration<span>45 min</span></li>
-                       <li>Age<span>5y - 6y</span></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="campaign bg-white maxwidth500 mb-30">
-                  <div class="thumb">
-                    <img src="{{ asset('images/project/16.jpg') }}" alt="" class="img-fullwidth">
-                    <div class="campaign-overlay"></div>
-                  </div>
-                  <div class="course-details clearfix p-20 pt-15">
-                    <h4 class="price-tag">$250</h4>
-                    <h3 class="mt-0"><a class="text-theme-color-orange" href="#">Math Classes</a></h3>
-                    <ul class="review_text list-inline">
-                      <li>
-                        <div class="star-rating" title="Rated 5.00 out of 5"><span data-width="100%">5.00</span></div>
-                      </li>
-                    </ul>
-                    <p>Lorem ipsum dolor adipisicing elit. Prsent quossit sit amet consect adipisicin elit quosit</p>
-                    <div class="course-details-bottom mt-15">
-                      <ul class="list-inline">
-                       <li>Capacity<span>20 kids</span></li>
-                       <li>Duration<span>45 min</span></li>
-                       <li>Age<span>5y - 6y</span></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
+          </div>
       </div>
-    </section>
+  </section>
 
 
 @endsection

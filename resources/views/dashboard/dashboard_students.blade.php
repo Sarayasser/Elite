@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
-<section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:330px;" data-bg-img="{{ asset('images/bg/2548.jpg')}}">
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/2548.jpg')}}">
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row"> 
+            <div class="row mt-150"> 
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Students Enrolled</h2>
                 <ol class="breadcrumb text-left mt-10 white">

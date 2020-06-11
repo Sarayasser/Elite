@@ -26,9 +26,9 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         $user = User::find(request()->user);
-        // dd($user);        
+        // dd($user);
         return [
-        'name'=>['required','min:3',$user ? Rule::unique('users')->ignore($user->id) : 'unique:users'],
+        'name'=>['required','min:3'],
         'email'=>['required',$user ? Rule::unique('users')->ignore($user->id) : 'unique:users'],
         'password' => 'required|confirmed|min:6',
         ];

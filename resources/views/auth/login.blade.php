@@ -4,9 +4,19 @@
 <div class="card card-4">
     <div class="card-body">
         <h2 class="title">{{ __('Login Form') }}</h2>
+        @if (session('danger'))
+            <div class="alert alert-danger" role="alert" style="margin-bottom:20px;">
+                <strong style="font-size: 16px; color: #e35c5c;"> {{ session('danger') }}</strong>
+            </div>
+        @endif
+        @if (session('status'))
+            <div class="alert alert-success" role="alert" style="margin-bottom:20px;">
+                <strong style="font-size: 16px; color: green;"> {{ session('status') }}</strong>
+            </div>
+        @endif
             <form method="POST" action="{{ route('login') }}">
             @csrf
-                
+
                 <div class="input-group">
                     <label class="label">{{ __('E-Mail Address') }}</label>
                     <input id="email" type="email" class="input--style-4 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -15,7 +25,7 @@
                             <strong style="color:red;">{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>            
+                </div>
                 <div class="input-group">
                     <label class="label">{{ __('Password') }}</label>
                     <input id="password" type="password" class="input--style-4 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -25,7 +35,7 @@
                         </span>
                     @enderror
                 </div>
-                   
+
                 <div class="input-group">
                     <label class="radio-container m-r-45">{{ __('Remember Me') }}
                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -34,7 +44,7 @@
 
                 <div class="row row-space">
                     <div class="col-2">
-                        <button class="btn btn--radius-2 btn--blue" type="submit">{{ __('Login') }}</button>
+                        <button class="btn btn--radius-2 btn--blue" style="margin-bottom: 20px;" type="submit">{{ __('Login') }}</button>
                         <br>
                         @if (Route::has('password.request'))
                             <a  href="{{ route('password.request') }}">
@@ -43,12 +53,7 @@
                         @endif
                     </div>
                     
-                </div>
-                <div class="row row-space" style="float:right; margin-top:15px;">
-                    <div class="col-2" >
-                        <a href="{{ route('password.reset') }}">{{ _('forgot_your_password') }}</a>
-                    </div>
-                </div>
+                </div> 
                 <div class="row row-space" style="margin-top:15px;">
                     <a href="{{ route('users') }}">{{ _("Register if you don't have an account") }}</a>
                 </div>
@@ -58,10 +63,10 @@
             <br>
     <div class="row">
         <div class="col">
-        <a class="fa fa-google fa-2x" href="{{ route('login.provider', 'google') }}" style="margin-right:5px;color:#20B2AA;"></a>
+        <a class="fa fa-google fa-2x" href="{{ route('register.provider', 'google') }}" style="margin-right:5px;color:#20B2AA;"></a>
         </div>
         <div class="col">
-        <a class="fa fa-facebook-square fa-2x" href="{{ route('login.provider', 'facebook') }}" ></a>
+        <a class="fa fa-facebook-square fa-2x" href="{{ route('register.provider', 'facebook') }}" ></a>
         </div>
     </div>
     </div>
