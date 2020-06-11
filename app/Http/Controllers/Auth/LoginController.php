@@ -77,33 +77,7 @@ class LoginController extends Controller
     //         }
     }
     protected function credentials(Request $request){
-        return ['email'=>$request{$this->username()},'password'=>$request->password,'is_banned'=> 0];
-    }
-
-    public function redirectToProvider($driver)
-    {
-    return Socialite::driver($driver)->redirect();
-    }
-    public function handleProviderCallback(){
-            $user = Socialite::driver(request()->provider)->stateless()->user();
-            $existingUser = User::where('email', $user->email)->first();
-            // dd($user);
-            if($existingUser){
-                auth()->login($existingUser, true);
-            } else {
-                $newUser                  = new User;
-                $newUser->name            = $user->name;
-                $newUser->email           = $user->email;
-                $newUser->google_id       = $user->id;
-                $newUser->password        = '123456';
-                $newUser->address         = 'Alexandria';
-                $newUser->phone_number    = '123456789';
-                // $newUser->image           = $user->avatar;
-                $newUser->save();
-                auth()->login($newUser, true);
-            }
-        
-        return redirect()->to('/');
+        return ['email'=>$request[$this->username()],'password'=>$request->password,'is_banned'=> 0];
     }
 
 }
