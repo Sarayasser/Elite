@@ -22,6 +22,7 @@ use App\Gamify\Points\PostCompleted;
 Route::get('/courses', function () {return view('courses_list',['courses'=>Course::all()]);})->name('courses.index');
 Route::get('/courses/{course}', function () {
     return view('course_details',[
+
         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);
 })->name('courses.show');
 
@@ -33,8 +34,11 @@ Route::get('/about', function () {
 Route::post('/courses/{course}/enroll', function(Course $course){
     $user = auth()->user();
     if($user->hasRole('student'))
-        $user->courses()->attach($course);
-
+        if ($course->capacity > 0) {
+            $user->courses()->attach($course);
+            $course->capacity --;
+            $course->save();
+        }
     if(request()->ajax()) // This is check ajax request
         return response()->json(['enrolled' => 'enrolled']);
     else
@@ -47,7 +51,7 @@ Route::post('/courses/{course}/enroll', function(Course $course){
 Route::get('/courses/{course}/posts', 'PostController@index')->name('posts.index');
 Route::get('/courses/{course}/posts/create', 'PostController@create')->name('posts.create');
 Route::post('/courses/{course}/posts', 'PostController@store')->name('posts.store');
-Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts.show'); 
+Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts.show');
 Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
 Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('posts.update');
 Route::delete('/courses/{course}/posts/{post}', 'PostController@destroy')->name('posts.destroy');
@@ -116,11 +120,14 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('/users/register/{slug}','Auth\RegisterController@showRegistrationForm')->name('register')->where("slug","instructor|parent|student");
     Route::post('/users/register', 'Auth\RegisterController@register')->name('post.register');
 
-// Password Reset Routes...
-    Route::get('password/reset', ['as' => 'password.reset', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
-    Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
-    Route::get('password/reset/{token}', ['as' => 'password.reset.token', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
-    Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\ResetPasswordController@reset']);
+// Password reset process
+    Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+// Password confirmation process
+    Route::get('/password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
+    Route::post('/password/confirm', 'Auth\ConfirmPasswordController@confirm')->name('password.confirm');
 
 // Email verification
     Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
@@ -131,15 +138,21 @@ Route::group(['middleware' => ['web']], function() {
 
 //home page
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/redirect/{driver}', 'Auth\LoginController@redirectToProvider')->name('login.provider');
 Route::get('/home/{provider}', 'Auth\LoginController@handleProviderCallback')->name('login.access');
 
+Route::get('/redirect/{driver}', 'Auth\RegisterController@redirectToProvider')->name('register.provider');
+Route::get('/home/{provider}', 'Auth\RegisterController@handleProviderCallback')->name('register.access');
+
 // Route::get('/banned',function(){ return view('banned');});
 //Rate
-Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');    
+Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');
 Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
+
 Route::post('instructor-rate', 'InstructorController@rateInstructor')->middleware('auth')->name('instructors.rate');
 // Auth::routes();
+
 
 //contact-us
 Route::get('/contact', 'ContactController@create')->name('contact.create');

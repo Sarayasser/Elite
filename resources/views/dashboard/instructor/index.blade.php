@@ -5,7 +5,7 @@
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row mt-150"> 
+            <div class="row mt-150">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Courses</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -25,8 +25,8 @@
           <section>
       <div class="container">
         <div class="row">
+        <div class="col-md-4">
           @foreach ($courses as $course)
-          <div class="col-sm-6 col-md-4">
             <div class="item">
               <div class="campaign bg-white maxwidth500 mb-30">
                 <div class="thumb">
@@ -47,22 +47,21 @@
                      <li>Capacity<span>{{$course->capacity}}</span></li>
                      <li>Duration<span>{{$course->duration}} mo</span></li>
                      <li>Age<span>{{$course->age}}y - {{$course->age+1}}y</span></li>
-                     
+
 
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           @endforeach
-          
+          </div>
         </div>
       </div>
     </section>
 
           </div>
-          <div class="col-sm-12 col-md-4">
+          <div class="col-md-4">
             <div class="sidebar sidebar-left mt-sm-30">
               <div class="widget">
                 <h3 class="widget-title line-bottom">Instructor <span class="text-theme-color-red">Dashboard</span></h3>
@@ -79,7 +78,7 @@
           </div>
         </div>
       </div>
-      <div> 
+      <div>
           <img alt="" src="images/bg/f2.png" class="img-responsive img-fullwidth">
       </div>
     </section>

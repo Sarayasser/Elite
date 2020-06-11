@@ -6,7 +6,7 @@
         <h2 class="title">{{ __('Login Form') }}</h2>
             <form method="POST" action="{{ route('login') }}">
             @csrf
-                
+
                 <div class="input-group">
                     <label class="label">{{ __('E-Mail Address') }}</label>
                     <input id="email" type="email" class="input--style-4 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -15,7 +15,7 @@
                             <strong style="color:red;">{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>            
+                </div>
                 <div class="input-group">
                     <label class="label">{{ __('Password') }}</label>
                     <input id="password" type="password" class="input--style-4 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -25,7 +25,7 @@
                         </span>
                     @enderror
                 </div>
-                   
+
                 <div class="input-group">
                     <label class="radio-container m-r-45">{{ __('Remember Me') }}
                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -42,11 +42,15 @@
                             </a>
                         @endif
                     </div>
-                    <div class="row row-space">
-                        <div class="col-3">
-                            <a href="{{ route('users') }}">{{ _("Register if you don't have an account") }}</a>
-                        </div>
+                    
+                </div>
+                <div class="row row-space" style="float:right; margin-top:15px;">
+                    <div class="col-2" >
+                        <a href="{{ route('password.reset') }}">{{ _('forgot_your_password') }}</a>
                     </div>
+                </div>
+                <div class="row row-space" style="margin-top:15px;">
+                    <a href="{{ route('users') }}">{{ _("Register if you don't have an account") }}</a>
                 </div>
             </form>
             <br>
@@ -54,10 +58,10 @@
             <br>
     <div class="row">
         <div class="col">
-        <a class="fa fa-google fa-2x" href="{{ route('login.provider', 'google') }}" style="margin-right:5px;color:#20B2AA;"></a>
+        <a class="fa fa-google fa-2x" href="{{ route('register.provider', 'google') }}" style="margin-right:5px;color:#20B2AA;"></a>
         </div>
         <div class="col">
-        <a class="fa fa-facebook-square fa-2x" href="{{ route('login.provider', 'facebook') }}" ></a>
+        <a class="fa fa-facebook-square fa-2x" href="{{ route('register.provider', 'facebook') }}" ></a>
         </div>
     </div>
     </div>

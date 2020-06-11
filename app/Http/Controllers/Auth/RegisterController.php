@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Socialite;
+use Exception;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -59,7 +62,7 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {   
+    {
        // dd($data);
         $dt = new Carbon();
         $after = $dt->subYears(10)->format('d/m/Y');
@@ -69,7 +72,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone_number' => ['required', 'numeric',"regex:/(01)[0-9]{9}/"],
             'address' => ['required', 'string', 'max:255'],
-            'gender'=> ['required'], 
+            'gender'=> ['required'],
             'image' => ['image','mimes:jpeg,jpg,png'],
             'role' => ['required','numeric','between:0,2'],
             'age' => ['required_if:role,2','nullable','date','before_or_equal:'.$after],
@@ -82,7 +85,7 @@ class RegisterController extends Controller
             'cv.required_if' => "The cv is required",
             'cv.mimes' => "The cv must be a pdf file."
         );
-        
+
         return Validator::make($data,$rules,$messages);
     }
 
@@ -111,12 +114,12 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'image'  => $base.$image,
             'age' => date('Y-m-d H:i:s', strtotime($data['age'])),
-            
+
         ]);
         $role = $data['role'];
 
         if($role == 0){
-            
+
             $user->assignRole("instructor");
             Instructor::create([
                 "cv" => $data['cv'],
@@ -133,6 +136,51 @@ class RegisterController extends Controller
 
     public function showRegistrationForm($slug)
     {
+        // request()->session()->put('slug', $slug);
+        Session::put('slug', $slug);
+        // dd(Session::get('progress'));
+        Session::save();
         return view('auth.register', compact('slug'));
+    }
+
+    public function redirectToProvider($driver)
+    {
+    return Socialite::driver($driver)->redirect();
+    }
+    public function handleProviderCallback($slug){
+            $user = Socialite::driver(request()->provider)->stateless()->user();
+            $existingUser = User::where('email', $user->email)->first();
+            if($existingUser){
+                auth()->login($existingUser, true);
+            } else {
+                if (Session::get('slug')){
+                $newUser                  = new User;
+                $newUser->name            = $user->name;
+                $newUser->email           = $user->email;
+                $newUser->provider_id     = $user->id;
+                $newUser->password        = '123456';
+                $newUser->address         = 'Alexandria';
+                $newUser->phone_number    = '123456789';
+                $role=Session::get('slug');
+                // dd($role == 'instructor');
+                $newUser->save();
+                if($role == 'instructor'){
+                    $newUser->assignRole("instructor");
+                    Instructor::create([
+                    // "cv" => 'dhjshkjhsd',
+                    "user_id" => $newUser->id
+                    ]);
+                    }else if($role == 'parent'){
+                    $newUser->assignRole("parent");
+                    }else if($role == 'student'){
+                    $newUser->assignRole("student");
+                }
+                auth()->login($newUser, true);
+                }else{
+                    return redirect()->to('/users');
+                }
+            }
+
+        return redirect()->to('/');
     }
 }
