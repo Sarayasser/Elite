@@ -100,7 +100,6 @@
                         <h5 class="media-heading comment-heading">{{$comment->user->name}} says:</h5>
                         <div class="comment-date">{{\Carbon\Carbon::parse($comment->created_at)->format('d/m/yy')}}</div>
                         <p>{{$comment->body}}</p>
-                        <a class="replay-icon pull-right text-theme-color-sky" href="#"> <i class="fa fa-commenting-o text-theme-color-sky"></i> Replay</a>
                         <div class="clearfix"></div>
                         @foreach($comment->replies as $reply)
                         <div class="media comment-author nested-comment"> <a href="#" class="media-left pull-left flip pt-20"><img alt="" src="images/blog/comment3.jpg" class="img-thumbnail"></a>
@@ -108,10 +107,23 @@
                             <h5 class="media-heading comment-heading">{{$reply->user->name}} says:</h5>
                             <div class="comment-date">{{\Carbon\Carbon::parse($reply->created_at)->format('d/m/yy')}}</div>
                             <p>{{$reply->body}}</p>
-                            <a class="replay-icon pull-right text-theme-color-sky" href="#"> <i class="fa fa-commenting-o text-theme-color-sky"></i> Replay</a>
                           </div>
                         </div>
                         @endforeach
+                        <form method="POST" action="{{route('comments.store', $post->id)}}">
+                          @csrf
+                          <div class="col-sm-6">
+                            <div class="form-group input-group-sm">
+                              <input type="text" name="body" placeholder="Reply .." class="form-control">
+                              <input type="hidden" name="commentable_type" value="App\Comment">
+                              <input type="hidden" name="commentable_id" value="{{$comment->id}}">
+                              <input type="hidden" name="user_id" value="{{auth()->id()}}">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <button type="submit" class="replay-icon text-theme-color-sky"> <i class="fa fa-commenting-o text-theme-color-sky"></i> Replay</button>
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </li>
