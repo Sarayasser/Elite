@@ -34,11 +34,11 @@
               <li class="{{ Request::is('/') ? 'active' : '' }}" ><a href="{{route('home')}}">Home</a></li> 
               <li class="{{ Request::is('courses') ? 'active' : '' }}" ><a href="{{route('courses.index')}}">Courses</a></li>
               <li class="{{ Request::is('instructors') ? 'active' : '' }}" ><a href="{{route('instructors.index')}}">Instructors</a></li>
-              <li><a href="{{route('events.index')}}">Events</a></li>
+              <li class="{{ Request::is('event') ? 'active' : '' }}"><a href="{{route('events.index')}}">Events</a></li>
               <li><a href="#">Schedule</a></li>        
-              <li class="{{ Request::is('/contact-us') ? 'active' : '' }}" ><a href="{{route('contact.create')}}">Contact us</a></li> 
-              <li class="{{ Request::is('/about') ? 'active' : '' }}" ><a href="{{route('about')}}">About</a></li> 
-              <li><a href="#">FAQ</a></li>
+              <li class="{{ Request::is('contact') ? 'active' : '' }}" ><a href="{{route('contact.create')}}">Contact us</a></li> 
+              <li class="{{ Request::is('about') ? 'active' : '' }}" ><a href="{{route('about')}}">About</a></li> 
+              <li class="{{ Request::is('faq') ? 'active' : '' }}"><a href="{{ route('faq') }}">FAQ</a></li>
               @if (Auth::user())
               <li><a href="{{route('user.show',['user'=>Auth::user()->id])}}" class="col ml-20"><i class="fa fa-cog fa-spin" style="width:150%;"></i></a></li>
               @endif 
