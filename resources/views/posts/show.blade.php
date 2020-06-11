@@ -20,7 +20,6 @@
         </div>
       </div>
     </section>
-    
     <!-- Section: Blog -->
     <section>
       <div class="container pt-70 pb-70">
@@ -81,91 +80,42 @@
                     </form>
                     @endif
                   @endif
-                  <div class="mt-30 mb-0">
-                    <h5 class="pull-left mt-10 mr-20 text-theme-color-sky">Share:</h5>
-                    <ul class="styled-icons icon-circled m-0">
-                      <li><a href="#" data-bg-color="#3A5795"><i class="fa fa-facebook text-white"></i></a></li>
-                      <li><a href="#" data-bg-color="#55ACEE"><i class="fa fa-twitter text-white"></i></a></li>
-                      <li><a href="#" data-bg-color="#A11312"><i class="fa fa-google-plus text-white"></i></a></li>
-                    </ul>
-                  </div>
                 </div>
               </article>
-              <div class="tagline p-0 pt-20 mt-5">
-                <div class="row">
-                  <div class="col-md-8">
-                    <div class="tags">
-                      <p class="mb-0"><i class="fa fa-tags text-theme-color-sky"></i> <span>Tags:</span> Law, Juggement, lawyer, Cases</p>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="share text-right">
-                      <p><i class="fa fa-share-alt text-theme-color-sky"></i> Share</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
               <div class="author-details media-post">
                 <a href="#" class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="images/blog/author.jpg"></a>
                 <div class="post-right">
-                  <h5 class="post-title mt-0 mb-0"><a href="#" class="font-18">John Doe</a></h5>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                  <ul class="styled-icons square-sm m-0">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                  </ul>
+                  <h5 class="post-title mt-0 mb-0"><a href="#" class="font-18">{{$post->user->name}}</a></h5>
                 </div>
                 <div class="clearfix"></div>
               </div>
               <div class="comments-area">
                 <h5 class="comments-title">Comments</h5>
                 <ul class="comment-list">
-                  <li>
-                    <div class="media comment-author"> <a class="media-left pull-left flip" href="#"><img class="img-thumbnail" src="images/blog/comment1.jpg" alt=""></a>
-                      <div class="media-body">
-                        <h5 class="media-heading comment-heading">John Doe says:</h5>
-                        <div class="comment-date">23/06/2014</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
-                        <a class="replay-icon pull-right text-theme-color-sky" href="#"> <i class="fa fa-commenting-o text-theme-color-sky"></i> Replay</a> </div>
-                    </div>
-                  </li>
+                @foreach($comments as $comment)
                   <li>
                     <div class="media comment-author"> <a class="media-left pull-left flip" href="#"><img class="img-thumbnail" src="images/blog/comment2.jpg" alt=""></a>
                       <div class="media-body">
-                        <h5 class="media-heading comment-heading">John Doe says:</h5>
-                        <div class="comment-date">23/06/2014</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
+                        <h5 class="media-heading comment-heading">{{$comment->user->name}} says:</h5>
+                        <div class="comment-date">{{\Carbon\Carbon::parse($comment->created_at)->format('d/m/yy')}}</div>
+                        <p>{{$comment->body}}</p>
                         <a class="replay-icon pull-right text-theme-color-sky" href="#"> <i class="fa fa-commenting-o text-theme-color-sky"></i> Replay</a>
                         <div class="clearfix"></div>
+                        @foreach($comment->replies as $reply)
                         <div class="media comment-author nested-comment"> <a href="#" class="media-left pull-left flip pt-20"><img alt="" src="images/blog/comment3.jpg" class="img-thumbnail"></a>
                           <div class="media-body p-20 bg-lighter">
-                            <h5 class="media-heading comment-heading">John Doe says:</h5>
-                            <div class="comment-date">23/06/2014</div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
+                            <h5 class="media-heading comment-heading">{{$reply->user->name}} says:</h5>
+                            <div class="comment-date">{{\Carbon\Carbon::parse($reply->created_at)->format('d/m/yy')}}</div>
+                            <p>{{$reply->body}}</p>
                             <a class="replay-icon pull-right text-theme-color-sky" href="#"> <i class="fa fa-commenting-o text-theme-color-sky"></i> Replay</a>
                           </div>
                         </div>
-                        <div class="media comment-author nested-comment"> <a href="#" class="media-left pull-left flip pt-20"><img alt="" src="images/blog/comment1.jpg" class="img-thumbnail"></a>
-                          <div class="media-body p-20 bg-lighter">
-                            <h5 class="media-heading comment-heading">John Doe says:</h5>
-                            <div class="comment-date">23/06/2014</div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
-                            <a class="replay-icon pull-right text-theme-color-sky" href="#"> <i class="fa fa-commenting-o text-theme-color-sky"></i> Replay</a>
-                          </div>
-                        </div>
+                        @endforeach
                       </div>
                     </div>
                   </li>
-                  <li>
-                    <div class="media comment-author"> <a class="media-left pull-left flip" href="#"><img class="img-thumbnail" src="images/blog/comment2.jpg" alt=""></a>
-                      <div class="media-body">
-                        <h5 class="media-heading comment-heading">John Doe says:</h5>
-                        <div class="comment-date">23/06/2014</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
-                        <a class="replay-icon pull-right text-theme-color-sky" href="#"> <i class="fa fa-commenting-o text-theme-color-sky"></i> Replay</a> </div>
-                    </div>
-                  </li>
+                  @endforeach
                 </ul>
               </div>
               <div class="comment-box">

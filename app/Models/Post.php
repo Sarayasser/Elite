@@ -27,6 +27,7 @@ class Post extends Model
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $with = 'user';
 
     /*
     |--------------------------------------------------------------------------
