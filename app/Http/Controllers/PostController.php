@@ -145,6 +145,10 @@ class PostController extends Controller
         $post->ratings()->save($rating);
         return redirect()->back();
     }
+    if( $rating->rating==null){
+        
+        return redirect()->back()->with("invalid rating");
+    }
     else{
         return redirect()->back()->with("You already made a review");
     }

@@ -22,13 +22,13 @@ use App\Gamify\Points\PostCompleted;
 Route::get('/courses', function () {return view('courses_list',['courses'=>Course::all()]);})->name('courses.index');
 Route::get('/courses/{course}', function () {
     return view('course_details',[
-// <<<<<<< HEAD
-//         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);})->name('courses.show');
-        
-
-// =======
         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);
 })->name('courses.show');
+
+Route::get('/about', function () { 
+    return view('about', [
+        'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);
+     })->name('about');
 
 Route::post('/courses/{course}/enroll', function(Course $course){
     $user = auth()->user();
@@ -91,7 +91,6 @@ Route::get('/teacher-details', function () { return view('teacher_details'); });
 Route::get('/faq', function () { return view('faq'); });
 // Route::get('/event-details', function () { return view('event_details'); });
 Route::get('/timetable', function () { return view('timetable'); });
-Route::get('/about', function () { return view('about'); })->name('about');
 Route::get('/users', function () { return view('auth/user'); })->name('users');
 
 //Dashboard
@@ -139,7 +138,7 @@ Route::get('/home/{provider}', 'Auth\LoginController@handleProviderCallback')->n
 //Rate
 Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');    
 Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
-
+Route::post('instructor-rate', 'InstructorController@rateInstructor')->middleware('auth')->name('instructors.rate');
 // Auth::routes();
 
 //contact-us
