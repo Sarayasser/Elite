@@ -8,8 +8,9 @@ use Redirect,Response;
 use App\Http\Controllers\HomeController;
 use App\Models\Course;
 use App\Instructor;
+use App\Notification;
 use Illuminate\Support\Facades\Auth;
-
+use MacsiDigital\Zoom\Facades\Zoom; 
 
 class ScheduleController extends Controller
 {
@@ -27,13 +28,24 @@ class ScheduleController extends Controller
          $request=Request();
         //  dd($request->course_id);
         $instructor=Instructor::where('user_id',Auth::user()->id)->first();
+
+        $zoom_user=Zoom::user()->find('yakan44444@gmail.com');
+        $course=Course::find($request->course_id);
+        $topic=$course->name;
+        $start_time=request()->start_date."T".request()->time.":00Z";
+        // "start_time" => "2020-05-09T14:00:00+00:00"
+        // "2020-12-31" "12:59"
+        // "start_time" => "2020-06-11T18:00:00Z"
+
+        $meeting=$zoom_user->meetings()->create(['topic'=>$topic, "start_time" => $start_time]);
+        
          Schedule::create([
             'start_date'=> $request->start_date,
             'end_date'=>$request->end_date,
             'time'=>$request->time,
             'course_id'=>$request->course_id,
             'instructor_id'=>$instructor->id,
-            'link'=>$request->link
+            'link'=>$meeting->join_url
          ])->save();
 
          Notification::create([
@@ -57,4 +69,20 @@ class ScheduleController extends Controller
         Schedule::where('id',$id)->delete();
         return redirect()->route('dashboard.schedule','instructor');
     }
+
+    // public function zoom()
+    // {
+    //     // $user = Auth::user();
+    //     // $children = $user->students;
+        
+    //     $zoom_user=Zoom::user()->find('yakan44444@gmail.com');
+    //     $topic='test3';
+    //     $start_date=request()
+    //     $meeting=$zoom_user->meetings()->create(['topic'=>$topic, "start_time" => $start_date]);
+    //     // dd()$meeting->join_url
+    //     $urls=$zoom_user->find('join_url');
+    //     // $url=$meeting->join_url;
+    //     // return redirect()->back();
+    //     return view('zoom', ['urls' => $urls]);
+    // }
 }
