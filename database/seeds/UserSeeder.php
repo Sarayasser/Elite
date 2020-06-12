@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        $user = User::create([
             'name' => 'Admin', 
             'email' => 'admin@example.com', 
             'password' => bcrypt('password'), 
@@ -22,6 +22,9 @@ class UserSeeder extends Seeder
             'address' => 'Alexandria',
             'phone_number' => '012686454686',
             'gender' => 0
-            ])->assignRole('admin');
+            ]);
+         
+        $user->assignRole('admin');
+        $user->markEmailAsVerified();
     }
 }
