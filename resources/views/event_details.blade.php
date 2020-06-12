@@ -34,6 +34,7 @@
             </div>
             @else
             <img class="img-fullwidth img-thumbnail" alt="" src="{{ asset('images/bg/32818.jpg')}}">
+            @endif
           </div>
           <div class="col-md mt-60" style="float:right;">
             <ul>

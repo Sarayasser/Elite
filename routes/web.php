@@ -84,12 +84,12 @@ Route::group(['middleware' => ['auth','verified','checkban']], function() {
 
     //Dashboard
     Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard')->where("slug","instructor|parent|student");
-    Route::get('/dashboard/{slug}/students',function(){return view('dashboard.dashboard_students');})->name('dashboard.students');
+    Route::get('/dashboard/{slug}/students','DashboardController@students_enrolled')->name('dashboard.students');
     Route::get('/dashboard/parent/create','DashboardController@create')->name('dashboard.create')->middleware('role:parent');
     Route::get('/dashboard/{slug}/progress','DashboardController@progress')->name('dashboard.progress')->middleware('role:parent|student');
     Route::post('/dashboard/parent', 'DashboardController@store')->name('dashboard.store')->middleware('role:parent');
     Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboard.login')->middleware('role:parent');
-    Route::get('/dashboard/instructor/events','DashboardController@instructor_events')->name('dashboard.events')->middleware('role:instructor');
+    Route::get('/dashboard/{slug}/events','DashboardController@instructor_events')->name('dashboard.events')->middleware('role:instructor');
 
 
     //Profile
