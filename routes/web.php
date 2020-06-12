@@ -104,6 +104,7 @@ Route::group(['middleware' => ['auth','verified','checkban']], function() {
 
     // comment
     Route::post('/posts/{post}/comments', 'CommentController@store')->name('comments.store');
+    Route::delete('/posts/{post}/comments/{comment}', 'CommentController@destroy')->name('comments.destroy');
 
     Route::post('/courses/{course}/posts/{post}', function($course_id, Post $post){
         auth()->user()->readPosts()->attach($post->id);
