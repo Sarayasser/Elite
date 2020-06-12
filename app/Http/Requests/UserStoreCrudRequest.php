@@ -19,7 +19,8 @@ class UserStoreCrudRequest extends storeRequest
             'image'    => 'nullable |image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'address'  => 'required',
             'gender'   => 'required',
-            'phone_number'=>'required'
+            'phone_number'=>'required',
+            'roles'    => 'required'
         ];
     }
 }
