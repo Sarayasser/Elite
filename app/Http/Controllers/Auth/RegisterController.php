@@ -67,7 +67,7 @@ class RegisterController extends Controller
             'gender'=> ['required'],
             'image' => ['image','mimes:jpeg,jpg,png'],
             'role' => ['required','numeric','between:0,2'],
-            'age' => ['required_if:role,2','nullable','date','before_or_equal:'.$after],
+            'age' => ['required_if:role,2','nullable','date_format:"d/m/Y"','before_or_equal:'.$after],
             'cv' => ['required_if:role,0','nullable','mimes:pdf'],
         );
 

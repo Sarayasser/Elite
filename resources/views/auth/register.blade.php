@@ -4,7 +4,7 @@
 <div class="card card-4">
     <div class="card-body">
         <h2 class="title">{{ucfirst($slug)}} Registration Form</h2>
-        <form method="POST" action="{{ route('post.register') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('post.register') }}" enctype="multipart/form-data" autocomplete=false>
             @csrf
             <div class="row row-space">
                 <div class="col-2">
@@ -53,18 +53,18 @@
             <div class="row row-space">
                 <div class="col-2">
                     <div class="input-group">
-                        <label class="label">Birthdate</label>
+                        <label class="label">{{ __('Image') }}</label>
                         <div class="input-group-icon">
-                            <input class="input--style-4 js-datepicker" id="datepicker" type="text" name="age" value="{{ old('age') }}">
-                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                            @if ($errors->has('age'))
+                            <input type="file" name="image" class="{{ $errors->has('image') ? ' is-invalid' : '' }}" >
+                            @if ($errors->has('image'))
                                     <span class="invalid-feedback">
-                                        <strong style="color:red;">{{ $errors->first('age') }}</strong>
+                                        <strong style="color:red;">{{ $errors->first('image') }}</strong>
                                     </span>
                             @endif
                         </div>
                     </div>
                 </div>
+               
                 @if($slug === "instructor")
                 <div class="col-2">
                     <div class="input-group">
@@ -84,18 +84,24 @@
             <div class="row row-space">
                 <div class="col-2">
                     <div class="input-group">
-                        <label class="label">{{ __('Image') }}</label>
+                        <label class="label">Birthdate</label>
+                        {{-- <div class="input-group date" data-provide="datepicker">
+                            <input type="text" class="form-control">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div> --}}
                         <div class="input-group-icon">
-                            <input type="file" name="image" class="{{ $errors->has('image') ? ' is-invalid' : '' }}" >
-                            @if ($errors->has('image'))
+                            <input class="input--style-4 js-datepicker" id="datepicker" type="text" name="age" value="{{ old('age') }}">
+                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                            @if ($errors->has('age'))
                                     <span class="invalid-feedback">
-                                        <strong style="color:red;">{{ $errors->first('image') }}</strong>
+                                        <strong style="color:red;">{{ $errors->first('age') }}</strong>
                                     </span>
                             @endif
                         </div>
                     </div>
                 </div>
-
                 <div class="col-2">
                     <div class="input-group">
                         <label class="label">Gender</label>
@@ -119,6 +125,16 @@
                 </div>
             </div>
             <div class="row row-space">
+                <label class="label">{{ __('Address') }}</label>
+                <input type="search" id="address-input" class="input--style-4{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}"/>
+                @if ($errors->has('address'))
+                    <span class="invalid-feedback">
+                        <strong style="color:red;">{{ $errors->first('address') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <br>
+            <div class="row row-space">
                 <div class="col-2">
                     <div class="input-group">
                         <label class="label">{{ __('Phone Number') }}</label>
@@ -130,17 +146,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-2">
-                    <div class="input-group">
-                        <label class="label">{{ __('Address') }}</label>
-                        <input type="text" class="input--style-4{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" id="address" value="{{ old('address') }}">
-                        @if ($errors->has('address'))
-                            <span class="invalid-feedback">
-                                <strong style="color:red;">{{ $errors->first('address') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
+               
                 @if($slug === "instructor")
                     <input type="hidden" id="role" name="role" value="0">
                 @elseif($slug === "parent")
@@ -155,6 +161,7 @@
                 @endif
 
             </div>
+            
             <div class="row row-space">
                 <div class="col-2">
                     <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
