@@ -19,7 +19,6 @@ use App\Notification;
 |
 */
 
-
 Route::group(['middleware' => ['auth','verified', 'checkban']], function() {
 
 //Dashboard
@@ -153,6 +152,7 @@ Route::group(['middleware' => ['auth','role:admin|instructor','checkban']], func
     Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
     Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('posts.update');
     Route::delete('/courses/{course}/posts/{post}', 'PostController@destroy')->name('posts.destroy');
+
 
     //ckeditor
     Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
