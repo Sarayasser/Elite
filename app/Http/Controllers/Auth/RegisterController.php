@@ -72,8 +72,9 @@ class RegisterController extends Controller
         );
 
         $messages = array(
-            'age.required_if' => "age is required",
+            'age.required_if' => "the birthdate is required",
             'age.before_or_equal' => "your age must be greater than 10",
+            'age.date_format' => "the birthdate format is not correct",
             'cv.required_if' => "The cv is required",
             'cv.mimes' => "The cv must be a pdf file."
         );
