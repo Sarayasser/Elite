@@ -106,12 +106,12 @@ Route::group(['middleware' => ['auth','verified']], function() {
     //Dashboard
     Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard')->where("slug","instructor|parent|student");
     Route::get('/dashboard/{slug}/students',function(){return view('dashboard.dashboard_students');})->name('dashboard.students');
-    Route::get('/dashboard/parent/create','DashboardController@create')->name('dashboard.create');
-    Route::get('/dashboard/parent/progress','DashboardController@progress')->name('dashboard.progress');
-    Route::post('/dashboard/parent', 'DashboardController@store')->name('dashboard.store');
-    Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboard.login');
-    Route::get('/dashboard/instructor/events','DashboardController@instructor_events')->name('dashboard.events');
-    Route::get('/dashboard/student', function () { return view('dashboard.student'); })->name('dashboard.student');
+    Route::get('/dashboard/parent/create','DashboardController@create')->name('dashboard.create')->middleware('role:parent');
+    Route::get('/dashboard/{slug}/progress','DashboardController@progress')->name('dashboard.progress')->middleware('role:parent|student');
+    Route::post('/dashboard/parent', 'DashboardController@store')->name('dashboard.store')->middleware('role:parent');
+    Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboard.login')->middleware('role:parent');
+    Route::get('/dashboard/instructor/events','DashboardController@instructor_events')->name('dashboard.events')->middleware('role:instructor');
+
 
     //Profile
     Route::get('/profile/{user}','UserController@show')->name('user.show');
