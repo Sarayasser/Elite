@@ -98,18 +98,15 @@
                     <div class="media comment-author"> <a class="media-left pull-left flip"><img class="img-thumbnail" src="{{asset($comment->user->image)}}" width="50px" alt=""></a>
                       <div class="media-body">
                         <h5 class="media-heading comment-heading">{{$comment->user->name}} says:</h5>
+                        @if(Auth::user() && Auth::id() == $comment->user->id)
+                        <form method="POST" action="{{route('comments.destroy', ['post' => $post->id, 'comment' => $comment->id])}}">
+                          @csrf
+                          @method('DELETE')
+                          <button class="pull-right" type="submit" style="border: none; background-color: #fff;"><i class="fa fa-trash text-theme-color-red"></i></button>
+                        </form>
+                        @endif
                         <div class="comment-date">{{\Carbon\Carbon::parse($comment->created_at)->format('d/m/yy')}}</div>
                         <p>{{$comment->body}}</p>
-                        <div class="clearfix"></div>
-                        @foreach($comment->replies as $reply)
-                        <div class="media comment-author nested-comment"> <a href="#" class="media-left pull-left flip pt-20"><img class="img-thumbnail" src="{{asset($reply->user->image)}}" width="50px" alt=""></a>
-                          <div class="media-body p-20 bg-lighter">
-                            <h5 class="media-heading comment-heading">{{$reply->user->name}} says:</h5>
-                            <div class="comment-date">{{\Carbon\Carbon::parse($reply->created_at)->format('d/m/yy')}}</div>
-                            <p>{{$reply->body}}</p>
-                          </div>
-                        </div>
-                        @endforeach
                         <form method="POST" action="{{route('comments.store', $post->id)}}">
                           @csrf
                           <div class="col-sm-6">
@@ -121,9 +118,27 @@
                             </div>
                           </div>
                           <div class="form-group">
-                            <button type="submit" class="replay-icon text-theme-color-sky"> <i class="fa fa-commenting-o text-theme-color-sky"></i> Replay</button>
+                            <button type="submit" class="replay-icon text-theme-color-sky" style="border: none; background-color: #fff;"> <i class="fa fa-commenting-o text-theme-color-sky"></i> Replay</button>
                           </div>
                         </form>
+                        <div class="clearfix"></div>                        
+                        @foreach($comment->replies as $reply)
+                        <div class="media comment-author nested-comment"> <a href="#" class="media-left pull-left flip pt-20"><img class="img-thumbnail" src="{{asset($reply->user->image)}}" width="50px" alt=""></a>
+                          <div class="media-body p-20 bg-lighter">
+                            <h5 class="media-heading comment-heading">{{$reply->user->name}} says:</h5>
+                            @if(auth()->user() && auth()->id() == $reply->user->id)
+                            <form method="POST" action="{{route('comments.destroy', ['post' => $post->id, 'comment' => $reply->id])}}">
+                              @csrf
+                              @method('DELETE')
+                              <button class="pull-right" type="submit" style="border: none; background-color: #f7f7f7;"><i class="fa fa-trash text-theme-color-red"></i></button>
+                            </form>
+                            @endif
+                            <div class="comment-date">{{\Carbon\Carbon::parse($reply->created_at)->format('d/m/yy')}}</div>
+                            <p>{{$reply->body}}</p>
+                          </div>
+                        </div>
+                        @endforeach
+                        <br>
                       </div>
                     </div>
                   </li>
@@ -131,6 +146,7 @@
                 </ul>
               </div>
               @endif
+              @if(auth()->user())
               <div class="comment-box">
                 <div class="row">
                   <div class="col-sm-12">
@@ -164,6 +180,7 @@
                   </div>
                 </div>
               </div>
+              @endif
             </div>
           </div>
         </div>
