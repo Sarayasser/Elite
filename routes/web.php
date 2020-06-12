@@ -65,9 +65,10 @@ Route::group(['middleware' => ['web']], function() {
 // Login Routes...
     Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
     Route::post('login', ['as' => 'login.post', 'uses' => 'Auth\LoginController@login']);
+    Route::get('logout', 'Auth\LoginController@logout');
     Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
-// Registration Routes...
+ // Registration Routes...
     Route::get('/users/register/{slug}','Auth\RegisterController@showRegistrationForm')->name('register')->where("slug","instructor|parent|student");
     Route::post('/users/register', 'Auth\RegisterController@register')->name('post.register');
   
