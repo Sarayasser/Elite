@@ -17,16 +17,30 @@ use App\Gamify\Points\PostCompleted;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::group(['middleware' => ['auth', 'checkban']], function() {
 // Courses
 Route::get('/courses','CourseController@index')->name('courses.index');
 Route::get('/courses/{course}','CourseController@show')->name('courses.show');
 
-Route::get('/about', function () { 
+Route::get('/about', function () {
     return view('about', [
         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);
      })->name('about');
 
+Route::post('/courses/{course}/enroll', function(Course $course){
+    $user = auth()->user();
+    if($user->hasRole('student'))
+        if ($course->capacity > 0) {
+            $user->courses()->attach($course);
+            $course->capacity --;
+            $course->save();
+        }
+    if(request()->ajax()) // This is check ajax request
+        return response()->json(['enrolled' => 'enrolled']);
+    else
+        return redirect()->route('courses.show', $course->id);
+
+})->name('courses.enroll');
 
 
 // Posts
@@ -55,9 +69,28 @@ Route::get('/courses-posts', function () { return view('courses_posts'); });
 Route::get('/faq', function () { return view('faq'); })->name('faq');
 Route::get('/timetable', function () { return view('timetable'); });
 
-//home page
 Route::get('/', 'HomeController@index')->name('home');
+//Dashboard
 
+Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard');
+Route::get('/dashboard/{slug}/students','DashboardController@students_enrolled')->name('dashboard.students');
+Route::get('/dashboard/parent/create','DashboardController@create')->name('dashboard.create');
+Route::get('/dashboard/parent/progress','DashboardController@progress')->name('dashboard.progress');
+Route::post('/dashboard/parent', 'DashboardController@store')->name('dashboard.store');
+Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboard.login');
+Route::get('/dashboard/{slug}/events','DashboardController@instructor_events')->name('dashboard.events');
+Route::get('/dashboard/student', function () { return view('dashboard.student'); })->name('dashboard.student');
+
+Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');
+Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
+
+// Auth::routes();
+
+
+//contact-us
+Route::get('/contact', 'ContactController@create')->name('contact.create');
+Route::post('/contact', 'ContactController@store')->name('contact.store');
+});
 
 // Auth::routes();
 Route::group(['middleware' => ['web']], function() {
@@ -71,14 +104,14 @@ Route::group(['middleware' => ['web']], function() {
  // Registration Routes...
     Route::get('/users/register/{slug}','Auth\RegisterController@showRegistrationForm')->name('register')->where("slug","instructor|parent|student");
     Route::post('/users/register', 'Auth\RegisterController@register')->name('post.register');
-  
+
 // Password Reset Routes...
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
     Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
-// Confirm Password 
+// Confirm Password
     Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
     Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
 
@@ -101,8 +134,8 @@ Route::group(['middleware' => ['web']], function() {
 
 
 
-Route::group(['middleware' => ['auth','verified']], function() {
-    
+Route::group(['middleware' => ['auth','verified','checkban']], function() {
+
     //Dashboard
     Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard')->where("slug","instructor|parent|student");
     Route::get('/dashboard/{slug}/students',function(){return view('dashboard.dashboard_students');})->name('dashboard.students');
@@ -118,19 +151,19 @@ Route::group(['middleware' => ['auth','verified']], function() {
     Route::get('/profile/{user}/edit','UserController@edit')->name('user.edit');
     Route::put('/profile/{user}','UserController@update')->name('user.update');
 
-    //instructor rate 
+    //instructor rate
     Route::post('instructor-rate', 'InstructorController@rateInstructor')->name('instructors.rate')->middleware('role:parent|student|admin');
 
-    //student enrollment 
+    //student enrollment
     Route::post('/courses/{course}/enroll', 'CourseController@enroll')->name('courses.enroll')->middleware('role:student');
-    
+
     // comment
     Route::post('/posts/{post}/comments', 'CommentController@store')->name('comments.store');
 });
 
 
-Route::group(['middleware' => ['auth','verified','role:admin|instructor']], function() {
-    
+Route::group(['middleware' => ['auth','verified','role:admin|instructor','checkban']], function() {
+
     //event
     Route::get('/event/create', 'EventController@create')->name('events.create');
     Route::post('/event','EventController@store')->name('events.store');
@@ -155,12 +188,3 @@ Route::group(['middleware' => ['auth','verified','role:admin|instructor']], func
 
 // Route::get('/banned',function(){ return view('banned');});
 //Rate
-Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');
-Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
-//Review
-Route::post('/add-review', 'CourseController@addReview')->middleware('auth')->name('courses.review');
-
-
-//contact-us
-Route::get('/contact', 'ContactController@create')->name('contact.create');
-Route::post('/contact', 'ContactController@store')->name('contact.store');

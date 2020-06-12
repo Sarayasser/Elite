@@ -27,16 +27,21 @@
     <section>
       <div class="container">
         <div class="row">
-          <div class="col-md-8 blog-pull-right">
+          <div class="col-sm-9 blog-pull-right mr-30">
         <div class="container pb-30">
           <div class="section-content">
-            <div class="row">
-            <div class="col-md-4">
+            <div class="row mt-60" style="width:60rem;">
+
             @foreach ($events as $event)
+            <div class="col-md-4">
             @if(Auth::user())
                 <div class="schedule-box maxwidth500 mb-30" data-bg-img="{{ asset('images/pattern/p6.png') }}">
                   <div class="thumb">
+                  @if($event->image)
                     <img class="img-fullwidth img-thumbnail" alt="" src="{{asset($event->image)}}">
+                  @else
+                  <img class="img-fullwidth img-thumbnail" alt="" src="{{ asset('images/bg/32818.jpg')}}">
+                  @endif
                   </div>
                   <div class="schedule-details clearfix p-15 pt-10">
                     <div class="text-center pull-left flip bg-theme-color-sky p-10 pt-5 pb-5 mr-10">
@@ -80,18 +85,19 @@
                   </div>
                 </div>
               @endif
+              </div>
               @endforeach
-            </div>
+
           </div>
           </div>
           </div>
           </div>
-          <div class="col-md-4">
-            <div class="sidebar sidebar-left mt-sm-30">
-              <div class="widget">
+          <div class="col-sm-2">
+            <div class="sidebar sidebar-left mt-sm-30 mr-5">
+              <div class="widget blank" style="float:left;">
                 <h3 class="widget-title line-bottom">Instructor <span class="text-theme-color-red">Dashboard</span></h3>
                 <div class="services-list">
-                  <ul class="list list-border">
+                  <ul class="list list-border" style="width:15rem;">
                     <li><a href="{{route('dashboard','instructor')}}">Courses</a></li>
                     <li><a href="{{route('dashboard.students',"instructor")}}">Students</a></li>
                     <li class="active"><a href="{{route('dashboard.events',"instructor")}}">Events</a></li>

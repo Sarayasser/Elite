@@ -3,6 +3,11 @@
 @section('content')
 <div class="card card-4">
     <div class="card-body">
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
         <h2 class="title">{{ __('Login Form') }}</h2>
         @if (session('danger'))
             <div class="alert alert-danger" role="alert" style="margin-bottom:20px;">
@@ -52,8 +57,8 @@
                             </a>
                         @endif
                     </div>
-                    
-                </div> 
+
+                </div>
                 <div class="row row-space" style="margin-top:15px;">
                     <a href="{{ route('users') }}">{{ _("Register if you don't have an account") }}</a>
                 </div>

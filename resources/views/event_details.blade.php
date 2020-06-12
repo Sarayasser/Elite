@@ -7,7 +7,7 @@
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row"> 
+            <div class="row">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Event Details</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -33,8 +33,7 @@
               <!-- </div> -->
             </div>
             @else
-            <img src="{{ asset('images/pattern/p6.png') }}" alt="">
-            @endif
+            <img class="img-fullwidth img-thumbnail" alt="" src="{{ asset('images/bg/32818.jpg')}}">
           </div>
           <div class="col-md mt-60" style="float:right;">
             <ul>

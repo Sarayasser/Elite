@@ -49,8 +49,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function setImageAttribute($value)
     {
         $attribute_name = "image";
-        $disk = "uploads"; 
-        $destination_path = "storage/avatars"; 
+        $disk = "uploads";
+        $destination_path = "storage/avatars";
 
         if ($value==null) {
             Storage::disk($disk)->delete($this->{$attribute_name});
@@ -79,7 +79,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    
+
     /**
      * relation one to many (student has one parent)
      */
@@ -104,7 +104,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany('App\Models\Course', 'course_student', 'student_id', 'course_id');
     }
-
 
     /**
      * relation one to one to instructor

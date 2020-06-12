@@ -7,7 +7,7 @@
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row"> 
+            <div class="row">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Event</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -16,8 +16,8 @@
                 </ol>
                 </div>
             </div>
-            
-          
+
+
             </div>
         </div>
     </section>
@@ -28,11 +28,15 @@
           <div class="section-content">
             <div class="row">
             @foreach ($events as $event)
-            
+
               <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="schedule-box maxwidth500 mb-30" data-bg-img="{{ asset('images/pattern/p6.png') }}">
                   <div class="thumb">
+                  @if($event->image)
                     <img class="img-fullwidth img-thumbnail" alt="" src="{{asset($event->image)}}">
+                  @else
+                  <img class="img-fullwidth img-thumbnail" alt="" src="{{ asset('images/bg/32818.jpg')}}">
+                  @endif
                   </div>
                   <div class="schedule-details clearfix p-15 pt-10">
                     <div class="text-center pull-left flip bg-theme-color-sky p-10 pt-5 pb-5 mr-10">

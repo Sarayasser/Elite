@@ -48,11 +48,11 @@ class DashboardController extends Controller
         }else{
             return redirect()->back()->with('error', "you are not authenticated in this route");
         }
-       
+
     }
 
     public function login($id){
-        
+
         $user = Auth::user();
         $children = $user->students;
         if($children->contains('id',$id)){
@@ -62,7 +62,7 @@ class DashboardController extends Controller
         }{
             return redirect()->back()->with('error', "you don't have child with this account");
         }
-       
+
     }
 
     /**
@@ -128,17 +128,29 @@ class DashboardController extends Controller
     }
 
     public function students_enrolled(){
-
+        $id=Auth::user()->id;
+        $instructor=Instructor::where('user_id',$id)->first();
+        $course=Course::where('instructor_id',$instructor->id)->get();
+        $test=array();
+        for($x=0;$x<sizeof($course);$x++){
+            if(!$course[$x]->students()->get()->isEmpty()){
+        array_push($test,...$course[$x]->students()->get()->pluck('id')->toArray());
+            }
+        }
+        $tes=User::whereIn('id',array_unique($test))->get();
+        // dd($tes);
+        return view('dashboard.dashboard_students',['students'=>$tes]);
     }
+
     public function instructor_events(){
         $id=Auth::user()->id;
         $instructor=Instructor::where('user_id',$id)->first();
         $events=Event::where('user_id',$instructor->user_id)->get();
-        // dd($events);
         return view('dashboard.dashboard_events',['events'=>$events]);
     }
     public function Instructor_schedule(){
-        
+        $id=Auth::user()->id;
+        $schedules=Schedule::where('instructor_id',$id)->get();
     }
-    
+
 }

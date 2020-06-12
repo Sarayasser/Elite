@@ -21,16 +21,17 @@
     <section>
       <div class="container">
         <div class="row">
-          <div class="col-md-8 blog-pull-right">
-          <section>
-      <div class="container">
-        <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-9 blog-pull-right">
           @foreach ($courses as $course)
+          <div class="col-md-4">
             <div class="item">
               <div class="campaign bg-white maxwidth500 mb-30">
                 <div class="thumb">
+                @if($course->image)
                 <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
+                @else
+                <img class="img-fullwidth img-thumbnail" alt="" src="{{ asset('images/bg/3610647.jpg')}}">
+                @endif
                 <div class="campaign-overlay"></div>
                 </div>
                 <div class="course-details clearfix p-20 pt-15">
@@ -54,14 +55,10 @@
                 </div>
               </div>
             </div>
+            </div>
           @endforeach
           </div>
-        </div>
-      </div>
-    </section>
-
-          </div>
-          <div class="col-md-4">
+          <div class="col-sm-3">
             <div class="sidebar sidebar-left mt-sm-30">
               <div class="widget">
                 <h3 class="widget-title line-bottom">Instructor <span class="text-theme-color-red">Dashboard</span></h3>

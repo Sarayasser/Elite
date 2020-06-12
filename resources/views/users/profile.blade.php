@@ -4,7 +4,7 @@
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row mt-50"> 
+            <div class="row mt-50">
                 <div class="col-md-6 ">
                 <h2 class="text-theme-color-yellow font-36">Profile</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -22,15 +22,24 @@
           <div class="row">
             <div class="col-md-4">
               <div class="thumb img-thumbnail">
-                    <img height="360px" width="360px" src="{{asset($user->image)}}" alt="">
+              @if($user->image)
+            <img class="card-img-top" src="{{$user->image}}" alt="Card image cap">
+            @else
+            @if($user->gender === 1)
+            <img class="card-img-top" src="{{ asset('images/female.png')}}" alt="Card image cap">
+            @else
+            <img class="card-img-top" src="{{ asset('images/male.png')}}" alt="Card image cap">
+            @endif
+            @endif
               </div>
+              <br>
               <div class="col-12" style="float:right;">
                 <a class="fa fa-pencil mt-20 mr-10" href="{{route('user.edit',['user'=>$user->id])}}" style="float:right;color:#F08080"> Edit Profile</a>
               </div>
             </div>
             <div class="col-md-8">
               <h4 class="name font-24 mt-0 mb-0">{{$user->name}}</h4>
-              <p><cite title="San Francisco, USA"><i class="glyphicon glyphicon-map-marker mr-10"></i>{{$user->address}} 
+              <p><cite title="San Francisco, USA"><i class="glyphicon glyphicon-map-marker mr-10"></i>{{$user->address}}
                         </cite></p>
                         <p><i class="glyphicon glyphicon-envelope mr-10"></i>{{$user->email}}</p>
                         <p><i class="glyphicon glyphicon-user mr-10"></i>
@@ -52,9 +61,9 @@
                         @foreach($badges as $badge)
                         <h5> {{$badge ? $badge->name : 'N/A'}}</h5>
                         {{-- <h4> level:{{$badge ? $badge->level : 'N/A'}}</h4> --}}
-                        
+
                     <img alt="{{$badge->name}}" src="{{ asset('images/badges/'.$badge->name.'.jpg') }}" class="img-rounded img-responsive" style="width: 40px" style="height: 40px">
-                        
+
                         @endforeach
             </div>
             </div>
@@ -62,6 +71,6 @@
             </div>
             </div>
             </section>
-                
+
 
 @endsection

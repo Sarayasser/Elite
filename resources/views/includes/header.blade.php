@@ -7,22 +7,36 @@
             <div class="widget no-border m-0">
               <a href="{{route('home')}}" class="menuzord-brand pull-left flip xs-pull-center mb-15" style="margin: 0 30px 0 0;" href="javascript:void(0)"><img src="{{ asset('images/logo.png')}}" alt=""></a>
             </div>
-          </div> 
+          </div>
+          @if(Auth::user())
           <div class="col mt-10" style="float:right;">
             <div class="widget no-border pull-right sm-pull-none sm-text-center mt-10 mb-10 m-0">
               <ul class="list-inline">
                 <li>
                 <div class="btn-group">
-                <button class="fa fa-bell fa-2x ml-30" type="button" data-toggle="dropdown" style="border-color:transparent;background:transparent;"></button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#"><i class='fa fa-user mr-1'></i> Something else here</a>
+                <button class="fa fa-bell fa-2x mr-200" type="button" data-toggle="dropdown" style="border-color:transparent;background:transparent;" aria-haspopup="true" aria-expanded="false"></button>
+                <ul class="dropdown-menu">
+                @if(Auth::user()->hasRole('student') && Auth::user())
+                <li>
+                @foreach($test as $t)
+                @if($t->event_id)
+                <a class="dropdown-item" href="{{$t}}"><i class='fa fa-user'></i> {{$t->description}} {{$t->event->name}}</a>
                   <div class="dropdown-divider"></div>
-                  </div>
+                @endif
+                @if($t->post_id)
+                <a class="dropdown-item" href="{{$t}}"><i class='fa fa-user'></i> {{$t->description}} {{$t->course->name}}</a>
+                  <div class="dropdown-divider"></div>
+                @endif
+                @endforeach
+                <li>
+                @endif
+                  </ul>
                 </div>
                 </li>
               </ul>
             </div>
           </div>
+          @endif
         </div>
       </div>
     </div>
@@ -31,17 +45,17 @@
         <div class="container">
           <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
             <ul class="menuzord-menu">
-              <li class="{{ Request::is('/') ? 'active' : '' }}" ><a href="{{route('home')}}">Home</a></li> 
+              <li class="{{ Request::is('/') ? 'active' : '' }}" ><a href="{{route('home')}}">Home</a></li>
               <li class="{{ Request::is('courses') ? 'active' : '' }}" ><a href="{{route('courses.index')}}">Courses</a></li>
               <li class="{{ Request::is('instructors') ? 'active' : '' }}" ><a href="{{route('instructors.index')}}">Instructors</a></li>
               <li class="{{ Request::is('event') ? 'active' : '' }}"><a href="{{route('events.index')}}">Events</a></li>
-              <li><a href="#">Schedule</a></li>        
-              <li class="{{ Request::is('contact') ? 'active' : '' }}" ><a href="{{route('contact.create')}}">Contact us</a></li> 
-              <li class="{{ Request::is('about') ? 'active' : '' }}" ><a href="{{route('about')}}">About</a></li> 
+              <li><a href="#">Schedule</a></li>
+              <li class="{{ Request::is('contact') ? 'active' : '' }}" ><a href="{{route('contact.create')}}">Contact us</a></li>
+              <li class="{{ Request::is('about') ? 'active' : '' }}" ><a href="{{route('about')}}">About</a></li>
               <li class="{{ Request::is('faq') ? 'active' : '' }}"><a href="{{ route('faq') }}">FAQ</a></li>
               @if (Auth::user())
               <li><a href="{{route('user.show',['user'=>Auth::user()->id])}}" class="col ml-20"><i class="fa fa-cog fa-spin" style="width:150%;"></i></a></li>
-              @endif 
+              @endif
             </ul>
             <ul class="pull-right flip hidden-sm hidden-xs">
               <li>
@@ -54,11 +68,11 @@
                   @if (Auth::user()->hasRole('admin'))
                       <a href="/admin/dashboard" class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" ><i class="fa fa-user-secret fa-2x" style="font-size: 1.2em;"> Dashboard</i> </a>
                   @elseif (Auth::user()->hasRole('instructor'))
-                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard',"instructor")}}">Dashboard</a>         
+                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard',"instructor")}}">Dashboard</a>
                   @elseif (Auth::user()->hasRole('parent'))
-                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard',"parent")}}">Dashboard</a>         
+                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard',"parent")}}">Dashboard</a>
                   @else
-                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard',"student")}}">Dashboard</a>         
+                      <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard',"student")}}">Dashboard</a>
                   @endif
                   <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('user.show',['user'=>Auth::user()->id])}}" >  {{ Auth::user()->name }}</a>
                   <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{ route('logout') }}"
@@ -70,7 +84,7 @@
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       @csrf
                   </form>
-                 
+
                  @endguest
                 <!-- Modal: Book Now Starts -->
                 {{-- <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" data-toggle="modal" data-target="#BSParentModal" href="{{ asset('ajax-load/reservation-form.html')}}">Book Now</a> --}}

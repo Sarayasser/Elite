@@ -14,6 +14,8 @@ use Carbon\Carbon;
 use Socialite;
 use Exception;
 use Session;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 class RegisterController extends Controller
 {
@@ -151,6 +153,7 @@ class RegisterController extends Controller
     public function handleProviderCallback($slug){
             $user = Socialite::driver(request()->provider)->stateless()->user();
             $existingUser = User::where('email', $user->email)->first();
+            // dd($user);
             if($existingUser){
                 auth()->login($existingUser, true);
             } else {

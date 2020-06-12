@@ -16,9 +16,11 @@ class CheckBan
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->is_banned == 1) {
-            Auth::logout($request->user());
-            return redirect('/login');
+        if (auth()->user()->is_banned === 1) {
+            $user = auth()->user();
+            auth()->logout();
+            return redirect()->route('login')
+                ->withError('Your account was blocked ');
         }
         return $next($request);
     }
