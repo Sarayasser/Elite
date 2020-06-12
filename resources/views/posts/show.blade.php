@@ -41,9 +41,8 @@
                     </div>
                     <div class="media-body pl-15">
                       <div class="event-content pull-left flip">
-                        <h4 class="entry-title text-white text-uppercase m-0"><a href="#">{{$post->title}}</a></h4>
-                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-color-sky"></i> 214 Comments</span>                       
-                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-heart-o mr-5 text-theme-color-sky"></i> 895 Likes</span>
+                        <h4 class="entry-title text-white text-uppercase m-0"><a>{{$post->title}}</a></h4>
+                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-color-sky"></i> {{$post->comments->count()}} Comments</span>                       
                       </div>
                     </div>
                   </div>
@@ -84,25 +83,26 @@
               </article>
               
               <div class="author-details media-post">
-                <a href="#" class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="images/blog/author.jpg"></a>
+                <a class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="{{asset($post->user->image)}}" width="50px"></a>
                 <div class="post-right">
-                  <h5 class="post-title mt-0 mb-0"><a href="#" class="font-18">{{$post->user->name}}</a></h5>
+                  <h5 class="post-title mt-0 mb-0"><a class="font-18">{{$post->user->name}}</a></h5>
                 </div>
                 <div class="clearfix"></div>
               </div>
+              @if($comments)
               <div class="comments-area">
                 <h5 class="comments-title">Comments</h5>
                 <ul class="comment-list">
                 @foreach($comments as $comment)
                   <li>
-                    <div class="media comment-author"> <a class="media-left pull-left flip" href="#"><img class="img-thumbnail" src="images/blog/comment2.jpg" alt=""></a>
+                    <div class="media comment-author"> <a class="media-left pull-left flip"><img class="img-thumbnail" src="{{asset($comment->user->image)}}" width="50px" alt=""></a>
                       <div class="media-body">
                         <h5 class="media-heading comment-heading">{{$comment->user->name}} says:</h5>
                         <div class="comment-date">{{\Carbon\Carbon::parse($comment->created_at)->format('d/m/yy')}}</div>
                         <p>{{$comment->body}}</p>
                         <div class="clearfix"></div>
                         @foreach($comment->replies as $reply)
-                        <div class="media comment-author nested-comment"> <a href="#" class="media-left pull-left flip pt-20"><img alt="" src="images/blog/comment3.jpg" class="img-thumbnail"></a>
+                        <div class="media comment-author nested-comment"> <a href="#" class="media-left pull-left flip pt-20"><img class="img-thumbnail" src="{{asset($reply->user->image)}}" width="50px" alt=""></a>
                           <div class="media-body p-20 bg-lighter">
                             <h5 class="media-heading comment-heading">{{$reply->user->name}} says:</h5>
                             <div class="comment-date">{{\Carbon\Carbon::parse($reply->created_at)->format('d/m/yy')}}</div>
@@ -130,6 +130,7 @@
                   @endforeach
                 </ul>
               </div>
+              @endif
               <div class="comment-box">
                 <div class="row">
                   <div class="col-sm-12">

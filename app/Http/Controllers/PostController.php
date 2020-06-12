@@ -18,13 +18,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function __construct()
 
-    // {
-
-    //     $this->middleware('auth');
-
-    // }
     public function index(Course $course)
     {   $test = (new HomeController)->note();
         $readPostsIds = auth()->user()->readPosts()->having('course_id', $course->id)->get()->pluck('id')->toArray();

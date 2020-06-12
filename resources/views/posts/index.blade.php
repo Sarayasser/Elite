@@ -46,9 +46,8 @@
                           </div>
                           <div class="media-body pl-15">
                             <div class="event-content pull-left flip">
-                              <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="#">{{$post->title}}</a></h4>
-                              <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-color-sky"></i> 214 Comments</span>                       
-                              <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-heart-o mr-5 text-theme-color-sky"></i> 895 Likes</span>
+                              <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a>{{$post->title}}</a></h4>
+                              <span class="mb-10 text-gray-darkgray mr-10 font-13"><a href="{{route('posts.show', ['course' => $course, 'post' => $post->id])}}"><i class="fa fa-commenting-o mr-5 text-theme-color-sky"></i> {{$post->comments->count()}} Comments</a></span>                       
                             </div>
                           </div>
                         </div>
