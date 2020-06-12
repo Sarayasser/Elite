@@ -18,58 +18,11 @@ use App\Notification;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => ['auth', 'checkban']], function() {
-// Courses
-Route::get('/courses','CourseController@index')->name('courses.index');
-Route::get('/courses/{course}','CourseController@show')->name('courses.show');
-
-Route::get('/about', function () {
-    return view('about', [
-        'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all(),'test'=>Notification::all()]);
-     })->name('about');
-
-Route::post('/courses/{course}/enroll', function(Course $course){
-    $user = auth()->user();
-    if($user->hasRole('student'))
-        if ($course->capacity > 0) {
-            $user->courses()->attach($course);
-            $course->capacity --;
-            $course->save();
-        }
-    if(request()->ajax()) // This is check ajax request
-        return response()->json(['enrolled' => 'enrolled']);
-    else
-        return redirect()->route('courses.show', $course->id);
-
-})->name('courses.enroll');
 
 
-// Posts
-Route::get('/courses/{course}/posts', 'PostController@index')->name('posts.index');
-Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts.show');
+Route::group(['middleware' => ['auth','verified', 'checkban']], function() {
 
-
-
-//ckeditor
-Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
-
-//instructor
-Route::get('/instructors', 'InstructorController@index')->name('instructors.index');
-Route::get('/instructors/{instructor}', 'InstructorController@show')->name('instructors.show');
-
-
-Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
-
-
-
-Route::get('/calender', function () { return view('calender'); });
-Route::get('/courses-posts', function () { return view('courses_posts'); });
-Route::get('/faq', function () { return view('faq'); })->name('faq');
-Route::get('/timetable', function () { return view('timetable'); });
-
-Route::get('/', 'HomeController@index')->name('home');
 //Dashboard
-
 Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard');
 Route::get('/dashboard/{slug}/students','DashboardController@students_enrolled')->name('dashboard.students');
 Route::get('/dashboard/parent/create','DashboardController@create')->name('dashboard.create');
@@ -79,12 +32,6 @@ Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboar
 Route::get('/dashboard/{slug}/events','DashboardController@instructor_events')->name('dashboard.events');
 Route::get('/dashboard/student', function () { return view('dashboard.student'); })->name('dashboard.student');
 
-Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');
-Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
-
-// Auth::routes();
-//Review
-Route::post('/add-review', 'CourseController@addReview')->middleware('auth')->name('courses.review');
 
 //contact-us
 Route::get('/contact', 'ContactController@create')->name('contact.create');
@@ -133,7 +80,7 @@ Route::group(['middleware' => ['web']], function() {
 
 
 
-Route::group(['middleware' => ['auth','checkban']], function() {
+Route::group(['middleware' => ['auth','verified','checkban']], function() {
 
     //Dashboard
     Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard')->where("slug","instructor|parent|student");
@@ -151,13 +98,43 @@ Route::group(['middleware' => ['auth','checkban']], function() {
     Route::put('/profile/{user}','UserController@update')->name('user.update');
 
     //instructor rate
-    Route::post('instructor-rate', 'InstructorController@rateInstructor')->name('instructors.rate')->middleware('role:parent|student|admin');
+    Route::post('instructor-rate', 'InstructorController@rateInstructor')->name('instructors.rate')->middleware('role:parent|student');
 
     //student enrollment
     Route::post('/courses/{course}/enroll', 'CourseController@enroll')->name('courses.enroll')->middleware('role:student');
 
     // comment
     Route::post('/posts/{post}/comments', 'CommentController@store')->name('comments.store');
+
+    Route::post('/courses/{course}/posts/{post}', function($course_id, Post $post){
+        auth()->user()->readPosts()->attach($post->id);
+        givePoint(new PostCompleted($post));
+        return response()->json(['ok' => 'ok']);
+    })->name('posts.read')->middleware('role:student');
+
+    Route::post('/courses/{course}/enroll', function(Course $course){
+        $user = auth()->user();
+        if($user->hasRole('student'))
+            if ($course->capacity > 0) {
+                $user->courses()->attach($course);
+                $course->capacity --;
+                $course->save();
+            }
+        if(request()->ajax()) // This is check ajax request
+            return response()->json(['enrolled' => 'enrolled']);
+        else
+            return redirect()->route('courses.show', $course->id);
+    
+    })->name('courses.enroll')->middleware('role:student');
+    
+    
+    Route::post('post-rate', 'PostController@ratePost')->name('posts.rate')->middleware('role:student|parent');
+    Route::post('course-rate', 'CourseController@rateCourse')->name('courses.rate')->middleware('role:student|parent');
+
+    // Auth::routes();
+    //Review
+    Route::post('/add-review', 'CourseController@addReview')->name('courses.review')->middleware('role:student|parent');
+
 });
 
 
@@ -176,11 +153,9 @@ Route::group(['middleware' => ['auth','role:admin|instructor','checkban']], func
     Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
     Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('posts.update');
     Route::delete('/courses/{course}/posts/{post}', 'PostController@destroy')->name('posts.destroy');
-    Route::post('/courses/{course}/posts/{post}', function($course_id, Post $post){
-        auth()->user()->readPosts()->attach($post->id);
-        givePoint(new PostCompleted($post));
-        return response()->json(['ok' => 'ok']);
-    })->name('posts.read');
+  
+    //ckeditor
+    Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 
 });
 
@@ -189,3 +164,29 @@ Route::get('/event/{event}','EventController@show')->name('events.show');
 Route::get('/event','EventController@index')->name('events.index');
 
 
+// Courses
+Route::get('/courses','CourseController@index')->name('courses.index');
+Route::get('/courses/{course}','CourseController@show')->name('courses.show');
+
+// Posts
+Route::get('/courses/{course}/posts', 'PostController@index')->name('posts.index');
+Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts.show');
+
+Route::get('/about', function () {
+    return view('about', [
+        'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all(),'test'=>Notification::all()]);
+     })->name('about');
+
+
+
+//instructor
+Route::get('/instructors', 'InstructorController@index')->name('instructors.index');
+Route::get('/instructors/{instructor}', 'InstructorController@show')->name('instructors.show');
+
+
+Route::get('/calender', function () { return view('calender'); });
+Route::get('/courses-posts', function () { return view('courses_posts'); });
+Route::get('/faq', function () { return view('faq'); })->name('faq');
+Route::get('/timetable', function () { return view('timetable'); });
+
+Route::get('/', 'HomeController@index')->name('home');
