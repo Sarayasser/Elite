@@ -85,7 +85,8 @@ Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('p
 Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
 
 // Auth::routes();
-
+//Review
+Route::post('/add-review', 'CourseController@addReview')->middleware('auth')->name('courses.review');
 
 //contact-us
 Route::get('/contact', 'ContactController@create')->name('contact.create');
@@ -134,7 +135,7 @@ Route::group(['middleware' => ['web']], function() {
 
 
 
-Route::group(['middleware' => ['auth','verified','checkban']], function() {
+Route::group(['middleware' => ['auth','checkban']], function() {
 
     //Dashboard
     Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard')->where("slug","instructor|parent|student");
@@ -162,7 +163,7 @@ Route::group(['middleware' => ['auth','verified','checkban']], function() {
 });
 
 
-Route::group(['middleware' => ['auth','verified','role:admin|instructor','checkban']], function() {
+Route::group(['middleware' => ['auth','role:admin|instructor','checkban']], function() {
 
     //event
     Route::get('/event/create', 'EventController@create')->name('events.create');
@@ -185,6 +186,11 @@ Route::group(['middleware' => ['auth','verified','role:admin|instructor','checkb
 
 });
 
+//fullcalender
+Route::get('/Schedule','ScheduleController@index');
+Route::post('/Schedule/create','ScheduleController@create');
+Route::post('/Schedule/update','ScheduleController@update');
+Route::post('/Schedule/delete','ScheduleController@destroy');
 
 // Route::get('/banned',function(){ return view('banned');});
 //Rate
