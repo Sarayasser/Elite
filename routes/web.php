@@ -19,7 +19,6 @@ use App\Notification;
 |
 */
 
-
 Route::group(['middleware' => ['auth','verified', 'checkban']], function() {
 
 //Dashboard
@@ -90,7 +89,7 @@ Route::group(['middleware' => ['auth','verified','checkban']], function() {
     Route::post('/dashboard/parent', 'DashboardController@store')->name('dashboard.store')->middleware('role:parent');
     Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboard.login')->middleware('role:parent');
     Route::get('/dashboard/{slug}/events','DashboardController@instructor_events')->name('dashboard.events')->middleware('role:instructor');
-
+    Route::get('/dashboard/{slug}/schedule','DashboardController@schedule')->name('dashboard.schedule')->middleware('role:instructor|student');
 
     //Profile
     Route::get('/profile/{user}','UserController@show')->name('user.show');
@@ -124,10 +123,10 @@ Route::group(['middleware' => ['auth','verified','checkban']], function() {
             return response()->json(['enrolled' => 'enrolled']);
         else
             return redirect()->route('courses.show', $course->id);
-    
+
     })->name('courses.enroll')->middleware('role:student');
-    
-    
+
+
     Route::post('post-rate', 'PostController@ratePost')->name('posts.rate')->middleware('role:student|parent');
     Route::post('course-rate', 'CourseController@rateCourse')->name('courses.rate')->middleware('role:student|parent');
 
@@ -153,7 +152,8 @@ Route::group(['middleware' => ['auth','role:admin|instructor','checkban']], func
     Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
     Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('posts.update');
     Route::delete('/courses/{course}/posts/{post}', 'PostController@destroy')->name('posts.destroy');
-  
+
+
     //ckeditor
     Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 
@@ -190,3 +190,9 @@ Route::get('/faq', function () { return view('faq'); })->name('faq');
 Route::get('/timetable', function () { return view('timetable'); });
 
 Route::get('/', 'HomeController@index')->name('home');
+
+    //Schedule
+    Route::get('/courses/{course}/schedule/create', 'ScheduleController@create')->name('schedule.create');
+    Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
+    Route::get('/schedule/delete/{schedule}','ScheduleController@destroy')->name('schedule.destroy');
+
