@@ -49,9 +49,6 @@ Route::get('/courses/{course}/posts', 'PostController@index')->name('posts.index
 Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts.show');
 
 
-// Events
-Route::get('/event/{event}','EventController@show')->name('events.show');
-Route::get('/event','EventController@index')->name('events.index');
 
 //ckeditor
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
@@ -186,4 +183,9 @@ Route::group(['middleware' => ['auth','role:admin|instructor','checkban']], func
     })->name('posts.read');
 
 });
+
+// Events
+Route::get('/event/{event}','EventController@show')->name('events.show');
+Route::get('/event','EventController@index')->name('events.index');
+
 
