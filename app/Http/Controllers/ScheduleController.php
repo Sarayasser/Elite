@@ -70,19 +70,5 @@ class ScheduleController extends Controller
         return redirect()->route('dashboard.schedule','instructor');
     }
 
-    // public function zoom()
-    // {
-    //     // $user = Auth::user();
-    //     // $children = $user->students;
-        
-    //     $zoom_user=Zoom::user()->find('yakan44444@gmail.com');
-    //     $topic='test3';
-    //     $start_date=request()
-    //     $meeting=$zoom_user->meetings()->create(['topic'=>$topic, "start_time" => $start_date]);
-    //     // dd()$meeting->join_url
-    //     $urls=$zoom_user->find('join_url');
-    //     // $url=$meeting->join_url;
-    //     // return redirect()->back();
-    //     return view('zoom', ['urls' => $urls]);
-    // }
+
 }
