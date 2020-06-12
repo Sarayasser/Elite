@@ -14,17 +14,20 @@ use App\Http\Controllers\HomeController;
 class EventController extends Controller
 {
     public function index(){
+        $test = (new HomeController)->note();
         $events=Event::all();
         // dd($events);
-        return view('event',['events'=>$events]);
+        return view('event',['events'=>$events,'test'=>$test]);
     }
     public function show(){
+        $test = (new HomeController)->note();
         $request = Request();
         $id= $request->event;
         $event = Event::where('id',$id)->first();
-        return view('event_details',['event'=>$event]);
+        return view('event_details',['event'=>$event,'test'=>$test]);
     }
     public function create(){
+        $test = (new HomeController)->note();
         // $files =file_get_contents(Storage::files('/public/countries')[0]);
         $files = Storage::disk('json')->get('countries.json');
         $countries=array();
@@ -32,9 +35,10 @@ class EventController extends Controller
         array_push($countries,json_decode($files, true)[$i]['name'].','.json_decode($files, true)[$i]['capital']);
         }
         // dd($countries);
-        return view('events.create',['countries'=>$countries]);
+        return view('events.create',['countries'=>$countries,'test'=>$test]);
     }
     public function store(StoreEventRequest $request){
+        $test = (new HomeController)->note();
         // $request=Request();
         $event = Event::create([
             'name' => $request->name,
@@ -60,6 +64,7 @@ class EventController extends Controller
         return redirect('/event');
     }
     public function edit(){
+        $test = (new HomeController)->note();
         $request=Request();
         $id=$request->event;
         $event=Event::where('id',$id)->first();
@@ -69,7 +74,7 @@ class EventController extends Controller
         array_push($countries,json_decode($files, true)[$i]['name'].','.json_decode($files, true)[$i]['capital']);
         }
         // dd($event);
-        return view('events.edit',['event'=>$event , 'countries'=>$countries]);
+        return view('events.edit',['event'=>$event , 'countries'=>$countries,'test'=>$test]);
     }
     public function update(StoreEventRequest $request){
         $id=$request->event;

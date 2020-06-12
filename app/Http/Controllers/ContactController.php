@@ -9,8 +9,8 @@ use App\Http\Controllers\HomeController;
 class ContactController extends Controller
 {
     public function create() {
-
-        return view('contact');
+        $test = (new HomeController)->note();
+        return view('contact',['test'=>$test]);
     }
 
 

@@ -26,7 +26,7 @@ class PostController extends Controller
 
     // }
     public function index(Course $course)
-    {
+    {   $test = (new HomeController)->note();
         $readPostsIds = auth()->user()->readPosts()->having('course_id', $course->id)->get()->pluck('id')->toArray();
         $post = $course->posts()->whereNotIn('id', $readPostsIds)->first();
         if($post ==  null)
@@ -36,7 +36,7 @@ class PostController extends Controller
         if (in_array($post->id+1, $ids))
             $has_next = true;
 
-        return view('posts.index', ['post' => $post, 'has_next' => $has_next]);
+        return view('posts.index', ['post' => $post, 'has_next' => $has_next,'test'=>$test]);
     }
 
     /**
@@ -45,8 +45,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Course $course)
-    {
-        return view('posts.create', ['course' => $course->id]);
+    {   $test = (new HomeController)->note();
+        return view('posts.create', ['course' => $course->id,'test'=>$test]);
     }
 
     /**
@@ -56,7 +56,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(PostRequest $request, Course $course)
-    {
+    {   $test = (new HomeController)->note();
         $post = $course->posts()->create([
             'title' => $request->title,
             'description' =>  $request->description,
@@ -70,7 +70,7 @@ class PostController extends Controller
             'post_id' => $post->id,
             'course_id' => $post->course_id,
         ]);
-        return redirect()->route('posts.show', ['course' => $course->id, 'post' => $post->id]);
+        return redirect()->route('posts.show', ['course' => $course->id, 'post' => $post->id,'test'=>$test]);
     }
 
     /**
@@ -80,9 +80,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($course_id, Post $post)
-    {
+    {   $test = (new HomeController)->note();
         $comments = $post->comments()->with('replies')->get();
-        return view('posts.show', ['post' => $post, 'course' => $course_id, 'comments' => $comments]);
+        return view('posts.show', ['post' => $post, 'course' => $course_id, 'comments' => $comments,'test'=>$test]);
     }
 
     /**
@@ -92,8 +92,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Course $course, Post $post)
-    {
-        return view('posts.edit', ['course' => $course->id, 'post' => $post]);
+    {   $test = (new HomeController)->note();
+        return view('posts.edit', ['course' => $course->id, 'post' => $post,'test'=>$test]);
     }
 
     /**
@@ -104,7 +104,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(PostRequest $request, $course_id, Post $post)
-    {
+    {   $test = (new HomeController)->note();
         $attributes = [
                 'title' => $request->title,
                 'description' =>  $request->description,
@@ -115,7 +115,7 @@ class PostController extends Controller
             $post->image = $request->file('image');
             $post->save();
         }
-        return redirect()->route('posts.show', ['course' => $course_id, 'post' => $post->id]);
+        return redirect()->route('posts.show', ['course' => $course_id, 'post' => $post->id,'test'=>$test]);
     }
 
     /**

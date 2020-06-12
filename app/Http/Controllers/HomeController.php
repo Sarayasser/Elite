@@ -33,7 +33,7 @@ class HomeController extends Controller
         $user=Auth::user();
         if(Auth::user()){
         if($user->hasRole('student')){
-            $post->$this->note();
+            $post=$this->note();
         // dd($post);
         return view('home',['courses'=>Course::all(),'test'=>$post]);
         }else{

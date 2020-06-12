@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Gamify\Points\PostCompleted;
+use App\Notification;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::get('/courses/{course}','CourseController@show')->name('courses.show');
 
 Route::get('/about', function () {
     return view('about', [
-        'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);
+        'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all(),'test'=>Notification::all()]);
      })->name('about');
 
 Route::post('/courses/{course}/enroll', function(Course $course){

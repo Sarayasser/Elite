@@ -15,9 +15,9 @@ class InstructorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   $test = (new HomeController)->note();
         $instructors = Instructor::with('user')->get();
-        return view('instructors.index',['instructors' => $instructors]);
+        return view('instructors.index',['instructors' => $instructors,'test'=>$test]);
     }
 
      /**
@@ -27,9 +27,9 @@ class InstructorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Instructor $instructor)
-    {
+    {   $test = (new HomeController)->note();
         $instructor = Instructor::with('user')->findOrFail($instructor->id);
-        return view('instructors.show', ['instructor' => $instructor]);
+        return view('instructors.show', ['instructor' => $instructor,'test'=>$test]);
     }
 
     public function rateInstructor()

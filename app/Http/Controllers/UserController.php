@@ -14,28 +14,31 @@ use App\Http\Controllers\HomeController;
 class UserController extends Controller
 {
     public function show(){
+        $test = (new HomeController)->note();
         // $request=Request();
         // $id=$request->user;
         // $user=User::where('id',$id)->first();
         $user = Auth::user();
         $badges=$user->Badges;
-        return view('users.profile',['user'=>$user, 'badges'=>$badges]);
+        return view('users.profile',['user'=>$user, 'badges'=>$badges,'test'=>$test]);
     }
     public function edit(){
         // $request=Request();
         // $id=$request->user;
         // $user=User::where('id',$id)->first();
+        $test = (new HomeController)->note();
         $user = Auth::user();
         $files = Storage::disk('local')->get('countries.json');
         $countries=array();
         for($i=0;$i<250;$i++){
         array_push($countries,json_decode($files, true)[$i]['name'].','.json_decode($files, true)[$i]['capital']);
         }
-        return view('users.edit',['user'=>$user,'countries'=>$countries]);
+        return view('users.edit',['user'=>$user,'countries'=>$countries,'test'=>$test]);
     }
     public function update(StoreUserRequest $request){
         // $request=Request();
         // dd($request);
+        $test = (new HomeController)->note();
         $id=$request->user;
         $user=User::where('id',$id)->first();
 
