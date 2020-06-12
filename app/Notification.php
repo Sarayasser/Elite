@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Notification extends Model
 {
     protected $fillable = [
-        'description','post_id','event_id','schedule_id','badge_id'
+        'description','post_id','event_id','schedule_id','badge_id','course_id','instructor_id'
     ];
 
     public function post()
@@ -22,4 +22,13 @@ class Notification extends Model
     {
         return $this->belongsTo('App\Models\Schedule');
     }
+    public function course()
+    {
+        return $this->belongsTo('App\Models\Course');
+    }
+    public function instructor()
+    {
+        return $this->belongsTo('App\Instructor');
+    }
+
 }

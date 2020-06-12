@@ -16,11 +16,11 @@ class CreateNotificationsTable extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('description');
-            $table->integer('post_id');
-            $table->integer('course_id');
-            $table->integer('schedule_id');
-            $table->integer('badge_id');
+            $table->string('description')->nullable();
+            $table->integer('post_id')->nullable();
+            $table->integer('event_id')->nullable();
+            $table->integer('schedule_id')->nullable();
+            $table->integer('badge_id')->nullable();
         });
     }
 

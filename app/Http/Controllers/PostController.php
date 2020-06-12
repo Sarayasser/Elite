@@ -8,6 +8,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use willvincent\Rateable\Rating;
+use App\Notification;
 
 class PostController extends Controller
 {
@@ -62,10 +63,11 @@ class PostController extends Controller
         ]);
         $post->image = $request->file('image');
         $post->save();
-        dd($post->id);
+        // dd($post->course_id);
         Notification::create([
             'description'=> 'New Post created for course',
             'post_id' => $post->id,
+            'course_id' => $post->course_id,
         ]);
         return redirect()->route('posts.show', ['course' => $course->id, 'post' => $post->id]);
     }
@@ -151,7 +153,7 @@ class PostController extends Controller
         return redirect()->back();
     }
     if( $rating->rating==null){
-        
+
         return redirect()->back()->with("invalid rating");
     }
     else{

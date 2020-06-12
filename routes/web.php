@@ -17,7 +17,7 @@ use App\Gamify\Points\PostCompleted;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::group(['middleware' => ['auth', 'checkban']], function() {
 // Courses
 Route::get('/courses', function () {return view('courses_list',['courses'=>Course::all()]);})->name('courses.index');
 Route::get('/courses/{course}', function () {
@@ -26,7 +26,7 @@ Route::get('/courses/{course}', function () {
         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);
 })->name('courses.show');
 
-Route::get('/about', function () { 
+Route::get('/about', function () {
     return view('about', [
         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all()]);
      })->name('about');
@@ -43,7 +43,7 @@ Route::post('/courses/{course}/enroll', function(Course $course){
         return response()->json(['enrolled' => 'enrolled']);
     else
         return redirect()->route('courses.show', $course->id);
-    
+
 })->name('courses.enroll');
 
 
@@ -98,8 +98,9 @@ Route::get('/timetable', function () { return view('timetable'); });
 Route::get('/users', function () { return view('auth/user'); })->name('users');
 
 //Dashboard
+
 Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard');
-Route::get('/dashboard/{slug}/students',function(){return view('dashboard.dashboard_students');})->name('dashboard.students');
+Route::get('/dashboard/{slug}/students','DashboardController@students_enrolled')->name('dashboard.students');
 Route::get('/dashboard/parent/create','DashboardController@create')->name('dashboard.create');
 Route::get('/dashboard/parent/progress','DashboardController@progress')->name('dashboard.progress');
 Route::post('/dashboard/parent', 'DashboardController@store')->name('dashboard.store');
@@ -107,6 +108,17 @@ Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboar
 Route::get('/dashboard/{slug}/events','DashboardController@instructor_events')->name('dashboard.events');
 Route::get('/dashboard/student', function () { return view('dashboard.student'); })->name('dashboard.student');
 
+Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');
+Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
+
+Route::post('instructor-rate', 'InstructorController@rateInstructor')->middleware('auth')->name('instructors.rate');
+// Auth::routes();
+
+
+//contact-us
+Route::get('/contact', 'ContactController@create')->name('contact.create');
+Route::post('/contact', 'ContactController@store')->name('contact.store');
+});
 
 // Auth::routes();
 Route::group(['middleware' => ['web']], function() {
@@ -125,18 +137,18 @@ Route::group(['middleware' => ['web']], function() {
 //     Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
 //     Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 //     Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
- 
+
 // // Password confirmation process
 //     Route::get('/password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
 //     Route::post('/password/confirm', 'Auth\ConfirmPasswordController@confirm')->name('password.confirm');
-    
+
     // Password Reset Routes...
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
     Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
-    // Confirm Password 
+    // Confirm Password
     Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
     Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
 
@@ -158,13 +170,3 @@ Route::get('/home/{provider}', 'Auth\RegisterController@handleProviderCallback')
 
 // Route::get('/banned',function(){ return view('banned');});
 //Rate
-Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');
-Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
-
-Route::post('instructor-rate', 'InstructorController@rateInstructor')->middleware('auth')->name('instructors.rate');
-// Auth::routes();
-
-
-//contact-us
-Route::get('/contact', 'ContactController@create')->name('contact.create');
-Route::post('/contact', 'ContactController@store')->name('contact.store');

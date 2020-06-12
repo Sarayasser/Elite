@@ -8,6 +8,7 @@ use App\Http\Requests\StoreEventRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use File;
+use App\Notification;
 
 class EventController extends Controller
 {
@@ -46,10 +47,15 @@ class EventController extends Controller
                 // dd($request->file('image'));
             $event->image = $request->file('image');
         }else{
-            $filename='/storage/events/12345.jpg';
-            $event->image= $filename;
+            // $filename='/storage/events/12345.jpg';
+            // $event->image= $filename;
         }
         $event->save();
+        Notification::create([
+            'description'=> 'New Event created',
+            'event_id' => $event->id,
+            'instructor_id' => $event->instructor_id,
+        ]);
         return redirect('/event');
     }
     public function edit(){

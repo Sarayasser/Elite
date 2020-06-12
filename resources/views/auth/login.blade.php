@@ -3,6 +3,11 @@
 @section('content')
 <div class="card card-4">
     <div class="card-body">
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
         <h2 class="title">{{ __('Login Form') }}</h2>
             <form method="POST" action="{{ route('login') }}">
             @csrf
@@ -42,8 +47,8 @@
                             </a>
                         @endif
                     </div>
-                    
-                </div> 
+
+                </div>
                 <div class="row row-space" style="margin-top:15px;">
                     <a href="{{ route('users') }}">{{ _("Register if you don't have an account") }}</a>
                 </div>

@@ -13,7 +13,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use QCod\Gamify\Gamify;
 
 //implements MustVerifyEmail
-class User extends Authenticatable 
+class User extends Authenticatable
 {
     use Notifiable, Gamify;
     use CrudTrait; // <----- this
@@ -49,8 +49,8 @@ class User extends Authenticatable
     public function setImageAttribute($value)
     {
         $attribute_name = "image";
-        $disk = "uploads"; 
-        $destination_path = "storage/avatars"; 
+        $disk = "uploads";
+        $destination_path = "storage/avatars";
 
         if ($value==null) {
             Storage::disk($disk)->delete($this->{$attribute_name});
@@ -79,7 +79,7 @@ class User extends Authenticatable
     }
 
 
-    
+
     /**
      * relation one to many (student has one parent)
      */
@@ -104,7 +104,6 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Course', 'course_student', 'student_id', 'course_id');
     }
-
 
     /**
      * relation one to one to instructor
