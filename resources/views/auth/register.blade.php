@@ -55,7 +55,7 @@
                     <div class="input-group">
                         <label class="label">Birthdate</label>
                         <div class="input-group-icon">
-                            <input class="input--style-4 js-datepicker" type="text" name="age" value="{{ old('age') }}">
+                            <input class="input--style-4 js-datepicker" id="datepicker" type="text" name="age" value="{{ old('age') }}">
                             <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                             @if ($errors->has('age'))
                                     <span class="invalid-feedback">
