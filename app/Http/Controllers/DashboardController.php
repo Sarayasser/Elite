@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Course;
 use App\Models\Event;
 use App\Instructor;
+use App\Models\Schedule;
 
 class DashboardController extends Controller
 {
@@ -153,9 +154,20 @@ class DashboardController extends Controller
         $events=Event::where('user_id',$instructor->user_id)->get();
         return view('dashboard.dashboard_events',['events'=>$events, 'test'=>$test]);
     }
-    public function Instructor_schedule(){
-        $id=Auth::user()->id;
-        $schedules=Schedule::where('instructor_id',$id)->get();
+    public function schedule($slug){
+        $test = (new HomeController)->note();
+        $user=Auth::user();
+        if($slug === 'instructor' && $user->hasRole('instructor')){
+        $instructor=Instructor::where('user_id',$user->id)->first();
+        $schedules=Schedule::where('instructor_id',$instructor->id)->get();
+        // dd($schedules);
+        return view('dashboard.instructor.schedule',['schedules'=>$schedules]);
+        }elseif($slug === 'student' && $user->hasRole('student')){
+        $courses=$user->courses()->get();
+        $schedule=Schedule::whereIn('course_id',$courses)->get();
+        // dd($schedule);
+        return view('dashboard.student.schedule',['schedules'=>$schedule,'test'=>$test]);
+        }
     }
 
 }

@@ -18,7 +18,7 @@ class Schedule extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
+    // protected $fillable = ['start_date','end_date','time','course_id','instructor_id','link'];
     // protected $hidden = [];
     // protected $dates = [];
     protected $dates = ['created_at', 'updated_at', 'start_date', 'end_date', 'time'];
@@ -53,7 +53,7 @@ class Schedule extends Model
     |--------------------------------------------------------------------------
     */
     public function instructor()
-    {   
+    {
         return $this->belongsTo('App\Instructor');
     }
     public function course()

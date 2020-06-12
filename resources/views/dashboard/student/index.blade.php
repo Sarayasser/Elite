@@ -10,10 +10,10 @@
                 <h2 class="text-theme-color-red line-bottom">Courses
                 <button class="btn btn-info" type="button" style="float:right; font-size: 18px; padding: 11px 36px; margin-top: 17px;">
                     <a href="{{route('courses.index')}}" style="color:white;"> Add Course  </a>
-                </button>  
+                </button>
                 </h2>
                 @if(!$courses->isempty())
-                    @foreach($courses as $course)                
+                    @foreach($courses as $course)
                     <div class="panel panel-info">
                         <div class="panel-heading" >
                         <h3 class="panel-title" style="font-size:25px;">
@@ -27,19 +27,19 @@
                                         @if($course->image)
                                             <img src="{{ asset($course->image)}}" alt="" style="margin-right: 50px;" width="195px" height="195px">
                                         @endif
-                                        
-                                    </div> 
+
+                                    </div>
                                 </div>
                                 <div class="col-md-8">
-                                    
-                                        <p style="color: #a94442; font-size: 20px;"> 
-                                            Instructor: <span style=" font-size: 15px;  color: black;">{{$course->instructor->name}}</span> 
+
+                                        <p style="color: #a94442; font-size: 20px;">
+                                            Instructor: <span style=" font-size: 15px;  color: black;">{{$course->instructor->name}}</span>
                                         </p>
-                                        <p style="color: #a94442; font-size: 20px;"> 
-                                            Duration: <span style="font-size: 15px; color: black;">{{$course->duration}} Months</span> 
+                                        <p style="color: #a94442; font-size: 20px;">
+                                            Duration: <span style="font-size: 15px; color: black;">{{$course->duration}} Months</span>
                                         </p>
-                                        <p style="color: #a94442; font-size: 20px;"> 
-                                            Description: <span style="font-size: 15px; color: black;">{{substr($course->description,0,70)."....."}}</span> 
+                                        <p style="color: #a94442; font-size: 20px;">
+                                            Description: <span style="font-size: 15px; color: black;">{{substr($course->description,0,70)."....."}}</span>
                                         </p>
                                         <ul class="review_text list-inline">
                                             <li>
@@ -48,12 +48,12 @@
                                           </ul>
                                         <button class="btn btn-danger" type="button" style="float:right; font-size:15px;">
                                             <a href="{{route('courses.show',['course'=> $course])}}" style="color:white;"> Details </a>
-                                        </button>             
-                                         
+                                        </button>
+
                                 </div>
-                                
+
                             </div>
-                        </div>                  
+                        </div>
                     </div>
                     @endforeach
                 @else
@@ -69,7 +69,7 @@
                     <ul class="list list-border">
                         <li class="active"><a href="">Courses</a></li>
                         <li><a href="{{route('dashboard.progress','student')}}">Progress and Achievements</a></li>
-                        <li><a href="#">Schedules</a></li>
+                        <li><a href="{{route('dashboard.schedule','student')}}">Schedules</a></li>
                     </ul>
                 </div>
                 </div>
@@ -77,9 +77,9 @@
             </div>
         </div>
         </div>
-        <div> 
+        <div>
             <img alt="" src="images/bg/f2.png" class="img-responsive img-fullwidth">
         </div>
     </section>
-            
+
 @endsection

@@ -31,6 +31,12 @@ class PostCompleted extends PointType
      */
     public function payee()
     {
+        $badge=auth()->user()->badge();
+        dd($badge);
+         Notification::create([
+           'description'=>'New Badge Earned',
+           'user_id'=>auth()->user(),
+        ]);
         return auth()->user();
 
     }
