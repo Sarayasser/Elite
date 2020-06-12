@@ -52,10 +52,7 @@ class LoginController extends Controller
                         ->route('login')
                         ->with('danger', 'You need to confirm your account. We have sent you an activation code, please check your email.');
 
-                }else if($request->user()->hasRole('admin'))
-                {
-                    backpack_auth()->login($request->user());
-                }
+        }
 
                 return redirect("/");
         }
@@ -64,5 +61,4 @@ class LoginController extends Controller
     protected function credentials(Request $request){
         return ['email'=>$request[$this->username()],'password'=>$request->password,'is_banned'=> 0];
     }
-
 }
