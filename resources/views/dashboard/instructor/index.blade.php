@@ -66,7 +66,7 @@
                   <ul class="list list-border">
                     <li class="active"><a href="">Courses</a></li>
                     <li><a href="{{route('dashboard.students',"instructor")}}">Students</a></li>
-                    <li><a href="{{route('dashboard.events',"instructor")}}">Events</a></li>
+                    <li><a href="{{route('dashboard.events')}}">Events</a></li>
                     <li><a href="#">Schedules</a></li>
                   </ul>
                 </div>
