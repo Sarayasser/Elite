@@ -13,8 +13,17 @@ class ScheduleController extends Controller
 
     public function index()
     {
+        $schedules=Schedule::all();
+        return view('schedule.index',['schedules'=>$schedules]);
+    }
+    public function create(){
+        $courses=Course::all();
+        return view('schedule.create',['courses'=>$courses]);
+    }
+    public function store(){
 
     }
+    public function destroy(){
 
-
+    }
 }

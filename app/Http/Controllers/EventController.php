@@ -24,6 +24,7 @@ class EventController extends Controller
         $request = Request();
         $id= $request->event;
         $event = Event::where('id',$id)->first();
+        // dd($event);
         return view('event_details',['event'=>$event,'test'=>$test]);
     }
     public function create(){

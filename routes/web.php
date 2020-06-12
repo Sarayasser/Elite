@@ -73,14 +73,14 @@ Route::get('/timetable', function () { return view('timetable'); });
 Route::get('/', 'HomeController@index')->name('home');
 //Dashboard
 
-Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard');
-Route::get('/dashboard/{slug}/students','DashboardController@students_enrolled')->name('dashboard.students');
-Route::get('/dashboard/parent/create','DashboardController@create')->name('dashboard.create');
-Route::get('/dashboard/parent/progress','DashboardController@progress')->name('dashboard.progress');
-Route::post('/dashboard/parent', 'DashboardController@store')->name('dashboard.store');
-Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboard.login');
-Route::get('/dashboard/{slug}/events','DashboardController@instructor_events')->name('dashboard.events');
-Route::get('/dashboard/student', function () { return view('dashboard.student'); })->name('dashboard.student');
+// Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard');
+// Route::get('/dashboard/{slug}/students','DashboardController@students_enrolled')->name('dashboard.students');
+// Route::get('/dashboard/parent/create','DashboardController@create')->name('dashboard.create');
+// Route::get('/dashboard/parent/progress','DashboardController@progress')->name('dashboard.progress');
+// Route::post('/dashboard/parent', 'DashboardController@store')->name('dashboard.store');
+// Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboard.login');
+// Route::get('/dashboard/{slug}/events','DashboardController@instructor_events')->name('dashboard.events');
+// Route::get('/dashboard/student', function () { return view('dashboard.student'); })->name('dashboard.student');
 
 Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');
 Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
@@ -145,7 +145,7 @@ Route::group(['middleware' => ['auth','checkban']], function() {
     Route::get('/dashboard/{slug}/progress','DashboardController@progress')->name('dashboard.progress')->middleware('role:parent|student');
     Route::post('/dashboard/parent', 'DashboardController@store')->name('dashboard.store')->middleware('role:parent');
     Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboard.login')->middleware('role:parent');
-    Route::get('/dashboard/instructor/events','DashboardController@instructor_events')->name('dashboard.events')->middleware('role:instructor');
+    Route::get('/dashboard/{slug}/events','DashboardController@instructor_events')->name('dashboard.events')->middleware('role:instructor');
 
 
     //Profile
