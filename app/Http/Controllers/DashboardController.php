@@ -32,30 +32,36 @@ class DashboardController extends Controller
     public function index($slug)
     {
         $user = Auth::user();
-        if($slug === "instructor"){
+        if($slug === "instructor" && $user->hasRole('instructor')){
             // dd($user->id);
             $instructor=Instructor::where('user_id',$user->id)->first();
             $courses=Course::where('instructor_id',$instructor->id)->get();
             // dd($courses);
             return view('dashboard.instructor.index',['courses'=>$courses]);
         }
-        else if ($slug === "parent"){
+        else if ($slug === "parent" && $user->hasRole('parent')){
             $children = $user->students;
             return view('dashboard.parent.index', ['children' => $children]);
-        }else if($slug === "student"){
+        }else if($slug === "student" && $user->hasRole('student')){
 
         }else{
-            Redirect::back();
+            return redirect()->back()->with('error', "you are not authenticated in this route");
         }
-
 
     }
 
     public function login($id){
-        $user = User::where('id',$id)->first();
 
-        Auth::login($user); // login user automatically
-        return redirect('/');
+        $user = Auth::user();
+        $children = $user->students;
+        if($children->contains('id',$id)){
+            $user = User::where('id',$id)->first();
+            Auth::login($user);
+            return redirect('/');
+        }{
+            return redirect()->back()->with('error', "you don't have child with this account");
+        }
+
     }
 
     /**
@@ -96,8 +102,9 @@ class DashboardController extends Controller
             'parent_id' => $parent->id
         ]);
         $user->assignRole("student");
+        $user->sendEmailVerificationNotification();
 
-        return redirect()->route('dashboard',"parent");
+        return redirect()->route('dashboard',"parent")->with('status', "you created account for your child successfully .. wait for verification email");;
     }
 
      /**

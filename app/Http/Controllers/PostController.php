@@ -80,7 +80,8 @@ class PostController extends Controller
      */
     public function show($course_id, Post $post)
     {
-        return view('posts.show', ['post' => $post, 'course' => $course_id]);
+        $comments = $post->comments()->with('replies')->get();
+        return view('posts.show', ['post' => $post, 'course' => $course_id, 'comments' => $comments]);
     }
 
     /**

@@ -27,6 +27,7 @@ class Post extends Model
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $with = 'user';
 
     /*
     |--------------------------------------------------------------------------
@@ -46,6 +47,10 @@ class Post extends Model
     public function course()
     {
         return $this->belongsTo('App\Models\Course');
+    }
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
     }
 
     /*

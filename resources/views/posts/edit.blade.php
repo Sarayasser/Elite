@@ -1,6 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
+<!-- Section: inner-header -->
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/bg3.jpg')}}">
+    <div class="container pt-70 pb-20">
+        <!-- Section Content -->
+        <div class="section-content">
+        <div class="row"> 
+            <div class="col-md-6">
+            <h2 class="text-theme-color-yellow font-36">Post Edit</h2>
+            <ol class="breadcrumb text-left mt-10 white">
+                <li><a href="/">Home</a></li>
+                <li><a href="{{route('courses.show', $course)}}">Course Details</a></li>
+                <li class="active">Post Edit</li>
+            </ol>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
 <div class="container mt-50 mb-50">
     @if ($errors->any())
     <div class="alert alert-danger">

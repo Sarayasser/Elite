@@ -121,6 +121,9 @@ class Course extends Model
     {
         return $this->hasMany('App\Models\Post');
     }
-
+    public function reviews()
+    {
+      return $this->hasMany('App\Review');
+    }
 
 }

@@ -14,7 +14,7 @@
                 <div class="form-group @error('name') has-error @enderror">
                   <label for="inputName3" class="col-sm-2 control-label">Name</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" placeholder="Name">
                     @error('name')
                       <span id="helpBlock3" class="help-block">                      
                         <strong style="color:#a94442;">{{ $message }}</strong>
@@ -25,7 +25,7 @@
                 <div class="form-group @error('email') has-error @enderror">
                   <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="Email">
                     @error('email')
                     <span id="helpBlock3" class="help-block"> 
                             <strong style="color:#a94442;">{{ $message }}</strong>
@@ -54,7 +54,7 @@
                   <label  class="col-sm-2 control-label">Birthdate</label>
                     <div class="col-sm-10">
                       <div class="input-group date">
-                        <input type="text" class="form-control date-picker" name="age" placeholder="birthdate">
+                        <input type="text" class="form-control date-picker" name="age" value="{{ old('age') }}" placeholder="birthdate">
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>

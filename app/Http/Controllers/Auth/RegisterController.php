@@ -9,6 +9,7 @@ use App\Instructor;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Socialite;
 use Exception;
@@ -48,15 +49,6 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-
-    protected function redirectTo()
-    {
-        if (auth()->user()->hasRole('admin')) {
-            return '/admin';
-        }
-        return '/';
-    }
-
     /**
      * Get a validator for an incoming registration request.
      *
@@ -77,13 +69,14 @@ class RegisterController extends Controller
             'gender'=> ['required'],
             'image' => ['image','mimes:jpeg,jpg,png'],
             'role' => ['required','numeric','between:0,2'],
-            'age' => ['required_if:role,2','nullable','date','before_or_equal:'.$after],
+            'age' => ['required_if:role,2','nullable','date_format:"d/m/Y"','before_or_equal:'.$after],
             'cv' => ['required_if:role,0','nullable','mimes:pdf'],
         );
 
         $messages = array(
-            'age.required_if' => "age is required",
+            'age.required_if' => "the birthdate is required",
             'age.before_or_equal' => "your age must be greater than 10",
+            'age.date_format' => "the birthdate format is not correct",
             'cv.required_if' => "The cv is required",
             'cv.mimes' => "The cv must be a pdf file."
         );
@@ -106,7 +99,7 @@ class RegisterController extends Controller
             $base = "data:image/png;base64,";
 
         }
-      //  dd($data);
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -145,10 +138,18 @@ class RegisterController extends Controller
         return view('auth.register', compact('slug'));
     }
 
+
+    protected function registered(Request $request, $user)
+    {
+        $this->guard()->logout();
+        return redirect('/login')->with('status', 'We sent you an activation code. Check your email and click on the link to verify.');
+    }
+
     public function redirectToProvider($driver)
     {
-    return Socialite::driver($driver)->redirect();
+        return Socialite::driver($driver)->redirect();
     }
+
     public function handleProviderCallback($slug){
             $user = Socialite::driver(request()->provider)->stateless()->user();
             $existingUser = User::where('email', $user->email)->first();

@@ -8,26 +8,27 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group([
-    'namespace'  => 'App\Http\Controllers\Admin\Auth',
-    'middleware' => config('backpack.base.web_middleware', 'web'),
-    'prefix'     => 'admin',
-], function () {
-    // Registration Routes...
-    Route::get('register', 'RegisterController@showRegistrationForm')->name('backpack.auth.register');
-    Route::post('register', 'RegisterController@register');
-    // Login Routes...
-    Route::get('login', 'LoginController@showLoginForm')->name('backpack.auth.login');
-    Route::post('login', 'LoginController@login');
 
-});
+// Route::group([
+//     'namespace'  => 'App\Http\Controllers\Admin\Auth',
+//     'middleware' => config('backpack.base.web_middleware', 'web'),
+//     'prefix'     => 'admin',
+// ], function () {
+//     // Registration Routes...
+//     Route::get('register', 'RegisterController@showRegistrationForm')->name('backpack.auth.register');
+//     Route::post('register', 'RegisterController@register');
+//     // Login Routes...
+//     Route::get('login', 'LoginController@showLoginForm')->name('backpack.auth.login');
+//     Route::post('login', 'LoginController@login');
 
-Route::match(['get', 'post'], '/admin/login', function(){
-    return redirect('/users/login');
-});
-Route::match(['get', 'post'], '/admin/register', function(){
-    return redirect('/users/register');
-});
+// });
+
+// Route::match(['get', 'post'], '/admin/login', function(){
+//     return redirect('/users/login');
+// });
+// Route::match(['get', 'post'], '/admin/register', function(){
+//     return redirect('/users/register');
+// });
 
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
