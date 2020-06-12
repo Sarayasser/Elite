@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
+use Illuminate\Support\Facades\Auth;
 
 use Closure;
 
@@ -16,6 +17,7 @@ class CheckBan
     public function handle($request, Closure $next)
     {
         if ($request->user()->is_banned == 1) {
+            Auth::logout($request->user());
             return redirect('/login');
         }
         return $next($request);
