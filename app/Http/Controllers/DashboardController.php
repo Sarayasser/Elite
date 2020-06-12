@@ -43,7 +43,8 @@ class DashboardController extends Controller
             $children = $user->students;
             return view('dashboard.parent.index', ['children' => $children]);
         }else if($slug === "student" && $user->hasRole('student')){
-
+            $courses = $user->courses;
+            return view('dashboard.student.index',['courses'=>$courses]);
         }else{
             return redirect()->back()->with('error', "you are not authenticated in this route");
         }
@@ -112,11 +113,18 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function progress()
+    public function progress($slug)
     {
         $user = Auth::user();
-        $children = $user->students;
-        return view('dashboard.parent.progress', ['children' => $children]);
+        if ($slug === "parent" && $user->hasRole('parent')){
+            $children = $user->students;
+            return view('dashboard.parent.progress', ['children' => $children]);
+        }else if($slug === "student" && $user->hasRole('student')){
+            return view('dashboard.student.progress',['user'=>$user]);
+        }else{
+            return redirect()->back()->with('error', "you are not authenticated in this route");
+        }
+       
     }
 
     public function students_enrolled(){
