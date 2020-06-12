@@ -123,7 +123,9 @@ Route::group(['middleware' => ['auth','verified']], function() {
 
     //student enrollment 
     Route::post('/courses/{course}/enroll', 'CourseController@enroll')->name('courses.enroll')->middleware('role:student');
-
+    
+    // comment
+    Route::post('/posts/{post}/comments', 'CommentController@store')->name('comments.store');
 });
 
 
@@ -155,7 +157,8 @@ Route::group(['middleware' => ['auth','verified','role:admin|instructor']], func
 //Rate
 Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');
 Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
-
+//Review
+Route::post('/add-review', 'CourseController@addReview')->middleware('auth')->name('courses.review');
 
 
 //contact-us
