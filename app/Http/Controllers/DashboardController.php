@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\HomeController;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ class DashboardController extends Controller
      */
     public function index($slug)
     {
+        $test = (new HomeController)->note();
         $user = Auth::user();
         if($slug === "instructor" && $user->hasRole('instructor')){
             // dd($user->id);
@@ -41,10 +43,10 @@ class DashboardController extends Controller
         }
         else if ($slug === "parent" && $user->hasRole('parent')){
             $children = $user->students;
-            return view('dashboard.parent.index', ['children' => $children]);
+            return view('dashboard.parent.index', ['children' => $children,'test'=>$test]);
         }else if($slug === "student" && $user->hasRole('student')){
             $courses = $user->courses;
-            return view('dashboard.student.index',['courses'=>$courses]);
+            return view('dashboard.student.index',['courses'=>$courses , 'test'=>$test]);
         }else{
             return redirect()->back()->with('error', "you are not authenticated in this route");
         }
@@ -115,19 +117,21 @@ class DashboardController extends Controller
      */
     public function progress($slug)
     {
+        $test = (new HomeController)->note();
         $user = Auth::user();
         if ($slug === "parent" && $user->hasRole('parent')){
             $children = $user->students;
-            return view('dashboard.parent.progress', ['children' => $children]);
+            return view('dashboard.parent.progress', ['children' => $children, 'test'=>$test]);
         }else if($slug === "student" && $user->hasRole('student')){
-            return view('dashboard.student.progress',['user'=>$user]);
+            return view('dashboard.student.progress',['user'=>$user, 'test'=>$test]);
         }else{
             return redirect()->back()->with('error', "you are not authenticated in this route");
         }
-       
+
     }
 
     public function students_enrolled(){
+        $test = (new HomeController)->note();
         $id=Auth::user()->id;
         $instructor=Instructor::where('user_id',$id)->first();
         $course=Course::where('instructor_id',$instructor->id)->get();
@@ -139,14 +143,15 @@ class DashboardController extends Controller
         }
         $tes=User::whereIn('id',array_unique($test))->get();
         // dd($tes);
-        return view('dashboard.dashboard_students',['students'=>$tes]);
+        return view('dashboard.dashboard_students',['students'=>$tes, 'test'=>$test]);
     }
 
     public function instructor_events(){
+        $test = (new HomeController)->note();
         $id=Auth::user()->id;
         $instructor=Instructor::where('user_id',$id)->first();
         $events=Event::where('user_id',$instructor->user_id)->get();
-        return view('dashboard.dashboard_events',['events'=>$events]);
+        return view('dashboard.dashboard_events',['events'=>$events, 'test'=>$test]);
     }
     public function Instructor_schedule(){
         $id=Auth::user()->id;

@@ -8,28 +8,30 @@ use App\Models\Post;
 use App\User;
 use App\Review;
 use willvincent\Rateable\Rating;
+use App\Http\Controllers\HomeController;
 
 class CourseController extends Controller
 {
     public function index()
-    {    
-        return view('courses_list',['courses'=>Course::all()]);
+    {   $test = (new HomeController)->note();
+        return view('courses_list',['courses'=>Course::all(),'test'=>$test]);
     }
 
     public function show()
-    {    
+    {   $test = (new HomeController)->note();
         $course = Course::find(request()->course);
         $courses = Course::all();
         $posts = Post::all();
         $reviews=Review::all();
         $course_id=request()->course;
-        
+
         return view('course_details',[
             'course'=>$course,'courses'=>$courses,'posts'=> $posts, 'reviews'=>$reviews,
-            'course_id'=>$course_id]);
+            'course_id'=>$course_id,'test'=>$test]);
     }
 
     public function enroll(Course $course){
+        $test = (new HomeController)->note();
         $user = auth()->user();
         if($user->hasRole('student'))
             if ($course->capacity > 0) {
@@ -65,26 +67,26 @@ class CourseController extends Controller
             return redirect()->back();
         }
 
-        if( $rating->rating==null){     
+        if( $rating->rating==null){
             return redirect()->back()->with("invalid rating");
         }
         else{
             return redirect()->back()->with("You already made a review");
         }
     }
-    
-    public function addReview() { 
-        
+
+    public function addReview() {
+
         $review = new Review();
-        
+
         $review->message = request()->get('message');
-        
+
         $review->user_id =  request()->get('user_id');
-        
+
         $review->course_id =  request()->get('course_id');
-        
+
         $review->user()->associate(auth()->user());
-        
+
         $review->save();
         return redirect()->back();
 }

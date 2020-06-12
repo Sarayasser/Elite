@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
 use App\Gamify\Badges;
+use App\Http\Controllers\HomeController;
 
 class UserController extends Controller
-{   
+{
     public function show(){
         // $request=Request();
         // $id=$request->user;
@@ -37,7 +38,7 @@ class UserController extends Controller
         // dd($request);
         $id=$request->user;
         $user=User::where('id',$id)->first();
-    
+
         User::where('id',$id)->update([
             'name' => $request->name,
             'address' => $request->address,

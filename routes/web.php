@@ -186,11 +186,3 @@ Route::group(['middleware' => ['auth','role:admin|instructor','checkban']], func
 
 });
 
-//fullcalender
-Route::get('/Schedule','ScheduleController@index');
-Route::post('/Schedule/create','ScheduleController@create');
-Route::post('/Schedule/update','ScheduleController@update');
-Route::post('/Schedule/delete','ScheduleController@destroy');
-
-// Route::get('/banned',function(){ return view('banned');});
-//Rate

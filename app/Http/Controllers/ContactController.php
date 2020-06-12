@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Contact;
+use App\Http\Controllers\HomeController;
 
 class ContactController extends Controller
 {
-    public function create() { 
+    public function create() {
 
-        return view('contact'); 
+        return view('contact');
     }
 
-    
-    public function store(Request $request) { 
+
+    public function store(Request $request) {
 
         $this->validate($request, [
             'name' => 'required',
@@ -46,7 +47,7 @@ class ContactController extends Controller
                 $message->to('logeenhassanmostafa96@gmail.com');
             }
         );
-        
+
         return back()->with('success', 'Thank you for contact us!');
 
     }

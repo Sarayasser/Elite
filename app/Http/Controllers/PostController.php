@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use willvincent\Rateable\Rating;
 use App\Notification;
+use App\Http\Controllers\HomeController;
 
 class PostController extends Controller
 {

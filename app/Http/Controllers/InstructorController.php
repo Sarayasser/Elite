@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Instructor;
 use willvincent\Rateable\Rating;
+use App\Http\Controllers\HomeController;
 
 class InstructorController extends Controller
 {
@@ -44,7 +45,7 @@ class InstructorController extends Controller
         }
 
         if( $rating->rating<=5){
-        
+
             $instructor->ratings()->where('user_id', auth()->user()->id)->first()->delete($rating);
             $rating = new \willvincent\Rateable\Rating;
             $rating->rating =  request()->rate;
@@ -53,13 +54,13 @@ class InstructorController extends Controller
             return redirect()->back();
         }
         if( $rating->rating==null){
-            
+
             return redirect()->back()->with("invalid rating");
         }
         else{
             return redirect()->back()->with("You already made a review");
         }
-    
+
 
     }
 }

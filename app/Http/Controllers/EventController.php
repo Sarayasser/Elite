@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use File;
 use App\Notification;
+use App\Http\Controllers\HomeController;
 
 class EventController extends Controller
 {
