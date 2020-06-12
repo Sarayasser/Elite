@@ -123,6 +123,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany('App\Models\Post', 'user_read_posts');
     }
+    public function reviews()
+    {
+      return $this->hasMany('App\Review');
+    }
 
 
 }

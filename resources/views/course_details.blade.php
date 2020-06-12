@@ -50,7 +50,7 @@
             <div class="col-md-8 blog-pull-right">
               <div class="single-service">
                 <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
-              <h2 class="text-theme-color-red line-bottom">{{$course->name}}</h2>
+                <h2 class="text-theme-color-red line-bottom">{{$course->name}}</h2>
                 <h4 class="mt-0"><span class="text-theme-color-red">Price :</span> $ {{$course->price}}</h4>
                   <ul class="review_text list-inline">
                     <li>
@@ -60,6 +60,28 @@
                 <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo unde, <span class="text-theme-color-red">{{$course->name}}</span> corporis dolorum blanditiis ullam officia <span class="text-theme-color-red">our kindergarten </span>natus minima fugiat repellat! Corrupti voluptatibus aperiam voluptatem. Exercitationem, placeat, cupiditate.</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore suscipit, inventore aliquid incidunt, quasi error! Natus esse rem eaque asperiores eligendi dicta quidem iure, excepturi doloremque eius neque autem sint error qui tenetur, modi provident aut, maiores laudantium reiciendis expedita. Eligendi</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptatem officiis quod animi possimus a, iure nam sunt quas aperiam non recusandae reprehenderit, nesciunt cumque pariatur totam repellendus delectus? Maxime quasi earum nobis, dicta, aliquam facere reiciendis, delectus voluptas, ea assumenda blanditiis placeat dignissimos quas iusto repellat cumque.</p>
+                <h3 class="line-bottom mt-20 mb-20 text-theme-color-red">Course Information</h3>
+                <table class="table table-bordered"> 
+                  <tr>
+                    <td class="text-center font-16 font-weight-600 bg-theme-color-blue text-white" colspan="4">Details For {{$course->name}}</td>
+                  </tr>
+                  <tbody> 
+                    
+                                                                                                                                                            
+                    <tr> <td><i class="fa fa-calendar text-theme-color-red pr-20"></i>Start Date</td> <td>{{$course->schedule ?\Carbon\Carbon::parse($course->schedule->start_date)->format('d/m/yy')  : 'N/A'}}</td> </tr> 
+                    
+
+                    <tr> <td class="bg-theme-color-yellow text-white"><i class="fa fa-birthday-cake text-theme-color-blue pr-20"></i>Years Old</td> <td class="bg-theme-color-green text-white">{{$course->age}}-{{$course->age+1}} Years</td> </tr> 
+                    <tr> <td><i class="fa fa-users text-theme-color-red pr-20"></i>Class Size</td> <td>{{$course->capacity}} Students</td> </tr> 
+                    <tr> <td class="bg-theme-color-red text-white"><i class="fa fa-user text-theme-color-yellow pr-20"></i>Instructor</td> <td class="bg-theme-color-sky text-white">{{$course->instructor->name}}</td> </tr>
+                    <tr> <td class=" text-theme-color-red pr-20"><i class="fa fa-fighter-jet text-theme-color-red pr-20"></i>Coures Duration</td> <td>{{$course->duration}}-{{$course->duration+2}} Month</td> </tr>  
+                    
+                    <tr> <td class="bg-theme-color-lemon text-white"><i class="fa fa-clock-o text-theme-color-yellow pr-20"></i>Class Time</td> <td class="bg-theme-color-orange text-white">{{$course->schedule ? \Carbon\Carbon::parse($course->schedule->time)->format('H:i a') : 'N/A'}} : {{$course->schedule ?\Carbon\Carbon::parse($course->schedule->time)->addHours(2)->format('H:i a') : 'N/A' }}</td> </tr> 
+                    
+                    <tr> <td class="text-theme-color-red pr-20"><i class="fa fa-credit-card-alt text-theme-color-red pr-20"></i>Tution Fees</td> <td>$ {{$course->price}}</td> </tr>  
+                  </tbody> 
+                </table>
+                {{-- course rate --}}
                 <form action="{{ route('courses.rate') }}" method="POST">
 
                   {{ csrf_field() }}
@@ -78,31 +100,57 @@
                       
                       <br/>
 
-                      <button class="btn btn-success">Submit Review</button>
+                      <button class="btn btn-success">Submit Rate</button>
 
                   </div>
                 </form>
-                <h3 class="line-bottom mt-20 mb-20 text-theme-color-red">Course Information</h3>
-                <table class="table table-bordered"> 
-                  <tr>
-                    <td class="text-center font-16 font-weight-600 bg-theme-color-blue text-white" colspan="4">Details For {{$course->name}}</td>
-                  </tr>
-                  <tbody> 
+                {{-- course reviews --}}
+                <h3 class="widget-title line-bottom">Course <span class="text-theme-color-red">Review</span></h3>
+                @foreach($reviews as $review)
+                        <hr>
+                        <div class="row">
+                          <div class="col-md-12">
+                        
+                            <h5 class="media-heading comment-heading">{{$review->user->name}} says:</h5>
+                            <div class="comment-date">{{\Carbon\Carbon::parse($review->created_at)->format('d/m/yy')}}</div>
+
+                          <p>{{{$review->message}}}</p>
+                          </div>
+                        </div>
+                    @endforeach
                     
-    
-                    <tr> <td><i class="fa fa-calendar text-theme-color-red pr-20"></i>Start Date</td> <td>{{$course->schedule ? $course->schedule->start_date : 'N/A'}}</td> </tr> 
+                    <h4 class="widget-title line-bottom">Add<span class="text-theme-color-red">Review</span></h4>
+                <form   action="{{route('courses.review')}}" method="post">
+                  {{ csrf_field() }}
+                  
+                  <div class="form-group">
+                    <textarea name="message" class="form-control" required="" placeholder="review this course" rows="5"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-group">
+                      <input type="hidden" name="user_id" value="{{auth()->id()}}">
+                      <input type="hidden" id="custsId" name="course_id" value="{{$course_id}}" >
+
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    
+                    <button type="submit" class="btn btn-theme-color-sky btn-flat btn-xs btn-quick-contact text-white pt-5 pb-5" data-loading-text="Please wait...">Add Review</button>
+                  </div>
+                </form>
+                <br>
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                
                     
 
-                    <tr> <td class="bg-theme-color-yellow text-white"><i class="fa fa-birthday-cake text-theme-color-blue pr-20"></i>Years Old</td> <td class="bg-theme-color-green text-white">{{$course->age}}-{{$course->age+1}} Years</td> </tr> 
-                    <tr> <td><i class="fa fa-users text-theme-color-red pr-20"></i>Class Size</td> <td>{{$course->capacity}} Students</td> </tr> 
-                    <tr> <td class="bg-theme-color-red text-white"><i class="fa fa-user text-theme-color-yellow pr-20"></i>Instructor</td> <td class="bg-theme-color-sky text-white">{{$course->instructor->name}}</td> </tr>
-                    <tr> <td class=" text-theme-color-red pr-20"><i class="fa fa-fighter-jet text-theme-color-red pr-20"></i>Coures Duration</td> <td>{{$course->duration}}-{{$course->duration+2}} Month</td> </tr>  
-                    
-                    <tr> <td class="bg-theme-color-lemon text-white"><i class="fa fa-clock-o text-theme-color-yellow pr-20"></i>Class Time</td> <td class="bg-theme-color-orange text-white">{{$course->schedule ? $course->schedule->start_date : 'N/A'}} : {{$course->schedule ? $course->schedule->start_date->addHours(2) : 'N/A' }}</td> </tr> 
-                    
-                    <tr> <td class="text-theme-color-red pr-20"><i class="fa fa-credit-card-alt text-theme-color-red pr-20"></i>Tution Fees</td> <td>$ {{$course->price}}</td> </tr>  
-                  </tbody> 
-                </table>
               </div>
             </div>
             <div class="col-sm-12 col-md-4">

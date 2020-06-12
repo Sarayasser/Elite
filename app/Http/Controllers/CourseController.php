@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Post;
 use App\User;
+use App\Review;
 use willvincent\Rateable\Rating;
 
 class CourseController extends Controller
@@ -20,7 +21,12 @@ class CourseController extends Controller
         $course = Course::find(request()->course);
         $courses = Course::all();
         $posts = Post::all();
-        return view('course_details',['course'=>$course,'courses'=>$courses,'posts'=> $posts]);
+        $reviews=Review::all();
+        $course_id=request()->course;
+        
+        return view('course_details',[
+            'course'=>$course,'courses'=>$courses,'posts'=> $posts, 'reviews'=>$reviews,
+            'course_id'=>$course_id]);
     }
 
     public function enroll(Course $course){
@@ -66,5 +72,21 @@ class CourseController extends Controller
             return redirect()->back()->with("You already made a review");
         }
     }
+    
+    public function addReview() { 
+        
+        $review = new Review();
+        
+        $review->message = request()->get('message');
+        
+        $review->user_id =  request()->get('user_id');
+        
+        $review->course_id =  request()->get('course_id');
+        
+        $review->user()->associate(auth()->user());
+        
+        $review->save();
+        return redirect()->back();
+}
 
 }

@@ -156,7 +156,8 @@ Route::group(['middleware' => ['auth','verified','role:admin|instructor']], func
 //Rate
 Route::post('post-rate', 'PostController@ratePost')->middleware('auth')->name('posts.rate');
 Route::post('course-rate', 'CourseController@rateCourse')->middleware('auth')->name('courses.rate');
-
+//Review
+Route::post('/add-review', 'CourseController@addReview')->middleware('auth')->name('courses.review');
 
 
 //contact-us
