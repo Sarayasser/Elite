@@ -52,7 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $disk = "uploads";
         $destination_path = "storage/avatars";
 
-        if ($value==null) {
+        if ($value==null && $this->{$attribute_name} !== 'images/default_avatar.jpg') {
             Storage::disk($disk)->delete($this->{$attribute_name});
 
             $this->attributes[$attribute_name] = null;

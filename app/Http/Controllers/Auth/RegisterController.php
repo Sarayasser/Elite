@@ -97,7 +97,6 @@ class RegisterController extends Controller
         if(array_key_exists ('image',$data)){
             $image = base64_encode(file_get_contents($data['image']));
             $base = "data:image/png;base64,";
-
         }
 
         $user = User::create([
@@ -107,10 +106,14 @@ class RegisterController extends Controller
             'phone_number' => $data['phone_number'],
             'address' => $data['address'],
             'gender' => $data['gender'],
-            'image'  => $base.$image,
             'age' => date('Y-m-d H:i:s', strtotime($data['age'])),
 
         ]);
+
+        if($image){
+            $user->image = $base.$image;
+            $user->save();
+        }
         $role = $data['role'];
 
         if($role == 0){
