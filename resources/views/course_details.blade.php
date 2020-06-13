@@ -20,7 +20,7 @@
                     <li class="active">Course details</li>
                 </ol>
                 @if(Auth::user())
-                  @if(Auth::user()->hasRole('instructor') && !$course->enrolled && $course->capacity > 0)
+                  @if(Auth::user()->hasRole('student') && !$course->enrolled && $course->capacity > 0)
                   <form method="POST" action="{{route('courses.enroll', $course->id)}}">
                     @csrf
                     <button type="submit" class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20">Enroll</button>
