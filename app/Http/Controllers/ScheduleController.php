@@ -10,7 +10,7 @@ use App\Models\Course;
 use App\Instructor;
 use App\Notification;
 use Illuminate\Support\Facades\Auth;
-use MacsiDigital\Zoom\Facades\Zoom; 
+use MacsiDigital\Zoom\Facades\Zoom;
 
 class ScheduleController extends Controller
 {
@@ -38,21 +38,21 @@ class ScheduleController extends Controller
         // "start_time" => "2020-06-11T18:00:00Z"
 
         $meeting=$zoom_user->meetings()->create(['topic'=>$topic, "start_time" => $start_time]);
-        
-         Schedule::create([
+
+         $schedule=Schedule::create([
             'start_date'=> $request->start_date,
             'end_date'=>$request->end_date,
             'time'=>$request->time,
             'course_id'=>$request->course_id,
             'instructor_id'=>$instructor->id,
             'link'=>$meeting->join_url
-         ])->save();
+         ]);
+         $schedule->save();
 
          Notification::create([
              'description'=>'New Schedule created',
-             'schedule_id'=>$request->id,
+             'schedule_id'=>$schedule->id,
              'course_id'=>$request->course_id,
-             'instructor_id'=>$instructor->id,
          ]);
             return redirect()->route('dashboard.schedule','instructor');
     }

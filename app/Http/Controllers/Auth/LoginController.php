@@ -43,21 +43,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    protected function authenticated($request){
-      
-       if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-                if (!isset($request->user()->email_verified_at)) {
-                    Auth::logout();
-                    return redirect()
-                        ->route('login')
-                        ->with('danger', 'You need to confirm your account. We have sent you an activation code, please check your email.');
-
-        }
-
-                return redirect("/");
-        }
-
+    public function redirectToProvider($driver)
+    {
+        return Socialite::driver($driver)->redirect();
     }
+  
     protected function credentials(Request $request){
         return ['email'=>$request[$this->username()],'password'=>$request->password,'is_banned'=> 0];
     }

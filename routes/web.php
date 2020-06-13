@@ -70,9 +70,8 @@ Route::group(['middleware' => ['web']], function() {
 
 //login with google and facebook
     Route::get('/redirect/{driver}', 'Auth\LoginController@redirectToProvider')->name('login.provider');
-    Route::get('/home/{provider}', 'Auth\LoginController@handleProviderCallback')->name('login.access');
 
-    Route::get('/redirect/{driver}', 'Auth\RegisterController@redirectToProvider')->name('register.provider');
+    Route::get('/users/register/{slug}/redirect/{driver}', 'Auth\RegisterController@redirectToProvider')->name('register.provider');
     Route::get('/home/{provider}', 'Auth\RegisterController@handleProviderCallback')->name('register.access');
 
 });
@@ -192,8 +191,8 @@ Route::get('/timetable', function () { return view('timetable'); });
 
 Route::get('/', 'HomeController@index')->name('home');
 
-    //Schedule
-    Route::get('/courses/{course}/schedule/create', 'ScheduleController@create')->name('schedule.create');
-    Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
-    Route::get('/schedule/delete/{schedule}','ScheduleController@destroy')->name('schedule.destroy');
+//Schedule
+Route::get('/courses/{course}/schedule/create', 'ScheduleController@create')->name('schedule.create');
+Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
+Route::get('/schedule/delete/{schedule}','ScheduleController@destroy')->name('schedule.destroy');
 

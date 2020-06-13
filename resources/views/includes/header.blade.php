@@ -13,25 +13,30 @@
             <div class="widget no-border pull-right sm-pull-none sm-text-center mt-10 mb-10 m-0">
               <ul class="list-inline">
                 <li>
+                @if(Auth::user()->hasRole('student') && Auth::user())
                 <div class="btn-group">
                 <button class="fa fa-bell fa-2x mr-200" type="button" data-toggle="dropdown" style="border-color:transparent;background:transparent;" aria-haspopup="true" aria-expanded="false"></button>
                 <ul class="dropdown-menu">
-                @if(Auth::user()->hasRole('student') && Auth::user())
+
                 <li>
                 @foreach($test as $t)
                 @if($t->event_id)
-                <a class="dropdown-item" href="{{$t}}"><i class='fa fa-user'></i> {{$t->description}} {{$t->event->name}}</a>
+                <a class="dropdown-item" href="{{route('events.show',['event'=>$t->event_id])}}"><i class='fa fa-bookmark-o'></i> {{$t->description}} {{$t->event->name}}</a>
                   <div class="dropdown-divider"></div>
                 @endif
                 @if($t->post_id)
-                <a class="dropdown-item" href="{{$t}}"><i class='fa fa-user'></i> {{$t->description}} {{$t->course->name}}</a>
+                <a class="dropdown-item" href="{{route('posts.show',['course'=>$t->course_id,'post'=>$t->post_id])}}"><i class='fa fa-file-pdf-o'></i> {{$t->description}} {{$t->course->name}}</a>
+                  <div class="dropdown-divider"></div>
+                @endif
+                @if($t->schedule_id)
+                <a class="dropdown-item" href="{{route('dashboard.schedule','student')}}"><i class='fa fa-calendar'></i> {{$t->description}} {{$t->course->name}}</a>
                   <div class="dropdown-divider"></div>
                 @endif
                 @endforeach
                 <li>
-                @endif
                   </ul>
                 </div>
+                @endif
                 </li>
               </ul>
             </div>

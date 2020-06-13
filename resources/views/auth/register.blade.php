@@ -85,12 +85,6 @@
                 <div class="col-2">
                     <div class="input-group">
                         <label class="label">Birthdate</label>
-                        {{-- <div class="input-group date" data-provide="datepicker">
-                            <input type="text" class="form-control">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
-                            </div>
-                        </div> --}}
                         <div class="input-group-icon">
                             <input class="input--style-4 js-datepicker" id="datepicker" type="text" name="age" value="{{ old('age') }}">
                             <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
@@ -180,10 +174,10 @@
             <br>
     <div class="row">
         <div class="col">
-        <a class="fa fa-google fa-2x" href="{{ route('register.provider', 'google') }}" style="margin-right:5px;color:#20B2AA;"></a>
+        <a class="fa fa-google fa-2x" href="{{ route('register.provider', ['driver'=>'google','slug'=>$slug]) }}" style="margin-right:5px;color:#20B2AA;"></a>
         </div>
         <div class="col">
-        <a class="fa fa-facebook-square fa-2x" href="{{ route('register.provider', 'facebook') }}" ></a>
+        <a class="fa fa-facebook-square fa-2x" href="{{ route('register.provider',['driver'=>'facebook','slug'=>$slug]) }}" ></a>
         </div>
     </div>
     </div>

@@ -68,10 +68,10 @@
             <br>
     <div class="row">
         <div class="col">
-        <a class="fa fa-google fa-2x" href="{{ route('register.provider', 'google') }}" style="margin-right:5px;color:#20B2AA;"></a>
+        <a class="fa fa-google fa-2x" href="{{ route('login.provider', 'google') }}" style="margin-right:5px;color:#20B2AA;"></a>
         </div>
         <div class="col">
-        <a class="fa fa-facebook-square fa-2x" href="{{ route('register.provider', 'facebook') }}" ></a>
+        <a class="fa fa-facebook-square fa-2x" href="{{ route('login.provider', 'facebook') }}" ></a>
         </div>
     </div>
     </div>
