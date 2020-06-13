@@ -33,7 +33,7 @@
     <label for="date">Course</label>
     <input type="text" class="form-control inactive" id="link" placeholder="Enter Meeting Link" name="course_id" value="{{$course->id}}">
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" id="mylink" class="btn btn-default">Submit</button>
     </form>
 </div>
 @endsection

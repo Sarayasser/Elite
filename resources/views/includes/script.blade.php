@@ -1,6 +1,7 @@
-<!-- JS | Custom script for all pages --> 
+<!-- JS | Custom script for all pages -->
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
 <script>
 CKEDITOR.replace( 'ckeditor', {
     filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token() ])}}",
@@ -27,4 +28,38 @@ $(document).on('click', 'a.jquery-postback', function(e) {
         console.log(data);
     });
 });
+</script>
+<script>
+function myFunction() {
+    document.getElementById("bell").style.color = "yellow";
+}
+</script>
+<script>
+function myFunctionOff() {
+    document.getElementById("bell").style.color = "black";
+}
+</script>
+
+<script type="text/javascript">
+$( document ).ready(function() {
+
+  $('#mylink').on('click',function() {
+    $( "#bell" ).css('color','yellow');
+    localStorage.setItem('isCliked', true);
+  });
+  $('#bell').on('click',function() {
+    $( "#bell" ).css('color','green');
+    localStorage.setItem('isCliked', false);
+  });
+
+    });
+    $( window ).on( "load", function() {
+        if(localStorage.getItem('isCliked') === "true"){
+            // console.log('ana hana');
+        document.getElementById("bell").style.color = "yellow";
+        }else{
+            document.getElementById("bell").style.color = "green";
+        }
+        // console.log(typeof(localStorage.getItem('isCliked')));
+    });
 </script>

@@ -42,8 +42,8 @@
         <label for="date">Date</label>
         <input type="date" class="form-control" id="date" placeholder="Enter Date" name="date">
     </div>
-    
-    <button type="submit" class="btn btn-default">Submit</button>
+
+    <button type="submit" onclick="myFunction()" class="btn btn-default">Submit</button>
     </form>
 </div>
 @endsection

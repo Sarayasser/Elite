@@ -13,11 +13,10 @@
             <div class="widget no-border pull-right sm-pull-none sm-text-center mt-10 mb-10 m-0">
               <ul class="list-inline">
                 <li>
-                @if(Auth::user()->hasRole('student') && Auth::user())
                 <div class="btn-group">
-                <button class="fa fa-bell fa-2x mr-200" type="button" data-toggle="dropdown" style="border-color:transparent;background:transparent;" aria-haspopup="true" aria-expanded="false"></button>
+                <button class="fa fa-bell fa-2x mr-200" type="button" id="bell" data-toggle="dropdown" style="border-color:transparent;background:transparent;" aria-haspopup="true" aria-expanded="false"></button>
+                @if(Auth::user()->hasRole('student') && Auth::user())
                 <ul class="dropdown-menu">
-
                 <li>
                 @foreach($test as $t)
                 @if($t->event_id)
@@ -35,8 +34,9 @@
                 @endforeach
                 <li>
                   </ul>
+                  @endif
                 </div>
-                @endif
+
                 </li>
               </ul>
             </div>

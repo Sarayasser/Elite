@@ -43,7 +43,7 @@
         <label for="exampleInputFile2">File input</label>
         <input type="file" id="exampleInputFile2" name="image">
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" onclick="myFunction()" class="btn btn-default">Submit</button>
     </form>
 </div>
 @endsection
