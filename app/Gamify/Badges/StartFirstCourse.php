@@ -21,10 +21,10 @@ class StartFirstCourse extends BadgeType
      */
     public function qualifier($user)
     {
-        // Notification::create([
-        //    'description'=>'New Badge Earned',
-        //    'post_id'=>$user->id
-        // ]);
+        if ( $user->getPoints() == 10){
+            toastr()->success('Go to your profile to check it  ⚡️', 'New Badge 🥇', ['timeOut' => 10000]);
+        }
+        
         return $user->getPoints() >= 10;
     }
 }

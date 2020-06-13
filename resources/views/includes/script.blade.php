@@ -28,3 +28,5 @@ $(document).on('click', 'a.jquery-postback', function(e) {
     });
 });
 </script>
+@toastr_js
+@toastr_render

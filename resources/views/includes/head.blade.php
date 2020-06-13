@@ -12,6 +12,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <title>Elite</title>
+@toastr_css
 
 <!-- Fonts -->
 <link rel="dns-prefetch" href="//fonts.gstatic.com">

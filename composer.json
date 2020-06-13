@@ -25,7 +25,8 @@
         "laravel/ui": "^2.0",
         "macsidigital/laravel-zoom": "^4.0",
         "qcod/laravel-gamify": "^1.0",
-        "willvincent/laravel-rateable": "^2.1"
+        "willvincent/laravel-rateable": "^2.1",
+        "yoeunes/toastr": "^1.2"
     },
     "require-dev": {
         "backpack/generators": "^3.1",
