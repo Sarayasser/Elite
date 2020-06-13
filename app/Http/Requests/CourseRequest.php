@@ -33,8 +33,7 @@ class CourseRequest extends FormRequest
             'age'=>'required|gte:3|lte:120',
             'duration'=>'required|gte:1|lte:12',
             'capacity'=>'required|gte:10|lte:100',
-            'price'=>'required|gte:0|lte:10000',
-            'rate'=>'required|gte:1|lte:5',
+            
         ];
     }
 
