@@ -32,6 +32,7 @@
                 <div class="col-md-12">
                   <div class="row list-dashed">
                     <article class="post clearfix mb-30 bg-lighter">
+                    {!! $post->video_html !!}
                       @if($post->image)
                       <div class="entry-header">
                         <div class="post-thumb thumb"> <img src="{{asset($post->image)}}" alt="" class="img-responsive img-fullwidth"> </div>
