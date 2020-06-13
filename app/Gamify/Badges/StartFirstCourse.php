@@ -21,10 +21,6 @@ class StartFirstCourse extends BadgeType
      */
     public function qualifier($user)
     {
-        // Notification::create([
-        //    'description'=>'New Badge Earned',
-        //    'post_id'=>$user->id
-        // ]);
         return $user->getPoints() >= 10;
     }
 }

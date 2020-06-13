@@ -23,6 +23,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "macsidigital/laravel-zoom": "^4.0",
+        "pusher/pusher-php-server": "~4.0",
         "qcod/laravel-gamify": "^1.0",
         "willvincent/laravel-rateable": "^2.1"
     },

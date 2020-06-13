@@ -191,8 +191,8 @@ Route::get('/timetable', function () { return view('timetable'); });
 
 Route::get('/', 'HomeController@index')->name('home');
 
-    //Schedule
-    Route::get('/courses/{course}/schedule/create', 'ScheduleController@create')->name('schedule.create');
-    Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
-    Route::get('/schedule/delete/{schedule}','ScheduleController@destroy')->name('schedule.destroy');
+//Schedule
+Route::get('/courses/{course}/schedule/create', 'ScheduleController@create')->name('schedule.create');
+Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
+Route::get('/schedule/delete/{schedule}','ScheduleController@destroy')->name('schedule.destroy');
 

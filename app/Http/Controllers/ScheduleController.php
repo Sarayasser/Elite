@@ -8,6 +8,7 @@ use Redirect,Response;
 use App\Http\Controllers\HomeController;
 use App\Models\Course;
 use App\Instructor;
+use App\Notification;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -27,20 +28,20 @@ class ScheduleController extends Controller
          $request=Request();
         //  dd($request->course_id);
         $instructor=Instructor::where('user_id',Auth::user()->id)->first();
-         Schedule::create([
+        $schedule=Schedule::create([
             'start_date'=> $request->start_date,
             'end_date'=>$request->end_date,
             'time'=>$request->time,
             'course_id'=>$request->course_id,
             'instructor_id'=>$instructor->id,
             'link'=>$request->link
-         ])->save();
-
+         ]);
+         $schedule->save();
+        //  dd($schedule->id);
          Notification::create([
              'description'=>'New Schedule created',
-             'schedule_id'=>$request->id,
+             'schedule_id'=>$schedule->id,
              'course_id'=>$request->course_id,
-             'instructor_id'=>$instructor->id,
          ]);
             return redirect()->route('dashboard.schedule','instructor');
     }

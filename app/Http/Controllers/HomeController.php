@@ -48,10 +48,10 @@ class HomeController extends Controller
         $events=Notification::where('event_id','!=',null)->get();
         $course=$student->courses()->get()->pluck('id');
         $notification=Notification::whereIn('course_id',$course)->get();
-        // dd($notification);
         $instructor=$student->courses()->get()->pluck('instructor_id');
-        $post=Notification::orderBy('created_at')->whereIn('course_id',$course)->orWhereIn('instructor_id',$instructor)->take(5)->get();
+        $post=Notification::orderBy('created_at','desc')->whereIn('course_id',$course)->orWhereIn('instructor_id',$instructor)->take(8)->get();
         $event=$events->where('instructor_id',$instructor);
+        // dd($post);
 
         return $post;
     }
