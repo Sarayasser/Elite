@@ -130,59 +130,57 @@ class RegisterController extends Controller
     }
 
     public function showRegistrationForm($slug)
-    {
-        // request()->session()->put('slug', $slug);
-        Session::put('slug', $slug);
-        // dd(Session::get('progress'));
-        Session::save();
+    {        
         return view('auth.register', compact('slug'));
     }
 
 
-    protected function registered(Request $request, $user)
+    public function redirectToProvider($slug,$driver)
     {
-        $this->guard()->logout();
-        return redirect('/login')->with('status', 'We sent you an activation code. Check your email and click on the link to verify.');
-    }
-
-    public function redirectToProvider($driver)
-    {
+        Session::put('slug', $slug);
+        Session::save();
         return Socialite::driver($driver)->redirect();
     }
 
-    public function handleProviderCallback($slug){
+    public function handleProviderCallback(){
+
             $user = Socialite::driver(request()->provider)->stateless()->user();
             $existingUser = User::where('email', $user->email)->first();
-            // dd($user);
+
             if($existingUser){
                 auth()->login($existingUser, true);
+                if(!$existingUser->email_verified_at)
+                    $existingUser->sendEmailVerificationNotification();
             } else {
                 if (Session::get('slug')){
-                $newUser                  = new User;
-                $newUser->name            = $user->name;
-                $newUser->email           = $user->email;
-                $newUser->provider_id     = $user->id;
-                $newUser->password        = '123456';
-                $newUser->address         = 'Alexandria';
-                $newUser->phone_number    = '123456789';
-                $role=Session::get('slug');
-                // dd($role == 'instructor');
-                $newUser->save();
-                if($role == 'instructor'){
-                    $newUser->assignRole("instructor");
-                    Instructor::create([
-                    // "cv" => 'dhjshkjhsd',
-                    "user_id" => $newUser->id
-                    ]);
+                    $newUser                  = new User;
+                    $newUser->name            = $user->name;
+                    $newUser->email           = $user->email;
+                    $newUser->provider_id     = $user->id;
+                    $newUser->password        = '123456';
+                    $newUser->address         = 'Alexandria';
+                    $newUser->phone_number    = '123456789';
+                    $role=Session::get('slug');
+                    $newUser->save();
+
+                    if($role == 'instructor'){
+                        $newUser->assignRole("instructor");
+                        Instructor::create([
+                        // "cv" => 'dhjshkjhsd',
+                            "user_id" => $newUser->id
+                        ]);
                     }else if($role == 'parent'){
-                    $newUser->assignRole("parent");
+                        $newUser->assignRole("parent");
                     }else if($role == 'student'){
-                    $newUser->assignRole("student");
-                }
-                auth()->login($newUser, true);
+                        $newUser->assignRole("student");               
+                    }
+                    if(!$newUser->email_verified_at)
+                        $newUser->sendEmailVerificationNotification();
+                    auth()->login($newUser, true);
                 }else{
                     return redirect()->to('/users');
-                }
+                } 
+                   
             }
 
         return redirect()->to('/');
