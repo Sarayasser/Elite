@@ -31,16 +31,10 @@
                 <div class="team-member maxwidth400">
                   <div class="team-thumb">
                     <a href={{route('instructors.show',['instructor'=> $instructor])}}>
-                    @if($instructor->user->image)
-                        <img class="img-fullwidth mt-15" height="390px" src="{{$instructor->user->image}}" alt="">                     
-                    @else
-                      @if($instructor->user->gender == '1' )
-                        <img class="img-fullwidth mt-15" height="390px" src="images/team/team1.jpg" alt="">
-                      @else
-                        <img class="img-fullwidth mt-15" height="390px" src="images/team/team2.jpg" alt="">
+                      @if($instructor->user->image)
+                          <img class="img-fullwidth mt-15" height="390px" src="{{$instructor->user->image}}" alt="">                     
                       @endif
-                    @endif
-                  </a>
+                    </a>
                   </div>
                   <div class="team-details bg-theme-color-sky text-center pt-20 pb-5">
                     <div class="member-biography">

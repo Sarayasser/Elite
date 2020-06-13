@@ -9,6 +9,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Models\Event;
+use App\instructor;
 
 class HomeController extends Controller
 {
@@ -30,17 +31,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $user=Auth::user();
+        $instructors = Instructor::all();
         if(Auth::user()){
-        if($user->hasRole('student')){
-            $post=$this->note();
-        // dd($post);
-        return view('home',['courses'=>Course::all(),'events'=>Event::all(),'test'=>$post]);
+            if($user->hasRole('student')){
+                $post=$this->note();
+                return view('home',['instructors'=>$instructors,'courses'=>Course::all(),'events'=>Event::all(),'test'=>$post]);
+            }else{
+                return view('home',['instructors'=>$instructors,'courses'=>Course::all(),'events'=>Event::all()]);
+            }
         }else{
-            return view('home',['courses'=>Course::all(),'events'=>Event::all()]);
-        }}else{
-            return view('home',['courses'=>Course::all(),'events'=>Event::all()]);
+            return view('home',['instructors'=>$instructors,'courses'=>Course::all(),'events'=>Event::all()]);
         }
     }
     public function note(){
