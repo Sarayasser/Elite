@@ -207,6 +207,9 @@ class UserCrudController extends UserController
     {
         $this->crud->setRequest($this->crud->validateRequest());
         $this->crud->setRequest($this->handlePasswordInput($this->crud->getRequest()));
+        if(!$this->crud->getRequest()->hasFile('image')){
+            $this->crud->getRequest()->request->remove('image');
+        }
         $this->crud->unsetValidation(); // validation has already been run
         $response = $this->traitStore();
         // do something after save
@@ -217,6 +220,9 @@ class UserCrudController extends UserController
     }
     public function update()
     {
+        if(!$this->crud->getRequest()->hasFile('image')){
+            $this->crud->getRequest()->request->remove('image');
+        }
         $this->crud->setRequest($this->crud->validateRequest());
         $this->crud->unsetValidation(); // validation has already been run
 
