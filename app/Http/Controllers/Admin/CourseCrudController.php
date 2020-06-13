@@ -104,27 +104,7 @@ class CourseCrudController extends CrudController
                 'label' => 'Description',
                 'type' => 'textarea'
             ],
-            [   // Number
-                'name' => 'price',
-                'label' => 'Price',
-                'type' => 'number',
-                // optionals
-                // 'attributes' => ["step" => "any"], // allow decimals
-                'prefix' => "$",
-                'suffix' => ".00",
-            ],
-            [   // Number
-                'name' => 'rate',
-                'label' => 'Course Rate',
-                'type' => 'number',
-                // optionals
-                'attributes' => ["step" => "0.5"], // allow decimals
-                // 'prefix' => "",
-                'suffix' => "Stars out of 5",
-            ],
-                        
             
-           
         ]);
     }
 
@@ -184,26 +164,6 @@ class CourseCrudController extends CrudController
                 'label' => 'Description',
                 'type' => 'textarea'
             ],
-            [   // Number
-                'name' => 'price',
-                'label' => 'Price',
-                'type' => 'number',
-                // optionals
-                // 'attributes' => ["step" => "any"], // allow decimals
-                'prefix' => "$",
-                'suffix' => ".00",
-            ],
-            [   // Number
-                'name' => 'rate',
-                'label' => 'Course Rate',
-                'type' => 'number',
-                // optionals
-                'attributes' => ["step" => "0.5"], // allow decimals
-                // 'prefix' => "",
-                'suffix' => "Stars out of 5 Stars",
-            ],
-            
-            
             
         ]);
     }

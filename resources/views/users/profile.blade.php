@@ -55,8 +55,10 @@
                         @endif
                         <p><i class="glyphicon glyphicon-phone mr-10"></i>{{$user->phone_number}}</p>
             </div>
+            @if(auth()->user() && auth()->user()->hasRole('student'))
+            
             <div class="col-md-8">
-            <h4> Total Points: {{$user->getPoints()}}</h4>
+              <h4> Total Points: {{$user->getPoints()}}</h4>
                         <h4>Badges : </h4>
                         @foreach($badges as $badge)
                         <h5> {{$badge ? $badge->name : 'N/A'}}</h5>
@@ -65,6 +67,7 @@
                     <img alt="{{$badge->name}}" src="{{ asset('images/badges/'.$badge->name.'.jpg') }}" class="img-rounded img-responsive" style="width: 40px" style="height: 40px">
 
                         @endforeach
+            @endif
             </div>
             </div>
             </div>
