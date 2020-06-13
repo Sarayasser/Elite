@@ -31,10 +31,6 @@ Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboar
 Route::get('/dashboard/{slug}/events','DashboardController@instructor_events')->name('dashboard.events');
 Route::get('/dashboard/student', function () { return view('dashboard.student'); })->name('dashboard.student');
 
-
-//contact-us
-Route::get('/contact', 'ContactController@create')->name('contact.create');
-Route::post('/contact', 'ContactController@store')->name('contact.store');
 });
 
 // Auth::routes();
@@ -194,3 +190,7 @@ Route::get('/courses/{course}/schedule/create', 'ScheduleController@create')->na
 Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
 Route::get('/schedule/delete/{schedule}','ScheduleController@destroy')->name('schedule.destroy');
 
+
+//contact-us
+Route::get('/contact', 'ContactController@create')->name('contact.create');
+Route::post('/contact', 'ContactController@store')->name('contact.store');
