@@ -23,7 +23,8 @@ class UserUpdateCrudRequest extends storeRequest
             abort(400, 'Could not find that entry in the database.');
         }
 
-        return [
+        return 
+        [
             'email'    => 'required|unique:'.config('permission.table_names.users', 'users').',email,'.$userId,
             'name'     => 'required',
             'image'    => 'nullable |image|mimes:jpeg,png,jpg,gif,svg|max:2048',
