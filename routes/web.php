@@ -69,8 +69,6 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('/users', function () { return view('auth/user'); })->name('users');
 
 //login with google and facebook
-    Route::get('/redirect/{driver}', 'Auth\LoginController@redirectToProvider')->name('login.provider');
-    Route::get('/home/{provider}', 'Auth\LoginController@handleProviderCallback')->name('login.access');
 
     Route::get('/redirect/{driver}', 'Auth\RegisterController@redirectToProvider')->name('register.provider');
     Route::get('/home/{provider}', 'Auth\RegisterController@handleProviderCallback')->name('register.access');
@@ -104,6 +102,7 @@ Route::group(['middleware' => ['auth','verified','checkban']], function() {
 
     // comment
     Route::post('/posts/{post}/comments', 'CommentController@store')->name('comments.store');
+    Route::delete('/posts/{post}/comments/{comment}', 'CommentController@destroy')->name('comments.destroy');
 
     Route::post('/courses/{course}/posts/{post}', function($course_id, Post $post){
         auth()->user()->readPosts()->attach($post->id);

@@ -47,7 +47,7 @@
       <td>{{$schedule->link}}</td>
       <td>
         <a class="fa fa-trash" style="color:red;" href="{{route('schedule.destroy',['schedule'=>$schedule->id])}}"></a>
-        <a class="fa fa-pencil" style="color:blue;" href="#"></a>
+        {{-- <a class="fa fa-pencil" style="color:blue;" href="{{route('schedule.edit',['schedule'=>$schedule->id])}}"></a> --}}
       </td>
     </tr>
   @endforeach

@@ -169,5 +169,5 @@ class DashboardController extends Controller
         return view('dashboard.student.schedule',['schedules'=>$schedule,'test'=>$test]);
         }
     }
-
+    
 }

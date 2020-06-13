@@ -77,6 +77,9 @@ class CourseController extends Controller
 
     public function addReview() {
 
+        $this->validate(request(), [
+            'message' => 'required|profanity|max:140'
+        ]);
         $review = new Review();
 
         $review->message = request()->get('message');

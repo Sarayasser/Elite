@@ -19,9 +19,9 @@ class ContactController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
-            'subject' => 'required',
+            'subject' => 'required|profanity',
             'phone_number' => 'required',
-            'message' => 'required'
+            'message' => 'required|profanity'
         ]);
 
         $contact = new Contact;
