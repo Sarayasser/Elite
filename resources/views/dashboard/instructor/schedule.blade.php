@@ -44,7 +44,11 @@
       <td>{{$schedule->end_date}}</td>
       <td>{{$schedule->time}}</td>
       <td>{{$schedule->course->name}}</td>
-      <td>{{$schedule->link}}</td>
+      @if($schedule->link)
+      <td><a href="{{$schedule->link}}">Meeting Link</a></td>
+      @else
+      <td></td>
+      @endif
       <td>
         <a class="fa fa-trash" style="color:red;" href="{{route('schedule.destroy',['schedule'=>$schedule->id])}}"></a>
         {{-- <a class="fa fa-pencil" style="color:blue;" href="{{route('schedule.edit',['schedule'=>$schedule->id])}}"></a> --}}

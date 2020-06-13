@@ -21,11 +21,11 @@
                 <li>
                 @foreach($test as $t)
                 @if($t->event_id)
-                <a class="dropdown-item" href="{{$t}}"><i class='fa fa-bookmark-o'></i> {{$t->description}} {{$t->event->name}}</a>
+                <a class="dropdown-item" href="{{route('events.show',['event'=>$t->event_id])}}"><i class='fa fa-bookmark-o'></i> {{$t->description}} {{$t->event->name}}</a>
                   <div class="dropdown-divider"></div>
                 @endif
                 @if($t->post_id)
-                <a class="dropdown-item" href="{{$t}}"><i class='fa fa-file-pdf-o'></i> {{$t->description}} {{$t->course->name}}</a>
+                <a class="dropdown-item" href="{{route('posts.show',['course'=>$t->course_id,'post'=>$t->post_id])}}"><i class='fa fa-file-pdf-o'></i> {{$t->description}} {{$t->course->name}}</a>
                   <div class="dropdown-divider"></div>
                 @endif
                 @if($t->schedule_id)
