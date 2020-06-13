@@ -130,7 +130,7 @@ class RegisterController extends Controller
     }
 
     public function showRegistrationForm($slug)
-    {        
+    {
         return view('auth.register', compact('slug'));
     }
 
@@ -157,9 +157,9 @@ class RegisterController extends Controller
                     $newUser->name            = $user->name;
                     $newUser->email           = $user->email;
                     $newUser->provider_id     = $user->id;
-                    $newUser->password        = '123456';
+                    $newUser->password        = Hash::make($this->password_generate(8));
                     $newUser->address         = 'Alexandria';
-                    $newUser->phone_number    = '123456789';
+                    $newUser->phone_number    = '00000000';
                     $role=Session::get('slug');
                     $newUser->save();
 
@@ -172,17 +172,22 @@ class RegisterController extends Controller
                     }else if($role == 'parent'){
                         $newUser->assignRole("parent");
                     }else if($role == 'student'){
-                        $newUser->assignRole("student");               
+                        $newUser->assignRole("student");
                     }
                     if(!$newUser->email_verified_at)
                         $newUser->sendEmailVerificationNotification();
                     auth()->login($newUser, true);
                 }else{
                     return redirect()->to('/users');
-                } 
-                   
+                }
+
             }
 
         return redirect()->to('/');
+    }
+    public function password_generate($chars)
+    {
+    $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+    return substr(str_shuffle($data), 0, $chars);
     }
 }
