@@ -177,8 +177,6 @@ Route::get('/about', function () {
         'course'=>Course::find(request()->course),'courses'=>Course::all(),'posts'=>Post::all(),'test'=>Notification::all()]);
      })->name('about');
 
-
-
 //instructor
 Route::get('/instructors', 'InstructorController@index')->name('instructors.index');
 Route::get('/instructors/{instructor}', 'InstructorController@show')->name('instructors.show');

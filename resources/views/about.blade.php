@@ -3,11 +3,11 @@
 @section('content')
 
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/bg3.jpg')}}" >
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/12345.jpg')}}" >
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row"> 
+            <div class="row mt-130">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">About</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -33,7 +33,7 @@
                 <a href="#" class="btn btn-flat btn-colored btn-theme-color-blue mt-15 mr-15">Read More</a><a href="#" class="btn btn-flat btn-colored btn-theme-color-yellow mt-15">Get a Quote</a>
             </div>
             <div class="col-md-6">
-              <div class="video-popup">                
+              <div class="video-popup">
                 <a>
                   <img alt="" src="{{ asset('images/about/6.png') }}" class="img-responsive img-fullwidth">
                 </a>
@@ -42,7 +42,7 @@
           </div>
         </div>
       </div>
-      <div> 
+      <div>
           <img alt="" src="{{ asset('images/bg/f2.png') }}" class="img-responsive img-fullwidth">
       </div>
     </section>
@@ -61,12 +61,12 @@
             </div>
           </div>
         </div>
-        <div class="section-content">     
+        <div class="section-content">
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-sm-15">
               <div class="team-member maxwidth400">
                 <div class="team-thumb">
-                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/Ahmed-Gaber.jpg')}}" alt="">                     
+                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/Ahmed-Gaber.jpg')}}" alt="">
                 </a>
                 </div>
                 <div class="team-details bg-theme-color-yellow text-center pt-20 pb-5">
@@ -85,7 +85,7 @@
             <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-sm-15">
               <div class="team-member maxwidth400">
                 <div class="team-thumb">
-                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/team2.jpg')}}" alt="">                     
+                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/team2.jpg')}}" alt="">
                 </a>
                 </div>
                 <div class="team-details bg-theme-color-sky text-center pt-20 pb-5">
@@ -104,7 +104,7 @@
             <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-sm-15">
               <div class="team-member maxwidth400">
                 <div class="team-thumb">
-                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/team1.jpg')}}" alt="">                     
+                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/team1.jpg')}}" alt="">
                 </a>
                 </div>
                 <div class="team-details bg-theme-color-red text-center pt-20 pb-5">
@@ -123,7 +123,7 @@
             <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-sm-15">
               <div class="team-member maxwidth400">
                 <div class="team-thumb">
-                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/team1.jpg')}}" alt="">                     
+                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/team1.jpg')}}" alt="">
                 </a>
                 </div>
                 <div class="team-details bg-theme-color-green text-center pt-20 pb-5">
@@ -139,8 +139,8 @@
                 </div>
               </div>
             </div>
-           
-          </div>     
+
+          </div>
         </div>
       </div>
     </section>
@@ -190,7 +190,7 @@
                           <li>Capacity<span>{{$course->capacity}}</span></li>
                           <li>Duration<span>{{$course->duration}} mo</span></li>
                           <li>Age<span>{{$course->age}}y - {{$course->age+1}}y</span></li>
-                      </ul>                            
+                      </ul>
                       </div>
                       @if(auth()->user())
                           @if(!$course->enrolled && auth()->user()->hasRole('student'))
@@ -202,7 +202,7 @@
                   </div>
               </div>
               @endforeach
-              
+
               </div>
           </div>
           </div>

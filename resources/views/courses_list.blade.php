@@ -3,16 +3,16 @@
 @section('content')
 
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/bg3.jpg')}}">
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/3611.jpg')}}">
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row"> 
+            <div class="row mt-100">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Courses</h2>
                 <ol class="breadcrumb text-left mt-10 white">
                   <li><a href="{{route('home')}}">Home</a></li>
-                    
+
                     <li class="active">Courses</li>
                 </ol>
                 </div>
@@ -25,23 +25,26 @@
     <section>
       <div class="container">
         <div class="row">
-          
+
           @foreach ($courses as $course)
           @php
               if (auth()->user() && auth()->user()->hasRole('student')) {
                   $course->enrolled = $course->students->contains(auth()->user());
               }
           @endphp
-         
-          <div class="col-sm-6 col-md-4">
+
+          <div class="col-sm-6 col-md-4 mb-30">
             <div class="item">
-              <div class="campaign bg-white maxwidth500 mb-30">
+              <div class="campaign bg-white maxwidth500">
                 <div class="thumb">
+                @if($course->image)
                 <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
+                @else
+                <img class="img-fullwidth img-thumbnail" alt="" src="{{ asset('images/bg/3610647.jpg')}}">
+                @endif
                 <div class="campaign-overlay"></div>
                 </div>
                 <div class="course-details clearfix p-20 pt-15">
-                  <h4 class="price-tag">$ {{$course->price}}</h4>
                   <h3 class="mt-0"><a class="text-theme-color-red" href="{{route('courses.show', $course->id)}}">{{$course->name}}</a></h3>
                   <ul class="review_text list-inline">
                     <li>
@@ -71,11 +74,11 @@
             </div>
           </div>
           @endforeach
-          
+
         </div>
       </div>
     </section>
 
-     
+
 
 @endsection

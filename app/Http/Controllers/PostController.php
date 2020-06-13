@@ -64,6 +64,7 @@ class PostController extends Controller
             'post_id' => $post->id,
             'course_id' => $post->course_id,
         ]);
+
         return redirect()->route('posts.show', ['course' => $course->id, 'post' => $post->id,'test'=>$test]);
     }
 

@@ -29,7 +29,7 @@ $(document).on('click', 'a.jquery-postback', function(e) {
     });
 });
 </script>
-<script>
+<!-- <script>
 function myFunction() {
     document.getElementById("bell").style.color = "yellow";
 }
@@ -62,6 +62,6 @@ $( document ).ready(function() {
         }
         // console.log(typeof(localStorage.getItem('isCliked')));
     });
-</script>
+</script> -->
 @toastr_js
 @toastr_render

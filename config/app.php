@@ -185,6 +185,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\PermissionManagerServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
 
     ],
 

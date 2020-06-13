@@ -14,13 +14,17 @@
               <ul class="list-inline">
                 <li>
                 <div class="btn-group">
+                @if(Auth::user()->hasRole('student') && Auth::user())
                 <button class="fa fa-bell fa-2x mr-200" type="button" id="bell" data-toggle="dropdown" style="border-color:transparent;background:transparent;" aria-haspopup="true" aria-expanded="false"></button>
+                @else
+                <button class="fa fa-bell fa-2x mr-200" type="button" id="bell" data-toggle="dropdown" style="border-color:transparent;background:transparent;" aria-haspopup="true" aria-expanded="false"></button>
+                @endif
                 @if(Auth::user()->hasRole('student') && Auth::user())
                 <ul class="dropdown-menu">
                 <li>
                 @foreach($test as $t)
                 @if($t->event_id)
-                <a class="dropdown-item" href="{{route('events.show',['event'=>$t->event_id])}}"><i class='fa fa-bookmark-o'></i> {{$t->description}} {{$t->event->name}}</a>
+                <a class="dropdown-item bg-dark" href="{{route('events.show',['event'=>$t->event_id])}}"><i class='fa fa-bookmark-o'></i> {{$t->description}} {{$t->event->name}}</a>
                   <div class="dropdown-divider"></div>
                 @endif
                 @if($t->post_id)
@@ -54,7 +58,6 @@
               <li class="{{ Request::is('courses') ? 'active' : '' }}" ><a href="{{route('courses.index')}}">Courses</a></li>
               <li class="{{ Request::is('instructors') ? 'active' : '' }}" ><a href="{{route('instructors.index')}}">Instructors</a></li>
               <li class="{{ Request::is('event') ? 'active' : '' }}"><a href="{{route('events.index')}}">Events</a></li>
-              <li><a href="#">Schedule</a></li>
               <li class="{{ Request::is('contact') ? 'active' : '' }}" ><a href="{{route('contact.create')}}">Contact us</a></li>
               <li class="{{ Request::is('about') ? 'active' : '' }}" ><a href="{{route('about')}}">About</a></li>
               <li class="{{ Request::is('faq') ? 'active' : '' }}"><a href="{{ route('faq') }}">FAQ</a></li>

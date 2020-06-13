@@ -3,11 +3,11 @@
 @section('content')
 
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{asset('images/bg/bg3.jpg')}}">
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{asset('images/bg/2222.jpg')}}">
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row"> 
+            <div class="row">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Contact</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -43,7 +43,7 @@
                     <div class="form-group mb-30  @error('name') has-error @enderror">
                         <input id="name" name="name" class="form-control" type="text" placeholder="Enter Name">
                         @error('name')
-                        <span id="helpBlock3" class="help-block"> 
+                        <span id="helpBlock3" class="help-block">
                                 <strong style="color:#a94442;">{{ $message }}</strong>
                             </span>
                         @enderror
@@ -53,19 +53,19 @@
                     <div class="form-group mb-30  @error('email') has-error @enderror">
                         <input id="email" name="email" class="form-control required email" type="email" placeholder="Enter Email">
                         @error('email')
-                        <span id="helpBlock3" class="help-block"> 
+                        <span id="helpBlock3" class="help-block">
                                 <strong style="color:#a94442;">{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                     </div>
-                </div>                
+                </div>
                 <div class="row">
                     <div class="col-sm-6">
                     <div class="form-group mb-30  @error('subject') has-error @enderror">
                         <input id="subject" name="subject" class="form-control required" type="text" placeholder="Enter Subject">
                         @error('subject')
-                        <span id="helpBlock3" class="help-block"> 
+                        <span id="helpBlock3" class="help-block">
                                 <strong style="color:#a94442;">{{ $message }}</strong>
                             </span>
                         @enderror
@@ -75,18 +75,18 @@
                     <div class="form-group mb-30 @error('phone_number') has-error @enderror">
                         <input id="phone_number" name="phone_number" class="form-control" type="text" placeholder="Enter Phone">
                         @error('phone_number')
-                        <span id="helpBlock3" class="help-block"> 
+                        <span id="helpBlock3" class="help-block">
                                 <strong style="color:#a94442;">{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                     </div>
                 </div>
-    
+
                 <div class="form-group mb-30 @error('message') has-error @enderror">
                     <textarea id="message" name="message" class="form-control required" rows="7" placeholder="Enter Message"></textarea>
                     @error('message')
-                    <span id="helpBlock3" class="help-block"> 
+                    <span id="helpBlock3" class="help-block">
                             <strong style="color:#a94442;">{{ $message }}</strong>
                         </span>
                     @enderror
