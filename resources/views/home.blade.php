@@ -128,82 +128,31 @@
                 </div>
                 <div class="row">
                 <div class="team-members">
-                    <div class="col-md-3 col-sm-6">
-                    <div class="team-member maxwidth400 mb-sm-15">
-                        <div class="team-thumb">
-                        <img class="img-fullwidth mt-15" src="{{ asset('images/team/team1.jpg')}}" alt="">
+                    @foreach($instructors as $instructor)
+                        <div class="col-md-3 col-sm-6">
+                            <div class="team-member maxwidth400 mb-sm-15">
+                                <div class="team-thumb">
+                                    <a href={{route('instructors.show',['instructor'=> $instructor])}}>
+                                        @if($instructor->user->image)
+                                            <img class="img-fullwidth mt-15" height="390px" src="{{$instructor->user->image}}" alt="">                     
+                                        @endif
+                                    </a>
+                                </div>
+                                <div class="team-details bg-theme-color-red text-center pt-20 pb-5">
+                                <div class="member-biography">
+                                    <h3 class="mt-0 text-white">{{$instructor->user->name}}</h3>
+                                    <p class="mb-0 text-white">English Teacher</p>
+                                </div>
+                                <ul class="styled-icons icon-dark icon-circled icon-theme-color-green pt-5">
+                                    <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter text-white"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-dribbble text-white"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram text-white"></i></a></li>
+                                </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="team-details bg-theme-color-sky text-center pt-20 pb-5">
-                        <div class="member-biography">
-                            <h3 class="mt-0 text-white">Steve Smith</h3>
-                            <p class="mb-0 text-white">English Teacher</p>
-                        </div>
-                        <ul class="styled-icons icon-dark icon-circled icon-theme-color-red pt-5">
-                            <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram text-white"></i></a></li>
-                        </ul>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                    <div class="team-member maxwidth400 mb-sm-15">
-                        <div class="team-thumb">
-                        <img class="img-fullwidth mt-15" src="{{ asset('images/team/team2.jpg')}}" alt="">
-                        </div>
-                        <div class="team-details bg-theme-color-yellow text-center pt-20 pb-5">
-                        <div class="member-biography">
-                            <h3 class="mt-0 text-white">Steve Smith</h3>
-                            <p class="mb-0 text-white">English Teacher</p>
-                        </div>
-                        <ul class="styled-icons icon-dark icon-circled icon-theme-color-sky pt-5">
-                            <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram text-white"></i></a></li>
-                        </ul>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                    <div class="team-member maxwidth400 mb-sm-15">
-                        <div class="team-thumb">
-                        <img class="img-fullwidth mt-15" src="{{ asset('images/team/team4.jpg')}}" alt="">
-                        </div>
-                        <div class="team-details bg-theme-color-red text-center pt-20 pb-5">
-                        <div class="member-biography">
-                            <h3 class="mt-0 text-white">Steve Smith</h3>
-                            <p class="mb-0 text-white">English Teacher</p>
-                        </div>
-                        <ul class="styled-icons icon-dark icon-circled icon-theme-color-green pt-5">
-                            <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram text-white"></i></a></li>
-                        </ul>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                    <div class="team-member maxwidth400 mb-sm-15">
-                        <div class="team-thumb">
-                        <img class="img-fullwidth mt-15" src="{{ asset('images/team/team9.jpg')}}" alt="">
-                        </div>
-                        <div class="team-details bg-theme-color-green text-center pt-20 pb-5">
-                        <div class="member-biography">
-                            <h3 class="mt-0 text-white">Steve Smith</h3>
-                            <p class="mb-0 text-white">English Teacher</p>
-                        </div>
-                        <ul class="styled-icons icon-dark icon-circled icon-theme-color-orange pt-5">
-                            <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram text-white"></i></a></li>
-                        </ul>
-                        </div>
-                    </div>
-                    </div>
+                    @endforeach
                 </div>
                 </div>
             </div>
