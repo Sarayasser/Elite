@@ -52,6 +52,7 @@ class PostController extends Controller
     public function store(PostRequest $request, Course $course)
     {   $test = (new HomeController)->note();
         $post = $course->posts()->create([
+            'video' => $request->video,
             'title' => $request->title,
             'description' =>  $request->description,
             'user_id' =>  $request->user()->id
@@ -103,6 +104,7 @@ class PostController extends Controller
         $attributes = [
                 'title' => $request->title,
                 'description' =>  $request->description,
+                'video' => $request->video,
             ];
         $post->update($attributes);
         if ($request->hasFile('image')){

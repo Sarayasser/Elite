@@ -23,7 +23,7 @@
             <div class="col-md-4">
               <div class="thumb img-thumbnail">
               @if($user->image)
-            <img class="card-img-top" src="{{$user->image}}" alt="Card image cap">
+            <img class="card-img-top" src="{{asset($user->image)}}" alt="Card image cap">
             @else
             @if($user->gender === 1)
             <img class="card-img-top" src="{{ asset('images/female.png')}}" alt="Card image cap">

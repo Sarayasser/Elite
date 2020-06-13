@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62850edb7ed7eb2c95155bd93b1f553a",
+    "content-hash": "8aa8dce3590e301ac48084a836a5820b",
     "packages": [
         {
             "name": "askedio/laravel5-profanity-filter",
@@ -477,6 +477,52 @@
                 "math"
             ],
             "time": "2020-04-15T15:59:35+00:00"
+        },
+        {
+            "name": "cohensive/embed",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KaneCohen/embed.git",
+                "reference": "9b013068d900bad8fd06d66c2f5977e0de057748"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KaneCohen/embed/zipball/9b013068d900bad8fd06d66c2f5977e0de057748",
+                "reference": "9b013068d900bad8fd06d66c2f5977e0de057748",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Cohensive\\Embed": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kane Cohen",
+                    "email": "kanecohen@gmail.com"
+                }
+            ],
+            "description": "Media Embed (for Laravel or as a standalone).",
+            "keywords": [
+                "embed",
+                "laravel",
+                "media",
+                "vimeo",
+                "youtube"
+            ],
+            "time": "2019-10-19T15:07:43+00:00"
         },
         {
             "name": "creativeorange/gravatar",
@@ -7870,7 +7916,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "cohensive/embed": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

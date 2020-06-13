@@ -27,7 +27,8 @@
         "pusher/pusher-php-server": "~4.0",
         "qcod/laravel-gamify": "^1.0",
         "willvincent/laravel-rateable": "^2.1",
-        "yoeunes/toastr": "^1.2"
+        "yoeunes/toastr": "^1.2",
+        "cohensive/embed": "dev-master"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

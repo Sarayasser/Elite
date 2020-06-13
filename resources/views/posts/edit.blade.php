@@ -47,6 +47,10 @@
         <img src="{{asset($post->image)}}" width="200" height="150">
         @endif
     </div>
+    <div class="form-group">
+        <label for="video">Add video via vimeo</label>
+        <input type="text" id="video" name="video" class="form-control" placeholder="Video URL" value="{{$post->video}}">
+    </div>
     <button type="submit" class="btn btn-default">Update</button>
     </form>
 </div>

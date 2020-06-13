@@ -27,6 +27,7 @@
           <div class="col-md-10 col-md-offset-1">
             <div class="blog-posts single-post">
               <article class="post clearfix mb-0">
+              {!! $post->video_html !!}
                 @if($post->image)
                 <div class="entry-header">
                   <div class="post-thumb thumb"> <img src="{{asset($post->image)}}" alt="" class="img-responsive img-fullwidth"> </div>
