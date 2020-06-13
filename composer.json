@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2.5",
         "askedio/laravel5-profanity-filter": "^1.10",
+        "backpack/backupmanager": "^3.0",
         "backpack/crud": "4.1.*",
         "backpack/filemanager": "^1.1",
         "backpack/permissionmanager": "^6.0",
@@ -27,7 +28,8 @@
         "pusher/pusher-php-server": "~4.0",
         "qcod/laravel-gamify": "^1.0",
         "willvincent/laravel-rateable": "^2.1",
-        "yoeunes/toastr": "^1.2"
+        "yoeunes/toastr": "^1.2",
+        "cohensive/embed": "dev-master"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

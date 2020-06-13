@@ -40,8 +40,12 @@
         <textarea class="form-control" id="ckeditor" name="description"></textarea>
     </div>
     <div class="form-group">
-        <label for="exampleInputFile2">File input</label>
-        <input type="file" id="exampleInputFile2" name="image">
+        <label for="image">File input</label>
+        <input type="file" id="image" name="image">
+    </div>
+    <div class="form-group">
+        <label for="video">Add video via vimeo</label>
+        <input type="text" id="video" name="video" class="form-control" placeholder="Video URL">
     </div>
     <button type="submit" onclick="myFunction()" class="btn btn-default">Submit</button>
     </form>

@@ -167,10 +167,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Askedio\Laravel5ProfanityFilter\Providers\ProfanityFilterServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
-
-
-
-
+        Cohensive\Embed\EmbedServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -240,7 +237,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-
+        'Embed' => Cohensive\Embed\Facades\Embed::class,
 
     ],
 

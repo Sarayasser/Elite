@@ -83,7 +83,7 @@
 
                     <tr> <td class="bg-theme-color-lemon text-white"><i class="fa fa-clock-o text-theme-color-yellow pr-20"></i>Class Time</td> <td class="bg-theme-color-orange text-white">{{$course->schedule ? \Carbon\Carbon::parse($course->schedule->time)->format('H:i a') : 'N/A'}} : {{$course->schedule ?\Carbon\Carbon::parse($course->schedule->time)->addHours(2)->format('H:i a') : 'N/A' }}</td> </tr>
 
-                    <tr> <td class="text-theme-color-red pr-20"><i class="fa fa-credit-card-alt text-theme-color-red pr-20"></i>Tution Fees</td> <td>$ {{$course->price}}</td> </tr>
+                    
                   </tbody>
                 </table>
                 {{-- course rate --}}

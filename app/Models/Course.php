@@ -24,7 +24,7 @@ class Course extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['name', 'instructor_id', 'age', 'duration', 'capacity', 'rate', 'description', 'price', 'image', 'schedule_id'];
+    protected $fillable = ['name', 'instructor_id', 'age', 'duration', 'capacity', 'description', 'image', 'schedule_id'];
     // protected $hidden = [];
     // protected $dates = [];schedules
 

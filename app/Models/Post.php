@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Cohensive\Embed\Facades\Embed;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -64,6 +65,16 @@ class Post extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
+    public function getVideoHtmlAttribute()
+    {
+        $embed = Embed::make($this->video)->parseUrl();
+
+        if (!$embed)
+            return '';
+
+        $embed->setAttribute(['width' => 400]);
+        return $embed->getHtml();
+    }
 
     /*
     |--------------------------------------------------------------------------

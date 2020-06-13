@@ -13,3 +13,4 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('course') }}'><i class='nav-icon la la-bookmark'></i> Courses</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('event') }}'><i class='nav-icon la la-flag'></i> Events</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('schedule') }}'><i class='nav-icon la la-table'></i> Schedules</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('backup') }}'><i class='nav-icon la la-hdd-o'></i> Backups</a></li>
