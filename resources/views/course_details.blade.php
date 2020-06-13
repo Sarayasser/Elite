@@ -11,7 +11,7 @@
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row"> 
+            <div class="row">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Course details</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -19,14 +19,16 @@
                     <li><a href="{{route('courses.index')}}">Courses </a></li>
                     <li class="active">Course details</li>
                 </ol>
-                @if(Auth::user() && !$course->enrolled && $course->capacity > 0)
-                <form method="POST" action="{{route('courses.enroll', $course->id)}}">
-                  @csrf
-                  <button type="submit" class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20">Enroll</button>
-                </form>
-                @endif
-                @if($course->capacity <= 0)
-                  <p class="text-danger">This course is not available at the moment</p>
+                @if(Auth::user())
+                  @if(Auth::user()->hasRole('instructor') && !$course->enrolled && $course->capacity > 0)
+                  <form method="POST" action="{{route('courses.enroll', $course->id)}}">
+                    @csrf
+                    <button type="submit" class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20">Enroll</button>
+                  </form>
+                  @endif
+                  @if($course->capacity <= 0)
+                    <p class="text-danger">This course is not available at the moment</p>
+                  @endif
                 @endif
                 </div>
                 <div class="col-md-6 mt-70" style="float:right;">
@@ -36,6 +38,9 @@
                   @endif
                   @if (auth()->user()->hasRole('student') && $course->enrolled)
                   <a href="{{route('posts.index', ['course' => $course])}}" class="fa fa-play fa-5x" style="float:right;color:white;"></a>
+                  @endif
+                  @if (Auth::user()->hasRole('instructor') || Auth::user()->hasRole('admin'))
+                  <a href="{{route('schedule.create', ['course' => $course])}}" class="fa fa-calendar fa-5x mr-20" style="float:right;color:white;"></a>
                   @endif
                 @endif
                 </div>
@@ -61,33 +66,33 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore suscipit, inventore aliquid incidunt, quasi error! Natus esse rem eaque asperiores eligendi dicta quidem iure, excepturi doloremque eius neque autem sint error qui tenetur, modi provident aut, maiores laudantium reiciendis expedita. Eligendi</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptatem officiis quod animi possimus a, iure nam sunt quas aperiam non recusandae reprehenderit, nesciunt cumque pariatur totam repellendus delectus? Maxime quasi earum nobis, dicta, aliquam facere reiciendis, delectus voluptas, ea assumenda blanditiis placeat dignissimos quas iusto repellat cumque.</p>
                 <h3 class="line-bottom mt-20 mb-20 text-theme-color-red">Course Information</h3>
-                <table class="table table-bordered"> 
+                <table class="table table-bordered">
                   <tr>
                     <td class="text-center font-16 font-weight-600 bg-theme-color-blue text-white" colspan="4">Details For {{$course->name}}</td>
                   </tr>
-                  <tbody> 
-                    
-                                                                                                                                                            
-                    <tr> <td><i class="fa fa-calendar text-theme-color-red pr-20"></i>Start Date</td> <td>{{$course->schedule ?\Carbon\Carbon::parse($course->schedule->start_date)->format('d/m/yy')  : 'N/A'}}</td> </tr> 
-                    
+                  <tbody>
 
-                    <tr> <td class="bg-theme-color-yellow text-white"><i class="fa fa-birthday-cake text-theme-color-blue pr-20"></i>Years Old</td> <td class="bg-theme-color-green text-white">{{$course->age}}-{{$course->age+1}} Years</td> </tr> 
-                    <tr> <td><i class="fa fa-users text-theme-color-red pr-20"></i>Class Size</td> <td>{{$course->capacity}} Students</td> </tr> 
+
+                    <tr> <td><i class="fa fa-calendar text-theme-color-red pr-20"></i>Start Date</td> <td>{{$course->schedule ?\Carbon\Carbon::parse($course->schedule->start_date)->format('d/m/yy')  : 'N/A'}}</td> </tr>
+
+
+                    <tr> <td class="bg-theme-color-yellow text-white"><i class="fa fa-birthday-cake text-theme-color-blue pr-20"></i>Years Old</td> <td class="bg-theme-color-green text-white">{{$course->age}}-{{$course->age+1}} Years</td> </tr>
+                    <tr> <td><i class="fa fa-users text-theme-color-red pr-20"></i>Class Size</td> <td>{{$course->capacity}} Students</td> </tr>
                     <tr> <td class="bg-theme-color-red text-white"><i class="fa fa-user text-theme-color-yellow pr-20"></i>Instructor</td> <td class="bg-theme-color-sky text-white">{{$course->instructor->name}}</td> </tr>
-                    <tr> <td class=" text-theme-color-red pr-20"><i class="fa fa-fighter-jet text-theme-color-red pr-20"></i>Coures Duration</td> <td>{{$course->duration}}-{{$course->duration+2}} Month</td> </tr>  
-                    
-                    <tr> <td class="bg-theme-color-lemon text-white"><i class="fa fa-clock-o text-theme-color-yellow pr-20"></i>Class Time</td> <td class="bg-theme-color-orange text-white">{{$course->schedule ? \Carbon\Carbon::parse($course->schedule->time)->format('H:i a') : 'N/A'}} : {{$course->schedule ?\Carbon\Carbon::parse($course->schedule->time)->addHours(2)->format('H:i a') : 'N/A' }}</td> </tr> 
-                    
-                    <tr> <td class="text-theme-color-red pr-20"><i class="fa fa-credit-card-alt text-theme-color-red pr-20"></i>Tution Fees</td> <td>$ {{$course->price}}</td> </tr>  
-                  </tbody> 
+                    <tr> <td class=" text-theme-color-red pr-20"><i class="fa fa-fighter-jet text-theme-color-red pr-20"></i>Coures Duration</td> <td>{{$course->duration}}-{{$course->duration+2}} Month</td> </tr>
+
+                    <tr> <td class="bg-theme-color-lemon text-white"><i class="fa fa-clock-o text-theme-color-yellow pr-20"></i>Class Time</td> <td class="bg-theme-color-orange text-white">{{$course->schedule ? \Carbon\Carbon::parse($course->schedule->time)->format('H:i a') : 'N/A'}} : {{$course->schedule ?\Carbon\Carbon::parse($course->schedule->time)->addHours(2)->format('H:i a') : 'N/A' }}</td> </tr>
+
+                    <tr> <td class="text-theme-color-red pr-20"><i class="fa fa-credit-card-alt text-theme-color-red pr-20"></i>Tution Fees</td> <td>$ {{$course->price}}</td> </tr>
+                  </tbody>
                 </table>
                 {{-- course rate --}}
                 <form action="{{ route('courses.rate') }}" method="POST">
 
                   {{ csrf_field() }}
                   <h3> Course Average Rating: {{$course->averageRating ? $course->averageRating:"N/A" }}</h3>
-                  
-                
+
+
 
 
                     <div class="rating">
@@ -97,7 +102,7 @@
                       <input type="hidden" name="id" required="" value="{{ $course->id }}">
 
                       <span class="review-no">Rated: ({{$course->averageRating!=null ? $course->ratings->count():"N/A"}})</span>
-                      
+
                       <br/>
 
                       <button class="btn btn-success">Submit Rate</button>
@@ -110,7 +115,7 @@
                         <hr>
                         <div class="row">
                           <div class="col-md-12">
-                        
+
                             <h5 class="media-heading comment-heading">{{$review->user->name}} says:</h5>
                             <div class="comment-date">{{\Carbon\Carbon::parse($review->created_at)->format('d/m/yy')}}</div>
 
@@ -118,11 +123,11 @@
                           </div>
                         </div>
                     @endforeach
-                    
+
                     <h4 class="widget-title line-bottom">Add<span class="text-theme-color-red">Review</span></h4>
                 <form   action="{{route('courses.review')}}" method="post">
                   {{ csrf_field() }}
-                  
+
                   <div class="form-group">
                     <textarea name="message" class="form-control" required="" placeholder="review this course" rows="5"></textarea>
                   </div>
@@ -134,7 +139,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    
+
                     <button type="submit" class="btn btn-theme-color-sky btn-flat btn-xs btn-quick-contact text-white pt-5 pb-5" data-loading-text="Please wait...">Add Review</button>
                   </div>
                 </form>
@@ -148,8 +153,8 @@
                         </ul>
                     </div>
                     @endif
-                
-                    
+
+
 
               </div>
             </div>
@@ -160,13 +165,13 @@
                   <div class="services-list">
                     <ul class="list list-border">
                     @foreach ($courses as $course)
-                    
+
                     <li class="active"><a href="{{route('courses.show', $course->id)}}">{{$course->name}}</a></li>
                     @endforeach
                     </ul>
                   </div>
                 </div>
-                
+
                 <div class="widget">
                   <h3 class="widget-title line-bottom"><span class="text-theme-color-red">Lessons</span></h3>
                   <div class="latest-posts">
@@ -180,11 +185,11 @@
                       </div>
                     </article>
                     @endforeach
-                    
-                  </div>
-                </div> 
 
-                
+                  </div>
+                </div>
+
+
 
                 {{-- TODO:Add quick contact when finish contact us page --}}
                 <div class="widget">
@@ -201,7 +206,7 @@
                       <button type="submit" class="btn btn-theme-color-sky btn-flat btn-xs btn-quick-contact text-white pt-5 pb-5" data-loading-text="Please wait...">Send Message</button>
                     </div>
                   </form>
-  
+
                   <!-- Quick Contact Form Validation-->
                   <script type="text/javascript">
                     $("#quick_contact_form_sidebar").validate({
@@ -234,7 +239,7 @@
             </div>
           </div>
         </div>
-        <div> 
+        <div>
             <img alt="" src="{{ asset('images/bg/f2.png') }}" class="img-responsive img-fullwidth">
         </div>
     </section>

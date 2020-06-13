@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "askedio/laravel5-profanity-filter": "^1.10",
         "backpack/crud": "4.1.*",
         "backpack/filemanager": "^1.1",
         "backpack/permissionmanager": "^6.0",
@@ -23,6 +24,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "macsidigital/laravel-zoom": "^4.0",
+        "pusher/pusher-php-server": "~4.0",
         "qcod/laravel-gamify": "^1.0",
         "willvincent/laravel-rateable": "^2.1"
     },
