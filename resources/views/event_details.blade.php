@@ -3,11 +3,11 @@
 @section('content')
 
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/bg3.jpg')}}">
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/2590.jpg')}}">
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row">
+            <div class="row mt-150">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Event Details</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -56,7 +56,7 @@
               </li>
               <li>
                 <h5>End Date:</h5>
-                <p>{{$event->date->format('M')}} {{$event->date->format('d')+3}} , {{$event->date->format('Y')}}</p>
+                <p>{{date('M d , Y', strtotime($event->date. ' + 2 days'))}}</p>
               </li>
               <br>
               @if(Auth::user())

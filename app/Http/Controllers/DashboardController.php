@@ -164,10 +164,10 @@ class DashboardController extends Controller
         return view('dashboard.instructor.schedule',['schedules'=>$schedules]);
         }elseif($slug === 'student' && $user->hasRole('student')){
         $courses=$user->courses()->get();
-        $schedule=Schedule::whereIn('course_id',$courses)->get();
+        $schedule=Schedule::orderBy('created_at','desc')->whereIn('course_id',$courses)->get();
         // dd($schedule);
         return view('dashboard.student.schedule',['schedules'=>$schedule,'test'=>$test]);
         }
     }
-    
+
 }
