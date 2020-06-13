@@ -21,6 +21,12 @@ class StartFirstCourse extends BadgeType
      */
     public function qualifier($user)
     {
+
+        if ( $user->getPoints() == 10){
+            toastr()->success('Go to your profile to check it  ⚡️', 'New Badge 🥇', ['timeOut' => 10000]);
+        }
+        
+
         return $user->getPoints() >= 10;
     }
 }

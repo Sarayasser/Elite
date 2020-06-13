@@ -166,6 +166,8 @@ return [
         willvincent\Rateable\RateableServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Askedio\Laravel5ProfanityFilter\Providers\ProfanityFilterServiceProvider::class,
+        Yoeunes\Toastr\ToastrServiceProvider::class,
+
 
 
 

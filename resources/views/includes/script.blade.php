@@ -63,3 +63,5 @@ $( document ).ready(function() {
         // console.log(typeof(localStorage.getItem('isCliked')));
     });
 </script>
+@toastr_js
+@toastr_render
