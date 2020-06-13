@@ -27,7 +27,7 @@
         <div class="section-content">
           <div class="row">
             <div class="col-md-6">
-              <h2 class="text-theme-color-sky line-bottom"><span class="text-theme-color-red">Welcome To KidsPro</span> <br> Best Education in Our Kindergarden</h2>
+              <h2 class="text-theme-color-sky line-bottom"><span class="text-theme-color-red">Welcome To Elite</span> <br> Best Education in Our Kindergarden</h2>
               <h4 class="text-theme-color-blue">Lorem ipsum dolor sit amet soluta saepe odit error, maxime praesentium sunt udiandae!</h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore atque officiis maxime suscipit expedita obcaecati nulla in ducimus iure quos quam recusandae dolor quas et perspiciatis voluptatum accusantium delectus nisi reprehenderit, eveniet fuga modi pariatur, eius vero. Ea vitae maiores.</p>
                 <a href="#" class="btn btn-flat btn-colored btn-theme-color-blue mt-15 mr-15">Read More</a><a href="#" class="btn btn-flat btn-colored btn-theme-color-yellow mt-15">Get a Quote</a>
@@ -113,9 +113,9 @@
                     <p class="mb-0 text-white">Web Developer</p>
                   </div>
                   <ul class="styled-icons icon-dark icon-circled icon-theme-color-red pt-5">
-                    <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin text-white"></i></a></li>
-                    <li><a href="#"><i class="fa fa-github text-white"></i></a></li>
+                    <li><a href="https://www.facebook.com/sara.y.elsayd"><i class="fa fa-facebook text-white"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/sara-yasser-970639111/"><i class="fa fa-linkedin text-white"></i></a></li>
+                    <li><a href="https://github.com/Sarayasser"><i class="fa fa-github text-white"></i></a></li>
                   </ul>
                 </div>
               </div>

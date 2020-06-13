@@ -12,15 +12,15 @@
                          <h2 class="text-white bg-dark-transparent-4 inline-block pl-30 pr-30 mb-5 pt-5 pb-5">Elite E-Learning School</h2>
                         <h1 class="text-white inline-block bg-theme-colored-transparent font-48 mt-0 pr-20 pl-20">Elite for Childern Education</h1>
                         <p class="font-16 text-black-222">Every day we bring hope to millions of children in the world's<br> hardest places as a sign of God's unconditional love. </p>
-                        <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20" href="#">View Details</a> 
+                        <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20" href="#">View Details</a>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-        </section> 
-      
+        </section>
+
         <!-- Section: welcome -->
         <section id="welcome" class="divider layer-overlay overlay-dark-7 parallax" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/12345.jpg')}}">
             <div class="container pt-150 pb-150">
@@ -33,7 +33,7 @@
                         <a href="#" class="btn btn-flat btn-colored btn-theme-color-blue mt-15 mr-15">Read More</a><a href="#" class="btn btn-flat btn-colored btn-theme-color-yellow mt-15">Get a Quote</a>
                     </div>
                     <div class="col-md-6">
-                    <div class="video-popup">                
+                    <div class="video-popup">
                         <a>
                         <img alt="" src="{{ asset('images/about/6.png')}}" class="img-responsive img-fullwidth">
                         </a>
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </section>
-    
+
         <!-- Section: Services -->
         <section id="services" class="divider parallax layer-overlay overlay-dark-5" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/3604.jpg')}}">
             <div class="container pt-150 pb-150">
@@ -69,13 +69,17 @@
                         @endphp
                     <div class="item">
                         <div class="campaign bg-white maxwidth500 mb-30">
-                        <div class="thumb">
+                        <div class="thumb" style="height:10rem;">
                             {{-- <img src="{{ asset('images/project/12.jpg')}}" alt="" class="img-fullwidth"> --}}
-                            <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
+                            @if($course->image)
+                            <img src="{{asset($course->image)}}" alt="" class="img-fullwidth">
+                            @else
+                            <img class="img-fullwidth img-thumbnail" alt="" src="{{ asset('images/bg/3610647.jpg')}}">
+                            @endif
                             <div class="campaign-overlay"></div>
                         </div>
                         <div class="course-details clearfix p-20 pt-15">
-                            <h4 class="price-tag">${{$course->price}}</h4>
+
                             <h3 class="mt-0"><a class="text-theme-color-red" href="{{route('courses.show', $course->id)}}">{{$course->name}}</a></h3>
                             <ul class="review_text list-inline">
                             <li>
@@ -88,7 +92,7 @@
                                 <li>Capacity<span>{{$course->capacity}}</span></li>
                                 <li>Duration<span>{{$course->duration}} mo</span></li>
                                 <li>Age<span>{{$course->age}}y - {{$course->age+1}}y</span></li>
-                            </ul>                            
+                            </ul>
                             </div>
                             @if(auth()->user())
                                 @if(!$course->enrolled && auth()->user()->hasRole('student') && $course->capacity > 0)
@@ -104,13 +108,13 @@
                         </div>
                     </div>
                     @endforeach
-                    
+
                     </div>
                 </div>
                 </div>
             </div>
         </section>
-    
+
         <!-- Section: Experts -->
         <section id="experts" class="divider parallax layer-overlay overlay-dark-4" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/3237.jpg')}}">
             <div class="container pt-150 pb-150">
@@ -204,109 +208,70 @@
                 </div>
             </div>
         </section>
-    
+
         <!-- Section: blog -->
         <section id="blog" class="divider parallax layer-overlay overlay-dark-6" data-parallax-ratio="0.1" data-bg-img="{{ asset('images/bg/3604.jpg')}}">
             <div class="container pt-150 pb-150">
                 <div class="section-title text-center">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                    <h2 class="title text-white line-bottom-centered">Latest <span class="text-theme-colored"> News</span></h2>
+                    <h2 class="title text-white line-bottom-centered">Latest <span class="text-theme-colored"> Events</span></h2>
                     <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     </div>
                 </div>
                 </div>
                 <div class="section-content">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="col-md-12">
+                <div class="owl-carousel-3col" data-nav="true">
+                @foreach ($events as $event)
                     <article class="post clearfix mb-sm-30 bg-silver-light">
                         <div class="entry-header">
-                        <div class="post-thumb thumb"> 
-                            <img src="{{ asset('images/blog/1.jpg')}}" alt="" class="img-responsive img-fullwidth"> 
+                        <div class="post-thumb thumb">
+                        @if($event->image)
+                            <img src="{{ asset($event->image)}}" alt="" class="img-responsive img-fullwidth">
+                        @else
+                        <img src="{{ asset('images/bg/32818.jpg')}}" alt="" class="img-responsive img-fullwidth">
+                        @endif
                         </div>
                         </div>
                         <div class="entry-content p-20 pr-10">
                         <div class="entry-meta media mt-0 no-bg no-border">
                             <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
                             <ul>
-                                <li class="font-16 text-white font-weight-600 border-bottom">28</li>
-                                <li class="font-12 text-white text-uppercase">Feb</li>
+                                <li class="font-16 text-white font-weight-600 border-bottom">{{ $event->date->format('d') }}</li>
+                                <li class="font-12 text-white text-uppercase">{{ $event->date->format('M') }}</li>
                             </ul>
                             </div>
                             <div class="media-body pl-15">
                             <div class="event-content pull-left flip">
-                                <h4 class="entry-title text-white m-0 mt-5"><a href="#">This is a standard post with thumbnail</a></h4>                      
-                            </div>
+                                <h4 class="entry-title text-white m-0 mt-5"><a href="#">{{$event->name}}</a></h4>
+                                <ul class="list-inline font-11 text-black">
+                                @if ($event->date->format('w') == 1)
+                                <li><i class="fa fa-calendar mr-5"></i> Monday</li>
+                                @elseif ($event->date->format('w') == 2)
+                                <li><i class="fa fa-calendar mr-5"></i> Tuesday</li>
+                                @elseif ($event->date->format('w') == 3)
+                                <li><i class="fa fa-calendar mr-5"></i> Wednesday</li>
+                                @elseif ($event->date->format('w') == 4)
+                                <li><i class="fa fa-calendar mr-5"></i> Thursday</li>
+                                @elseif ($event->date->format('w') == 5)
+                                <li><i class="fa fa-calendar mr-5"></i> Friday</li>
+                                @elseif ($event->date->format('w') == 6)
+                                <li><i class="fa fa-calendar mr-5"></i> Saturday</li>
+                                @else
+                                <li><i class="fa fa-calendar mr-5"></i> Sunday</li>
+                                @endif
+                                <li><i class="fa fa-map-marker mr-5"></i> {{$event->location}}</li>
+                                </ul>
+                                </div>
                             </div>
                         </div>
-                        <p class="mt-10">Lorem ipsum dolor sit amet, consectetur adipisi cing elit. Molestias eius illum libero dolor nobis deleniti, sint assumenda. Pariatur iste veritatis excepturi, ipsa optio nobis.
-                        </div>
-                        <div class="bg-theme-colored p-5 text-center pt-10 pb-10">
-                            <span class="mb-10 text-white mr-10 font-13"><i class="fa fa-share-alt mr-5 text-white"></i>24 Share</span>
-                            <span class="mb-10 text-white mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-white"></i> 214 Comments</span>
-                            <span class="mb-10 text-white mr-10 font-13"><i class="fa fa-heart-o mr-5 text-white"></i> 895 Likes</span>
+                        <p class="mt-10">{!! $event->description !!}</p>
                         </div>
                     </article>
+                    @endforeach
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                    <article class="post clearfix mb-sm-30 bg-silver-light">
-                        <div class="entry-header">
-                        <div class="post-thumb thumb"> 
-                            <img src="{{ asset('images/blog/2.jpg')}}" alt="" class="img-responsive img-fullwidth"> 
-                        </div>
-                        </div>
-                        <div class="entry-content p-20 pr-10">
-                        <div class="entry-meta media mt-0 no-bg no-border">
-                            <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
-                            <ul>
-                                <li class="font-16 text-white font-weight-600 border-bottom">28</li>
-                                <li class="font-12 text-white text-uppercase">Feb</li>
-                            </ul>
-                            </div>
-                            <div class="media-body pl-15">
-                            <div class="event-content pull-left flip">
-                                <h4 class="entry-title text-white m-0 mt-5"><a href="#">This is a standard post with thumbnail</a></h4>                      
-                            </div>
-                            </div>
-                        </div>
-                        <p class="mt-10">Lorem ipsum dolor sit amet, consectetur adipisi cing elit. Molestias eius illum libero dolor nobis deleniti, sint assumenda. Pariatur iste veritatis excepturi, ipsa optio nobis.
-                        </div>
-                        <div class="bg-theme-colored p-5 text-center pt-10 pb-10">
-                            <span class="mb-10 text-white mr-10 font-13"><i class="fa fa-share-alt mr-5 text-white"></i>24 Share</span>
-                            <span class="mb-10 text-white mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-white"></i> 214 Comments</span>
-                            <span class="mb-10 text-white mr-10 font-13"><i class="fa fa-heart-o mr-5 text-white"></i> 895 Likes</span>
-                        </div>
-                    </article>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                    <article class="post clearfix mb-sm-30 bg-silver-light">
-                        <div class="entry-header">
-                        <div class="post-thumb thumb"> 
-                            <img src="{{ asset('images/blog/3.jpg')}}" alt="" class="img-responsive img-fullwidth"> 
-                        </div>
-                        </div>
-                        <div class="entry-content p-20 pr-10">
-                        <div class="entry-meta media mt-0 no-bg no-border">
-                            <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
-                            <ul>
-                                <li class="font-16 text-white font-weight-600 border-bottom">28</li>
-                                <li class="font-12 text-white text-uppercase">Feb</li>
-                            </ul>
-                            </div>
-                            <div class="media-body pl-15">
-                            <div class="event-content pull-left flip">
-                                <h4 class="entry-title text-white m-0 mt-5"><a href="#">This is a standard post with thumbnail</a></h4>                      
-                            </div>
-                            </div>
-                        </div>
-                        <p class="mt-10">Lorem ipsum dolor sit amet, consectetur adipisi cing elit. Molestias eius illum libero dolor nobis deleniti, sint assumenda. Pariatur iste veritatis excepturi, ipsa optio nobis.
-                        </div>
-                        <div class="bg-theme-colored p-5 text-center pt-10 pb-10">
-                            <span class="mb-10 text-white mr-10 font-13"><i class="fa fa-share-alt mr-5 text-white"></i>24 Share</span>
-                            <span class="mb-10 text-white mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-white"></i> 214 Comments</span>
-                            <span class="mb-10 text-white mr-10 font-13"><i class="fa fa-heart-o mr-5 text-white"></i> 895 Likes</span>
-                        </div>
-                    </article>
                     </div>
                 </div>
                 </div>

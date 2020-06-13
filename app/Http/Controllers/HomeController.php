@@ -8,6 +8,7 @@ use App\Notification;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Models\Event;
 
 class HomeController extends Controller
 {
@@ -35,11 +36,11 @@ class HomeController extends Controller
         if($user->hasRole('student')){
             $post=$this->note();
         // dd($post);
-        return view('home',['courses'=>Course::all(),'test'=>$post]);
+        return view('home',['courses'=>Course::all(),'events'=>Event::all(),'test'=>$post]);
         }else{
-            return view('home',['courses'=>Course::all()]);
+            return view('home',['courses'=>Course::all(),'events'=>Event::all()]);
         }}else{
-            return view('home',['courses'=>Course::all()]);
+            return view('home',['courses'=>Course::all(),'events'=>Event::all()]);
         }
     }
     public function note(){
