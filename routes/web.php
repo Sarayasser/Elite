@@ -69,8 +69,9 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('/users', function () { return view('auth/user'); })->name('users');
 
 //login with google and facebook
+    Route::get('/redirect/{driver}', 'Auth\LoginController@redirectToProvider')->name('login.provider');
 
-    Route::get('/redirect/{driver}', 'Auth\RegisterController@redirectToProvider')->name('register.provider');
+    Route::get('/users/register/{slug}/redirect/{driver}', 'Auth\RegisterController@redirectToProvider')->name('register.provider');
     Route::get('/home/{provider}', 'Auth\RegisterController@handleProviderCallback')->name('register.access');
 
 });
