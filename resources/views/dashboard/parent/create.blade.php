@@ -113,7 +113,7 @@
                 <div class="services-list">
                   <ul class="list list-border">
                     <li class="active"><a href="{{route('dashboard',"parent")}}">Children</a></li>
-                    <li><a href="{{route('dashboard.progress')}}">Progress and Achievements</a></li>
+                    <li><a href="{{route('dashboard.progress',"parent")}}">Progress and Achievements</a></li>
                   </ul>
                 </div>
               </div>
