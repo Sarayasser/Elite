@@ -12,6 +12,7 @@ use App\Notification;
 use Illuminate\Support\Facades\Auth;
 use MacsiDigital\Zoom\Facades\Zoom;
 use App\Events\ScheduleAdded;
+use App\Http\Requests\StoreScheduleRequest;
 
 class ScheduleController extends Controller
 {
@@ -25,8 +26,8 @@ class ScheduleController extends Controller
     public function create(Course $course,Instructor $instructor){
         return view('schedules.create',['course' => $course]);
     }
-    public function store(){
-         $request=Request();
+    public function store(StoreScheduleRequest $request){
+        //  $request=Request();
         //  dd($request->course_id);
         $instructor=Instructor::where('user_id',Auth::user()->id)->first();
 

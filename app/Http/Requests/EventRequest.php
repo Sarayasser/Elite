@@ -26,7 +26,11 @@ class EventRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name' => 'required|min:5|max:255',
+            'description'=>'required|min:10',
+            'date'=>'required|after:today',
+            'location'=>'required',
+            'user_id' => "required"
         ];
     }
 
@@ -53,5 +57,5 @@ class EventRequest extends FormRequest
             //
         ];
     }
-    
+
 }
