@@ -8,6 +8,7 @@ use App\Http\Requests\UserUpdateCrudRequest as UpdateRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Backpack\PermissionManager\app\Models\Role;
+use App\Instructor;
 
 class UserCrudController extends UserController
 {
@@ -203,6 +204,9 @@ class UserCrudController extends UserController
         $response = $this->traitStore();
         // do something after save
         $user = $this->crud->entry;
+        Instructor::create([
+            "user_id" => $user->id
+        ]);
         $token = app('auth.password.broker')->createToken($user);
         $user->sendPasswordResetNotification($token);
         return $response;
