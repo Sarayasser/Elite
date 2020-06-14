@@ -86,7 +86,7 @@ class EventCrudController extends CrudController
         [   // location
             'name'  => 'location',
             'label' => 'Location',
-            'type'  => 'textarea'
+            'type'  => 'address'
         ],
         [   // Image
             'label'        => "Profile Image",
