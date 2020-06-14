@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+@php
+  if (auth()->user() && auth()->user()->hasRole('student')) {
+      $event->attended = $event->students->contains(auth()->user());
+  }
+@endphp
 @section('content')
 
     <!-- Section: inner-header -->
@@ -15,7 +19,13 @@
                     <li><a href="{{route('events.index')}}">Event</a></li>
                     <li class="active">Event Details</li>
                 </ol>
+                
                 </div>
+                @if(auth()->user() && !$event->attended && auth()->user()->hasRole('student'))
+                <div class="col-md-6 mt-70 pull-right">
+                  <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20 jquery-postback pull-right" href="{{route('events.attend', $event->id)}}">Attend</a>
+                </div>
+                @endif
             </div>
             </div>
         </div>

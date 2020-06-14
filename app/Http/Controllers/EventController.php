@@ -97,4 +97,13 @@ class EventController extends Controller
         $event->delete();
         return redirect('/event');
     }
+
+    public function attend(Event $event)
+    {
+        $user = auth()->user();
+        if($user->hasRole('student')){
+            $user->events()->attach($event);
+        }
+        return response()->json(['attended' => 'attended']);
+    }
 }

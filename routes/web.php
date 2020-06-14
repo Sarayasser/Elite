@@ -19,20 +19,6 @@ use App\Notification;
 |
 */
 
-Route::group(['middleware' => ['auth','verified', 'checkban']], function() {
-
-//Dashboard
-Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard');
-Route::get('/dashboard/{slug}/students','DashboardController@students_enrolled')->name('dashboard.students');
-Route::get('/dashboard/parent/create','DashboardController@create')->name('dashboard.create');
-Route::get('/dashboard/parent/progress','DashboardController@progress')->name('dashboard.progress');
-Route::post('/dashboard/parent', 'DashboardController@store')->name('dashboard.store');
-Route::get('/dashboard/parent/{id}','DashboardController@login')->name('dashboard.login');
-Route::get('/dashboard/{slug}/events','DashboardController@instructor_events')->name('dashboard.events');
-Route::get('/dashboard/student', function () { return view('dashboard.student'); })->name('dashboard.student');
-
-});
-
 // Auth::routes();
 Route::group(['middleware' => ['web']], function() {
 
@@ -74,7 +60,7 @@ Route::group(['middleware' => ['web']], function() {
 
 
 
-Route::group(['middleware' => ['auth','verified','checkban']], function() {
+Route::group(['middleware' => ['auth','checkban','verified']], function() {
 
     //Dashboard
     Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard')->where("slug","instructor|parent|student");
@@ -87,8 +73,7 @@ Route::group(['middleware' => ['auth','verified','checkban']], function() {
     Route::get('/dashboard/{slug}/schedule','DashboardController@schedule')->name('dashboard.schedule')->middleware('role:instructor|student');
 
     //Profile
-    Route::get('/profile/{user}','UserController@show')->name('user.show');
-    Route::get('/profile/{user}/edit','UserController@edit')->name('user.edit');
+    Route::get('/profile','UserController@index')->name('user.index');
     Route::put('/profile/{user}','UserController@update')->name('user.update');
 
     //instructor rate
@@ -122,6 +107,7 @@ Route::group(['middleware' => ['auth','verified','checkban']], function() {
 
     })->name('courses.enroll')->middleware('role:student');
 
+    Route::post('events/{event}/attend', 'EventController@attend')->name('events.attend')->middleware('role:student');
 
     Route::post('post-rate', 'PostController@ratePost')->name('posts.rate')->middleware('role:student|parent');
     Route::post('course-rate', 'CourseController@rateCourse')->name('courses.rate')->middleware('role:student|parent');
@@ -133,7 +119,7 @@ Route::group(['middleware' => ['auth','verified','checkban']], function() {
 });
 
 
-Route::group(['middleware' => ['auth','role:admin|instructor','checkban']], function() {
+Route::group(['middleware' => ['auth','role:admin|instructor','checkban','verified']], function() {
 
     //event
     Route::get('/event/create', 'EventController@create')->name('events.create');
@@ -152,6 +138,13 @@ Route::group(['middleware' => ['auth','role:admin|instructor','checkban']], func
 
     //ckeditor
     Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
+
+    //Schedule
+    Route::get('/courses/{course}/schedule/create', 'ScheduleController@create')->name('schedule.create');
+    Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
+    Route::get('/schedule/delete/{schedule}','ScheduleController@destroy')->name('schedule.destroy');
+
+
 
 });
 
@@ -184,12 +177,6 @@ Route::get('/faq', function () { return view('faq'); })->name('faq');
 Route::get('/timetable', function () { return view('timetable'); });
 
 Route::get('/', 'HomeController@index')->name('home');
-
-//Schedule
-Route::get('/courses/{course}/schedule/create', 'ScheduleController@create')->name('schedule.create');
-Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
-Route::get('/schedule/delete/{schedule}','ScheduleController@destroy')->name('schedule.destroy');
-
 
 //contact-us
 Route::get('/contact', 'ContactController@create')->name('contact.create');

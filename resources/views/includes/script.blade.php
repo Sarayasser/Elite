@@ -24,6 +24,7 @@ $(document).on('click', 'a.jquery-postback', function(e) {
         url: $this.attr('href')
     }).done(function (data) {
         if (data.enrolled) $this.replaceWith("enrolled")
+        if (data.attended) $this.replaceWith("you will attend this event")
         $this.hide()
         console.log(data);
     });
@@ -82,3 +83,11 @@ $(document).on('click', 'a.jquery-postback', function(e) {
 </script>
 @toastr_js
 @toastr_render
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+<script>
+   var placesAutocomplete = places({
+     appId: "plNSRCZX77I9",
+     apiKey: "69eca80b5722968b30b5f3495a0fb3c9",
+     container: document.querySelector('#address-input')
+   });
+ </script>

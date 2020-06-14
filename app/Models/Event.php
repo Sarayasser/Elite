@@ -53,7 +53,10 @@ class Event extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function students()
+    {
+        return $this->belongsToMany('App\User', 'student_event');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

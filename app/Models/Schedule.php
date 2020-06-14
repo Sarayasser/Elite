@@ -21,7 +21,7 @@ class Schedule extends Model
     // protected $fillable = ['start_date','end_date','time','course_id','instructor_id','link'];
     // protected $hidden = [];
     // protected $dates = [];
-    protected $dates = ['created_at', 'updated_at', 'start_date', 'end_date', 'time'];
+    protected $dates = ['created_at', 'updated_at', 'start_date', 'time'];
 
     /*
     |--------------------------------------------------------------------------

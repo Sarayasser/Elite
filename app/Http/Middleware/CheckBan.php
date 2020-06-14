@@ -20,7 +20,7 @@ class CheckBan
             $user = auth()->user();
             auth()->logout();
             return redirect()->route('login')
-                ->withError('Your account was blocked ');
+                ->withError('Your account has been suspended. Please contact administrator.');
         }
         return $next($request);
     }

@@ -15,7 +15,7 @@ class EventRequest extends FormRequest
     public function authorize()
     {
         // only allow updates if the user is logged in
-        return backpack_auth()->check();
+        return backpack_auth()->check() || auth()->user()->hasRole('instructor');
     }
 
     /**
@@ -30,7 +30,8 @@ class EventRequest extends FormRequest
             'description'=>'required|min:10',
             'date'=>'required|after:today',
             'location'=>'required',
-            'user_id' => "required"
+            'user_id' => "required",
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 
