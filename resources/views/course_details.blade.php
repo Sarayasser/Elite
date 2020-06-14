@@ -81,7 +81,7 @@
                   </tbody>
                 </table>
                 {{-- course rate --}}
-                @if(auth()->user() && auth()->user()->hasRole('student') && $course->enrolled||auth()->user()->hasRole('parent'))
+                {{-- @if(auth()->user() && auth()->user()->hasRole('student') && $course->enrolled||auth()->user()->hasRole('parent')) --}}
                 <form action="{{ route('courses.rate') }}" method="POST">
 
                   {{ csrf_field() }}
@@ -104,7 +104,7 @@
 
                   </div>
                 </form>
-                @endif
+                {{-- @endif --}}
                 {{-- course reviews --}}
                 <h3 class="widget-title line-bottom">Course <span class="text-theme-color-red">Review</span></h3>
                 @if(!$reviews->isempty())
