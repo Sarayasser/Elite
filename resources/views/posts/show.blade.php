@@ -3,12 +3,12 @@
 <!-- Start main-content -->
   <div class="main-content">
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/bg3.jpg')}}">
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/2188.jpg')}}">
       <div class="container pt-70 pb-20">
         <!-- Section Content -->
         <div class="section-content">
-          <div class="row"> 
-            <div class="col-md-6"> 
+          <div class="row">
+            <div class="col-md-6">
               <h2 class="text-theme-color-yellow font-36">{{$post->title}}</h2>
               <ol class="breadcrumb text-left mt-10 white">
                 <li><a href="/">Home</a></li>
@@ -32,7 +32,7 @@
                 <div class="entry-header">
                   <div class="post-thumb thumb"> <img src="{{asset($post->image)}}" alt="" class="img-responsive img-fullwidth"> </div>
                 </div>
-                @endif                  
+                @endif
                 <div class="entry-content">
                   <div class="entry-meta media no-bg no-border mt-15 pb-20">
                     <div class="entry-date media-left text-center flip bg-theme-color-sky pt-5 pr-15 pb-5 pl-15">
@@ -43,7 +43,7 @@
                     <div class="media-body pl-15">
                       <div class="event-content pull-left flip">
                         <h4 class="entry-title text-white text-uppercase m-0"><a>{{$post->title}}</a></h4>
-                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-color-sky"></i> {{$post->comments->count()}} Comments</span>                       
+                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-color-sky"></i> {{$post->comments->count()}} Comments</span>
                       </div>
                     </div>
                   </div>
@@ -52,8 +52,8 @@
 
                     {{ csrf_field() }}
                     <h3>Post Average Rating: {{$post->averageRating ? $post->averageRating :"N/A"}}</h3>
-                  
-                  
+
+
 
 
                       <div class="rating">
@@ -82,7 +82,7 @@
                   @endif
                 </div>
               </article>
-              
+
               <div class="author-details media-post">
                 <a class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="{{asset($post->user->image)}}" width="50px"></a>
                 <div class="post-right">
@@ -122,7 +122,7 @@
                             <button type="submit" class="replay-icon text-theme-color-sky" style="border: none; background-color: #fff;"> <i class="fa fa-commenting-o text-theme-color-sky"></i> Replay</button>
                           </div>
                         </form>
-                        <div class="clearfix"></div>                        
+                        <div class="clearfix"></div>
                         @foreach($comment->replies as $reply)
                         <div class="media comment-author nested-comment"> <a href="#" class="media-left pull-left flip pt-20"><img class="img-thumbnail" src="{{asset($reply->user->image)}}" width="50px" alt=""></a>
                           <div class="media-body p-20 bg-lighter">

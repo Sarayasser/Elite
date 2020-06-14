@@ -207,9 +207,6 @@ class UserCrudController extends UserController
     {
         $this->crud->setRequest($this->crud->validateRequest());
         $this->crud->setRequest($this->handlePasswordInput($this->crud->getRequest()));
-        if(!$this->crud->getRequest()->hasFile('image')){
-            $this->crud->getRequest()->request->remove('image');
-        }
         $this->crud->unsetValidation(); // validation has already been run
         $response = $this->traitStore();
         // do something after save
@@ -220,9 +217,6 @@ class UserCrudController extends UserController
     }
     public function update()
     {
-        if(!$this->crud->getRequest()->hasFile('image')){
-            $this->crud->getRequest()->request->remove('image');
-        }
         $this->crud->setRequest($this->crud->validateRequest());
         $this->crud->unsetValidation(); // validation has already been run
 
@@ -245,16 +239,6 @@ class UserCrudController extends UserController
                 'name'  => 'email',
                 'label' => trans('backpack::permissionmanager.email'),
                 'type'  => 'email',
-            ],
-            [
-                'label'        => "Profile Image",
-                'name'         => "image",
-                'type'         => 'image',
-                'upload'       => true,
-                'crop'         => true, // set to true to allow cropping, false to disable
-                'aspect_ratio' => 1, // ommit or set to 0 to allow any aspect ratio
-                // 'disk'      => 's3_bucket', // in case you need to show images from a different disk
-                // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
             ],
             [
                 'name'  => 'address',

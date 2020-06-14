@@ -11,6 +11,7 @@ use App\Instructor;
 use App\Notification;
 use Illuminate\Support\Facades\Auth;
 use MacsiDigital\Zoom\Facades\Zoom;
+use App\Events\ScheduleAdded;
 
 class ScheduleController extends Controller
 {
@@ -47,13 +48,18 @@ class ScheduleController extends Controller
             'link'=>$meeting->join_url
          ]);
          $schedule->save();
-
+        // $co=Course::where('id',$request->course_id)->first();
          Notification::create([
              'description'=>'New Schedule created',
              'schedule_id'=>$schedule->id,
              'course_id'=>$request->course_id,
          ]);
-            return redirect()->route('dashboard.schedule','instructor');
+         $note = array(
+            'message' => 'New Schedule Added Successfully',
+            'alert-type' => 'success'
+        );
+         event(new ScheduleAdded($course->name));
+            return redirect()->route('dashboard.schedule','instructor')->with($note);
     }
 
     public function edit(){

@@ -143,7 +143,7 @@ Route::group(['middleware' => ['auth','role:admin|instructor','checkban']], func
     Route::get('/event/delete/{event}','EventController@destroy')->name('events.destroy');
 
     //post
-    Route::get('/courses/{course}/posts/create', 'PostController@create')->name('posts.create');
+    Route::get('/courses/{course}/posts/create','PostController@create')->name('posts.create');
     Route::post('/courses/{course}/posts', 'PostController@store')->name('posts.store');
     Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
     Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('posts.update');
@@ -194,3 +194,4 @@ Route::get('/schedule/delete/{schedule}','ScheduleController@destroy')->name('sc
 //contact-us
 Route::get('/contact', 'ContactController@create')->name('contact.create');
 Route::post('/contact', 'ContactController@store')->name('contact.store');
+

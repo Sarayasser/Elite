@@ -134,7 +134,7 @@
                                 <div class="team-thumb">
                                     <a href={{route('instructors.show',['instructor'=> $instructor])}}>
                                         @if($instructor->user->image)
-                                            <img class="img-fullwidth mt-15" height="390px" src="{{$instructor->user->image}}" alt="">                     
+                                            <img class="img-fullwidth mt-15" height="390px" src="{{$instructor->user->image}}" alt="">
                                         @endif
                                     </a>
                                 </div>
@@ -178,9 +178,12 @@
                         <div class="entry-header">
                         <div class="post-thumb thumb">
                         @if($event->image)
-                            <img src="{{ asset($event->image)}}" alt="" class="img-responsive img-fullwidth">
+                            <a href="{{route('events.show',['event'=>$event->id])}}"><img src="{{ asset($event->image)}}" alt="" class="img-responsive img-fullwidth">
+                            </a>
                         @else
+                        <a href="{{route('events.show',['event'=>$event->id])}}">
                         <img src="{{ asset('images/bg/32818.jpg')}}" alt="" class="img-responsive img-fullwidth">
+                        </a>
                         @endif
                         </div>
                         </div>
@@ -216,7 +219,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="mt-10">{!! $event->description !!}</p>
+                        <p class="mt-10">{!! substr($event->description, 0, 40) !!}</p>
                         </div>
                     </article>
                     @endforeach

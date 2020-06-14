@@ -17,13 +17,14 @@ class CourseController extends Controller
         return view('courses_list',['courses'=>Course::all(),'test'=>$test]);
     }
 
-    public function show()
+    public function show(Course $course)
     {   $test = (new HomeController)->note();
+
         $course = Course::find(request()->course);
         $courses = Course::orderBy('id', 'desc')->take(5)->get();
         $posts = Post::orderBy('id', 'asc')->take(10)->get();
         $reviews=Review::all();
-        $course_id=request()->course;
+        $course_id=$course->id;
 
         return view('course_details',[
             'course'=>$course,'courses'=>$courses,'posts'=> $posts, 'reviews'=>$reviews,

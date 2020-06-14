@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use willvincent\Rateable\Rating;
 use App\Notification;
 use App\Http\Controllers\HomeController;
+use App\Events\PostAdded;
 
 class PostController extends Controller
 {
@@ -65,8 +66,13 @@ class PostController extends Controller
             'post_id' => $post->id,
             'course_id' => $post->course_id,
         ]);
-
-        return redirect()->route('posts.show', ['course' => $course->id, 'post' => $post->id,'test'=>$test]);
+        $note = array(
+            'message' => 'New Post Added Successfully',
+            'alert-type' => 'success'
+        );
+        // event(new PostAdded('hello world'));
+        event(new PostAdded($course->name));
+        return redirect()->route('posts.show', ['course' => $course->id, 'post' => $post->id,'test'=>$test])->with($note);
     }
 
     /**

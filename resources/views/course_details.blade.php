@@ -7,11 +7,11 @@
 @section('content')
 
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/bg3.jpg')}}">
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/2900.jpg')}}">
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row">
+            <div class="row mt-100">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Course details</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -20,7 +20,7 @@
                     <li class="active">Course details</li>
                 </ol>
                 @if(Auth::user())
-                  @if(Auth::user()->hasRole('instructor') && !$course->enrolled && $course->capacity > 0)
+                  @if(Auth::user()->hasRole('student') && !$course->enrolled && $course->capacity > 0)
                   <form method="POST" action="{{route('courses.enroll', $course->id)}}">
                     @csrf
                     <button type="submit" class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20">Enroll</button>
@@ -77,7 +77,7 @@
                     <tr> <td class="bg-theme-color-red text-white"><i class="fa fa-user text-theme-color-yellow pr-20"></i>Instructor</td> <td class="bg-theme-color-sky text-white">{{$course->instructor->name}}</td> </tr>
                     <tr> <td class=" text-theme-color-red pr-20"><i class="fa fa-fighter-jet text-theme-color-red pr-20"></i>Coures Duration</td> <td>{{$course->duration}}-{{$course->duration+2}} Month</td> </tr>
 
-                    
+
                   </tbody>
                 </table>
                 {{-- course rate --}}
