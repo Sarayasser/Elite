@@ -14,6 +14,7 @@ use App\Http\Controllers\HomeController;
 class UserController extends Controller
 {
     public function index(){
+
         $test = (new HomeController)->note();
         return view('users.profile',['test'=>$test]);
     }
@@ -37,5 +38,10 @@ class UserController extends Controller
             $user->save();
         }
         return redirect('/profile')->with('status', 'Profile updated!');
+    }
+
+    public function getCV(){
+           
+        return view('users.cv');
     }
 }

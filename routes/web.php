@@ -145,6 +145,7 @@ Route::group(['middleware' => ['auth','role:admin|instructor','checkban','verifi
     Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
     Route::get('/schedule/delete/{schedule}','ScheduleController@destroy')->name('schedule.destroy');
 
+    Route::get('/profile/{user}/cv','UserController@getCV')->name('user.getCV');
 
 
 });
@@ -182,4 +183,5 @@ Route::get('/', 'HomeController@index')->name('home');
 //contact-us
 Route::get('/contact', 'ContactController@create')->name('contact.create');
 Route::post('/contact', 'ContactController@store')->name('contact.store');
+
 

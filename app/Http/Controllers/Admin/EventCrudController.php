@@ -43,8 +43,14 @@ class EventCrudController extends CrudController
                 'crop'         => false,
                 'aspect_ratio' => 0,
             ],
-        ]
-            );
+            [  // Select
+                'label'     => "Instructor",
+                'type'      => 'select',
+                'name'      => 'user_id', // the db column for the foreign key
+                'entity'    => 'user', // the method that defines the relationship in your Model
+                'attribute' => 'name', // foreign key attribute that is shown to user
+            ]
+        ]);
             // $this->crud->addButton();
         $this->crud->filters();
     }
@@ -60,8 +66,15 @@ class EventCrudController extends CrudController
                 'type'         => 'image',
                 'upload'       => true,
                 'crop'         => false,
-                'aspect_ratio' => 0,
+                'aspect_ratio' => 0, 
         ],
+        [  // Select
+            'label'     => "Instructor",
+            'type'      => 'select',
+            'name'      => 'user_id', // the db column for the foreign key
+            'entity'    => 'user', // the method that defines the relationship in your Model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+        ]
         ]);
     }
     protected function setupCreateOperation()
@@ -97,11 +110,25 @@ class EventCrudController extends CrudController
             'crop'         => true, // set to true to allow cropping, false to disable
             'src'          => NULL,
         ],
-        [   // Hidden
-            'name'  => 'user_id',
-            'type'  => 'hidden',
-            'value' => auth()->id(),
-        ],
+        [  // Select
+            'label'     => "Instructor",
+            'type'      => 'select',
+            'name'      => 'user_id', // the db column for the foreign key
+            'entity'    => 'user', // the method that defines the relationship in your Model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+
+            // optional
+            'model'     => "App\User",
+            'options'   => (function ($query) {
+                $instructors = [];
+                 $users = $query->get();
+                 foreach ($users as $user){
+                     if ($user->hasRole('instructor'))
+                        $instructors[] = $user;
+                 }
+                 return $instructors;
+             }), // force the related options to be a custom query, instead of all(); you can use this to filter the results show in the select
+         ]
         ]);
 
         // TODO: remove setFromDb() and manually define Fields
