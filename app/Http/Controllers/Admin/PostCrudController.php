@@ -108,7 +108,18 @@ class PostCrudController extends CrudController
                 'type'      => 'select',
                 'name'      => 'user_id',
                 'entity'    => 'user', 
-                'attribute' => 'name', 
+                'attribute' => 'name',
+                // optional
+                'model'     => "App\User",
+                'options'   => (function ($query) {
+                    $instructors = [];
+                    $users = $query->get();
+                    foreach ($users as $user){
+                        if ($user->hasRole('instructor'))
+                            $instructors[] = $user;
+                    }
+                    return $instructors;
+                }),
             ],
             [
                 'label'        => "Image",
@@ -122,9 +133,8 @@ class PostCrudController extends CrudController
             ],
             [   // URL
                 'name'            => 'video',
-                'label'           => 'Link to video file on YouTube or Vimeo',
+                'label'           => 'Link to video on Vimeo',
                 'type'            => 'video',
-                'youtube_api_key' => 'AIzaSycLRoVwovRmbIf_BH3X12IcTCudAErRlCE',
             ],
         ]);
     }
