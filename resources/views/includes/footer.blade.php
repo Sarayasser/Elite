@@ -21,46 +21,21 @@
               <li><a href="about" target="_blank">About Us</a></li>
               <li><a href="courses" target="_blank">Our Courses</a></li>
               <li><a href="instructors" target="_blank">Our Instructors</a></li>
-              <li><a href="page-gallery-3col.html">Gallery</a></li>
-              <li><a href="shop-category.html">Shop</a></li>              
+              <li><a href="event" target="_blank">Our Events</a></li>
+              <li><a href="contact" target="_blank">Contact Us</a></li>
             </ul>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="widget dark">
-            <h4 class="widget-title">Twitter Feed</h4>
-            <div class="twitter-feed list-border clearfix" data-username="Envato" data-count="2"></div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="widget dark">
-            <h4 class="widget-title">Opening Hours</h4>
-            <div class="opening-hours">
-              <ul class="list-border">
-                <li class="clearfix"> <span> Mon - Tues :  </span>
-                  <div class="value pull-right"> 6.00 am - 10.00 pm </div>
-                </li>
-                <li class="clearfix"> <span> Wednes - Thurs :</span>
-                  <div class="value pull-right"> 8.00 am - 6.00 pm </div>
-                </li>
-                <li class="clearfix"> <span> Fri : </span>
-                  <div class="value pull-right"> 3.00 pm - 8.00 pm </div>
-                </li>
-                <li class="clearfix"> <span> Sun : </span>
-                  <div class="value pull-right"> Closed </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        
+
       </div>
       <div class="row mt-30">
         <div class="col-md-2">
           <div class="widget dark">
             <h5 class="widget-title mb-10">Call Us Now</h5>
             <div class="text-gray">
-              +61 3 1234 5678 <br>
-              +12 3 1234 5678
+              +20 1550 990 233 <br>
+              +20 1280 464 139
             </div>
           </div>
         </div>
@@ -76,62 +51,28 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-5 col-md-offset-2">
-          <div class="widget dark">
-            <h5 class="widget-title mb-10">Subscribe Us</h5>
-            <!-- Mailchimp Subscription Form Starts Here -->
-            <form id="mailchimp-subscription-form-footer" class="newsletter-form">
-              <div class="input-group">
-                <input type="email" value="" name="EMAIL" placeholder="Your Email" class="form-control input-lg font-16" data-height="45px" id="mce-EMAIL-footer">
-                <span class="input-group-btn">
-                  <button data-height="45px" class="btn bg-theme-color-sky text-white btn-xs m-0 font-14" type="submit">Subscribe</button>
-                </span>
-              </div>
-            </form>
-            <!-- Mailchimp Subscription Form Validation-->
-            <script type="text/javascript">
-              $('#mailchimp-subscription-form-footer').ajaxChimp({
-                  callback: mailChimpCallBack,
-                  url: '//thememascot.us9.list-manage.com/subscribe/post?u=a01f440178e35febc8cf4e51f&amp;id=49d6d30e1e'
-              });
-
-              function mailChimpCallBack(resp) {
-                  // Hide any previous response text
-                  var $mailchimpform = $('#mailchimp-subscription-form-footer'),
-                      $response = '';
-                  $mailchimpform.children(".alert").remove();
-                  if (resp.result === 'success') {
-                      $response = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
-                  } else if (resp.result === 'error') {
-                      $response = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
-                  }
-                  $mailchimpform.prepend($response);
-              }
-            </script>
-            <!-- Mailchimp Subscription Form Ends Here -->
-          </div>
-        </div>
+        
       </div>
     </div>
     <div class="footer-bottom bg-black-333">
       <div class="container pt-20 pb-20">
         <div class="row">
           <div class="col-md-6">
-            <p class="font-11 text-black-777 m-0">Copyright &copy;2017 ThemeMascot. All Rights Reserved</p>
+            <p class="font-11 text-black-777 m-0">Copyright &copy;2020 ITI. All Rights Reserved</p>
           </div>
           <div class="col-md-6 text-right">
             <div class="widget no-border m-0">
               <ul class="list-inline sm-text-center mt-5 font-12">
                 <li>
-                  <a href="#">FAQ</a>
+                  <a href="faq" target="_blank">FAQ</a>
                 </li>
                 <li>|</li>
                 <li>
-                  <a href="#">Help Desk</a>
+                  <a href="contact" target="_blank">Help Desk</a>
                 </li>
                 <li>|</li>
                 <li>
-                  <a href="#">Support</a>
+                  <a href="about" target="_blank">Support</a>
                 </li>
               </ul>
             </div>

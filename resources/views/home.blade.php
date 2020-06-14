@@ -30,7 +30,7 @@
                     <h2 class="text-theme-color-sky line-bottom">Welcome To <span class="text-theme-color-red">Elite</span> <br> Best Education in Our Kindergarden</h2>
                     <h4 class="text-theme-color-red">Lorem ipsum dolor sit amet soluta saepe odit error, maxime praesentium sunt udiandae!</h4>
                     <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore atque officiis maxime suscipit expedita obcaecati nulla in ducimus iure quos quam recusandae dolor quas et perspiciatis voluptatum accusantium delectus nisi reprehenderit, eveniet fuga modi pariatur, eius vero. Ea vitae maiores.</p>
-                        <a href="#" class="btn btn-flat btn-colored btn-theme-color-blue mt-15 mr-15">Read More</a><a href="#" class="btn btn-flat btn-colored btn-theme-color-yellow mt-15">Get a Quote</a>
+                        <a href="about" target="_blank" class="btn btn-flat btn-colored btn-theme-color-blue mt-15 mr-15">Read More</a>
                     </div>
                     <div class="col-md-6">
                     <div class="video-popup">

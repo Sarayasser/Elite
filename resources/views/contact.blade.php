@@ -105,30 +105,31 @@
                 <div class="contact-info text-center bg-theme-color-sky border-1px pt-60 pb-60">
                 <i class="fa fa-phone font-36 mb-10 text-theme-color-red"></i>
                 <h4>Call Us</h4>
-                <h6 class="text-white">Phone: +262 695 2601</h6>
+                <h6 class="text-white">Phone: +20 1550 990 233</h6>
                 </div>
             </div>
             <div class="col-sm-12 col-md-3">
                 <div class="contact-info text-center bg-theme-color-yellow border-1px pt-60 pb-60">
                 <i class="fa fa-map-marker font-36 mb-10 text-theme-color-red"></i>
                 <h4>Address</h4>
-                <h6 class="text-white">121 King Street, Australia</h6>
+                <h6 class="text-white"> 1 Mahmoud Said St., Shohada Square, Main Post Office Building, Alexandria</h6>
                 </div>
             </div>
             <div class="col-sm-12 col-md-3">
                 <div class="contact-info text-center bg-theme-color-green border-1px pt-60 pb-60">
                 <i class="fa fa-envelope font-36 mb-10 text-theme-color-red"></i>
                 <h4>Email</h4>
-                <h6 class="text-white">you@yourdomain.com</h6>
+                <h6 class="text-white">elite.iti40.alex@gmail.com</h6>
                 </div>
             </div>
             <div class="col-sm-12 col-md-3">
-                <div class="contact-info text-center bg-theme-color-lemon border-1px pt-60 pb-60">
-                <i class="fa fa-fax font-36 mb-10 text-theme-color-red"></i>
-                <h4>Fax</h4>
-                <h6 class="text-white">(020) 123 4567</h6>
+                <div class="contact-info text-center  border-1px pt-60 pb-60" style="background-color: #4267B2">
+                <i class="fa fa-facebook font-36 mb-10" style="background-color: #FFFFFF"></i>
+                <h4>Like Us on Facebook</h4>
+                <a href="https://www.facebook.com/Elite-113792257039055/" target="_blank"><i class="fa fa-thumbs-up fa-lg"></i></a>
                 </div>
             </div>
+            
             </div>
         </div>
     </section>
