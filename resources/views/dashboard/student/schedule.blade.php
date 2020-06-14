@@ -29,7 +29,6 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">StartDate</th>
-      <th scope="col">EndDate</th>
       <th scope="col">Time</th>
       <th scope="col">Course</th>
       <th scope="col">Link</th>
@@ -40,7 +39,6 @@
   <tr>
       <th scope="row">{{$schedule->id}}</th>
       <td>{{$schedule->start_date}}</td>
-      <td>{{$schedule->end_date}}</td>
       <td>{{$schedule->time}}</td>
       <td>{{$schedule->course->name}}</td>
       <td><a href="{{$schedule->link}}">Meeting Link</a></td>

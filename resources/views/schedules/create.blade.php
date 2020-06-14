@@ -19,13 +19,10 @@
         <label for="date">StartDate</label>
         <input type="date" class="form-control" id="date" placeholder="Enter Date" name="start_date">
     </div>
-    <div class="form-group">
-        <label for="date">EndDate</label>
-        <input type="date" class="form-control" id="date" placeholder="Enter Date" name="end_date">
-    </div>
+    
     <br>
     <div class="md-form md-outline">
-    <label for="default-picker">Default Time Picker</label>
+    <label for="default-picker"> Time Picker</label>
     <input type="time" id="default-picker" class="form-control" placeholder="Select time" name="time">
     </div>
     <br>

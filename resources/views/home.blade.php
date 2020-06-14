@@ -121,7 +121,7 @@
                 <div class="section-title text-center">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                    <h2 class="title text-white">Our <span class="text-theme-colored"> Teachers</span></h2>
+                    <h2 class="title text-white">Our <span class="text-theme-colored"> Instructors</span></h2>
                     <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     </div>
                 </div>
