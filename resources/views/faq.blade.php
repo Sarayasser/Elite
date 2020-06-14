@@ -7,11 +7,11 @@
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row"> 
+            <div class="row">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Faq</h2>
                 <ol class="breadcrumb text-left mt-10 white">
-                    <li><a href="/">Home</a></li>
+                    <li><a href="{{route('home')}}">Home</a></li>
                     <li class="active">Faq</li>
                 </ol>
                 </div>

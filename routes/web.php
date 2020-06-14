@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Gamify\Points\PostCompleted;
 use App\Models\Faq;
 use App\Notification;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -145,6 +146,7 @@ Route::group(['middleware' => ['auth','role:admin|instructor','checkban','verifi
     Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
     Route::get('/schedule/delete/{schedule}','ScheduleController@destroy')->name('schedule.destroy');
 
+    Route::get('/profile/{user}/cv','UserController@getCV')->name('user.getCV');
 
 
 });
@@ -174,17 +176,16 @@ Route::get('/instructors/{instructor}', 'InstructorController@show')->name('inst
 
 Route::get('/calender', function () { return view('calender'); });
 Route::get('/courses-posts', function () { return view('courses_posts'); });
-Route::get('/faq', function () { 
+Route::get('/faq', function () {
+    $test = (new HomeController)->note();
     $faqs = Faq::all();
-    return view('faq', ['faqs' => $faqs]); 
+    return view('faq', ['faqs' => $faqs, 'test' => $test]); 
 })->name('faq');
-Route::get('/timetable', function () {
-    return view('timetable');
-});
-
+Route::get('/timetable', function () { return view('timetable'); });
 Route::get('/', 'HomeController@index')->name('home');
 
 //contact-us
 Route::get('/contact', 'ContactController@create')->name('contact.create');
 Route::post('/contact', 'ContactController@store')->name('contact.store');
+
 
