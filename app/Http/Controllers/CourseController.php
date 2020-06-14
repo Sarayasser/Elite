@@ -20,8 +20,8 @@ class CourseController extends Controller
     public function show()
     {   $test = (new HomeController)->note();
         $course = Course::find(request()->course);
-        $courses = Course::all();
-        $posts = Post::all();
+        $courses = Course::orderBy('id', 'desc')->take(5)->get();
+        $posts = Post::orderBy('id', 'asc')->take(10)->get();
         $reviews=Review::all();
         $course_id=request()->course;
 

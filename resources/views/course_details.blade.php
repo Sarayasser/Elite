@@ -56,7 +56,7 @@
               <div class="single-service">
                 <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
                 <h2 class="text-theme-color-red line-bottom">{{$course->name}}</h2>
-                <h4 class="mt-0"><span class="text-theme-color-red">Price :</span> $ {{$course->price}}</h4>
+                
                   <ul class="review_text list-inline">
                     <li>
                       <div class="star-rating" title="Rated {{$course->averageRating}} out of 5"><span data-width="{{$course->averageRating*20}}%">{{$course->averageRating}}</span></div>
@@ -72,21 +72,16 @@
                   </tr>
                   <tbody>
 
-
-                    <tr> <td><i class="fa fa-calendar text-theme-color-red pr-20"></i>Start Date</td> <td>{{$course->schedule ?\Carbon\Carbon::parse($course->schedule->start_date)->format('d/m/yy')  : 'N/A'}}</td> </tr>
-
-
                     <tr> <td class="bg-theme-color-yellow text-white"><i class="fa fa-birthday-cake text-theme-color-blue pr-20"></i>Years Old</td> <td class="bg-theme-color-green text-white">{{$course->age}}-{{$course->age+1}} Years</td> </tr>
                     <tr> <td><i class="fa fa-users text-theme-color-red pr-20"></i>Class Size</td> <td>{{$course->capacity}} Students</td> </tr>
                     <tr> <td class="bg-theme-color-red text-white"><i class="fa fa-user text-theme-color-yellow pr-20"></i>Instructor</td> <td class="bg-theme-color-sky text-white">{{$course->instructor->name}}</td> </tr>
                     <tr> <td class=" text-theme-color-red pr-20"><i class="fa fa-fighter-jet text-theme-color-red pr-20"></i>Coures Duration</td> <td>{{$course->duration}}-{{$course->duration+2}} Month</td> </tr>
 
-                    <tr> <td class="bg-theme-color-lemon text-white"><i class="fa fa-clock-o text-theme-color-yellow pr-20"></i>Class Time</td> <td class="bg-theme-color-orange text-white">{{$course->schedule ? \Carbon\Carbon::parse($course->schedule->time)->format('H:i a') : 'N/A'}} : {{$course->schedule ?\Carbon\Carbon::parse($course->schedule->time)->addHours(2)->format('H:i a') : 'N/A' }}</td> </tr>
-
                     
                   </tbody>
                 </table>
                 {{-- course rate --}}
+                @if(auth()->user() && auth()->user()->hasRole('student') && $course->enrolled||auth()->user()->hasRole('parent'))
                 <form action="{{ route('courses.rate') }}" method="POST">
 
                   {{ csrf_field() }}
@@ -109,8 +104,10 @@
 
                   </div>
                 </form>
+                @endif
                 {{-- course reviews --}}
                 <h3 class="widget-title line-bottom">Course <span class="text-theme-color-red">Review</span></h3>
+                @if(!$reviews->isempty())
                 @foreach($reviews as $review)
                         <hr>
                         <div class="row">
@@ -123,7 +120,11 @@
                           </div>
                         </div>
                     @endforeach
-
+                  @else
+                  <h4 class="widget-title ">Sorry<span class="text-theme-color-red">, There are no available reviews for this course yet!</span></h4>
+                  {{-- <h3 class="line-bottom mt-20 mb-20 text-theme-color-red"><span class="text-theme-color-red">Sorry</span>, There are no available reviews for this course yet!</h3> --}}
+                  @endif
+                    @if(auth()->user() && auth()->user()->hasRole('student') && $course->enrolled||auth()->user()->hasRole('parent'))
                     <h4 class="widget-title line-bottom">Add<span class="text-theme-color-red">Review</span></h4>
                 <form   action="{{route('courses.review')}}" method="post">
                   {{ csrf_field() }}
@@ -153,7 +154,7 @@
                         </ul>
                     </div>
                     @endif
-
+                    @endif
 
 
               </div>
@@ -174,17 +175,17 @@
 
                 <div class="widget">
                   <h3 class="widget-title line-bottom"><span class="text-theme-color-red">Lessons</span></h3>
-                  <div class="latest-posts">
+                  <div class="services-list">
+                    <ul class="list list-border">
                     @foreach($posts as $post)
-                    <article class="post media-post clearfix pb-0 mb-10">
-                      <a class="post-thumb" href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}"></a>
-                      <div class="post-right">
-                        <h4 class="post-title mt-0"><a href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}">{{$post->title}}</a></h4>
-                        <p>{!! \Illuminate\Support\Str::limit($post->description, 30, '...') !!}</p>
-
-                      </div>
-                    </article>
+                      
+                        {{-- <a class="post-thumb" href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}"></a> --}}
+                        
+                        <li class="active"><a href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}">{{$post->title}}</a></li>
+                        
+                    
                     @endforeach
+                  </ul>
 
                   </div>
                 </div>

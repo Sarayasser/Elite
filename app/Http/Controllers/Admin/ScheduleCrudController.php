@@ -57,11 +57,7 @@ class ScheduleCrudController extends CrudController
                 'label' => 'StartDate',
                 'type'  => 'date'
             ],
-            [   // End Date
-                'name'  => 'end_date',
-                'label' => 'EndDate',
-                'type'  => 'date'
-            ],
+            
             [   // Date
                 'name'  => 'time',
                 'label' => 'Time',
@@ -81,11 +77,7 @@ class ScheduleCrudController extends CrudController
                 'label' => 'StartDate',
                 'type'  => 'date'
             ],
-            [   // End Date
-                'name'  => 'end_date',
-                'label' => 'EndDate',
-                'type'  => 'date'
-            ],
+            
             [   // Date
                 'name'  => 'time',
                 'label' => 'Time',

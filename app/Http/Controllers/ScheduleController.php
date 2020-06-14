@@ -41,7 +41,6 @@ class ScheduleController extends Controller
 
          $schedule=Schedule::create([
             'start_date'=> $request->start_date,
-            'end_date'=>$request->end_date,
             'time'=>$request->time,
             'course_id'=>$request->course_id,
             'instructor_id'=>$instructor->id,

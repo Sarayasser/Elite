@@ -67,11 +67,11 @@
 
 <!-- CSS | Theme Color -->
 <link href="{{ asset('css/colors/theme-skin-color-set-1.css')}}" rel="stylesheet" type="text/css">
-
+<link href="{{ asset('css/search.css')}}" rel="stylesheet" type="text/css">
 <!-- external javascripts -->
 <script src="{{ asset('js/jquery-2.2.4.min.js')}}"></script>
 <script src="{{ asset('js/jquery-ui.min.js')}}"></script>
 <script src="{{ asset('js/bootstrap.min.js')}}"></script>
-
+<script src="{{ asset('js/search.js')}}"></script>
 <!-- JS | jquery plugin collection for this theme -->
 <script src="{{ asset('js/jquery-plugin-collection.js')}}"></script>
