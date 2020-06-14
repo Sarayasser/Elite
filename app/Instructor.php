@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use willvincent\Rateable\Rateable;
 
 class Instructor extends Model
-{   
+{
     use Rateable;
     /**
      * The attributes that are mass assignable.
@@ -37,6 +37,10 @@ class Instructor extends Model
     {
         return $this->hasMany('App\Models\Schedule','instructor_id');
     }
+    public function events()
+    {
+        return $this->hasMany('App\Models\Event','user_id');
+    }
     public function GetNameAttribute()
     {
         return $this->user->name;
@@ -45,13 +49,13 @@ class Instructor extends Model
     public function setCvAttribute($value)
     {
         $attribute_name = "cv";
-        $disk = "uploads"; 
+        $disk = "uploads";
 
         $path = $value->store('public/cvs');
         $path = str_replace('public/', '', $path);
         $this->attributes[$attribute_name] = $path;
-        
+
     }
 
-    
+
 }

@@ -22,19 +22,25 @@ class Event extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = ['name','description','date','image','location','user_id'];
     // protected $hidden = [];
     // protected $dates = [];
     protected $dates = ['date'];
-    
+
 
     public function user()
-    {   
+    {
         return $this->belongsTo('App\User');
     }
     public function users()
-    {   
+    {
         return $this->hasOne('App\User','user_id');
+    }
+    public function instructor(){
+        return $this->belongsTo('App\Instructor');
+    }
+    public function instructors(){
+        return $this->hasOne('App\Instructor','user_id');
     }
     /*
     |--------------------------------------------------------------------------
@@ -71,8 +77,8 @@ class Event extends Model
     // public function setImageAttribute($value)
     // {
     //     $attribute_name = "image";
-    //     $disk = "uploads"; 
-    //     $destination_path = "events"; 
+    //     $disk = "uploads";
+    //     $destination_path = "events";
 
     //     if ($value==null) {
     //         Storage::disk($disk)->delete($this->{$attribute_name});
@@ -97,8 +103,8 @@ class Event extends Model
     public function setImageAttribute($value)
     {
         $attribute_name = "image";
-        $disk = "uploads"; 
-        $destination_path = "storage/events"; 
+        $disk = "uploads";
+        $destination_path = "storage/events";
 
         if ($value==null) {
             Storage::disk($disk)->delete($this->{$attribute_name});
