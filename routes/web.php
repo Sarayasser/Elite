@@ -107,6 +107,7 @@ Route::group(['middleware' => ['auth','checkban','verified']], function() {
 
     })->name('courses.enroll')->middleware('role:student');
 
+    Route::post('events/{event}/attend', 'EventController@attend')->name('events.attend')->middleware('role:student');
 
     Route::post('post-rate', 'PostController@ratePost')->name('posts.rate')->middleware('role:student|parent');
     Route::post('course-rate', 'CourseController@rateCourse')->name('courses.rate')->middleware('role:student|parent');

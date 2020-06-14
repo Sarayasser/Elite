@@ -86,7 +86,7 @@ class EventCrudController extends CrudController
         [   // location
             'name'  => 'location',
             'label' => 'Location',
-            'type'  => 'textarea'
+            'type'  => 'address'
         ],
         [   // Image
             'label'        => "Profile Image",
@@ -96,6 +96,11 @@ class EventCrudController extends CrudController
             'aspect_ratio' => 1, // set to 0 to allow any aspect ratio
             'crop'         => true, // set to true to allow cropping, false to disable
             'src'          => NULL, 
+        ],
+        [   // Hidden
+            'name'  => 'user_id',
+            'type'  => 'hidden',
+            'value' => auth()->id(),
         ],
         ]);
         

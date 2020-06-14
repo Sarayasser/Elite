@@ -42,6 +42,7 @@
             <div class="col">
                 <h5 class="card-title">{{$student->name}}</h5>
                 <p class="card-text">{{$student->email}}</p>
+                <h4> Total Points: {{$student->getPoints()}}</h4>
             </div>
             </div>
             </div>

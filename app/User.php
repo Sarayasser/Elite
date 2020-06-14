@@ -106,6 +106,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany('App\Models\Course', 'course_student', 'student_id', 'course_id');
     }
 
+    public function events()
+    {
+        return $this->belongsToMany('App\Models\Event', 'student_event');
+    }
+
     /**
      * relation one to one to instructor
      */
@@ -113,10 +118,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function instructor()
     {
         return $this->hasOne('App\Instructor',"user_id");
-    }
-    public function student()
-    {
-        return $this->hasOne('App\Student');
     }
 
     public function readPosts()
