@@ -16,7 +16,7 @@ class InstructorController extends Controller
      */
     public function index()
     {   $test = (new HomeController)->note();
-        $instructors = Instructor::with('user')->get();
+        $instructors = Instructor::all();
         return view('instructors.index',['instructors' => $instructors,'test'=>$test]);
     }
 
@@ -28,7 +28,6 @@ class InstructorController extends Controller
      */
     public function show(Instructor $instructor)
     {   $test = (new HomeController)->note();
-        $instructor = Instructor::with('user')->findOrFail($instructor->id);
         return view('instructors.show', ['instructor' => $instructor,'test'=>$test]);
     }
 

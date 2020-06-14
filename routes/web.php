@@ -73,8 +73,7 @@ Route::group(['middleware' => ['auth','checkban','verified']], function() {
     Route::get('/dashboard/{slug}/schedule','DashboardController@schedule')->name('dashboard.schedule')->middleware('role:instructor|student');
 
     //Profile
-    Route::get('/profile/{user}','UserController@show')->name('user.show');
-    Route::get('/profile/{user}/edit','UserController@edit')->name('user.edit');
+    Route::get('/profile','UserController@index')->name('user.index');
     Route::put('/profile/{user}','UserController@update')->name('user.update');
 
     //instructor rate
