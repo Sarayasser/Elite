@@ -147,6 +147,13 @@
                 <a  href="{{ route('password.request') }}">
                   <p style="margin-top: 20px; font-size: 18px; color: #4abae8; text-align: center;">{{ __('reset Your Password ?') }}</p>
                 </a>
+                @if(auth()->user() && auth()->user()->hasRole('instructor'))
+                  <div class="form-group" style="text-align: center;">
+                      <form action="{{route('user.getCV',Auth::user())}}">
+                        <input type="submit" value="Go to your CV" class="btn btn-info right"/>
+                      </form>                 
+                  </div>
+                @endif
               </div>
             </div>
           </div>

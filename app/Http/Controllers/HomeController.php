@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Models\Event;
 use App\Instructor;
+use App\Models\Schedule;
 
 class HomeController extends Controller
 {
@@ -33,6 +34,7 @@ class HomeController extends Controller
     {
         $user=Auth::user();
         $instructors = Instructor::all();
+        Schedule::where('start_date','<',now())->delete();
         if(Auth::user()){
             if($user->hasRole('student')){
                 $post=$this->note();
@@ -46,6 +48,7 @@ class HomeController extends Controller
     }
     public function note(){
         $user=Auth::user();
+        if(Auth::user()){
         $student=User::where('id',$user->id)->first();
         $events=Notification::where('event_id','!=',null)->get();
         $course=$student->courses()->get()->pluck('id');
@@ -56,5 +59,6 @@ class HomeController extends Controller
         // dd($post);
 
         return $post;
+        }
     }
 }
