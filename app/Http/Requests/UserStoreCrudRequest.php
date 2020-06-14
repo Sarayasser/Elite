@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Backpack\PermissionManager\app\Http\Requests\UserStoreCrudRequest as storeRequest;
+use Carbon\Carbon;
 
 class UserStoreCrudRequest extends storeRequest
 {
@@ -13,6 +14,8 @@ class UserStoreCrudRequest extends storeRequest
      */
     public function rules()
     {
+        $dt = new Carbon();
+        $after = $dt->subYears(10)->format('d-m-Y');
         return [
             'email'    => 'required|unique:'.config('permission.table_names.users', 'users').',email',
             'name'     => 'required',
@@ -20,7 +23,8 @@ class UserStoreCrudRequest extends storeRequest
             'address'  => 'required',
             'gender'   => 'required',
             'phone_number'=>'required',
-            'roles'    => 'required'
+            'roles'    => 'required|exists:roles,id',
+            'age'      => 'before_or_equal:'.$after
         ];
     }
 }
