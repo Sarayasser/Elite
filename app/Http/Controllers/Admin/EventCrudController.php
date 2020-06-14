@@ -97,6 +97,11 @@ class EventCrudController extends CrudController
             'crop'         => true, // set to true to allow cropping, false to disable
             'src'          => NULL, 
         ],
+        [   // Hidden
+            'name'  => 'user_id',
+            'type'  => 'hidden',
+            'value' => auth()->id(),
+        ],
         ]);
         
         // TODO: remove setFromDb() and manually define Fields
