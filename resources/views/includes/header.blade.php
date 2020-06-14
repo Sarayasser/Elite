@@ -62,7 +62,7 @@
               <li class="{{ Request::is('faq') ? 'active' : '' }}"><a href="{{ route('faq') }}">FAQ</a></li>
               
               @if (Auth::user())
-              <li><a href="{{route('user.show',['user'=>Auth::user()->id])}}" class="col ml-20"><i class="fa fa-cog fa-spin" style="width:150%;"></i></a></li>
+              <li><a href="{{route('user.index')}}" class="col ml-20"><i class="fa fa-cog fa-spin" style="width:150%;"></i></a></li>
               @endif
             </ul>
             
@@ -85,7 +85,7 @@
                   @else
                       <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('dashboard',"student")}}">Dashboard</a>
                   @endif
-                  <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('user.show',['user'=>Auth::user()->id])}}" >  {{ Auth::user()->name }}</a>
+                  <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{route('user.index')}}" >  {{ Auth::user()->name }}</a>
                   <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-16 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">

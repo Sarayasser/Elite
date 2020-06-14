@@ -13,49 +13,29 @@ use App\Http\Controllers\HomeController;
 
 class UserController extends Controller
 {
-    public function show(){
+    public function index(){
         $test = (new HomeController)->note();
-        // $request=Request();
-        // $id=$request->user;
-        // $user=User::where('id',$id)->first();
-        $user = Auth::user();
-        $badges=$user->Badges;
-        return view('users.profile',['user'=>$user, 'badges'=>$badges,'test'=>$test]);
+        return view('users.profile',['test'=>$test]);
     }
-    public function edit(){
-        // $request=Request();
-        // $id=$request->user;
-        // $user=User::where('id',$id)->first();
-        $test = (new HomeController)->note();
-        $user = Auth::user();
-        $files = Storage::disk('local')->get('countries.json');
-        $countries=array();
-        for($i=0;$i<250;$i++){
-        array_push($countries,json_decode($files, true)[$i]['name'].','.json_decode($files, true)[$i]['capital']);
-        }
-        return view('users.edit',['user'=>$user,'countries'=>$countries,'test'=>$test]);
-    }
+
     public function update(StoreUserRequest $request){
-        // $request=Request();
-        // dd($request);
+
         $test = (new HomeController)->note();
         $id=$request->user;
-        $user=User::where('id',$id)->first();
-
-        User::where('id',$id)->update([
+        $user=User::findOrFail($id);
+        $user->update([
             'name' => $request->name,
-            'address' => $request->address,
             'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'address' => $request->address,
+            'gender' => $request->gender,
             'age' => $request->age,
-            'password' => Hash::make($request->password),
-            'phone_number' =>$request->phone_number,
         ]);
         if ($request->hasFile('image')){
             Storage::delete('public/'.$user->image);
             $user->image = $request->file('image');
-            // dd($user->image);
             $user->save();
         }
-        return redirect('/profile/'.$id);
+        return redirect('/profile')->with('status', 'Profile updated!');
     }
 }

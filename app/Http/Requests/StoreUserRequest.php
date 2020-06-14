@@ -5,6 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+
 
 class StoreUserRequest extends FormRequest
 {
@@ -25,12 +27,15 @@ class StoreUserRequest extends FormRequest
      */
     public function rules()
     {
-        $user = User::find(request()->user);
-        // dd($user);
+        $user = Auth::user();
+
         return [
-        'name'=>['required','min:3'],
+        'name'=>['required','string','min:3'],
         'email'=>['required',$user ? Rule::unique('users')->ignore($user->id) : 'unique:users'],
-        'password' => 'required|confirmed|min:6',
+        'phone_number' => ['required', 'numeric',"regex:/(01)[0-9]{9}/"],
+        'address' => ['required', 'string', 'max:255'],
+        'gender'=> ['required'],
+        'image' => ['image','mimes:jpeg,jpg,png'],
         ];
     }
 }
