@@ -67,12 +67,11 @@
           <div class="widget dark">
             <h5 class="widget-title mb-10">Connect With Us</h5>
             <ul class="styled-icons icon-bordered icon-sm">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-skype"></i></a></li>
-              <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-              <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+              <li><a href="https://www.facebook.com/Elite-113792257039055/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="https://twitter.com/elite_iti" target="_blank"><i class="fa fa-twitter" ></i></a></li>
+              
+              <li><a href="https://www.instagram.com/elite_iti/" target="_blank"><i class="fa fa-instagram" ></i></a></li>
+              
             </ul>
           </div>
         </div>
