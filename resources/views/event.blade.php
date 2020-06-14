@@ -28,7 +28,11 @@
           <div class="section-content">
             <div class="row">
             @foreach ($events as $event)
-
+            @php
+              if (auth()->user() && auth()->user()->hasRole('student')) {
+                  $event->attended = $event->students->contains(auth()->user());
+              }
+            @endphp
               <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="schedule-box maxwidth500 mb-30" data-bg-img="{{ asset('images/pattern/p6.png') }}">
                   <div class="thumb">
@@ -74,6 +78,10 @@
                       </a>
                       <a href="{{route('events.destroy',['event'=>$event->id])}}" class="fa fa-trash mr-5 btn btn-danger btn-lg mt-10 " style="display:inline;float:right;color:white;">
                       </a>
+                      @endif
+                      @if(!$event->attended && auth()->user()->hasRole('student'))
+                      <br><br>
+                      <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20 jquery-postback center-block" href="{{route('events.attend', $event->id)}}">Attend</a>
                       @endif
                       @endif
                     </div>

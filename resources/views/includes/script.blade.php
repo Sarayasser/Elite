@@ -24,6 +24,7 @@ $(document).on('click', 'a.jquery-postback', function(e) {
         url: $this.attr('href')
     }).done(function (data) {
         if (data.enrolled) $this.replaceWith("enrolled")
+        if (data.attended) $this.replaceWith("you will attend this event")
         $this.hide()
         console.log(data);
     });
