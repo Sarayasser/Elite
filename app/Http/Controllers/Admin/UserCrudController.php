@@ -7,6 +7,8 @@ use App\Http\Requests\UserStoreCrudRequest as StoreRequest;
 use App\Http\Requests\UserUpdateCrudRequest as UpdateRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Backpack\PermissionManager\app\Models\Role;
+use App\Instructor;
 
 class UserCrudController extends UserController
 {
@@ -58,15 +60,12 @@ class UserCrudController extends UserController
                 'attribute' => 'name', // foreign key attribute that is shown to user
                 'model'     => config('permission.models.role'), // foreign key model
             ],
-            // [ // n-n relationship (with pivot table)
-            //     'label'     => trans('backpack::permissionmanager.extra_permissions'), // Table column heading
-            //     'type'      => 'select_multiple',
-            //     'name'      => 'permissions', // the method that defines the relationship in your Model
-            //     'entity'    => 'permissions', // the method that defines the relationship in your Model
-            //     'attribute' => 'name', // foreign key attribute that is shown to user
-            //     'model'     => config('permission.models.permission'), // foreign key model
-            // ],
-            
+            [   // date_picker
+                'name' => 'age',
+                'type' => 'date_picker',
+                'label' => 'Birthdate',
+
+            ],
             [
                 'name'  => 'address',
                 'label' => trans('address'),
@@ -87,12 +86,7 @@ class UserCrudController extends UserController
                 'label' => trans('phone_number'),
                 'type'  => 'text',
             ],
-            
-            // [
-            //     'name'  => 'age',
-            //     'label' => trans('age'),
-            //     'type'  => 'number',
-            // ],
+
         ]);
         // Role Filter
         $this->crud->addFilter(
@@ -147,14 +141,6 @@ class UserCrudController extends UserController
                 'attribute' => 'name', // foreign key attribute that is shown to user
                 'model'     => config('permission.models.role'), // foreign key model
             ],
-            [ // n-n relationship (with pivot table)
-                'label'     => trans('backpack::permissionmanager.extra_permissions'), // Table column heading
-                'type'      => 'select_multiple',
-                'name'      => 'permissions', // the method that defines the relationship in your Model
-                'entity'    => 'permissions', // the method that defines the relationship in your Model
-                'attribute' => 'name', // foreign key attribute that is shown to user
-                'model'     => config('permission.models.permission'), // foreign key model
-            ],
             [
                 'label'        => "Profile Image",
                 'name'         => "image",
@@ -195,11 +181,18 @@ class UserCrudController extends UserController
                     1 => "InActive"
                 ],
             ],
-            // [
-            //     'name'  => 'age',
-            //     'label' => trans('age'),
-            //     'type'  => 'number',
-            // ],
+            [   // date_picker
+                'name' => 'age',
+                'type' => 'date_picker',
+                'label' => 'Birthdate',
+                // optional:
+                'date_picker_options' => [
+                   'todayBtn' => 'linked',
+                   'format' => 'dd-mm-yyyy',
+                   'language' => 'en'
+                ],
+             ],
+           
         ]);
         $this->crud->addButtonFromView('line', 'moderate', 'moderate', 'beginning');
     }
@@ -211,6 +204,9 @@ class UserCrudController extends UserController
         $response = $this->traitStore();
         // do something after save
         $user = $this->crud->entry;
+        Instructor::create([
+            "user_id" => $user->id
+        ]);
         $token = app('auth.password.broker')->createToken($user);
         $user->sendPasswordResetNotification($token);
         return $response;
@@ -229,6 +225,7 @@ class UserCrudController extends UserController
     }
     protected function addUserFields()
     {
+
         $this->crud->addFields([
             [
                 'name'  => 'name',
@@ -264,40 +261,32 @@ class UserCrudController extends UserController
                 'label' => trans('phone_number'),
                 'type'  => 'text',
             ],
-            // [
-            //     'name'  => 'age',
-            //     'label' => trans('age'),
-            //     'type'  => 'number',
-            // ],
-            [
-                // two interconnected entities
-                'label'             => trans('backpack::permissionmanager.user_role_permission'),
-                'type'              => 'checklist_dependency',
-                'field_unique_name' => 'user_role_permission',
-                'name'              => ['roles', 'permissions'],
-                'subfields'         => [
-                    'primary' => [
-                        'label'            => trans('backpack::permissionmanager.roles'),
-                        'name'             => 'roles', // the method that defines the relationship in your Model
-                        'entity'           => 'roles', // the method that defines the relationship in your Model
-                        'entity_secondary' => 'permissions', // the method that defines the relationship in your Model
-                        'attribute'        => 'name', // foreign key attribute that is shown to user
-                        'model'            => config('permission.models.role'), // foreign key model
-                        'pivot'            => true, // on create&update, do you need to add/delete pivot table entries?]
-                        'number_columns'   => 3, //can be 1,2,3,4,6
-                    ],
-                    'secondary' => [
-                        'label'          => ucfirst(trans('backpack::permissionmanager.permission_singular')),
-                        'name'           => 'permissions', // the method that defines the relationship in your Model
-                        'entity'         => 'permissions', // the method that defines the relationship in your Model
-                        'entity_primary' => 'roles', // the method that defines the relationship in your Model
-                        'attribute'      => 'name', // foreign key attribute that is shown to user
-                        'model'          => config('permission.models.permission'), // foreign key model
-                        'pivot'          => true, // on create&update, do you need to add/delete pivot table entries?]
-                        'number_columns' => 3, //can be 1,2,3,4,6
-                    ],
-                ],
+            [ 
+                'label' => trans('backpack::permissionmanager.roles'),
+                'type' => 'select_multiple',
+                'name' => 'roles',
+                'entity' => 'roles',
+                'attribute' => 'name',
+                'model' => "Backpack\PermissionManager\app\Models\Role",
+                'models' => config('permission.models.role'),
+                'options'   => (function ($query) {
+                    return $query->whereNotIN('id', [1])->get();
+                }),
+
             ],
+            [   // date_picker
+                'name' => 'age',
+                'type' => 'date_picker',
+                'label' => 'Birthdate',
+                // optional:
+                'date_picker_options' => [
+                   'todayBtn' => 'linked',
+                   'format' => 'dd-mm-yyyy',
+                   'language' => 'en'
+                ],
+            ]
+           
+         
         ]);
     }
 
@@ -317,8 +306,12 @@ class UserCrudController extends UserController
     {   
         $request=Request();
         $id = $request->id;
+        $person =User::where('id',$id)->first();
         if(User::where('id',$id)->first()->is_banned){
             $user=User::where('id',$id)->first()->update(['is_banned' => 0]);
+            if(!$person->email_verified_at){
+                $person->sendEmailVerificationNotification();
+            }
             $user=User::where('id',$id)->first();
             return redirect('/admin/user');
         }else{
