@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEventRequest extends FormRequest
+class StoreScheduleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreEventRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,13 +22,10 @@ class StoreEventRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {   $id = $this->route('id');
+    {
         return [
-            'name' => 'required|min:3|max:255',
-            'description' => 'required|min:3',
-            'date' => 'required|after:today',
-            'location'=>'required',
-            // 'user_id' => "required|exists:users,id"
+            'start_date'=>'required|after:today',
+            'time'=>'required',
         ];
     }
 }

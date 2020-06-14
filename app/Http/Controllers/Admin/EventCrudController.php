@@ -5,7 +5,7 @@ use App\User;
 use App\Http\Requests\EventRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
-
+use App\Instructor;
 /**
  * Class EventCrudController
  * @package App\Http\Controllers\Admin
@@ -41,7 +41,7 @@ class EventCrudController extends CrudController
                 'type'         => 'image',
                 'upload'       => true,
                 'crop'         => false,
-                'aspect_ratio' => 0, 
+                'aspect_ratio' => 0,
             ],
             [  // Select
                 'label'     => "Instructor",
@@ -108,7 +108,7 @@ class EventCrudController extends CrudController
             'type'         => 'base64_image',
             'aspect_ratio' => 1, // set to 0 to allow any aspect ratio
             'crop'         => true, // set to true to allow cropping, false to disable
-            'src'          => NULL, 
+            'src'          => NULL,
         ],
         [  // Select
             'label'     => "Instructor",

@@ -35,6 +35,7 @@ class DashboardController extends Controller
     {
         $test = (new HomeController)->note();
         $user = Auth::user();
+        Schedule::where('start_date','<',now())->delete();
         if($slug === "instructor" && $user->hasRole('instructor')){
             // dd($user->id);
             $instructor=Instructor::where('user_id',$user->id)->first();

@@ -27,7 +27,10 @@ class ScheduleRequest extends FormRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
-            // 'end_date' => 
+            // 'end_date' =>
+            'start_date'=>'required|after:today',
+            'time'=>'required',
+            'course_id' => "required|exists:courses,id",
             'instructor_id' => "required|exists:instructors,id"
         ];
     }
@@ -40,7 +43,6 @@ class ScheduleRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
         ];
     }
 

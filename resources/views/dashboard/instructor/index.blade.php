@@ -23,18 +23,22 @@
         <div class="row">
         <div class="col-sm-9 blog-pull-right">
           @foreach ($courses as $course)
-          <div class="col-md-4">
-            <div class="item">
-              <div class="campaign bg-white maxwidth500 mb-30">
-                <div class="thumb">
+          <div class="col-md-12" >
+            <div class="item" >
+              <div class="row bg-white maxwidth500 mb-30">
+                <div class="col-md-4" style="height:20rem;width:20rem;">
                 @if($course->image)
+                <a href="#">
                 <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
+                </a>
                 @else
+                <a href="#">
                 <img class="img-fullwidth img-thumbnail" alt="" src="{{ asset('images/bg/3610647.jpg')}}">
+                </a>
                 @endif
                 <div class="campaign-overlay"></div>
                 </div>
-                <div class="course-details clearfix p-20 pt-15">
+                <div class="col-md-6 clearfix p-20 pt-15">
                   <h3 class="mt-0"><a class="text-theme-color-red" href="{{route('courses.show', $course->id)}}">{{$course->name}}</a></h3>
                   <ul class="review_text list-inline">
                     <li>

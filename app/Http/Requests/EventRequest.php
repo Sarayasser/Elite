@@ -27,10 +27,11 @@ class EventRequest extends FormRequest
     {
         return [
             'name' => 'required|min:5|max:255',
-            'description' => 'required',
-            'date' => 'required',
-            'location' => 'required',
-            'image' => 'required',
+            'description'=>'required|min:10',
+            'date'=>'required|after:today',
+            'location'=>'required',
+            'user_id' => "required",
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 
@@ -57,5 +58,5 @@ class EventRequest extends FormRequest
             //
         ];
     }
-    
+
 }
