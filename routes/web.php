@@ -6,7 +6,9 @@ use App\Models\Course;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Gamify\Points\PostCompleted;
+use App\Models\Faq;
 use App\Notification;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -174,9 +176,12 @@ Route::get('/instructors/{instructor}', 'InstructorController@show')->name('inst
 
 Route::get('/calender', function () { return view('calender'); });
 Route::get('/courses-posts', function () { return view('courses_posts'); });
-Route::get('/faq', function () { return view('faq'); })->name('faq');
+Route::get('/faq', function () {
+    $test = (new HomeController)->note();
+    $faqs = Faq::all();
+    return view('faq', ['faqs' => $faqs, 'test' => $test]); 
+})->name('faq');
 Route::get('/timetable', function () { return view('timetable'); });
-
 Route::get('/', 'HomeController@index')->name('home');
 
 //contact-us
