@@ -20,8 +20,8 @@
             </div>
         </div>
     </section>
-    <div class="dropdown">
-      <button onclick="myFunction()" class="dropbtn fa fa-search">Find Course 🔍</button>
+    <div class="dropdown mt-3">
+      <button onclick="myFunction()" class="dropbtn fa fa-search">  Find Course </button>
       <div id="myDropdown" class="dropdown-content">
         <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
         @if($courses->count())
