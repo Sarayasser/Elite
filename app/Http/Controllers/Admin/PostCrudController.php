@@ -50,12 +50,7 @@ class PostCrudController extends CrudController
                 'crop'         => false, 
                 'aspect_ratio' => 0, 
             ],
-            [   // URL
-                'name'            => 'video',
-                'label'           => 'Link to video file on YouTube or Vimeo',
-                'type'            => 'video',
-                'youtube_api_key' => 'AIzaSycLRoVwovRmbIf_BH3X12IcTCudAErRlCE',
-            ],
+
         ]);
 
         $this->crud->filters();
