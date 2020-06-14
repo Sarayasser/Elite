@@ -5,10 +5,11 @@
         <div class="col-sm-6 col-md-3">
           <div class="widget dark">
             <img class="mt-5 mb-20" alt="" src="{{ asset('images/logo_footer.png')}}">
-            <p>203, Envato Labs, Behind Alis Steet, Melbourne, Australia.</p>
+            <p> 1 Mahmoud Said St., Shohada Square, Main Post Office Building, Alexandria</p>
             <ul class="list-inline mt-5">
-              <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-red mr-5"></i> <a class="text-gray" href="#">123-456-789</a> </li>
-              <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-color-lemon mr-5"></i> <a class="text-gray" href="#">contact@yourdomain.com</a> </li>
+              <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-red mr-5"></i> <a class="text-gray" >1550-990-233</a> </li>
+              <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-color-lemon mr-5"></i> <a class="text-gray">elite.iti40.alex@gmail.com</a> </li>
+              {{-- todo: deploy --}}
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-globe text-theme-color-orange mr-5"></i> <a class="text-gray" href="#">www.yourdomain.com</a> </li>
             </ul>
           </div>
@@ -17,9 +18,9 @@
           <div class="widget dark">
             <h4 class="widget-title">Useful Links</h4>
             <ul class="list angle-double-right list-border">
-              <li><a href="page-about-style1.html">About Us</a></li>
-              <li><a href="page-course-list.html">Our Courses</a></li>
-              <li><a href="page-pricing-style1.html">Pricing Table</a></li>
+              <li><a href="about" target="_blank">About Us</a></li>
+              <li><a href="courses" target="_blank">Our Courses</a></li>
+              <li><a href="instructors" target="_blank">Our Instructors</a></li>
               <li><a href="page-gallery-3col.html">Gallery</a></li>
               <li><a href="shop-category.html">Shop</a></li>              
             </ul>
