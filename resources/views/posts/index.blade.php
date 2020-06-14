@@ -5,11 +5,11 @@
 @section('content')
 
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/bg3.jpg')}}">
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/2188.jpg')}}">
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row"> 
+            <div class="row mt-150">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Course posts</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -48,7 +48,7 @@
                           <div class="media-body pl-15">
                             <div class="event-content pull-left flip">
                               <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a>{{$post->title}}</a></h4>
-                              <span class="mb-10 text-gray-darkgray mr-10 font-13"><a href="{{route('posts.show', ['course' => $course, 'post' => $post->id])}}"><i class="fa fa-commenting-o mr-5 text-theme-color-sky"></i> {{$post->comments->count()}} Comments</a></span>                       
+                              <span class="mb-10 text-gray-darkgray mr-10 font-13"><a href="{{route('posts.show', ['course' => $course, 'post' => $post->id])}}"><i class="fa fa-commenting-o mr-5 text-theme-color-sky"></i> {{$post->comments->count()}} Comments</a></span>
                             </div>
                           </div>
                         </div>
@@ -86,7 +86,7 @@
                   @endif
                 </div>
               </div>
-            </div>  
+            </div>
           </div>
         </div>
     </section>

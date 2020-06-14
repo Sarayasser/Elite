@@ -65,7 +65,7 @@
                       <li><i class="fa fa-map-marker mr-5"></i> {{$event->location}}</li>
                     </ul>
                     <div class="clearfix"></div>
-                    <p class="mt-10">{!! $event->description !!}</p>
+                    <p class="mt-10">{!! substr($event->description, 0, 40) !!}</p>
                     <div class="mt-10">
                        <a class="btn btn-default btn-theme-color-sky mt-10 font-16 btn-sm" href="{{route('events.show',['event'=>$event->id])}}">read more</a>
                        @if(Auth::user())

@@ -39,8 +39,15 @@ return [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'useTLS' => true,
                 'encrypter'=>true,
+                // 'host' => '127.0.0.1',
+                // 'port' => 8001,
+                // 'scheme' => 'http',
+                'curl_options' => [
+                    CURLOPT_SSL_VERIFYHOST => 0,
+                    CURLOPT_SSL_VERIFYPEER => 0,
+                ],
             ],
-        ],
+            ],
 
         'redis' => [
             'driver' => 'redis',

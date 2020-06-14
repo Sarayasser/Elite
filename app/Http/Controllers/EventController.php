@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use File;
 use App\Notification;
 use App\Http\Controllers\HomeController;
+use App\Events\EventAdded;
+use App\Instructor;
 
 class EventController extends Controller
 {
@@ -19,12 +21,8 @@ class EventController extends Controller
         // dd($events);
         return view('event',['events'=>$events,'test'=>$test]);
     }
-    public function show(){
+    public function show(Request $request, Event $event){
         $test = (new HomeController)->note();
-        $request = Request();
-        $id= $request->event;
-        $event = Event::where('id',$id)->first();
-        // dd($event);
         return view('event_details',['event'=>$event,'test'=>$test]);
     }
     public function create(){
@@ -57,18 +55,21 @@ class EventController extends Controller
             // $event->image= $filename;
         }
         $event->save();
+        $instructor=Instructor::where('user_id',Auth::user()->id)->first();
         Notification::create([
             'description'=> 'New Event created',
             'event_id' => $event->id,
-            'instructor_id' => $event->instructor_id,
+            'instructor_id' => $instructor->id,
         ]);
-        return redirect('/event');
+        event(new EventAdded('Check it Out'));
+        $note = array(
+            'message' => 'New Event Added Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect('/event')->with($note);
     }
-    public function edit(){
+    public function edit(Event $event){
         $test = (new HomeController)->note();
-        $request=Request();
-        $id=$request->event;
-        $event=Event::where('id',$id)->first();
         $files = Storage::disk('local')->get('countries.json');
         $countries=array();
         for($i=0;$i<250;$i++){
@@ -77,27 +78,23 @@ class EventController extends Controller
         // dd($event);
         return view('events.edit',['event'=>$event , 'countries'=>$countries,'test'=>$test]);
     }
-    public function update(StoreEventRequest $request){
-        $id=$request->event;
-        $eve=Event::where('id',$id)->first();
-        Event::where('id',$id)->update([
+    public function update(StoreEventRequest $request, Event $event){
+        $event->update([
             'name' => $request->name,
             'description' =>  $request->description,
             'location' => $request->location,
             'date' => $request->date,
         ]);
         if ($request->hasFile('image')){
-            Storage::delete('public/'.$eve->image);
+            Storage::delete('public/'.$event->image);
             // dd($event->image);
-            $eve->image = $request->file('image');
-            $eve->save();
+            $event->image = $request->file('image');
+            $event->save();
         }
         return redirect('/event');
     }
-    public function destroy(){
-        $request=Request();
-        $id=$request->event;
-        Event::where('id',$id)->delete();
+    public function destroy(Event $event){
+        $event->delete();
         return redirect('/event');
     }
 }

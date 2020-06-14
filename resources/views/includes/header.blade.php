@@ -15,12 +15,10 @@
                 <li>
                 <div class="btn-group">
                 @if(Auth::user()->hasRole('student') && Auth::user())
-                <button class="fa fa-bell fa-2x mr-200" type="button" id="bell" data-toggle="dropdown" style="border-color:transparent;background:transparent;" aria-haspopup="true" aria-expanded="false"></button>
-                @else
-                <button class="fa fa-bell fa-2x mr-200" type="button" id="bell" data-toggle="dropdown" style="border-color:transparent;background:transparent;" aria-haspopup="true" aria-expanded="false"></button>
+                <button class="fa fa-bell fa-2x" type="button" id="bell" data-toggle="dropdown" style="border-color:transparent;background:transparent;" aria-haspopup="true" aria-expanded="false"></button>
                 @endif
                 @if(Auth::user()->hasRole('student') && Auth::user())
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu dropdown-menu-right">
                 <li>
                 @foreach($test as $t)
                 @if($t->event_id)
