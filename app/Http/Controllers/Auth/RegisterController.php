@@ -16,6 +16,8 @@ use Exception;
 use Session;
 use Illuminate\Support\Facades\Storage;
 use File;
+use Illuminate\Auth\Events\Registered;
+
 
 class RegisterController extends Controller
 {
@@ -117,12 +119,13 @@ class RegisterController extends Controller
         $role = $data['role'];
 
         if($role == 0){
-
             $user->assignRole("instructor");
             Instructor::create([
                 "cv" => $data['cv'],
                 "user_id" => $user->id
             ]);
+            $user->is_banned = 1;
+            $user->save();
 
         }else if($role == 1){
             $user->assignRole("parent");
@@ -135,6 +138,34 @@ class RegisterController extends Controller
     public function showRegistrationForm($slug)
     {
         return view('auth.register', compact('slug'));
+    }
+
+        /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        
+        event(new Registered($user = $this->create($request->all())));
+        if($user->is_banned == 1){
+            return redirect()->route('login')
+                ->withError('wait for admin acceptance');
+        }else{
+            $this->guard()->login($user);
+        }
+       
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+                    ? new Response('', 201)
+                    : redirect($this->redirectPath());
     }
 
 

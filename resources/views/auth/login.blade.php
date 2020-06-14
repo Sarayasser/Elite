@@ -4,7 +4,7 @@
 <div class="card card-4">
     <div class="card-body">
     @if (session('error'))
-        <div class="alert alert-danger">
+        <div class="alert alert-danger" style="font-size: 20px; color: red;">
             {{ session('error') }}
         </div>
     @endif

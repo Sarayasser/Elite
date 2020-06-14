@@ -60,7 +60,7 @@ Route::group(['middleware' => ['web']], function() {
 
 
 
-Route::group(['middleware' => ['auth','verified','checkban']], function() {
+Route::group(['middleware' => ['auth','checkban','verified']], function() {
 
     //Dashboard
     Route::get('/dashboard/{slug}','DashboardController@index')->name('dashboard')->where("slug","instructor|parent|student");
@@ -119,7 +119,7 @@ Route::group(['middleware' => ['auth','verified','checkban']], function() {
 });
 
 
-Route::group(['middleware' => ['auth','role:admin|instructor','checkban']], function() {
+Route::group(['middleware' => ['auth','role:admin|instructor','checkban','verified']], function() {
 
     //event
     Route::get('/event/create', 'EventController@create')->name('events.create');
