@@ -21,7 +21,7 @@
                 </ol>
                 
                 </div>
-                @if(!$event->attended && auth()->user()->hasRole('student'))
+                @if(auth()->user() && !$event->attended && auth()->user()->hasRole('student'))
                 <div class="col-md-6 mt-70 pull-right">
                   <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20 jquery-postback pull-right" href="{{route('events.attend', $event->id)}}">Attend</a>
                 </div>
