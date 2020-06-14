@@ -141,7 +141,7 @@
               <div class="widget">
                 <div class="thumb img-thumbnail">
                   @if( Auth::user()->image)
-                    <img class="card-img-top" src="{{asset( Auth::user()->image)}}" alt="Card image cap">
+                    <img class="card-img-top" src="{{asset( Auth::user()->image)}}" width="350px" height="350px" alt="Card image cap">
                   @endif
                 </div>
                 <a  href="{{ route('password.request') }}">

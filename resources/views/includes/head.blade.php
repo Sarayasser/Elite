@@ -29,7 +29,6 @@
 <link href="{{ asset('images/apple-touch-icon-114x114.png')}}" rel="apple-touch-icon" sizes="114x114">
 <link href="{{ asset('images/apple-touch-icon-144x144.png')}}" rel="apple-touch-icon" sizes="144x144">
 {{-- rate --}}
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
 
