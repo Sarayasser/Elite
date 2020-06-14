@@ -306,8 +306,12 @@ class UserCrudController extends UserController
     {   
         $request=Request();
         $id = $request->id;
+        $person =User::where('id',$id)->first();
         if(User::where('id',$id)->first()->is_banned){
             $user=User::where('id',$id)->first()->update(['is_banned' => 0]);
+            if(!$person->email_verified_at){
+                $person->sendEmailVerificationNotification();
+            }
             $user=User::where('id',$id)->first();
             return redirect('/admin/user');
         }else{
