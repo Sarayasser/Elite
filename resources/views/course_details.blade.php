@@ -7,11 +7,11 @@
 @section('content')
 
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/bg3.jpg')}}">
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/2900.jpg')}}">
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row">
+            <div class="row mt-100">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Course details</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -83,7 +83,7 @@
 
                     <tr> <td class="bg-theme-color-lemon text-white"><i class="fa fa-clock-o text-theme-color-yellow pr-20"></i>Class Time</td> <td class="bg-theme-color-orange text-white">{{$course->schedule ? \Carbon\Carbon::parse($course->schedule->time)->format('H:i a') : 'N/A'}} : {{$course->schedule ?\Carbon\Carbon::parse($course->schedule->time)->addHours(2)->format('H:i a') : 'N/A' }}</td> </tr>
 
-                    
+
                   </tbody>
                 </table>
                 {{-- course rate --}}

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use File;
 use App\Notification;
 use App\Http\Controllers\HomeController;
+use App\Events\EventAdded;
+use App\Instructor;
 
 class EventController extends Controller
 {
@@ -57,12 +59,18 @@ class EventController extends Controller
             // $event->image= $filename;
         }
         $event->save();
+        $instructor=Instructor::where('user_id',Auth::user()->id)->first();
         Notification::create([
             'description'=> 'New Event created',
             'event_id' => $event->id,
-            'instructor_id' => $event->instructor_id,
+            'instructor_id' => $instructor->id,
         ]);
-        return redirect('/event');
+        event(new EventAdded('Check it Out'));
+        $note = array(
+            'message' => 'New Event Added Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect('/event')->with($note);
     }
     public function edit(){
         $test = (new HomeController)->note();

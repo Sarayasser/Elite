@@ -29,39 +29,56 @@ $(document).on('click', 'a.jquery-postback', function(e) {
     });
 });
 </script>
-<!-- <script>
-function myFunction() {
-    document.getElementById("bell").style.color = "yellow";
-}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('930726ab58530fa68731', {
+      cluster: 'eu'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('post-added', function(data) {
+      toastr.success('New Post added to Course'+ " " +JSON.stringify(data.message).replace(/['"]+/g, '') , {timeout:10000});
+      toastr.options.hideMethod = 'slideUp';
+      toastr.options.closeButton = true;
+    });
+    channel.bind('event-added', function(data) {
+      toastr.success('New Event added'+ " " +JSON.stringify(data.message).replace(/['"]+/g, '') , {timeout:10000});
+      toastr.options.hideMethod = 'slideUp';
+      toastr.options.closeButton = true;
+    });
+    channel.bind('schedule-added', function(data) {
+      toastr.success('New Schedule added to Course'+ " " +JSON.stringify(data.message).replace(/['"]+/g, '') , {timeout:10000});
+      toastr.options.hideMethod = 'slideUp';
+      toastr.options.closeButton = true;
+    });
 </script>
 <script>
-function myFunctionOff() {
-    document.getElementById("bell").style.color = "black";
-}
+  @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info') }}";
+    switch(type){
+        case 'info':
+            toastr.info("{{ Session::get('message') }}");
+            break;
+
+        case 'warning':
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+
+        case 'success':
+            toastr.success("{{ Session::get('message') }}" , {timeout:10000});
+            toastr.options.closeButton = true;
+            break;
+
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+  @endif
 </script>
-
-<script type="text/javascript">
-$( document ).ready(function() {
-
-  $('#mylink').on('click',function() {
-    $( "#bell" ).css('color','yellow');
-    localStorage.setItem('isCliked', true);
-  });
-  $('#bell').on('click',function() {
-    $( "#bell" ).css('color','green');
-    localStorage.setItem('isCliked', false);
-  });
-
-    });
-    $( window ).on( "load", function() {
-        if(localStorage.getItem('isCliked') === "true"){
-            // console.log('ana hana');
-        document.getElementById("bell").style.color = "yellow";
-        }else{
-            document.getElementById("bell").style.color = "green";
-        }
-        // console.log(typeof(localStorage.getItem('isCliked')));
-    });
-</script> -->
 @toastr_js
 @toastr_render

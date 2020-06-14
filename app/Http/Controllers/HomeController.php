@@ -9,7 +9,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Models\Event;
-use App\instructor;
+use App\Instructor;
 
 class HomeController extends Controller
 {
