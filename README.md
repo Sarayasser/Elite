@@ -7,13 +7,14 @@ Elite is an online learning platform mainly for robotics.
 
 ## Tech/framework used
 <b>Built with</b>
-- [Laravel](https://laravel.com)
+- [Laravel 7.x](https://laravel.com)
 
 ## Features
 - Parental monitoring
 - Integration with zoom for online lessons
 - Real-time notifications
 - Students Progress and achievements
+- Online courses
 
 ## Installation
 Please check the official laravel installation guide for server requirements before you start. [Official Documentation](https://laravel.com/docs/7.x/installation#installation)
@@ -42,6 +43,10 @@ Generate a new application key
 Run the database migrations (**Set the database connection in .env before migrating**)
 
     php artisan migrate 
+    
+Create a symbolic link, you may use the storage:link Artisan command:
+
+    php artisan storage:link
 
 Start the local development server
 
@@ -56,6 +61,7 @@ You can now access the server at http://localhost:8000
     composer install
     cp .env.example .env
     php artisan key:generate
+    php artisan storage:link
     
 **Make sure you set the correct database connection information before running the migrations** [Environment variables](#environment-variables)
 
@@ -71,6 +77,11 @@ Run the database seeder and you're done
 ***Note*** : It's recommended to have a clean database before seeding. You can refresh your migrations at any point to clean the database by running the following command
 
     php artisan migrate:refresh
+
+***Warning***⚠️ :Don't forget to clear the cache whenever you make any changes add or remove badges by running
+   
+   ```php artisan cache:forget gamify.badges.all. ```
+
 
 # Code overview
 

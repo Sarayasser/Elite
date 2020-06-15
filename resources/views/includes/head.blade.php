@@ -30,7 +30,7 @@
 <link href="{{ asset('images/apple-touch-icon-144x144.png')}}" rel="apple-touch-icon" sizes="144x144">
 {{-- rate --}}
 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/css/star-rating.min.css" />
 

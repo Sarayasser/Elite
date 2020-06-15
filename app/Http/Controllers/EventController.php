@@ -23,6 +23,7 @@ class EventController extends Controller
     }
     public function show(Request $request, Event $event){
         $test = (new HomeController)->note();
+        // dd($event->user);
         return view('event_details',['event'=>$event,'test'=>$test]);
     }
     public function create(){

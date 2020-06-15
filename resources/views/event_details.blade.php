@@ -8,7 +8,7 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/2590.jpg')}}">
-        <div class="container pt-150 pb-150"> 
+        <div class="container pt-150 pb-150">
             <!-- Section Content -->
             <div class="section-content">
               <div class="col-md-6">
@@ -17,7 +17,7 @@
                     <li><a href="{{route('home')}}">Home</a></li>
                     <li><a href="{{route('events.index')}}">Event</a></li>
                     <li class="active">Event Details</li>
-                </ol>  
+                </ol>
               </div>
                 @if(auth()->user() && !$event->attended && auth()->user()->hasRole('student'))
                 <div class="col-md-6 mt-70 pull-right">
@@ -83,12 +83,12 @@
             <h3 class="text-theme-color-orange mb-20">Event Description</h3>
             <p>{!!$event->description!!}</p>
           </div>
-          <div class="col-md-6">
+          {{-- <div class="col-md-6">
             <blockquote class="bg-silver-light">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
               <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
             </blockquote>
-          </div>
+          </div> --}}
         </div>
 
       </div>

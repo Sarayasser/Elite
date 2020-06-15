@@ -79,12 +79,14 @@
 
                   </tbody>
                 </table>
+                <h3> Course Average Rating: {{$course->averageRating ? round((float)$course->averageRating,1)." out of 5":"N/A" }}</h3>
+                <span class="review-no">Rated: ({{$course->averageRating!=null ? $course->ratings->count():"N/A"}})</span>
                 {{-- course rate --}}
                 @if(auth()->user() && auth()->user()->hasRole('student') && $course->enrolled)
                 <form action="{{ route('courses.rate') }}" method="POST">
 
                   {{ csrf_field() }}
-                  <h3> Course Average Rating: {{$course->averageRating ? $course->averageRating:"N/A" }}</h3>
+                  
 
 
 

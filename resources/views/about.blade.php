@@ -28,7 +28,7 @@
               <h2 class="text-theme-color-sky line-bottom"><span class="text-theme-color-red">Welcome To Elite</span> <br> Best Education in Our Kindergarden</h2>
               <h4 class="text-theme-color-blue">Lorem ipsum dolor sit amet soluta saepe odit error, maxime praesentium sunt udiandae!</h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore atque officiis maxime suscipit expedita obcaecati nulla in ducimus iure quos quam recusandae dolor quas et perspiciatis voluptatum accusantium delectus nisi reprehenderit, eveniet fuga modi pariatur, eius vero. Ea vitae maiores.</p>
-                <a href="#" class="btn btn-flat btn-colored btn-theme-color-blue mt-15 mr-15">Read More</a><a href="#" class="btn btn-flat btn-colored btn-theme-color-yellow mt-15">Get a Quote</a>
+                
             </div>
             <div class="col-md-6">
               <div class="video-popup">
@@ -121,12 +121,12 @@
             <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-sm-15">
               <div class="team-member maxwidth400">
                 <div class="team-thumb">
-                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/profile.jpg')}}" alt="">
+                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/team1.jpg')}}" alt="">
                 </a>
                 </div>
-                <div class="team-details bg-theme-color-green text-center pt-20 pb-5">
+                <div class="team-details bg-theme-color-red text-center pt-20 pb-5">
                   <div class="member-biography">
-                    <h3 class="mt-0 text-white">Logain hassan</h3>
+                    <h3 class="mt-0 text-white">Logain Hassan</h3>
                     <p class="mb-0 text-white">Web Developer</p>
                   </div>
                   <ul class="styled-icons icon-dark icon-circled icon-theme-color-red pt-5">
@@ -137,6 +137,7 @@
                 </div>
               </div>
             </div>
+            
 
           </div>
         </div>

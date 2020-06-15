@@ -27,17 +27,14 @@ class ScheduleController extends Controller
         return view('schedules.create',['course' => $course]);
     }
     public function store(StoreScheduleRequest $request){
-        //  $request=Request();
-        //  dd($request->course_id);
+        
         $instructor=Instructor::where('user_id',Auth::user()->id)->first();
 
         $zoom_user=Zoom::user()->find('yakan44444@gmail.com');
         $course=Course::find($request->course_id);
         $topic=$course->name;
         $start_time=request()->start_date."T".request()->time.":00Z";
-        // "start_time" => "2020-05-09T14:00:00+00:00"
-        // "2020-12-31" "12:59"
-        // "start_time" => "2020-06-11T18:00:00Z"
+        
 
         $meeting=$zoom_user->meetings()->create(['topic'=>$topic, "start_time" => $start_time]);
 
@@ -49,7 +46,7 @@ class ScheduleController extends Controller
             'link'=>$meeting->join_url
          ]);
          $schedule->save();
-        // $co=Course::where('id',$request->course_id)->first();
+        
          Notification::create([
              'description'=>'New Schedule created',
              'schedule_id'=>$schedule->id,
