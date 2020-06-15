@@ -27,14 +27,14 @@
             <div class="col-md-5">
                 <h4 class="mt-0 mb-30 line-bottom">Find Our Location</h4>
                 @map([
-    'lat' => 30.07104,
-    'lng' => 31.02109,
+    'lat' => 31.1926859,
+    'lng' => 29.9063247,
     'zoom' => 17,
     'markers' => [
         [
             'title' => 'Elite',
-            'lat' => 30.07104,
-            'lng' => 31.02109,
+            'lat' => 31.1926859,
+            'lng' => 29.9063247,
             'popup' => '<h3>Details</h3><p>Click <a href="/">here</a>.</p>',
             ],
     ],
