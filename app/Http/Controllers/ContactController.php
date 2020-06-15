@@ -33,7 +33,6 @@ class ContactController extends Controller
         $contact->message = $request->message;
 
         $contact->save();
-
         \Mail::send('contact_email',
             array(
                 'name' => $request->get('name'),
@@ -44,11 +43,46 @@ class ContactController extends Controller
             ), function($message) use ($request)
             {
                 $message->from($request->email);
+                if($request->instructor){
+                    $message->to($request->instructor);
+                }else{
+                    $message->to('logeenhassanmostafa96@gmail.com');
+                }
+                    
+            }
+        );
+        toastr()->success('Thank you for contact us!');
+
+        return redirect()->back();
+
+    }
+
+    public function quick_store(Request $request) {
+
+        $this->validate($request, [
+            'email' => 'required|email',
+            'message' => 'required|profanity'
+        ]);
+
+        $contact = new Contact;
+
+        $contact->email = $request->email;
+        $contact->message = $request->message;
+
+        $contact->save();
+
+        \Mail::send('quick_contact_email',
+            array(
+                'email' => $request->get('email'),
+                'user_message' => $request->get('message'),
+            ), function($message) use ($request)
+            {
+                $message->from($request->email);
                 $message->to('logeenhassanmostafa96@gmail.com');
             }
         );
-
-        return back()->with('success', 'Thank you for contact us!');
+        toastr()->success('Thank you for contact us!');
+        return redirect()->back();
 
     }
 }

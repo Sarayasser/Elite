@@ -30,7 +30,7 @@
                     <h2 class="text-theme-color-sky line-bottom">Welcome To <span class="text-theme-color-red">Elite</span> <br> Best Education in Our Kindergarden</h2>
                     <h4 class="text-theme-color-red">Lorem ipsum dolor sit amet soluta saepe odit error, maxime praesentium sunt udiandae!</h4>
                     <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore atque officiis maxime suscipit expedita obcaecati nulla in ducimus iure quos quam recusandae dolor quas et perspiciatis voluptatum accusantium delectus nisi reprehenderit, eveniet fuga modi pariatur, eius vero. Ea vitae maiores.</p>
-                        <a href="#" class="btn btn-flat btn-colored btn-theme-color-blue mt-15 mr-15">Read More</a><a href="#" class="btn btn-flat btn-colored btn-theme-color-yellow mt-15">Get a Quote</a>
+                        <a href="about" target="_blank" class="btn btn-flat btn-colored btn-theme-color-blue mt-15 mr-15">Read More</a>
                     </div>
                     <div class="col-md-6">
                     <div class="video-popup">
@@ -72,9 +72,9 @@
                         <div class="thumb" style="height:10rem;">
                             {{-- <img src="{{ asset('images/project/12.jpg')}}" alt="" class="img-fullwidth"> --}}
                             @if($course->image)
-                            <img src="{{asset($course->image)}}" alt="" class="img-fullwidth">
+                                <img src="{{asset($course->image)}}" alt="" class="img-fullwidth">
                             @else
-                            <img class="img-fullwidth img-thumbnail" alt="" src="{{ asset('images/bg/3610647.jpg')}}">
+                                <img class="img-fullwidth img-thumbnail" alt="" src="{{ asset('images/bg/3610647.jpg')}}">
                             @endif
                             <div class="campaign-overlay"></div>
                         </div>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="row">
                 <div class="team-members">
-                    @foreach($instructors as $instructor)
+                    @foreach($instructors->take(8) as $instructor)
                         <div class="col-md-3 col-sm-6">
                             <div class="team-member maxwidth400 mb-sm-15">
                                 <div class="team-thumb">
@@ -140,17 +140,26 @@
                                         @endif
                                     </a>
                                 </div>
-                                <div class="team-details bg-theme-color-red text-center pt-20 pb-5">
-                                <div class="member-biography">
-                                    <h3 class="mt-0 text-white">{{$instructor->user->name}}</h3>
-                                    <p class="mb-0 text-white">English Teacher</p>
-                                </div>
-                                <ul class="styled-icons icon-dark icon-circled icon-theme-color-green pt-5">
-                                    <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter text-white"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-dribbble text-white"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram text-white"></i></a></li>
-                                </ul>
+                                <div class="team-details bg-theme-color-red text-center pt-20 pb-5" style="width:260.5px;height:153.6px;">
+                                    <div class="member-biography">
+                                        <h3 class="mt-0 text-white">{{$instructor->user->name}}</h3>
+                                        <p class="mb-0 text-white">{{$instructor->title}}</p>
+                                    </div>
+                                    <ul class="styled-icons icon-dark icon-circled icon-theme-color-green pt-5">
+                                        @if($instructor->facebook)
+                                            <li><a href="{{$instructor->facebook}}"><i class="fa fa-facebook text-white"></i></a></li>
+                                        @endif
+                                        @if($instructor->github)
+                                            <li><a href="{{$instructor->github}}"><i class="fa fa-github text-white"></i></a></li>
+                                        @endif
+                                        @if($instructor->instagram)
+                                            <li><a href="{{$instructor->instagram}}"><i class="fa fa-instagram text-white"></i></a></li>
+                                        @endif
+                                        @if($instructor->twitter)
+                                            <li><a href="{{$instructor->twitter}}"><i class="fa fa-twitter text-white"></i></a></li>
+                                        @endif
+                                        
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -180,11 +189,12 @@
                         <div class="entry-header">
                         <div class="post-thumb thumb">
                         @if($event->image)
-                            <a href="{{route('events.show',['event'=>$event->id])}}"><img src="{{ asset($event->image)}}" alt="" class="img-responsive img-fullwidth">
+                            <a href="{{route('events.show',['event'=>$event->id])}}">
+                                <img src="{{ asset($event->image)}}" alt="" class="img-responsive img-fullwidth">
                             </a>
                         @else
                         <a href="{{route('events.show',['event'=>$event->id])}}">
-                        <img src="{{ asset('images/bg/32818.jpg')}}" alt="" class="img-responsive img-fullwidth">
+                            <img src="{{ asset('images/bg/32818.jpg')}}" alt="" class="img-responsive img-fullwidth">
                         </a>
                         @endif
                         </div>

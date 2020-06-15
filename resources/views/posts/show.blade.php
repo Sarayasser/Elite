@@ -4,7 +4,7 @@
   <div class="main-content">
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/2188.jpg')}}">
-      <div class="container pt-70 pb-20">
+      <div class="container pt-150 pb-150">
         <!-- Section Content -->
         <div class="section-content">
           <div class="row">
@@ -55,7 +55,7 @@
 
 
 
-
+                    @if(auth()->user() && auth()->user()->hasRole('student') )
                       <div class="rating">
                         <h4>Give This Post A Rate </h4>
                         <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->userAverageRating }}" data-size="xs">
@@ -69,6 +69,7 @@
                         <button class="btn btn-success">Submit Review</button>
 
                     </div>
+                    @endif
                   </form>
                   @if(Auth::user())
                     @if (Auth::user()->id == $post->user->id)

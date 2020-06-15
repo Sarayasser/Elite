@@ -4,7 +4,7 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{asset('images/bg/2222.jpg')}}">
-        <div class="container pt-70 pb-20">
+        <div class="container pt-150 pb-150">
             <!-- Section Content -->
             <div class="section-content">
             <div class="row">
@@ -26,8 +26,20 @@
             <div class="row pt-10">
             <div class="col-md-5">
                 <h4 class="mt-0 mb-30 line-bottom">Find Our Location</h4>
-                {{-- <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJwT7Q65TD9RQRS_NPhF3_yxY&key=AIzaSyAz0rNzjWeNQs9CqB6FRv3aPVxYpdeHS8U" allowfullscreen></iframe> --}}
-                <!-- Google Map HTML Codes --><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5456.163483134849!2d144.95177475051227!3d-37.81589041361766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4dd5a05d97%3A0x3e64f855a564844d!2s121+King+St%2C+Melbourne+VIC+3000%2C+Australia!5e0!3m2!1sen!2sbd!4v1556130803137!5m2!1sen!2sbd" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                @map([
+    'lat' => 31.1926859,
+    'lng' => 29.9063247,
+    'zoom' => 17,
+    'markers' => [
+        [
+            'title' => 'Elite',
+            'lat' => 31.1926859,
+            'lng' => 29.9063247,
+            'popup' => '<h3>Details</h3><p>Click <a href="/">here</a>.</p>',
+            ],
+    ],
+
+                ])
             </div>
             <div class="col-md-7">
                 <h4 class="mt-0 mb-30 line-bottom">Interested in discussing?</h4>
@@ -101,34 +113,37 @@
             </div>
             </div>
             <div class="row mt-60">
+            
+            
             <div class="col-sm-12 col-md-3">
-                <div class="contact-info text-center bg-theme-color-sky border-1px pt-60 pb-60">
+                <div class="contact-info text-center  border-1px pt-60 pb-60" style="background-color: #FFF	">
+                <i class="fa fa-google font-36 mb-10 text-theme-color-red" style="color: #3e65cf"></i>
+                <h4>Email</h4>
+                <h5 class="text-black">elite.iti40.alex@gmail.com</h5>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <div class="contact-info text-center  border-1px pt-60 pb-60" style="background-color: #FFF">
+                <i class="fa fa-facebook-square font-36 mb-10 text-theme-color-white" style="color: #4267B2"></i>
+                <h4>Like Us on Facebook</h4>
+                <a href="https://www.facebook.com/Elite-113792257039055/" target="_blank"><i class="fa fa-thumbs-up fa-lg" style="color: #4267B2"></i></a>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <div class="contact-info text-center  border-1px pt-60 pb-60" style="background-color:#FFF ">
+                <i class="fa fa-twitter font-36 mb-10" style="color:#1DA1F2"></i>
+                <h4>Follow Us on Twitter</h4>
+                <a href="https://twitter.com/elite_iti" target="_blank"><i class="fa fa-heart fa-lg" style="color: red"></i></a>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <div class="contact-info text-center  border-1px pt-60 pb-60" style="background-color: #FFF" >
                 <i class="fa fa-phone font-36 mb-10 text-theme-color-red"></i>
                 <h4>Call Us</h4>
-                <h6 class="text-white">Phone: +262 695 2601</h6>
+                <h5 class="text-black">Phone: +20 1550 990 233</h5>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-3">
-                <div class="contact-info text-center bg-theme-color-yellow border-1px pt-60 pb-60">
-                <i class="fa fa-map-marker font-36 mb-10 text-theme-color-red"></i>
-                <h4>Address</h4>
-                <h6 class="text-white">121 King Street, Australia</h6>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-3">
-                <div class="contact-info text-center bg-theme-color-green border-1px pt-60 pb-60">
-                <i class="fa fa-envelope font-36 mb-10 text-theme-color-red"></i>
-                <h4>Email</h4>
-                <h6 class="text-white">you@yourdomain.com</h6>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-3">
-                <div class="contact-info text-center bg-theme-color-lemon border-1px pt-60 pb-60">
-                <i class="fa fa-fax font-36 mb-10 text-theme-color-red"></i>
-                <h4>Fax</h4>
-                <h6 class="text-white">(020) 123 4567</h6>
-                </div>
-            </div>
+            
             </div>
         </div>
     </section>

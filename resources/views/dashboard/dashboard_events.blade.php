@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:300px;" data-bg-img="{{ asset('images/bg/946.jpg')}}">
-        <div class="container pt-70 pb-20">
+        <div class="container pt-150 pb-150">
             <!-- Section Content -->
             <div class="section-content">
             <div class="row mt-50">
@@ -16,7 +16,7 @@
                 <div class="col-md-6 mt-50" style="float:right;">
             @if(Auth::user())
                 @if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('instructor'))
-                <a href="{{route('events.create')}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
+                  <a href="{{route('events.create')}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
                 @endif
                 @endif
             </div>

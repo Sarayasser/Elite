@@ -4,38 +4,32 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/3611.jpg')}}">
-        <div class="container pt-70 pb-20">
+       <div class="container pt-150 pb-150">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row mt-100">
                 <div class="col-md-6">
-                <h2 class="text-theme-color-yellow font-36">Courses</h2>
-                <ol class="breadcrumb text-left mt-10 white">
-                  <li><a href="{{route('home')}}">Home</a></li>
-
-                    <li class="active">Courses</li>
-                </ol>
+                  <h2 class="text-theme-color-yellow font-36">Courses</h2>
+                  <ol class="breadcrumb text-left mt-10 white">
+                    <li><a href="{{route('home')}}">Home</a></li>
+                      <li class="active">Courses</li>
+                  </ol>
                 </div>
             </div>
-            </div>
         </div>
+
     </section>
     <div class="dropdown mt-3">
       <button onclick="myFunction()" class="dropbtn fa fa-search">  Find Course </button>
       <div id="myDropdown" class="dropdown-content">
         <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
         @if($courses->count())
-        @foreach($courses as $course)
-        <a href="{{route('courses.show', $course->id)}}">{{ $course->name }}</a>
-        @endforeach
+          @foreach($courses as $course)
+            <a href="{{route('courses.show', $course->id)}}">{{ $course->name }}</a>
+          @endforeach
         @else
-
-        <h3 class="text-danger">Result not found.</h3>
-
+          <h3 class="text-danger">Result not found.</h3>
         @endif
-
       </div>
-
     </div>
 
     <!-- Section: Course gird -->
@@ -71,7 +65,7 @@
                       <div class="star-rating" title="Rated {{$course->averageRating}} out of 5"><span data-width="{{$course->averageRating*20}}%">{{$course->averageRating}}</span></div>
                     </li>
                   </ul>
-                  <p>{{$course->description}} <a class="text-theme-colored ml-5" href="{{route('courses.show', $course->id)}}"> ▶️</a></p>
+                  <p>{{substr($course->description,0,100)."..."}} <a class="text-theme-colored ml-5" href="{{route('courses.show', $course->id)}}"> ▶️</a></p>
                   <div class="course-details-bottom mt-15">
                     <ul class="list-inline">
                      <li>Capacity<span>{{$course->capacity}}</span></li>
@@ -89,6 +83,10 @@
                     <br>
                     <p class="text-danger">This course is not available at the moment</p>
                   @endif
+                  @if(auth()->user() && !auth()->user()->email_verified_at)
+                  <br>
+                  <p class="text-danger">To enroll this course you need to verify your email first!</p>
+                @endif
                 </div>
               </div>
             </div>

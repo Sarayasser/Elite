@@ -60,6 +60,35 @@ Route::group(['middleware' => ['web']], function() {
 
 });
 
+Route::group(['middleware' => ['auth','role:admin|instructor','checkban','verified']], function() {
+
+    //event
+    Route::get('/event/create', 'EventController@create')->name('events.create');
+    Route::post('/event','EventController@store')->name('events.store');
+    Route::get('/event/{event}/edit','EventController@edit')->name('events.edit');
+    Route::put('/event/{event}','EventController@update')->name('events.update');
+    Route::get('/event/ /{event}','EventController@destroy')->name('events.destroy');
+
+    //post
+    Route::get('/courses/{course}/posts/create','PostController@create')->name('posts.create');
+    Route::post('/courses/{course}/posts', 'PostController@store')->name('posts.store');
+    Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+    Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('posts.update');
+    Route::delete('/courses/{course}/posts/{post}', 'PostController@destroy')->name('posts.destroy');
+
+
+    //ckeditor
+    Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
+
+    //Schedule
+    Route::get('/courses/{course}/schedule/create', 'ScheduleController@create')->name('schedule.create');
+    Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
+    Route::get('/schedule/delete/{schedule}','ScheduleController@destroy')->name('schedule.destroy');
+
+    Route::get('/profile/{user}/cv','UserController@getCV')->name('user.getCV');
+
+
+});
 
 
 Route::group(['middleware' => ['auth','checkban','verified']], function() {
@@ -118,38 +147,12 @@ Route::group(['middleware' => ['auth','checkban','verified']], function() {
     //Review
     Route::post('/add-review', 'CourseController@addReview')->name('courses.review')->middleware('role:student|parent');
 
+    // Posts
+    Route::get('/courses/{course}/posts', 'PostController@index')->name('posts.index')->middleware('role:student|instructor|admin');
+    Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts.show')->middleware('role:student|instructor|admin');
 });
 
 
-Route::group(['middleware' => ['auth','role:admin|instructor','checkban','verified']], function() {
-
-    //event
-    Route::get('/event/create', 'EventController@create')->name('events.create');
-    Route::post('/event','EventController@store')->name('events.store');
-    Route::get('/event/{event}/edit','EventController@edit')->name('events.edit');
-    Route::put('/event/{event}','EventController@update')->name('events.update');
-    Route::get('/event/delete/{event}','EventController@destroy')->name('events.destroy');
-
-    //post
-    Route::get('/courses/{course}/posts/create','PostController@create')->name('posts.create');
-    Route::post('/courses/{course}/posts', 'PostController@store')->name('posts.store');
-    Route::get('/courses/{course}/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
-    Route::put('/courses/{course}/posts/{post}', 'PostController@update')->name('posts.update');
-    Route::delete('/courses/{course}/posts/{post}', 'PostController@destroy')->name('posts.destroy');
-
-
-    //ckeditor
-    Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
-
-    //Schedule
-    Route::get('/courses/{course}/schedule/create', 'ScheduleController@create')->name('schedule.create');
-    Route::post('/schedule', 'ScheduleController@store')->name('schedule.store');
-    Route::get('/schedule/delete/{schedule}','ScheduleController@destroy')->name('schedule.destroy');
-
-    Route::get('/profile/{user}/cv','UserController@getCV')->name('user.getCV');
-
-
-});
 
 // Events
 Route::get('/event/{event}','EventController@show')->name('events.show');
@@ -160,9 +163,6 @@ Route::get('/event','EventController@index')->name('events.index');
 Route::get('/courses','CourseController@index')->name('courses.index');
 Route::get('/courses/{course}','CourseController@show')->name('courses.show');
 
-// Posts
-Route::get('/courses/{course}/posts', 'PostController@index')->name('posts.index');
-Route::get('/courses/{course}/posts/{post}', 'PostController@show')->name('posts.show');
 
 Route::get('/about', function () {
     return view('about', [
@@ -174,18 +174,17 @@ Route::get('/instructors', 'InstructorController@index')->name('instructors.inde
 Route::get('/instructors/{instructor}', 'InstructorController@show')->name('instructors.show');
 
 
-Route::get('/calender', function () { return view('calender'); });
-Route::get('/courses-posts', function () { return view('courses_posts'); });
 Route::get('/faq', function () {
     $test = (new HomeController)->note();
     $faqs = Faq::all();
     return view('faq', ['faqs' => $faqs, 'test' => $test]); 
 })->name('faq');
-Route::get('/timetable', function () { return view('timetable'); });
+
 Route::get('/', 'HomeController@index')->name('home');
 
 //contact-us
 Route::get('/contact', 'ContactController@create')->name('contact.create');
 Route::post('/contact', 'ContactController@store')->name('contact.store');
+Route::post('/quick-contact', 'ContactController@quick_store')->name('quickContact.store');
 
 

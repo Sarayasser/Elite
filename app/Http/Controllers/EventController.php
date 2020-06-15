@@ -28,14 +28,7 @@ class EventController extends Controller
     }
     public function create(){
         $test = (new HomeController)->note();
-        // $files =file_get_contents(Storage::files('/public/countries')[0]);
-        $files = Storage::disk('json')->get('countries.json');
-        $countries=array();
-        for($i=0;$i<250;$i++){
-        array_push($countries,json_decode($files, true)[$i]['name'].','.json_decode($files, true)[$i]['capital']);
-        }
-        // dd($countries);
-        return view('events.create',['countries'=>$countries,'test'=>$test]);
+        return view('events.create',['test'=>$test]);
     }
     public function store(StoreEventRequest $request){
         $test = (new HomeController)->note();
@@ -71,13 +64,15 @@ class EventController extends Controller
     }
     public function edit(Event $event){
         $test = (new HomeController)->note();
-        $files = Storage::disk('local')->get('countries.json');
-        $countries=array();
-        for($i=0;$i<250;$i++){
-        array_push($countries,json_decode($files, true)[$i]['name'].','.json_decode($files, true)[$i]['capital']);
+        $events = Event::where('user_id',Auth::user()->id)->get()->toarray();
+        if(in_array($event->toarray(), $events)){
+            return view('events.edit',['event'=>$event ,'test'=>$test]);
         }
-        // dd($event);
-        return view('events.edit',['event'=>$event , 'countries'=>$countries,'test'=>$test]);
+        else{
+            toastr()->error("you are not authorized to view this page");
+            return redirect('/event');
+        }
+        
     }
     public function update(StoreEventRequest $request, Event $event){
         $event->update([
@@ -95,8 +90,18 @@ class EventController extends Controller
         return redirect('/event');
     }
     public function destroy(Event $event){
-        $event->delete();
-        return redirect('/event');
+        $events = Event::where('user_id',Auth::user()->id)->get()->toarray();
+        if(in_array($event->toarray(), $events)){
+            $event->delete();
+            toastr()->success("Event deleted succesfully");
+            return redirect('/event');
+        }
+        else{
+            toastr()->error("you are not authorized to delete this event");
+            return redirect('/event');
+        }
+        
+       
     }
 
     public function attend(Event $event)

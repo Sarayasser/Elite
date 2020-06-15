@@ -4,18 +4,16 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/12345.jpg')}}" >
-        <div class="container pt-70 pb-20">
+        <div class="container pt-150 pb-150"> 
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row mt-130">
-                <div class="col-md-6">
-                <h2 class="text-theme-color-yellow font-36">About</h2>
-                <ol class="breadcrumb text-left mt-10 white">
-                <li><a href="{{route('home')}}">Home</a></li>
-                <li class="active">About</li>
-                </ol>
-                </div>
-            </div>
+                  <div class="col-md-6">
+                    <h2 class="text-theme-color-yellow font-36">About</h2>
+                    <ol class="breadcrumb text-left mt-10 white">
+                    <li><a href="{{route('home')}}">Home</a></li>
+                    <li class="active">About</li>
+                    </ol>
+                  </div>
             </div>
         </div>
     </section>
@@ -30,7 +28,7 @@
               <h2 class="text-theme-color-sky line-bottom"><span class="text-theme-color-red">Welcome To Elite</span> <br> Best Education in Our Kindergarden</h2>
               <h4 class="text-theme-color-blue">Lorem ipsum dolor sit amet soluta saepe odit error, maxime praesentium sunt udiandae!</h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore atque officiis maxime suscipit expedita obcaecati nulla in ducimus iure quos quam recusandae dolor quas et perspiciatis voluptatum accusantium delectus nisi reprehenderit, eveniet fuga modi pariatur, eius vero. Ea vitae maiores.</p>
-                <a href="#" class="btn btn-flat btn-colored btn-theme-color-blue mt-15 mr-15">Read More</a><a href="#" class="btn btn-flat btn-colored btn-theme-color-yellow mt-15">Get a Quote</a>
+                
             </div>
             <div class="col-md-6">
               <div class="video-popup">
@@ -126,19 +124,20 @@
                     <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/team1.jpg')}}" alt="">
                 </a>
                 </div>
-                <div class="team-details bg-theme-color-green text-center pt-20 pb-5">
+                <div class="team-details bg-theme-color-red text-center pt-20 pb-5">
                   <div class="member-biography">
-                    <h3 class="mt-0 text-white">Logain hassan</h3>
+                    <h3 class="mt-0 text-white">Logain Hassan</h3>
                     <p class="mb-0 text-white">Web Developer</p>
                   </div>
                   <ul class="styled-icons icon-dark icon-circled icon-theme-color-red pt-5">
-                    <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin text-white"></i></a></li>
-                    <li><a href="#"><i class="fa fa-github text-white"></i></a></li>
+                    <li><a href="https://www.facebook.com/logain.hassan.56"><i class="fa fa-facebook text-white"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/logeen-hassan-4a8710151/"><i class="fa fa-linkedin text-white"></i></a></li>
+                    <li><a href="https://github.com/logainhassan"><i class="fa fa-github text-white"></i></a></li>
                   </ul>
                 </div>
               </div>
             </div>
+            
 
           </div>
         </div>

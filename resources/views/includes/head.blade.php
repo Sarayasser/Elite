@@ -30,7 +30,7 @@
 <link href="{{ asset('images/apple-touch-icon-144x144.png')}}" rel="apple-touch-icon" sizes="144x144">
 {{-- rate --}}
 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/css/star-rating.min.css" />
 
@@ -67,6 +67,8 @@
 <!-- CSS | Theme Color -->
 <link href="{{ asset('css/colors/theme-skin-color-set-1.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/search.css')}}" rel="stylesheet" type="text/css">
+@mapstyles
+
 <!-- external javascripts -->
 <script src="{{ asset('js/jquery-2.2.4.min.js')}}"></script>
 <script src="{{ asset('js/jquery-ui.min.js')}}"></script>
@@ -75,5 +77,9 @@
 <!-- JS | jquery plugin collection for this theme -->
 <script src="{{ asset('js/jquery-plugin-collection.js')}}"></script>
 
+
+
+
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+@mapscripts

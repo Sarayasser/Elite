@@ -4,20 +4,26 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/946.jpg')}}" >
-        <div class="container pt-70 pb-20">
+      <div class="container pt-150 pb-150">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row">
-                <div class="col-md-6">
-                <h2 class="text-theme-color-yellow font-36">Event</h2>
-                <ol class="breadcrumb text-left mt-10 white">
-                    <li><a href="{{route('home')}}">Home</a></li>
-                    <li class="active">Event</li>
-                </ol>
-                </div>
-            </div>
-
-
+              <div class="row">
+                  <div class="col-md-6">
+                  <h2 class="text-theme-color-yellow font-36">Event</h2>
+                  <ol class="breadcrumb text-left mt-10 white">
+                      <li><a href="{{route('home')}}">Home</a></li>
+                      <li class="active">Event</li>
+                  </ol>
+                  </div>
+              </div>
+              <div class="col-md-6 mt-70" style="float:right;">
+                @if(Auth::user())
+                  @if (Auth::user()->hasRole('instructor') || Auth::user()->hasRole('admin'))
+                    <a href="{{route('events.create')}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
+                  @endif
+                
+                @endif
+              </div>
             </div>
         </div>
     </section>
@@ -49,7 +55,7 @@
                         <li class="font-12 text-white text-uppercase">{{ $event->date->format('M') }}</li>
                       </ul>
                     </div>
-                    <h4 class="title mt-0"><a href="#">{{$event->name}}</a></h4>
+                  <h4 class="title mt-0"><a href="{{route('event.show',['event',$event])}}">{{$event->name}}</a></h4>
                     <ul class="list-inline font-11 text-black">
                     @if ($event->date->format('w') == 1)
                       <li><i class="fa fa-calendar mr-5"></i> Monday</li>

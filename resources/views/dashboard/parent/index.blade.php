@@ -3,16 +3,6 @@
 @section('content')
     <section>
       <div class="container">
-        @if (session('error'))
-            <div class="alert alert-danger" role="alert" >
-                <strong> {{ session('error') }}</strong>
-            </div>
-        @endif
-        @if (session('status'))
-            <div class="alert alert-success" role="alert" >
-                <strong> {{ session('status') }}</strong>
-            </div>
-        @endif
         <div class="row">
           <div class="col-md-8 blog-pull-right">
             <div class="single-service">

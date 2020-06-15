@@ -4,7 +4,7 @@
 <div class="card card-4">
     <div class="card-body">
     @if (session('error'))
-        <div class="alert alert-danger" style="font-size: 20px; color: red;">
+        <div class="alert alert-danger" style="font-size: 23px;color: red; margin-bottom: 20px;">
             {{ session('error') }}
         </div>
     @endif
@@ -68,10 +68,14 @@
             <br>
     <div class="row">
         <div class="col">
-        <a class="fa fa-google fa-2x" href="{{ route('login.provider', 'google') }}" style="margin-right:5px;color:#20B2AA;"></a>
+            <button class="btn btn--radius-2" style="margin-bottom: 20px; background: darkred; padding:0 18px;">
+                <a class="fa fa-google fa-2x" href="{{ route('login.provider', 'google') }}" style="color: #ffffff;font-size: 1.4em;text-align: left;"> Login With Google</a>
+            </button>
         </div>
         <div class="col">
-        <a class="fa fa-facebook-square fa-2x" href="{{ route('login.provider', 'facebook') }}" ></a>
+            <button class="btn btn--radius-2" style="margin-bottom: 20px; padding:0 18px;background: #0b589b;margin-left: 5px;">
+                <a class="fa fa-facebook-square fa-2x" href="{{ route('login.provider', 'facebook') }}" style="color: #ffffff;font-size: 1.4em;text-align: left;"> Login With Facebook</a>
+            </button>    
         </div>
     </div>
     </div>

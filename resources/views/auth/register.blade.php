@@ -174,10 +174,14 @@
             <br>
     <div class="row">
         <div class="col">
-        <a class="fa fa-google fa-2x" href="{{ route('register.provider', ['driver'=>'google','slug'=>$slug]) }}" style="margin-right:5px;color:#20B2AA;"></a>
+            <button class="btn btn--radius-2" style="margin-bottom: 20px; background: darkred; padding:0 18px;">
+                <a class="fa fa-google fa-2x"  href="{{ route('register.provider', ['driver'=>'google','slug'=>$slug]) }}" style="color: #ffffff;font-size: 1.4em;text-align: left;"> Login With Google</a>
+            </button>
         </div>
         <div class="col">
-        <a class="fa fa-facebook-square fa-2x" href="{{ route('register.provider',['driver'=>'facebook','slug'=>$slug]) }}" ></a>
+            <button class="btn btn--radius-2" style="margin-bottom: 20px; padding:0 18px;background: #0b589b;margin-left: 5px;">
+                <a class="fa fa-facebook-square fa-2x" href="{{ route('register.provider',['driver'=>'facebook','slug'=>$slug]) }}" style="color: #ffffff;font-size: 1.4em;text-align: left;"> Login With Facebook</a>
+            </button>    
         </div>
     </div>
     </div>
