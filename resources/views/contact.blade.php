@@ -116,31 +116,31 @@
             
             
             <div class="col-sm-12 col-md-3">
-                <div class="contact-info text-center  border-1px pt-60 pb-60" style="background-color: #3e65cf	">
-                <i class="fa fa-google font-36 mb-10 text-theme-color-red" ></i>
+                <div class="contact-info text-center  border-1px pt-60 pb-60" style="background-color: #FFF	">
+                <i class="fa fa-google font-36 mb-10 text-theme-color-red" style="color: #3e65cf"></i>
                 <h4>Email</h4>
-                <h5 class="text-white">elite.iti40.alex@gmail.com</h5>
+                <h5 class="text-black">elite.iti40.alex@gmail.com</h5>
                 </div>
             </div>
             <div class="col-sm-12 col-md-3">
-                <div class="contact-info text-center  border-1px pt-60 pb-60" style="background-color: #4267B2">
-                <i class="fa fa-facebook font-36 mb-10 text-theme-color-white" style="background-color: #14171A"></i>
+                <div class="contact-info text-center  border-1px pt-60 pb-60" style="background-color: #FFF">
+                <i class="fa fa-facebook-square font-36 mb-10 text-theme-color-white" style="color: #4267B2"></i>
                 <h4>Like Us on Facebook</h4>
-                <a href="https://www.facebook.com/Elite-113792257039055/" target="_blank"><i class="fa fa-thumbs-up fa-lg"></i></a>
+                <a href="https://www.facebook.com/Elite-113792257039055/" target="_blank"><i class="fa fa-thumbs-up fa-lg" style="color: #4267B2"></i></a>
                 </div>
             </div>
             <div class="col-sm-12 col-md-3">
-                <div class="contact-info text-center  border-1px pt-60 pb-60" style="background-color: #1DA1F2">
-                <i class="fa fa-twitter font-36 mb-10" style="background-color: #1DA1F2"></i>
+                <div class="contact-info text-center  border-1px pt-60 pb-60" style="background-color:#FFF ">
+                <i class="fa fa-twitter font-36 mb-10" style="color:#1DA1F2"></i>
                 <h4>Follow Us on Twitter</h4>
-                <a href="https://twitter.com/elite_iti" target="_blank"><i class="fa fa-heart fa-lg"></i></a>
+                <a href="https://twitter.com/elite_iti" target="_blank"><i class="fa fa-heart fa-lg" style="color: red"></i></a>
                 </div>
             </div>
             <div class="col-sm-12 col-md-3">
-                <div class="contact-info text-center  border-1px pt-60 pb-60" style="background-color: #00b9fb" >
+                <div class="contact-info text-center  border-1px pt-60 pb-60" style="background-color: #FFF" >
                 <i class="fa fa-phone font-36 mb-10 text-theme-color-red"></i>
                 <h4>Call Us</h4>
-                <h5 class="text-white">Phone: +20 1550 990 233</h5>
+                <h5 class="text-black">Phone: +20 1550 990 233</h5>
                 </div>
             </div>
             
