@@ -72,6 +72,11 @@ Run the database seeder and you're done
 
     php artisan migrate:refresh
 
+***Warning***⚠️ :Don't forget to clear the cache whenever you make any changes add or remove badges by running
+   
+   ```php artisan cache:forget gamify.badges.all. ```
+
+
 # Code overview
 
 ## Dependencies
