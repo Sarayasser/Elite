@@ -89,6 +89,21 @@
                     </div>
                   </div>
                 </div>
+                @if(Auth::user()->hasRole('instructor'))
+                <div class="form-group @error('image') has-error @enderror">
+                  <label class="col-sm-2 control-label">CV</label>
+                  <div class="col-sm-10">
+                    <div class="input-group-icon">
+                        <input type="file" name="cv" class="form-control" >
+                        @if ($errors->has('cv'))
+                            <span id="helpBlock3" class="help-block"> 
+                              <strong style="color:#a94442;">{{ $errors->first('cv') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                  </div>
+                </div>
+                @endif
                 <div class="form-group @error('gender') has-error @enderror">
                   <label class="col-sm-2 control-label">Gender</label>
                   <div  class="radio">
@@ -108,31 +123,100 @@
                   </div>
                       
                 </div>
+                @if(!Auth::user()->hasRole('instructor'))
+                    <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10" >
+                        <button type="submit" class="btn btn-info right" style="float:right;">Submit</button>
+                      </div>
+                    </div>
+                  </form>
+                @endif
+              @if(auth()->user()->hasRole('student'))
+                <h2 class="text-theme-color-red line-bottom">Extra Information : </h2>
+                  <h3>
+                      <span style="color: #429fa9; font-size: 25px;"> 
+                          Total Points:
+                      </span>
+                          {{Auth::user()->getPoints()}}
+                  </h3>
+                  <h3>
+                      <span style="color:#429fa9; font-size: 25px;"> 
+                          Badges: 
+                      </span>
+                      
+                      @foreach(Auth::user()->badges as $badge)
+                          <h5> {{$badge ? $badge->name : 'N/A'}}</h5>                            
+                          <img alt="{{$badge->name}}" src="{{ asset('images/badges/'.$badge->name.'.jpg') }}" class="img-rounded img-responsive" style="width: 40px" style="height: 40px">   
+                      @endforeach
+                  </h3> 
+              @elseif(Auth::user()->hasRole('instructor'))
+                <h2 class="text-theme-color-red line-bottom">Extra Information : </h2>
+                <div class="form-group">
+                  <label for="inputName3" class="col-sm-2 control-label" style="color: #5fb6ba;font-size: 17px;font-weight: 600;">Title</label>
+                  <div class="col-sm-10" style="margin-bottom: 30px;">
+                    <input type="text" class="form-control" id="title" name="title" value="{{  Auth::user()->instructor->title  }}" placeholder="Title">                
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="inputName3" class="col-sm-2 control-label"  style="color: #5fb6ba;font-size: 17px;font-weight: 600;">Year of Experience</label>
+                  <div class="col-sm-10" style="margin-bottom: 30px;">
+                    
+                    <select class="form-control" name="year_of_experience" >
+                      @foreach( $years as $year) 
+                          <option value="{{ $year }}" @if($year == Auth::user()->instructor->year_of_experience ) selected="selected" @endif >{{$year}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+               
+                <div class="form-group">
+                  <label for="inputName3" class="col-sm-2 control-label"  style="color: #5fb6ba;font-size: 17px;font-weight: 600;">Your Experiences</label>
+                  <div class="col-sm-10" style="margin-bottom: 30px;">
+                    <select class="form-control js-example-tokenizer" name="experiences[]" multiple="multiple"> 
+                          @if (is_array($exps))
+                              @foreach ($exps as $exp)
+                                  <option value="{{ $exp['experience'] }}" selected="selected">{{ $exp['experience'] }}</option>
+                              @endforeach
+                          @endif
+                      </select>
+                  </div>
+                </div>
+              
+                <div class="form-group">
+                  <label for="inputName3" class="col-sm-2 control-label"  style="color: #5fb6ba;font-size: 17px;font-weight: 600;">Facebook</label>
+                  <div class="col-sm-10" style="margin-bottom: 30px;">
+                    <input type="text" class="form-control" id="facebook" name="facebook" value="{{  Auth::user()->instructor->facebook  }}" placeholder="Facebook">                
+                  </div>
+                </div> 
+                
+                <div class="form-group">
+                  <label for="inputName3" class="col-sm-2 control-label" style="color: #5fb6ba;font-size: 17px;font-weight: 600;">Instagram</label>
+                  <div class="col-sm-10" style="margin-bottom: 30px;">
+                    <input type="text" class="form-control" id="instagram" name="instagram" value="{{  Auth::user()->instructor->instagram  }}" placeholder="Instagram">                
+                  </div>
+                </div> 
+
+                <div class="form-group">
+                  <label  class="col-sm-2 control-label"  style="color: #5fb6ba;font-size: 17px;font-weight: 600;">Github</label>
+                  <div class="col-sm-10" style="margin-bottom: 30px;">
+                    <input type="text" class="form-control" id="github" name="github" value="{{  Auth::user()->instructor->github  }}" placeholder="Github">                
+                  </div>
+                </div> 
+
+                <div class="form-group">
+                  <label for="inputName3" class="col-sm-2 control-label"  style="color: #5fb6ba; font-size: 17px;font-weight: 600;">Twitter</label>
+                  <div class="col-sm-10" style="margin-bottom: 30px;">
+                    <input type="text" class="form-control" id="twitter" name="twitter" value="{{  Auth::user()->instructor->twitter  }}" placeholder="Twitter">                
+                  </div>
+                </div> 
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10" >
-                    <button type="submit" class="btn btn-info right" style="float:right;">Submit</button>
+                    <button type="text" class="btn btn-info right" style="float:right;">Submit</button>
                   </div>
                 </div>
               </form>
-              
-              @if(auth()->user() && auth()->user()->hasRole('student'))
-              <h2 class="text-theme-color-red line-bottom">Extra Information : </h2>
-                <h3>
-                    <span style="color: #429fa9; font-size: 25px;"> 
-                        Total Points:
-                    </span>
-                        {{Auth::user()->getPoints()}}
-                </h3>
-                <h3>
-                    <span style="color:#429fa9; font-size: 25px;"> 
-                        Badges: 
-                    </span>
-                    
-                    @foreach(Auth::user()->badges as $badge)
-                        <h5> {{$badge ? $badge->name : 'N/A'}}</h5>                            
-                        <img alt="{{$badge->name}}" src="{{ asset('images/badges/'.$badge->name.'.jpg') }}" class="img-rounded img-responsive" style="width: 40px" style="height: 40px">   
-                    @endforeach
-                </h3> 
+            
               @endif
             </div>
           </div>
@@ -147,7 +231,7 @@
                 <a  href="{{ route('password.request') }}">
                   <p style="margin-top: 20px; font-size: 18px; color: #4abae8; text-align: center;">{{ __('reset Your Password ?') }}</p>
                 </a>
-                @if(auth()->user() && auth()->user()->hasRole('instructor'))
+                @if(auth()->user()->hasRole('instructor'))
                   <div class="form-group" style="text-align: center;">
                       <form action="{{route('user.getCV',Auth::user())}}">
                         <input type="submit" value="Go to your CV" class="btn btn-info right"/>
@@ -160,7 +244,7 @@
         </div>
       </div>
       <div> 
-          <img alt="" src="images/bg/f2.png" class="img-responsive img-fullwidth">
+          <img alt="" src="{{asset('images/bg/f2.png')}}" class="img-responsive img-fullwidth">
       </div>
     </section>
 

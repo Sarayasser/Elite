@@ -13,8 +13,24 @@ class Instructor extends Model
      *
      * @var array
      */
+
+    
+    
+
+    public static function getYears()
+    {
+        return $year_of_experience = [
+            '0' => 'No Experience', 
+            '1' => 'Less than 1 year',
+            '2' => '1 year',
+            '3' => '2 years',
+            '4' => '3 years',
+            '5' => 'More than 3 years'
+        ];
+    }
+    
     protected $fillable = [
-        'cv','user_id'
+        'cv','user_id','facebook','instagram','github','twitter','year_of_experience','title'
     ];
 
     /**
@@ -56,6 +72,15 @@ class Instructor extends Model
         $this->attributes[$attribute_name] = $path;
 
     }
+
+      /**
+     * relation one to many  experience
+     */
+    public function experiences()
+    {
+        return $this->hasMany('App\InstructorExperience');
+    }
+
 
 
 }
