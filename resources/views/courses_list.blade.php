@@ -83,6 +83,10 @@
                     <br>
                     <p class="text-danger">This course is not available at the moment</p>
                   @endif
+                  @if(auth()->user() && !auth()->user()->email_verified_at)
+                  <br>
+                  <p class="text-danger">To enroll this course you need to verify your email first!</p>
+                @endif
                 </div>
               </div>
             </div>

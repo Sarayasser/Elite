@@ -83,12 +83,12 @@
             <h3 class="text-theme-color-orange mb-20">Event Description</h3>
             <p>{!!$event->description!!}</p>
           </div>
-          <div class="col-md-6">
+          {{-- <div class="col-md-6">
             <blockquote class="bg-silver-light">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
               <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
             </blockquote>
-          </div>
+          </div> --}}
         </div>
 
       </div>
