@@ -55,7 +55,7 @@
 
 
 
-
+                    @if(auth()->user() && auth()->user()->hasRole('student') && $course->enrolled)
                       <div class="rating">
                         <h4>Give This Post A Rate </h4>
                         <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->userAverageRating }}" data-size="xs">
@@ -69,6 +69,7 @@
                         <button class="btn btn-success">Submit Review</button>
 
                     </div>
+                    @endif
                   </form>
                   @if(Auth::user())
                     @if (Auth::user()->id == $post->user->id)

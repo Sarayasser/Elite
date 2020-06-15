@@ -46,7 +46,6 @@
 
 <!-- Stylesheet -->
 
-
 <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/animate.css')}}" rel="stylesheet" type="text/css">
@@ -68,6 +67,8 @@
 <!-- CSS | Theme Color -->
 <link href="{{ asset('css/colors/theme-skin-color-set-1.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/search.css')}}" rel="stylesheet" type="text/css">
+@mapstyles
+
 <!-- external javascripts -->
 <script src="{{ asset('js/jquery-2.2.4.min.js')}}"></script>
 <script src="{{ asset('js/jquery-ui.min.js')}}"></script>
@@ -76,5 +77,9 @@
 <!-- JS | jquery plugin collection for this theme -->
 <script src="{{ asset('js/jquery-plugin-collection.js')}}"></script>
 
+
+
+
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+@mapscripts
