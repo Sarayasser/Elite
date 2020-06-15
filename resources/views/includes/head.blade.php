@@ -47,7 +47,6 @@
 
 <!-- Stylesheet -->
 
-
 <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/animate.css')}}" rel="stylesheet" type="text/css">

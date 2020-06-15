@@ -19,7 +19,7 @@
                   <div class="col-sm-10">
                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name') ? old('name') : Auth::user()->name  }}" placeholder="Name">
                     @error('name')
-                      <span id="helpBlock3" class="help-block">                      
+                      <span id="helpBlock3" class="help-block">
                         <strong style="color:#a94442;">{{ $message }}</strong>
                       </span>
                     @enderror
@@ -27,11 +27,11 @@
                 </div>
                 <div class="form-group @error('email') has-error @enderror">
                   <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-                  
+
                   <div class="col-sm-10">
                     <input type="email" class="form-control" id="email" name="email" value="{{ old('email') ? old('email') : Auth::user()->email }}">
                     @error('email')
-                    <span id="helpBlock3" class="help-block"> 
+                    <span id="helpBlock3" class="help-block">
                             <strong style="color:#a94442;">{{ $message }}</strong>
                         </span>
                     @enderror
@@ -42,7 +42,7 @@
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="phone_number" value="0{{ old('phone_number') ? old('phone_number') : Auth::user()->phone_number }}" >
                     @error('phone_number')
-                    <span id="helpBlock3" class="help-block"> 
+                    <span id="helpBlock3" class="help-block">
                             <strong style="color:#a94442;">{{ $message }}</strong>
                         </span>
                     @enderror
@@ -54,7 +54,7 @@
                     <input type="search"  class="form-control" id="address-input" name="address" value="{{ old('address') ? old('address') : Auth::user()->address }}"/>
 
                     @error('address')
-                    <span id="helpBlock3" class="help-block"> 
+                    <span id="helpBlock3" class="help-block">
                             <strong style="color:#a94442;">{{ $message }}</strong>
                         </span>
                     @enderror
@@ -64,13 +64,17 @@
                   <label  class="col-sm-2 control-label">Birthdate</label>
                     <div class="col-sm-10">
                       <div class="input-group date">
+                        @if(Auth::user()->age)
                         <input type="text" class="form-control date-picker" name="age" value="{{ old('age') ? old('age') : Auth::user()->age->todatestring()  }}" >
+                        @else
+                        <input type="text" class="form-control date-picker" name="age" placeholder="Enter Birthdate" >
+                        @endif
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>
                         </div>
                       </div>
                       @if ($errors->has('age'))
-                        <span id="helpBlock3" class="help-block"> 
+                        <span id="helpBlock3" class="help-block">
                           <strong style="color:#a94442;">{{ $errors->first('age') }}</strong>
                         </span>
                       @endif
@@ -82,7 +86,7 @@
                     <div class="input-group-icon">
                         <input type="file" name="image" class="form-control" >
                         @if ($errors->has('image'))
-                            <span id="helpBlock3" class="help-block"> 
+                            <span id="helpBlock3" class="help-block">
                               <strong style="color:#a94442;">{{ $errors->first('image') }}</strong>
                             </span>
                         @endif
@@ -101,12 +105,12 @@
                         Female
                     </label>
                     @if ($errors->has('gender'))
-                        <span id="helpBlock3" class="help-block"> 
+                        <span id="helpBlock3" class="help-block">
                           <strong style="color:#a94442;">{{ $errors->first('gender') }}</strong>
                         </span>
                     @endif
                   </div>
-                      
+
                 </div>
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10" >
@@ -114,25 +118,25 @@
                   </div>
                 </div>
               </form>
-              
+
               @if(auth()->user() && auth()->user()->hasRole('student'))
               <h2 class="text-theme-color-red line-bottom">Extra Information : </h2>
                 <h3>
-                    <span style="color: #429fa9; font-size: 25px;"> 
+                    <span style="color: #429fa9; font-size: 25px;">
                         Total Points:
                     </span>
                         {{Auth::user()->getPoints()}}
                 </h3>
                 <h3>
-                    <span style="color:#429fa9; font-size: 25px;"> 
-                        Badges: 
+                    <span style="color:#429fa9; font-size: 25px;">
+                        Badges:
                     </span>
-                    
+
                     @foreach(Auth::user()->badges as $badge)
-                        <h5> {{$badge ? $badge->name : 'N/A'}}</h5>                            
-                        <img alt="{{$badge->name}}" src="{{ asset('images/badges/'.$badge->name.'.jpg') }}" class="img-rounded img-responsive" style="width: 40px" style="height: 40px">   
+                        <h5> {{$badge ? $badge->name : 'N/A'}}</h5>
+                        <img alt="{{$badge->name}}" src="{{ asset('images/badges/'.$badge->name.'.jpg') }}" class="img-rounded img-responsive" style="width: 40px" style="height: 40px">
                     @endforeach
-                </h3> 
+                </h3>
               @endif
             </div>
           </div>
@@ -151,7 +155,7 @@
                   <div class="form-group" style="text-align: center;">
                       <form action="{{route('user.getCV',Auth::user())}}">
                         <input type="submit" value="Go to your CV" class="btn btn-info right"/>
-                      </form>                 
+                      </form>
                   </div>
                 @endif
               </div>
@@ -159,7 +163,7 @@
           </div>
         </div>
       </div>
-      <div> 
+      <div>
           <img alt="" src="images/bg/f2.png" class="img-responsive img-fullwidth">
       </div>
     </section>
