@@ -1,12 +1,12 @@
 <!-- Header -->
 <header id="header" class="header">
-  
+
     <div class="header-middle p-0 bg-lightest xs-text-center">
       <div class="container pt-0 pb-0">
         <div class="row">
           <div class="col-xs-12 col-sm-4 col-md-5">
             <div class="widget no-border m-0">
-              <a href="{{route('home')}}" class="menuzord-brand pull-left flip xs-pull-center mb-15" style="margin: 0 30px 0 0;" href="javascript:void(0)"><img src="{{ asset('images/logoo.png')}}" alt=""></a>
+              <a href="{{route('home')}}" class="menuzord-brand pull-left flip xs-pull-center mb-15" style="margin: 0 30px 0 0;" href="javascript:void(0)"><img src="{{ asset('images/logoo.jpeg')}}" alt=""></a>
             </div>
           </div>
           @if(Auth::user())
@@ -60,12 +60,12 @@
               <li class="{{ Request::is('contact') ? 'active' : '' }}" ><a href="{{route('contact.create')}}">Contact us</a></li>
               <li class="{{ Request::is('about') ? 'active' : '' }}" ><a href="{{route('about')}}">About</a></li>
               <li class="{{ Request::is('faq') ? 'active' : '' }}"><a href="{{ route('faq') }}">FAQ</a></li>
-              
+
               @if (Auth::user())
               <li><a href="{{route('user.index')}}" class="col ml-20"><i class="fa fa-cog fa-spin" style="width:150%;"></i></a></li>
               @endif
             </ul>
-            
+
 
             <ul class="pull-right flip hidden-sm hidden-xs">
               <li>
@@ -91,12 +91,12 @@
                                   document.getElementById('logout-form').submit();">
                       {{ __('Logout') }}
                   </a>
-                  
+
 
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       @csrf
                   </form>
-                  
+
                  @endguest
                 <!-- Modal: Book Now Starts -->
                 {{-- <a class="btn btn-colored btn-flat bg-theme-color-sky text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" data-toggle="modal" data-target="#BSParentModal" href="{{ asset('ajax-load/reservation-form.html')}}">Book Now</a> --}}

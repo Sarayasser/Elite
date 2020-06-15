@@ -4,7 +4,7 @@
       <div class="row border-bottom">
         <div class="col-sm-6 col-md-3">
           <div class="widget dark">
-            <img class="mt-5 mb-20" alt="" src="{{ asset('images/logo_footer.png')}}">
+            <img class="mt-5 mb-20" alt="" src="{{ asset('images/footer_image.jpeg')}}">
             <p> 1 Mahmoud Said St., Shohada Square, Main Post Office Building, Alexandria</p>
             <ul class="list-inline mt-5">
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-red mr-5"></i> <a class="text-gray" >1550-990-233</a> </li>
@@ -49,13 +49,13 @@
             <ul class="styled-icons icon-bordered icon-sm">
               <li><a href="https://www.facebook.com/Elite-113792257039055/" target="_blank"><i class="fa fa-facebook"></i></a></li>
               <li><a href="https://twitter.com/elite_iti" target="_blank"><i class="fa fa-twitter" ></i></a></li>
-              
+
               <li><a href="https://www.instagram.com/elite_iti/" target="_blank"><i class="fa fa-instagram" ></i></a></li>
-              
+
             </ul>
           </div>
         </div>
-        
+
       </div>
     </div>
     <div class="footer-bottom bg-black-333">
