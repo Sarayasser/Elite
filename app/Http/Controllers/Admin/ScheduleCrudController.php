@@ -19,8 +19,8 @@ use App\User;
 class ScheduleCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     // use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -105,8 +105,5 @@ class ScheduleCrudController extends CrudController
         // $this->crud->setFromDb();
     }
 
-    protected function setupUpdateOperation()
-    {
-        $this->setupCreateOperation();
-    }
+
 }

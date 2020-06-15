@@ -20,9 +20,9 @@ class CourseController extends Controller
     public function show()
     {   $test = (new HomeController)->note();
 
-        $course = Course::find(request()->course);
+        $course = Course::findOrFail(request()->course);
         $courses = Course::orderBy('id', 'desc')->take(5)->get();
-        $posts = Post::orderBy('id', 'asc')->take(10)->get();
+        $posts = $course->posts;
         $reviews=Review::all();
         $course_id=request()->course;
 
@@ -48,7 +48,7 @@ class CourseController extends Controller
 
     public function rateCourse()
     {
-        $course = Course::find(request()->id);
+        $course = Course::findOrFail(request()->id);
         $rating = $course->ratings()->where('user_id', auth()->user()->id)->first();
 
         if(is_null($rating) ){
