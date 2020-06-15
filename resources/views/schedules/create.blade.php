@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="ml-80">
-<h3> Schedule </h3>
+<h2 class="text-theme-color-red line-bottom">Create Schedule </h2>
 </div>
 <div class="container mt-50 mb-50">
 @if ($errors->any())
@@ -19,7 +19,7 @@
         <label for="date">StartDate</label>
         <input type="date" class="form-control" id="date" placeholder="Enter Date" name="start_date">
     </div>
-    
+
     <br>
     <div class="md-form md-outline">
     <label for="default-picker"> Time Picker</label>

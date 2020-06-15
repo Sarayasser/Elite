@@ -29,7 +29,6 @@
 <link href="{{ asset('images/apple-touch-icon-114x114.png')}}" rel="apple-touch-icon" sizes="114x114">
 <link href="{{ asset('images/apple-touch-icon-144x144.png')}}" rel="apple-touch-icon" sizes="144x144">
 {{-- rate --}}
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
 
@@ -46,7 +45,6 @@
 <link href="{{ asset('css/preview.css') }}" rel="stylesheet">
 
 <!-- Stylesheet -->
-
 
 <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet" type="text/css">
@@ -78,4 +76,10 @@
 <script src="{{ asset('js/search.js')}}"></script>
 <!-- JS | jquery plugin collection for this theme -->
 <script src="{{ asset('js/jquery-plugin-collection.js')}}"></script>
+
+
+
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 @mapscripts

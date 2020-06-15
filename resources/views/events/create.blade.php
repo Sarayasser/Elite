@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="ml-80">
-<h3> Event </h3>
+<h2 class="text-theme-color-red line-bottom">Create Event </h2>
 </div>
 <div class="container mt-50 mb-50">
 @if ($errors->any())

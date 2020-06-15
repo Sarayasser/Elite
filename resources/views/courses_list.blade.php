@@ -29,20 +29,20 @@
         <a href="{{route('courses.show', $course->id)}}">{{ $course->name }}</a>
         @endforeach
         @else
-  
+
         <h3 class="text-danger">Result not found.</h3>
-  
+
         @endif
-        
+
       </div>
-    
+
     </div>
-  
+
     <!-- Section: Course gird -->
     <section>
       <div class="container">
         <div class="row">
-        
+
           @foreach ($courses as $course)
           @php
               if (auth()->user() && auth()->user()->hasRole('student')) {
@@ -51,16 +51,17 @@
           @endphp
 
           <div class="col-sm-6 col-md-4 mb-30">
-            
+
             <div class="item">
               <div class="campaign bg-white maxwidth500">
                 <div class="thumb">
                 @if($course->image)
                 <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
+
                 @else
                 <img class="img-fullwidth img-thumbnail" alt="" src="{{ asset('images/bg/3610647.jpg')}}">
                 @endif
-                
+
                 <div class="campaign-overlay"></div>
                 </div>
                 <div class="course-details clearfix p-20 pt-15">

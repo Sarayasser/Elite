@@ -31,7 +31,7 @@ class EventRequest extends FormRequest
             'date'=>'required|after:today',
             'location'=>'required',
             'user_id' => "required",
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 

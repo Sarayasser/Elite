@@ -90,4 +90,10 @@ $(document).on('click', 'a.jquery-postback', function(e) {
      apiKey: "69eca80b5722968b30b5f3495a0fb3c9",
      container: document.querySelector('#address-input')
    });
- </script>
+</script>
+<script>
+  $(".js-example-tokenizer").select2({
+      tags: true,
+      tokenSeparators: [',', ' ']
+  })
+</script>
