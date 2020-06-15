@@ -4,10 +4,10 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/946.jpg')}}" >
-      <div class="container pt-150 pb-150">
+      <div class="container pt-100 pb-100">
             <!-- Section Content -->
             <div class="section-content">
-              <div class="row">
+              <div class="row mt-150">
                   <div class="col-md-6">
                   <h2 class="text-theme-color-yellow font-36">Event</h2>
                   <ol class="breadcrumb text-left mt-10 white">
@@ -21,7 +21,7 @@
                   @if (Auth::user()->hasRole('instructor') || Auth::user()->hasRole('admin'))
                     <a href="{{route('events.create')}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
                   @endif
-                
+
                 @endif
               </div>
             </div>

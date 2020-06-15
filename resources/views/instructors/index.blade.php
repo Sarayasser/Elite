@@ -4,10 +4,10 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{asset('images/bg/2222.jpg')}}">
-        <div class="container pt-150 pb-150">
+        <div class="container pt-100 pb-100">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row"> 
+            <div class="row">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Instructors</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -25,14 +25,14 @@
       <div class="container">
         <div class="row mtli-row-clearfix">
          <div class="team-members">
-          
+
             @foreach($instructors as $instructor)
               <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-sm-15">
                 <div class="team-member maxwidth400">
                   <div class="team-thumb">
                     <a href={{route('instructors.show',['instructor'=> $instructor])}}>
                       @if($instructor->user->image)
-                          <img class="img-fullwidth mt-15" height="390px" src="{{$instructor->user->image}}" alt="">                     
+                          <img class="img-fullwidth mt-15" height="390px" src="{{$instructor->user->image}}" alt="">
                       @endif
                     </a>
                   </div>
@@ -54,13 +54,13 @@
                       @if($instructor->twitter)
                           <li><a href="{{$instructor->twitter}}"><i class="fa fa-twitter text-white"></i></a></li>
                       @endif
-                        
+
                     </ul>
                 </div>
                 </div>
               </div>
             @endforeach
-            
+
          </div>
         </div>
       </div>

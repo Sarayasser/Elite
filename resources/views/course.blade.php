@@ -7,7 +7,7 @@
       <div class="container pt-150 pb-150">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row"> 
+            <div class="row">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">post</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -43,7 +43,7 @@
                       <div class="media-body pl-15">
                         <div class="event-content pull-left flip">
                           <h4 class="entry-title text-white text-uppercase m-0"><a href="#">Post title here</a></h4>
-                          <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-color-sky"></i> 214 Comments</span>                       
+                          <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-color-sky"></i> 214 Comments</span>
                           <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-heart-o mr-5 text-theme-color-sky"></i> 895 Likes</span>
                         </div>
                       </div>
