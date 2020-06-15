@@ -37,10 +37,6 @@ class PostCrudController extends CrudController
                 'name'      => 'user_id',
                 'entity'    => 'user', 
                 'attribute' => 'name',
-                // 'model'     => "App\User",
-                // 'options'   => (function ($query) {
-                //     return $query->orderBy('name', 'ASC')->where('depth', 1)->get();
-                // }),
             ],
             [
                 'label'        => "Image",
@@ -50,7 +46,14 @@ class PostCrudController extends CrudController
                 'crop'         => false, 
                 'aspect_ratio' => 0, 
             ],
-
+            [
+                // Select
+                  'label'     => "Course",
+                  'type'      => 'select',
+                  'name'      => 'course_id',
+                  'entity'    => 'course',
+                  'attribute' => 'name',
+              ],
         ]);
 
         $this->crud->filters();
@@ -79,9 +82,8 @@ class PostCrudController extends CrudController
             ],
             [   // URL
                 'name'            => 'video',
-                'label'           => 'Link to video file on YouTube or Vimeo',
-                'type'            => 'video',
-                'youtube_api_key' => 'AIzaSycLRoVwovRmbIf_BH3X12IcTCudAErRlCE',
+                'label'           => 'Link to video file on Vimeo',
+                'type'            => 'url',
             ],
         ]);
     }
@@ -117,6 +119,14 @@ class PostCrudController extends CrudController
                 }),
             ],
             [
+              // Select
+                'label'     => "Course",
+                'type'      => 'select',
+                'name'      => 'course_id',
+                'entity'    => 'course',
+                'attribute' => 'name',
+            ],
+            [
                 'label'        => "Image",
                 'name'         => "image",
                 'type'         => 'image',
@@ -129,7 +139,7 @@ class PostCrudController extends CrudController
             [   // URL
                 'name'            => 'video',
                 'label'           => 'Link to video on Vimeo',
-                'type'            => 'video',
+                'type'            => 'url',
             ],
         ]);
     }
