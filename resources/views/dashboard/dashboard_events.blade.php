@@ -16,7 +16,7 @@
                 <div class="col-md-6 mt-50" style="float:right;">
             @if(Auth::user())
                 @if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('instructor'))
-                <a href="{{route('events.create')}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
+                  <a href="{{route('events.create')}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
                 @endif
                 @endif
             </div>

@@ -7,17 +7,23 @@
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row">
-                <div class="col-md-6">
-                <h2 class="text-theme-color-yellow font-36">Event</h2>
-                <ol class="breadcrumb text-left mt-10 white">
-                    <li><a href="{{route('home')}}">Home</a></li>
-                    <li class="active">Event</li>
-                </ol>
-                </div>
-            </div>
-
-
+              <div class="row">
+                  <div class="col-md-6">
+                  <h2 class="text-theme-color-yellow font-36">Event</h2>
+                  <ol class="breadcrumb text-left mt-10 white">
+                      <li><a href="{{route('home')}}">Home</a></li>
+                      <li class="active">Event</li>
+                  </ol>
+                  </div>
+              </div>
+              <div class="col-md-6 mt-70" style="float:right;">
+                @if(Auth::user())
+                  @if (Auth::user()->hasRole('instructor') || Auth::user()->hasRole('admin'))
+                    <a href="{{route('events.create')}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
+                  @endif
+                
+                @endif
+              </div>
             </div>
         </div>
     </section>
