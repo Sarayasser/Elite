@@ -4,7 +4,7 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/946.jpg')}}" >
-        <div class="container pt-70 pb-20">
+      <div class="container pt-150 pb-150">
             <!-- Section Content -->
             <div class="section-content">
               <div class="row">
@@ -55,7 +55,7 @@
                         <li class="font-12 text-white text-uppercase">{{ $event->date->format('M') }}</li>
                       </ul>
                     </div>
-                    <h4 class="title mt-0"><a href="#">{{$event->name}}</a></h4>
+                  <h4 class="title mt-0"><a href="{{route('event.show',['event',$event])}}">{{$event->name}}</a></h4>
                     <ul class="list-inline font-11 text-black">
                     @if ($event->date->format('w') == 1)
                       <li><i class="fa fa-calendar mr-5"></i> Monday</li>

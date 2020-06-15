@@ -8,7 +8,7 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/2900.jpg')}}">
-        <div class="container pt-70 pb-20">
+        <div class="container pt-150 pb-150">
             <!-- Section Content -->
             <div class="section-content">
             <div class="row mt-100">
@@ -62,9 +62,8 @@
                       <div class="star-rating" title="Rated {{$course->averageRating}} out of 5"><span data-width="{{$course->averageRating*20}}%">{{$course->averageRating}}</span></div>
                     </li>
                   </ul>
-                <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo unde, <span class="text-theme-color-red">{{$course->name}}</span> corporis dolorum blanditiis ullam officia <span class="text-theme-color-red">our kindergarten </span>natus minima fugiat repellat! Corrupti voluptatibus aperiam voluptatem. Exercitationem, placeat, cupiditate.</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore suscipit, inventore aliquid incidunt, quasi error! Natus esse rem eaque asperiores eligendi dicta quidem iure, excepturi doloremque eius neque autem sint error qui tenetur, modi provident aut, maiores laudantium reiciendis expedita. Eligendi</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptatem officiis quod animi possimus a, iure nam sunt quas aperiam non recusandae reprehenderit, nesciunt cumque pariatur totam repellendus delectus? Maxime quasi earum nobis, dicta, aliquam facere reiciendis, delectus voluptas, ea assumenda blanditiis placeat dignissimos quas iusto repellat cumque.</p>
+                <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo unde,<span class="text-theme-color-red">{{$course->name}}</span> corporis dolorum blanditiis ullam officia <span class="text-theme-color-red">our kindergarten </span>natus minima fugiat repellat! Corrupti voluptatibus aperiam voluptatem. Exercitationem, placeat, cupiditate.</h4>
+                <p>{{$course->description}}</p>
                 <h3 class="line-bottom mt-20 mb-20 text-theme-color-red">Course Information</h3>
                 <table class="table table-bordered">
                   <tr>
@@ -178,15 +177,9 @@
                   <div class="services-list">
                     <ul class="list list-border">
                     @foreach($posts as $post)
-                      
-                        {{-- <a class="post-thumb" href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}"></a> --}}
-                        
                         <li class="active"><a href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}">{{$post->title}}</a></li>
-                        
-                    
-                    @endforeach
-                  </ul>
-
+                      @endforeach
+                    </ul>
                   </div>
                 </div>
 
@@ -194,13 +187,25 @@
 
                 {{-- TODO:Add quick contact when finish contact us page --}}
                 <div class="widget">
+                  
                   <h3 class="widget-title line-bottom">Quick <span class="text-theme-color-red">Contact</span></h3>
-                  <form id="quick_contact_form_sidebar" name="footer_quick_contact_form" class="quick-contact-form" action="http://html.kodesolution.live/s/kidspro/v2.1/demo/includes/quickcontact.php" method="post">
-                    <div class="form-group">
-                      <input name="form_email" class="form-control" type="text" required="" placeholder="Enter Email">
+                  <form id="contact_form" name="contact_form"  class="quick-contact-form" method="post" action="{{route('quickContact.store')}}" >
+                    @csrf
+                    <div class="form-group @error('email') has-error @enderror">
+                      <input name="email" class="form-control" type="text" required="" placeholder="Enter Email">
+                      @error('email')
+                      <span id="helpBlock3" class="help-block">
+                              <strong style="color:#a94442;">{{ $message }}</strong>
+                          </span>
+                      @enderror
                     </div>
-                    <div class="form-group">
-                      <textarea name="form_message" class="form-control" required="" placeholder="Enter Message" rows="3"></textarea>
+                    <div class="form-group @error('message') has-error @enderror">
+                      <textarea name="message" class="form-control" required="" placeholder="Enter Message" rows="3"></textarea>
+                      @error('message')
+                      <span id="helpBlock3" class="help-block">
+                              <strong style="color:#a94442;">{{ $message }}</strong>
+                          </span>
+                      @enderror
                     </div>
                     <div class="form-group">
                       <input name="form_botcheck" class="form-control" type="hidden" value="" />

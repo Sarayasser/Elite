@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth','role:admin|instructor','checkban','verifi
     Route::post('/event','EventController@store')->name('events.store');
     Route::get('/event/{event}/edit','EventController@edit')->name('events.edit');
     Route::put('/event/{event}','EventController@update')->name('events.update');
-    Route::get('/event/delete/{event}','EventController@destroy')->name('events.destroy');
+    Route::get('/event/ /{event}','EventController@destroy')->name('events.destroy');
 
     //post
     Route::get('/courses/{course}/posts/create','PostController@create')->name('posts.create');
@@ -174,18 +174,17 @@ Route::get('/instructors', 'InstructorController@index')->name('instructors.inde
 Route::get('/instructors/{instructor}', 'InstructorController@show')->name('instructors.show');
 
 
-Route::get('/calender', function () { return view('calender'); });
-Route::get('/courses-posts', function () { return view('courses_posts'); });
 Route::get('/faq', function () {
     $test = (new HomeController)->note();
     $faqs = Faq::all();
     return view('faq', ['faqs' => $faqs, 'test' => $test]); 
 })->name('faq');
-Route::get('/timetable', function () { return view('timetable'); });
+
 Route::get('/', 'HomeController@index')->name('home');
 
 //contact-us
 Route::get('/contact', 'ContactController@create')->name('contact.create');
 Route::post('/contact', 'ContactController@store')->name('contact.store');
+Route::post('/quick-contact', 'ContactController@quick_store')->name('quickContact.store');
 
 

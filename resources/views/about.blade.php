@@ -4,18 +4,16 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/12345.jpg')}}" >
-        <div class="container pt-70 pb-20">
+        <div class="container pt-150 pb-150"> 
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row mt-130">
-                <div class="col-md-6">
-                <h2 class="text-theme-color-yellow font-36">About</h2>
-                <ol class="breadcrumb text-left mt-10 white">
-                <li><a href="{{route('home')}}">Home</a></li>
-                <li class="active">About</li>
-                </ol>
-                </div>
-            </div>
+                  <div class="col-md-6">
+                    <h2 class="text-theme-color-yellow font-36">About</h2>
+                    <ol class="breadcrumb text-left mt-10 white">
+                    <li><a href="{{route('home')}}">Home</a></li>
+                    <li class="active">About</li>
+                    </ol>
+                  </div>
             </div>
         </div>
     </section>
@@ -123,7 +121,7 @@
             <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-sm-15">
               <div class="team-member maxwidth400">
                 <div class="team-thumb">
-                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/team1.jpg')}}" alt="">
+                    <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/profile.jpg')}}" alt="">
                 </a>
                 </div>
                 <div class="team-details bg-theme-color-green text-center pt-20 pb-5">
@@ -132,9 +130,9 @@
                     <p class="mb-0 text-white">Web Developer</p>
                   </div>
                   <ul class="styled-icons icon-dark icon-circled icon-theme-color-red pt-5">
-                    <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin text-white"></i></a></li>
-                    <li><a href="#"><i class="fa fa-github text-white"></i></a></li>
+                    <li><a href="https://www.facebook.com/logain.hassan.56"><i class="fa fa-facebook text-white"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/logeen-hassan-4a8710151/"><i class="fa fa-linkedin text-white"></i></a></li>
+                    <li><a href="https://github.com/logainhassan"><i class="fa fa-github text-white"></i></a></li>
                   </ul>
                 </div>
               </div>

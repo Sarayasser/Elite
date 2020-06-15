@@ -26,7 +26,8 @@ class FaqRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+             'question' => 'required|min:5|max:255',
+             'answer' => 'required|min:5|max:255'
         ];
     }
 

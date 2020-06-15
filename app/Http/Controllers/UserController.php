@@ -82,8 +82,8 @@ class UserController extends Controller
             }
            
         }
-       
-        return redirect('/profile')->with('status', 'Profile updated!');
+        toastr()->success( 'Profile updated!');
+        return redirect('/profile');
     }
 
     public function getCV(){

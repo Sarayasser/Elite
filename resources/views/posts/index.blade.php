@@ -6,7 +6,7 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/2188.jpg')}}">
-        <div class="container pt-70 pb-20">
+        <div class="container pt-150 pb-150">
             <!-- Section Content -->
             <div class="section-content">
             <div class="row mt-150">

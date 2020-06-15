@@ -26,7 +26,11 @@
             </ul>
           </div>
         </div>
-        
+        <div class="col-sm-6 col-md-6">
+          <div class="widget dark">
+            <img class="mt-5 mb-20" alt="" src="{{ asset('images/hello.png')}}">
+          </div>
+        </div>
 
       </div>
       <div class="row mt-30">

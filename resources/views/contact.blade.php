@@ -4,7 +4,7 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{asset('images/bg/2222.jpg')}}">
-        <div class="container pt-70 pb-20">
+        <div class="container pt-150 pb-150">
             <!-- Section Content -->
             <div class="section-content">
             <div class="row">
@@ -27,19 +27,19 @@
             <div class="col-md-5">
                 <h4 class="mt-0 mb-30 line-bottom">Find Our Location</h4>
                 @map([
-    'lat' => 30.07104,
-    'lng' => 31.02109,
-    'zoom' => 17,
-    'markers' => [
-        [
-            'title' => 'Elite',
-            'lat' => 30.07104,
-            'lng' => 31.02109,
-            'popup' => '<h3>Details</h3><p>Click <a href="/">here</a>.</p>',
-            ],
-    ],
+                        'lat' => 30.07104,
+                        'lng' => 31.02109,
+                        'zoom' => 17,
+                        'markers' => [
+                            [
+                            'title' => 'Elite',
+                            'lat' => 30.07104,
+                            'lng' => 31.02109,
+                            'popup' => '<h3>Details</h3><p>Click <a href="/">here</a>.</p>',
+                            ],
+                        ],
 
-])
+                ])
             </div>
             <div class="col-md-7">
                 <h4 class="mt-0 mb-30 line-bottom">Interested in discussing?</h4>
