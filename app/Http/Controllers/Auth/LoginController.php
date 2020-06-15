@@ -55,7 +55,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if($user->hasRole('instructor')){
-            return redirect('/dashboard/instructor');
+            return redirect('/profile');
         }else if($user->hasRole('parent')){
             return redirect('/dashboard/parent');
         }else if($user->hasRole('student')){
