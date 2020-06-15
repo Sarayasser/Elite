@@ -135,6 +135,8 @@
                                     <a href={{route('instructors.show',['instructor'=> $instructor])}}>
                                         @if($instructor->user->image)
                                             <img class="img-fullwidth mt-15" height="390px" src="{{$instructor->user->image}}" alt="">
+                                        @else
+                                        <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/bg/1234.jpg')}}" alt="">
                                         @endif
                                     </a>
                                 </div>
