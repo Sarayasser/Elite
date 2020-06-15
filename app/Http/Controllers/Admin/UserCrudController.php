@@ -27,6 +27,7 @@ class UserCrudController extends UserController
                 'label' => trans('backpack::permissionmanager.name'),
                 'type'  => 'text',
             ],
+           
             [
                 'name'  => 'email',
                 'label' => trans('backpack::permissionmanager.email'),
@@ -51,6 +52,11 @@ class UserCrudController extends UserController
                 'aspect_ratio' => 1, // ommit or set to 0 to allow any aspect ratio
                 // 'disk'      => 's3_bucket', // in case you need to show images from a different disk
                 // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
+            ],
+            [
+                'name' => 'cv',
+                'label' => 'cv',
+                'type' => 'browse',
             ],
             [ // n-n relationship (with pivot table)
                 'label'     => trans('backpack::permissionmanager.roles'), // Table column heading
