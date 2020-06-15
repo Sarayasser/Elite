@@ -51,4 +51,18 @@ class LoginController extends Controller
     protected function credentials(Request $request){
         return ['email'=>$request[$this->username()],'password'=>$request->password,'is_banned'=> 0];
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if($user->hasRole('instructor')){
+            return redirect('/dashboard/instructor');
+        }else if($user->hasRole('parent')){
+            return redirect('/dashboard/parent');
+        }else if($user->hasRole('student')){
+            return redirect('/dashboard/student');
+        }else if($user->hasRole('admin')){
+            return redirect('/admin/dashboard');
+        }
+        
+    }
 }
