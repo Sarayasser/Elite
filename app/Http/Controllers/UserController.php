@@ -61,6 +61,7 @@ class UserController extends Controller
                 'twitter' => $request->twitter,
                 'title' => $request->title,
                 'year_of_experience' => $request->year_of_experience,
+                'bio' => $request->bio
             ]);
             
             if ($request->hasFile('cv') ){

@@ -43,8 +43,7 @@
             <div class="col-md-8">
               <h4 class="name font-24 mt-0 mb-0">{{$instructor->user->name}}</h4>
               <h5 class="mt-5 text-theme-color-red">{{$instructor->title}}</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam vero expedita fugiat illo quasi doloremque, in unde omnis sint assumenda! Quaerat in, reprehenderit corporis voluptatum natus sequi reiciendis ullam. Quam eaque dolorum voluptates cupiditate explicabo.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt culpa dicta quaerat qui recusandae possimus placeat quidem ipsam voluptates similique libero tempore, labore quasi delectus vero alias, consectetur blanditiis eum maxime sunt accusantium ipsa doloribus reiciendis. Ea quod reprehenderit deserunt. Veritatis omnis similique tempora delectus a consequuntur, quis.  Adipisicing elit. Nesciunt culpa dicta quaerat qui recusandae possimus placeat quidem ipsam voluptates similique libero tempore, labore quasi delectus vero alias.</p>
+                <p>{{$instructor->bio}}</p>
               @if(Auth::user())
                 @if(Auth::user()->hasRole('parent')||Auth::user()->hasRole('student'))
                   <form action="{{ route('instructors.rate') }}" method="POST">
@@ -83,7 +82,8 @@
               <div class="volunteer-address">
                 <ul>
                   <li>
-                    @if($instructor->experiences)
+                    @if($instructor->experiences )
+                    @if(!$instructor->experiences->isempty())
                     <div class="bg-theme-color-red media border-bottom p-15 mb-20">
                       <div class="media-left">
                         <i class="pe-7s-pen text-theme-color-blue font-24 mt-5"></i>
@@ -92,11 +92,12 @@
                         <h5 class="mt-0 mb-0">Experiences:</h5>
                         <p class="text-white">
                           @foreach($instructor->experiences as $exp)
-                            {{$exp->experience}} ,
+                            {{$exp->experience}} <br>
                           @endforeach
                         </p>
                       </div>
                     </div>
+                    @endif
                     @endif
                   </li>
                   <li>
@@ -123,11 +124,6 @@
                   </li>
                 </ul>
               </div>
-            </div>
-            <div class="col-md-4">
-              <h4 class="line-bottom">Find Location:</h4>
-
-              <!-- Google Map HTML Codes --><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5456.163483134849!2d144.95177475051227!3d-37.81589041361766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4dd5a05d97%3A0x3e64f855a564844d!2s121+King+St%2C+Melbourne+VIC+3000%2C+Australia!5e0!3m2!1sen!2sbd!4v1556130803137!5m2!1sen!2sbd" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
             <div class="col-md-4">
               <div class="clearfix">
