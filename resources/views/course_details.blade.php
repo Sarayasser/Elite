@@ -11,7 +11,7 @@
         <div class="container pt-50 pb-150">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row mt-100">
+            <div class="row mt-50">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Course details</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -56,7 +56,7 @@
               <div class="single-service">
                 <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
                 <h2 class="text-theme-color-red line-bottom">{{$course->name}}</h2>
-                
+
                   <ul class="review_text list-inline">
                     <li>
                       <div class="star-rating" title="Rated {{$course->averageRating}} out of 5"><span data-width="{{$course->averageRating*20}}%">{{$course->averageRating}}</span></div>
@@ -86,7 +86,7 @@
                 <form action="{{ route('courses.rate') }}" method="POST">
 
                   {{ csrf_field() }}
-                  
+
 
 
 
@@ -188,7 +188,7 @@
 
                 {{-- TODO:Add quick contact when finish contact us page --}}
                 <div class="widget">
-                  
+
                   <h3 class="widget-title line-bottom">Quick <span class="text-theme-color-red">Contact</span></h3>
                   <form id="contact_form" name="contact_form"  class="quick-contact-form" method="post" action="{{route('quickContact.store')}}" >
                     @csrf

@@ -30,7 +30,7 @@ class Instructor extends Model
     }
     
     protected $fillable = [
-        'cv','user_id','facebook','instagram','github','twitter','year_of_experience','title'
+        'cv','user_id','facebook','instagram','github','twitter','year_of_experience','title','bio'
     ];
 
     /**
