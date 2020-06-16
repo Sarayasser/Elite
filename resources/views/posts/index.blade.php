@@ -84,6 +84,13 @@
                     </ul>
                   </nav>
                   @endif
+                  @if(!$has_next)
+                  <nav>
+                    <ul class="pagination theme-color-sky">
+                      <li> <a aria-label="Next" href="{{route('posts.index', ['course' => $course])}}"> <span aria-hidden="true">Finish</span> </a> </li>
+                    </ul>
+                  </nav>
+                  @endif
                 </div>
               </div>
             </div>

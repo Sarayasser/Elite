@@ -62,7 +62,7 @@
                       <div class="star-rating" title="Rated {{$course->averageRating}} out of 5"><span data-width="{{$course->averageRating*20}}%">{{$course->averageRating}}</span></div>
                     </li>
                   </ul>
-                <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo unde,<span class="text-theme-color-red">{{$course->name}}</span> corporis dolorum blanditiis ullam officia <span class="text-theme-color-red">our kindergarten </span>natus minima fugiat repellat! Corrupti voluptatibus aperiam voluptatem. Exercitationem, placeat, cupiditate.</h4>
+                
                 <p>{{$course->description}}</p>
                 <h3 class="line-bottom mt-20 mb-20 text-theme-color-red">Course Information</h3>
                 <table class="table table-bordered">

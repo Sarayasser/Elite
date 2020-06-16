@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+header("Content-Type: image/jpeg");
 use App\Http\Requests\PostRequest;
 use App\Models\Course;
 use App\Models\Post;
@@ -11,7 +11,7 @@ use willvincent\Rateable\Rating;
 use App\Notification;
 use App\Http\Controllers\HomeController;
 use App\Events\PostAdded;
-
+use Certificate\App;
 class PostController extends Controller
 {
     /**
@@ -24,8 +24,26 @@ class PostController extends Controller
     {   $test = (new HomeController)->note();
         $readPostsIds = auth()->user()->readPosts()->having('course_id', $course->id)->get()->pluck('id')->toArray();
         $post = $course->posts()->whereNotIn('id', $readPostsIds)->first();
-        if($post ==  null)
+        $cert = new App('images/cert2.jpg');
+        if($post ==  null){
+            $cert->createImage([
+                ['Certificate ', 100, 400, 200,"#333","/var/www/html/Elite/public/fonts/Textur-Regular/ten.ttf" , 0],
+                
+                ['This certificate is awarded to 
+                '
+                .auth()->user()->name.' 
+by the Robot Society of Elite
+for his / her  participation in
+'.$course->name.
+  ' course 
+we wish further success to you.', 50, 200, 400,"#333","/var/www/html/Elite/public/fonts/Textur-Regular/SimplifiedArabic.ttf", 0],
+                
+            ]);
+            
+            $cert->run();
             return redirect()->route('courses.show', $course->id);
+        }
+            
         $has_next = false;
         $ids = $course->posts->pluck('id')->toArray();
         if (in_array($post->id+1, $ids))
