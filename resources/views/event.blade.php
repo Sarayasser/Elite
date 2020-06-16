@@ -4,11 +4,7 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/bg/946.jpg')}}" >
-<<<<<<< HEAD
-      <div class="container pt-100 pb-100">
-=======
-      <div class="container pt-100 pb-50">
->>>>>>> d286cf6936fbe30f7dd8acb58076da498dc82138
+      <div class="container pt-30 pb-20">
             <!-- Section Content -->
             <div class="section-content">
               <div class="row mt-150">
