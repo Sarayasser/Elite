@@ -33,13 +33,13 @@
                 </div>
                 <div class="col-md-6 mt-70" style="float:right;">
                 @if(Auth::user())
-                  @if (Auth::user()->hasRole('instructor') || Auth::user()->hasRole('admin'))
+                  @if (Auth::user()->hasRole('instructor') && $course->instructor_id == Auth::user()->instructor->id || Auth::user()->hasRole('admin'))
                   <a href="{{route('posts.create', ['course' => $course])}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
                   @endif
                   @if (auth()->user()->hasRole('student') && $course->enrolled)
                   <a href="{{route('posts.index', ['course' => $course])}}" class="fa fa-play fa-5x" style="float:right;color:white;"></a>
                   @endif
-                  @if (Auth::user()->hasRole('instructor') || Auth::user()->hasRole('admin'))
+                  @if (Auth::user()->hasRole('instructor') && $course->instructor_id == Auth::user()->instructor->id || Auth::user()->hasRole('admin'))
                   <a href="{{route('schedule.create', ['course' => $course])}}" class="fa fa-calendar fa-5x mr-20" style="float:right;color:white;"></a>
                   @endif
                 @endif
