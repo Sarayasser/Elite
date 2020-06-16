@@ -4,7 +4,12 @@
       <div class="row border-bottom">
         <div class="col-sm-6 col-md-3">
           <div class="widget dark">
-            <img class="mt-5 mb-20" alt="" src="{{ asset('images/footer_image.jpeg')}}">
+            <img class="mt-5 mb-20" alt="" src="{{ asset('images/hello.png')}}">
+           
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="widget dark"> 
             <p> 1 Mahmoud Said St., Shohada Square, Main Post Office Building, Alexandria</p>
             <ul class="list-inline mt-5">
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-red mr-5"></i> <a class="text-gray" >1550-990-233</a> </li>
@@ -12,6 +17,7 @@
               {{-- todo: deploy --}}
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-globe text-theme-color-orange mr-5"></i> <a class="text-gray" href="#">www.yourdomain.com</a> </li>
             </ul>
+
           </div>
         </div>
         <div class="col-sm-6 col-md-3">
@@ -24,16 +30,13 @@
               <li><a href="event" target="_blank">Our Events</a></li>
               <li><a href="contact" target="_blank">Contact Us</a></li>
             </ul>
+            {{-- <h5 class="widget-title mb-10">Call Us Now</h5>
+            <div class="text-gray">
+              +20 1550 990 233 <br>
+              +20 1280 464 139
+            </div> --}}
           </div>
         </div>
-        <div class="col-sm-6 col-md-6">
-          <div class="widget dark">
-            <img class="mt-5 mb-20" alt="" src="{{ asset('images/hello.png')}}">
-          </div>
-        </div>
-
-      </div>
-      <div class="row mt-30">
         <div class="col-md-2">
           <div class="widget dark">
             <h5 class="widget-title mb-10">Call Us Now</h5>
@@ -55,7 +58,6 @@
             </ul>
           </div>
         </div>
-
       </div>
     </div>
     <div class="footer-bottom bg-black-333">

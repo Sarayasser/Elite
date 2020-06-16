@@ -140,42 +140,40 @@ class PostController extends Controller
     public function destroy($course_id, Post $post)
     {
         if ($post->image) Storage::delete('public/'.$post->image);
-        $post->delete();
+        if (auth()->id() == $post->user_id)
+            $post->delete();
+        else
+            toastr()->error("you are not authorized to view this page");
         return redirect()->route('courses.show', $course_id);
     }
+
     public function ratePost()
-
     {
+        $post = Post::find(request()->id);
+        $rating = $post->ratings()->where('user_id', auth()->user()->id)->first();
+        if(is_null($rating) ){
+            $rating = new \willvincent\Rateable\Rating;
+            $rating->rating =  request()->rate;
+            $rating->user_id = auth()->user()->id;
+            $post->ratings()->save($rating);
+            return redirect()->back();
+        }
 
-    $post = Post::find(request()->id);
-    $rating = $post->ratings()->where('user_id', auth()->user()->id)->first();
-     if(is_null($rating) ){
+        if( $rating->rating<=5){
 
-        $rating = new \willvincent\Rateable\Rating;
-        $rating->rating =  request()->rate;
-        $rating->user_id = auth()->user()->id;
-        $post->ratings()->save($rating);
-        return redirect()->back();
+            $post->ratings()->where('user_id', auth()->user()->id)->first()->delete($rating);
+            $rating = new \willvincent\Rateable\Rating;
+            $rating->rating =  request()->rate;
+            $rating->user_id = auth()->user()->id;
+            $post->ratings()->save($rating);
+            return redirect()->back();
+        }
+        if( $rating->rating==null){
+
+            return redirect()->back()->with("invalid rating");
+        }
+        else{
+            return redirect()->back()->with("You already made a review");
+        }
     }
-
-    if( $rating->rating<=5){
-
-        $post->ratings()->where('user_id', auth()->user()->id)->first()->delete($rating);
-        $rating = new \willvincent\Rateable\Rating;
-        $rating->rating =  request()->rate;
-        $rating->user_id = auth()->user()->id;
-        $post->ratings()->save($rating);
-        return redirect()->back();
-    }
-    if( $rating->rating==null){
-
-        return redirect()->back()->with("invalid rating");
-    }
-    else{
-        return redirect()->back()->with("You already made a review");
-    }
-
-
-    }
-
 }
