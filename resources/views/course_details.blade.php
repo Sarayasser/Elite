@@ -173,19 +173,18 @@
                     </ul>
                   </div>
                 </div>
-
+              @if($posts)
                 <div class="widget">
                   <h3 class="widget-title line-bottom"><span class="text-theme-color-red">Lessons</span></h3>
                   <div class="services-list">
                     <ul class="list list-border">
                     @foreach($posts as $post)
-                        <li class="active"><a href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}">{{$post->title}}</a></li>
-                      @endforeach
+                      <li class="active"><a href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}">{{$post->title}}</a></li>
+                    @endforeach
                     </ul>
                   </div>
                 </div>
-
-
+                @endif
 
                 {{-- TODO:Add quick contact when finish contact us page --}}
                 <div class="widget">
