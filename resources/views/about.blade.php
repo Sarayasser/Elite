@@ -25,9 +25,11 @@
         <div class="section-content">
           <div class="row">
             <div class="col-md-6">
-              <h2 class="text-theme-color-sky line-bottom"><span class="text-theme-color-red">Welcome To Elite</span> <br> Best Education in Our Kindergarden</h2>
-              <h4 class="text-theme-color-blue">Lorem ipsum dolor sit amet soluta saepe odit error, maxime praesentium sunt udiandae!</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore atque officiis maxime suscipit expedita obcaecati nulla in ducimus iure quos quam recusandae dolor quas et perspiciatis voluptatum accusantium delectus nisi reprehenderit, eveniet fuga modi pariatur, eius vero. Ea vitae maiores.</p>
+              <h2 class="text-theme-color-sky line-bottom"><span class="text-theme-color-red">Welcome To Elite</span> <br> Where Robotics Becomes a Commonplace!</h2>
+              <h4 class="text-theme-color-blue">We the founders of Elite started our platform after a careful consideration and study of the ever-changing nature of the world in the 21st century and how that very nature created a never-ending dependency over computers and robotics.   </h4>
+              <p> Out of our belief that knowledge should be accessible to all and that education is a right to all and putting in mind the increase in poverty rates which impedes equal accessibility to information, we decided to create Elite to facilitate learning of robotics to youngsters all around the world free of charge. 
+                We want to end educational poverty and help kids have the opportunity to dream and become whatever they want.
+                </p>
                 
             </div>
             <div class="col-md-6">
@@ -55,7 +57,8 @@
               <div class="title-flaticon">
                 <i class="flaticon-charity-alms"></i>
               </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem autem<br> voluptatem obcaecati!</p>
+              <p>A group of motivated learning enthusiasts whose only concern is the spread of knowledge and equal access to information.
+                 </p>
             </div>
           </div>
         </div>
@@ -155,7 +158,7 @@
               <div class="title-flaticon">
                 <i class="flaticon-charity-alms"></i>
               </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem autem<br> voluptatem obcaecati!</p>
+              <p>A wide range of instructional videos and articles on robotics to aid your learning and further develop your existing knowledge. We provide interactive online sessions through Zoom Meetings to enhance the learning experience.</p>
             </div>
           </div>
         </div>

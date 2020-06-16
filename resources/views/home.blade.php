@@ -11,8 +11,8 @@
                       <div class="pb-50 pt-30">
                          <h2 class="text-white bg-dark-transparent-4 inline-block pl-30 pr-30 mb-5 pt-5 pb-5">Elite E-Learning School</h2>
                         <h1 class="text-white inline-block bg-theme-colored-transparent font-48 mt-0 pr-20 pl-20">Elite for Childern Education</h1>
-                        <p class="font-16 text-black-222">Every day we bring hope to millions of children in the world's<br> hardest places as a sign of God's unconditional love. </p>
-                        <a class="btn btn-colored btn-lg btn-theme-color-red pl-20 pr-20" href="#">View Details</a>
+                        <p class="font-16 text-black-222"> Where Robotics Becomes a Commonplace!<br> hardest places as a sign of God's unconditional love. </p>
+                        
                       </div>
                     </div>
                   </div>
@@ -27,9 +27,11 @@
                 <div class="section-content">
                 <div class="row">
                     <div class="col-md-6">
-                    <h2 class="text-theme-color-sky line-bottom">Welcome To <span class="text-theme-color-red">Elite</span> <br> Best Education in Our Kindergarden</h2>
-                    <h4 class="text-theme-color-red">Lorem ipsum dolor sit amet soluta saepe odit error, maxime praesentium sunt udiandae!</h4>
-                    <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore atque officiis maxime suscipit expedita obcaecati nulla in ducimus iure quos quam recusandae dolor quas et perspiciatis voluptatum accusantium delectus nisi reprehenderit, eveniet fuga modi pariatur, eius vero. Ea vitae maiores.</p>
+                    <h2 class="text-theme-color-sky line-bottom">Welcome To <span class="text-theme-color-red">Elite</span> <br> Where Robotics Becomes a Commonplace!</h2>
+                    <h4 class="text-theme-color-red">We the founders of Elite started our platform after a careful consideration and study of the ever-changing nature of the world in the 21st century and how that very nature created a never-ending dependency over computers and robotics.   </h4>
+                    <p> Out of our belief that knowledge should be accessible to all and that education is a right to all and putting in mind the increase in poverty rates which impedes equal accessibility to information, we decided to create Elite to facilitate learning of robotics to youngsters all around the world free of charge. 
+                        
+                        </p>
                         <a href="about" target="_blank" class="btn btn-flat btn-colored btn-theme-color-blue mt-15 mr-15">Read More</a>
                     </div>
                     <div class="col-md-6">
@@ -54,7 +56,8 @@
                     <div class="title-flaticon">
                         <i class="flaticon-charity-alms"></i>
                     </div>
-                    <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem autem<br> voluptatem obcaecati!</p>
+                    <p class="text-white">A wide range of instructional videos and articles on robotics to aid your learning and further develop your existing knowledge. We provide interactive online sessions through Zoom Meetings to enhance the learning experience.
+                    </p>
                     </div>
                 </div>
                 </div>
@@ -122,7 +125,8 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                     <h2 class="title text-white">Our <span class="text-theme-colored"> Instructors</span></h2>
-                    <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <p class="text-white">A group of dedicated and experienced educators whose sole purpose is to help spread the knowledge and love of robotics among youngsters.
+                    </p>
                     </div>
                 </div>
                 </div>
@@ -176,7 +180,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                     <h2 class="title text-white line-bottom-centered">Latest <span class="text-theme-colored"> Events</span></h2>
-                    <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <p class="text-white">Here you can find an updated list of Elite’s events</p>
                     </div>
                 </div>
                 </div>

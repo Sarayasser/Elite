@@ -27,7 +27,7 @@ class FaqRequest extends FormRequest
     {
         return [
              'question' => 'required|min:5|max:255',
-             'answer' => 'required|min:5|max:255'
+             'answer' => 'required|min:5'
         ];
     }
 
