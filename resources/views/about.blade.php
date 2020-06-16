@@ -95,9 +95,9 @@
                     <p class="mb-0 text-white">Web Developer</p>
                   </div>
                   <ul class="styled-icons icon-dark icon-circled icon-theme-color-red pt-5">
-                    <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin text-white"></i></a></li>
-                    <li><a href="#"><i class="fa fa-github text-white"></i></a></li>
+                    <li><a href="https://www.facebook.com/AlHaitham.kamal"><i class="fa fa-facebook text-white"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/alhaitham-kamal/"><i class="fa fa-linkedin text-white"></i></a></li>
+                    <li><a href="https://github.com/alhaithamkamal"><i class="fa fa-github text-white"></i></a></li>
                   </ul>
                 </div>
               </div>

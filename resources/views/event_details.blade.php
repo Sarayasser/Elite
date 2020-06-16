@@ -8,7 +8,7 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/2590.jpg')}}">
-        <div class="container pt-150 pb-150"> 
+        <div class="container pt-150 pb-150">
             <!-- Section Content -->
             <div class="section-content">
               <div class="col-md-6">
@@ -17,7 +17,7 @@
                     <li><a href="{{route('home')}}">Home</a></li>
                     <li><a href="{{route('events.index')}}">Event</a></li>
                     <li class="active">Event Details</li>
-                </ol>  
+                </ol>
               </div>
                 @if(auth()->user() && !$event->attended && auth()->user()->hasRole('student'))
                 <div class="col-md-6 mt-70 pull-right">

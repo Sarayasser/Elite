@@ -186,6 +186,12 @@
                       </select>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label for="inputName3" class="col-sm-2 control-label" style="color: #5fb6ba;font-size: 17px;font-weight: 600;">Bio</label>
+                  <div class="col-sm-10" style="margin-bottom: 30px;">
+                    <textarea class="form-control"rows="3" name="bio" placeholder="About yourself">{{  Auth::user()->instructor->bio  }}</textarea>
+                  </div>
+                </div>
 
                 <div class="form-group">
                   <label for="inputName3" class="col-sm-2 control-label"  style="color: #5fb6ba;font-size: 17px;font-weight: 600;">Facebook</label>
@@ -233,7 +239,7 @@
                   @endif
                 </div>
                 <a  href="{{ route('password.request') }}">
-                  <p style="margin-top: 20px; font-size: 18px; color: #4abae8; text-align: center;">{{ __('reset Your Password ?') }}</p>
+                  <p style="margin-top: 20px; font-size: 18px; color: #4abae8; text-align: center;">{{ __('Reset Your Password ?') }}</p>
                 </a>
                 @if(auth()->user()->hasRole('instructor'))
                   <div class="form-group" style="text-align: center;">

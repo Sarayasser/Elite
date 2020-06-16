@@ -23,6 +23,7 @@ class EventController extends Controller
     }
     public function show(Request $request, Event $event){
         $test = (new HomeController)->note();
+        // dd($event->user);
         return view('event_details',['event'=>$event,'test'=>$test]);
     }
     public function create(){
@@ -30,6 +31,7 @@ class EventController extends Controller
         return view('events.create',['test'=>$test]);
     }
     public function store(StoreEventRequest $request){
+        // dd($request->image);
         $test = (new HomeController)->note();
         // $request=Request();
         $event = Event::create([
@@ -71,7 +73,7 @@ class EventController extends Controller
             toastr()->error("you are not authorized to view this page");
             return redirect('/event');
         }
-        
+
     }
     public function update(StoreEventRequest $request, Event $event){
         $event->update([
@@ -99,8 +101,8 @@ class EventController extends Controller
             toastr()->error("you are not authorized to delete this event");
             return redirect('/event');
         }
-        
-       
+
+
     }
 
     public function attend(Event $event)

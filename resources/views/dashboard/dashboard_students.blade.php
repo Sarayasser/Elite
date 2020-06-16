@@ -4,7 +4,7 @@
         <div class="container pt-150 pb-150">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row mt-150">
+            <div class="row mt-100">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Students Enrolled</h2>
                 <ol class="breadcrumb text-left mt-10 white">

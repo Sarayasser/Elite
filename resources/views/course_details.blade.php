@@ -8,10 +8,10 @@
 
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" style="height:400px;" data-bg-img="{{ asset('images/bg/2900.jpg')}}">
-        <div class="container pt-150 pb-150">
+        <div class="container pt-50 pb-150">
             <!-- Section Content -->
             <div class="section-content">
-            <div class="row mt-100">
+            <div class="row mt-50">
                 <div class="col-md-6">
                 <h2 class="text-theme-color-yellow font-36">Course details</h2>
                 <ol class="breadcrumb text-left mt-10 white">
@@ -33,13 +33,13 @@
                 </div>
                 <div class="col-md-6 mt-70" style="float:right;">
                 @if(Auth::user())
-                  @if (Auth::user()->hasRole('instructor') || Auth::user()->hasRole('admin'))
+                  @if (Auth::user()->hasRole('instructor') && $course->instructor_id == Auth::user()->instructor->id || Auth::user()->hasRole('admin'))
                   <a href="{{route('posts.create', ['course' => $course])}}" class="fa fa-plus-circle fa-5x" style="float:right;color:white;"></a>
                   @endif
                   @if (auth()->user()->hasRole('student') && $course->enrolled)
                   <a href="{{route('posts.index', ['course' => $course])}}" class="fa fa-play fa-5x" style="float:right;color:white;"></a>
                   @endif
-                  @if (Auth::user()->hasRole('instructor') || Auth::user()->hasRole('admin'))
+                  @if (Auth::user()->hasRole('instructor') && $course->instructor_id == Auth::user()->instructor->id || Auth::user()->hasRole('admin'))
                   <a href="{{route('schedule.create', ['course' => $course])}}" class="fa fa-calendar fa-5x mr-20" style="float:right;color:white;"></a>
                   @endif
                 @endif
@@ -56,7 +56,7 @@
               <div class="single-service">
                 <img src="{{asset($course->image)}}" alt="" class="img-fullwidth" >
                 <h2 class="text-theme-color-red line-bottom">{{$course->name}}</h2>
-                
+
                   <ul class="review_text list-inline">
                     <li>
                       <div class="star-rating" title="Rated {{$course->averageRating}} out of 5"><span data-width="{{$course->averageRating*20}}%">{{$course->averageRating}}</span></div>
@@ -86,7 +86,7 @@
                 <form action="{{ route('courses.rate') }}" method="POST">
 
                   {{ csrf_field() }}
-                  
+
 
 
 
@@ -173,23 +173,22 @@
                     </ul>
                   </div>
                 </div>
-
+              @if($posts)
                 <div class="widget">
                   <h3 class="widget-title line-bottom"><span class="text-theme-color-red">Lessons</span></h3>
                   <div class="services-list">
                     <ul class="list list-border">
                     @foreach($posts as $post)
-                        <li class="active"><a href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}">{{$post->title}}</a></li>
-                      @endforeach
+                      <li class="active"><a href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}">{{$post->title}}</a></li>
+                    @endforeach
                     </ul>
                   </div>
                 </div>
-
-
+                @endif
 
                 {{-- TODO:Add quick contact when finish contact us page --}}
                 <div class="widget">
-                  
+
                   <h3 class="widget-title line-bottom">Quick <span class="text-theme-color-red">Contact</span></h3>
                   <form id="contact_form" name="contact_form"  class="quick-contact-form" method="post" action="{{route('quickContact.store')}}" >
                     @csrf
