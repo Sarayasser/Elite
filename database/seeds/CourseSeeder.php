@@ -14,7 +14,7 @@ class CourseSeeder extends Seeder
     {
         Course::create([
             'name' => 'Smart-X', 
-            'instructor_id' => 2, 
+            'instructor_id' => 3, 
             'age' => 6, 
             'duration' => 6,
             'capacity' => 23,
