@@ -59,7 +59,12 @@ we wish further success to you.', 50, 200, 400,"#333","/var/www/html/Elite/publi
      */
     public function create(Course $course)
     {   $test = (new HomeController)->note();
-        return view('posts.create', ['course' => $course->id,'test'=>$test]);
+        if ($course->user_id == auth()->id())
+            return view('posts.create', ['course' => $course->id,'test'=>$test]);
+        else {
+            toastr()->error("you are not assigned for this course");
+            return redirect()->route('courses.show', $course->id);
+        }
     }
 
     /**

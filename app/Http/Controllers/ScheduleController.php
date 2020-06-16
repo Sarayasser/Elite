@@ -24,7 +24,14 @@ class ScheduleController extends Controller
         return view('dashboard.instructor.schedule',['schedules'=>$schedules]);
     }
     public function create(Course $course,Instructor $instructor){
-        return view('schedules.create',['course' => $course]);
+        $courses = Auth::user()->instructor->courses->toarray();
+        if(in_array($course->toarray(), $courses)){
+            return view('schedules.create',['course' => $course]);
+        }else{
+            toastr()->error("you are not authorized to view this page");
+            return redirect()->back();
+        }
+            
     }
     public function store(StoreScheduleRequest $request){
         

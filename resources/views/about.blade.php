@@ -113,7 +113,7 @@
                     <h3 class="mt-0 text-white">Sara Yasser</h3>
                     <p class="mb-0 text-white">Web Developer</p>
                   </div>
-                  <ul class="styled-icons icon-dark icon-circled icon-theme-color-red pt-5">
+                  <ul class="styled-icons icon-dark icon-circled icon-theme-color-green pt-5">
                     <li><a href="https://www.facebook.com/sara.y.elsayd"><i class="fa fa-facebook text-white"></i></a></li>
                     <li><a href="https://www.linkedin.com/in/sara-yasser-970639111/"><i class="fa fa-linkedin text-white"></i></a></li>
                     <li><a href="https://github.com/Sarayasser"><i class="fa fa-github text-white"></i></a></li>
@@ -127,7 +127,7 @@
                     <img class="img-fullwidth mt-15" height="390px" src="{{asset('images/team/team1.jpg')}}" alt="">
                 </a>
                 </div>
-                <div class="team-details bg-theme-color-red text-center pt-20 pb-5">
+                <div class="team-details bg-theme-color-green text-center pt-20 pb-5">
                   <div class="member-biography">
                     <h3 class="mt-0 text-white">Logain Hassan</h3>
                     <p class="mb-0 text-white">Web Developer</p>
