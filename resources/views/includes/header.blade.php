@@ -19,7 +19,7 @@
                 <li>
                 <div class="btn-group">
                 @if(Auth::user()->hasRole('student') && Auth::user())
-                <button class="fa fa-bell fa-2x" type="button" id="bell" data-toggle="dropdown" style="border-color:transparent;background:transparent;" aria-haspopup="true" aria-expanded="false"></button>
+                <button class="fa fa-bell fa-2x" type="button" id="bell" data-toggle="dropdown" style="border-color:transparent;background:transparent;    margin-top: 26px; color: #f6514a;" aria-haspopup="true" aria-expanded="false"></button>
                 @endif
                 @if(Auth::user()->hasRole('student') && Auth::user())
                 <ul class="dropdown-menu dropdown-menu-right">
