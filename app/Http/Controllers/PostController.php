@@ -84,7 +84,12 @@ class PostController extends Controller
     public function show($course_id, Post $post)
     {   $test = (new HomeController)->note();
         $comments = $post->comments()->with('replies')->get();
-        return view('posts.show', ['post' => $post, 'course' => $course_id, 'comments' => $comments,'test'=>$test]);
+        if($post->course_id == $course_id)
+            return view('posts.show', ['post' => $post, 'course' => $course_id, 'comments' => $comments,'test'=>$test]);
+        else {
+            toastr()->error("you entered a wrong url");
+            return redirect()->route('courses.show', $course_id);
+        }
     }
 
     /**
@@ -95,7 +100,12 @@ class PostController extends Controller
      */
     public function edit(Course $course, Post $post)
     {   $test = (new HomeController)->note();
-        return view('posts.edit', ['course' => $course->id, 'post' => $post,'test'=>$test]);
+        if(auth()->id() == $post->user_id)
+            return view('posts.edit', ['course' => $course->id, 'post' => $post,'test'=>$test]);
+        else {
+            toastr()->error("you are not authorized to view this page");
+            return redirect()->route('courses.show', $course->id);
+        }
     }
 
     /**

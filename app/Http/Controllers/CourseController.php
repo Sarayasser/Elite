@@ -22,7 +22,7 @@ class CourseController extends Controller
 
         $course = Course::findOrFail(request()->course);
         $courses = Course::orderBy('id', 'desc')->take(5)->get();
-        $posts = Post::orderBy('id', 'asc')->take(10)->get();
+        $posts = $course->posts;
         $reviews=Review::all();
         $course_id=request()->course;
 
