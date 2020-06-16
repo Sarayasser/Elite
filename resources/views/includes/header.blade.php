@@ -4,16 +4,13 @@
     <div class="header-middle p-0 bg-lightest xs-text-center">
       <div class="container pt-0 pb-0">
         <div class="row">
-          <div class="col-xs-12 col-sm-4 col-md-12">
+          <div class="col-xs-12 col-sm-4 col-md-11">
             <div class="widget no-border m-0">
               <a href="{{route('home')}}" class="menuzord-brand pull-left flip xs-pull-center mb-15" style="margin: 0 30px 0 0;" href="javascript:void(0)"><img src="{{ asset('images/logooo.png')}}" style="width: 210px;max-height: 100px;" alt=""></a>
             </div>
               <div class="widget no-border m-0">
-
-              <a href="{{route('home')}}" class="menuzord-brand pull-left flip xs-pull-center mb-15" style="margin:30px 30px 0 0;" href="javascript:void(0)"><img src="{{ asset('images/slogin.png')}}" style="width: 700px;max-height: 100px;" alt=""></a>
-
-            </div>
-
+                <a href="{{route('home')}}" class="menuzord-brand pull-left flip xs-pull-center mb-15" style="margin:30px 30px 0 0;" href="javascript:void(0)"><img src="{{ asset('images/slogin.png')}}" style="width: 700px;max-height: 100px;" alt=""></a>
+              </div>
           </div>
           @if(Auth::user())
           <div class="col mt-10" style="float:right;">
