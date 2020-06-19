@@ -46,6 +46,7 @@
 
                 <div class="input-group">
                     <label class="radio-container m-r-45">{{ __('Remember Me') }}</label>
+                    {{-- <label class="radio-container m-r-45">{{ __('Remember Me') }}</label> --}}
                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                         <span class="checkmark"></span>
                 </div>
@@ -63,7 +64,7 @@
 
                 </div>
                 <div class="row row-space" style="margin-top:15px;">
-                    <a href="{{ route('users') }}">{{ _("Register if you don't have an account") }}</a>
+                    <a href="{{ route('users') }}">{{ __("Register if you don't have an account") }}</a>
                 </div>
             </form>
             <br>
