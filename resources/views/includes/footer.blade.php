@@ -24,7 +24,7 @@
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-red mr-5"></i> <a class="text-gray" >1550-990-233</a> </li>
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-color-lemon mr-5"></i> <a class="text-gray">elite.iti40.alex@gmail.com</a> </li>
               {{-- todo: deploy --}}
-              <li class="m-0 pl-10 pr-10"> <i class="fa fa-globe text-theme-color-orange mr-5"></i> <a class="text-gray" href="#">www.yourdomain.com</a> </li>
+              {{-- <li class="m-0 pl-10 pr-10"> <i class="fa fa-globe text-theme-color-orange mr-5"></i> <a class="text-gray" href="#">www.yourdomain.com</a> </li> --}}
             </ul>
 
           </div>
