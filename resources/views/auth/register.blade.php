@@ -163,7 +163,7 @@
                 </div>
                 <div class="row row-space">
                     <div class="col-2">
-                        <a href="{{ route('login') }}">{{ _('login') }}</a>
+                        <a href="{{ route('login') }}">{{ __('login') }}</a>
                     </div>
                 </div>
             </div>

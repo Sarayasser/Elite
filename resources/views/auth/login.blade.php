@@ -8,8 +8,7 @@
             {{ session('error') }}
         </div>
     @endif
-        {{-- <h2 class="title">{{ __('Login Form') }}</h2> --}}
-        <h2 class="title">Login Form</h2>
+        <h2 class="title">{{ __('Login Form') }}</h2>
         @if (session('danger'))
             <div class="alert alert-danger" role="alert" style="margin-bottom:20px;">
                 <strong style="font-size: 16px; color: #e35c5c;"> {{ session('danger') }}</strong>
@@ -24,8 +23,7 @@
             @csrf
 
                 <div class="input-group">
-                    {{-- <label class="label">{{ __('E-Mail Address') }}</label> --}}
-                    <label class="label">E-Mail Address</label>
+                    <label class="label">{{ __('E-Mail Address') }}</label>
                     <input id="email" type="email" class="input--style-4 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -34,8 +32,7 @@
                     @enderror
                 </div>
                 <div class="input-group">
-                    {{-- <label class="label">{{ __('Password') }}</label> --}}
-                    <label class="label">Password </label>
+                    <label class="label">{{ __('Password') }}</label>
                     <input id="password" type="password" class="input--style-4 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -45,8 +42,7 @@
                 </div>
 
                 <div class="input-group">
-                    <label class="radio-container m-r-45">{{ __('Remember Me') }}</label>
-                    {{-- <label class="radio-container m-r-45">{{ __('Remember Me') }}</label> --}}
+                    <label class="radio-container m-r-45">{{ __('Remember Me') }}
                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                         <span class="checkmark"></span>
                 </div>
