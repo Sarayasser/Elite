@@ -16,7 +16,7 @@
 
 <!-- Fonts -->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
-<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
 <!-- Page Title -->
