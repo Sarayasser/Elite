@@ -23,7 +23,7 @@ class ScheduleController extends Controller
         $schedules=Schedule::where('instructor_id',$user->id)->get();
         return view('dashboard.instructor.schedule',['schedules'=>$schedules]);
     }
-    public function create(Course $course,Instructor $instructor){
+    public function create(Course $course, Instructor $instructor){
         $courses = Auth::user()->instructor->courses->toarray();
         if(in_array($course->toarray(), $courses)){
             return view('schedules.create',['course' => $course]);

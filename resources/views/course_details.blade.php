@@ -179,7 +179,7 @@
                   <div class="services-list">
                     <ul class="list list-border">
                     @foreach($posts as $post)
-                      <li class="active"><a href="{{route('posts.show', ['course' => $course->id, 'post' => $post->id])}}">{{$post->title}}</a></li>
+                      <li class="active"><a href="{{route('posts.show', ['course' => $course_id, 'post' => $post->id])}}">{{$post->title}}</a></li>
                     @endforeach
                     </ul>
                   </div>

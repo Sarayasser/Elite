@@ -108,7 +108,8 @@ we wish further success to you.', 50, 200, 400,"#333","/var/www/html/Elite/publi
      * @return \Illuminate\Http\Response
      */
     public function show($course_id, Post $post)
-    {   $test = (new HomeController)->note();
+    {
+        $test = (new HomeController)->note();
         $comments = $post->comments()->with('replies')->get();
         if($post->course_id == $course_id)
             return view('posts.show', ['post' => $post, 'course' => $course_id, 'comments' => $comments,'test'=>$test]);
